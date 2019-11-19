@@ -26,4 +26,4 @@ jobs:
         run: npm install yarn
       - name: build and publish
         working-directory: ./website
-        run: yarn run publish-gh-pages
+        run: pwd
