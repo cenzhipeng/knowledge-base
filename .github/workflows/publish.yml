@@ -20,6 +20,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
             node-version: '10.x'
+      - name: config git
+        run:  |
+          git config --global user.email "cenzhipeng@aliyun.com"
+          git config --global user.name "cenzhipeng"
       - name: install yarn
         run: npm install yarn
       - name: install dependencies
