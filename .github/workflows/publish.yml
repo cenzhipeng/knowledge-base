@@ -23,4 +23,5 @@ jobs:
       - name: echo working directory
         run: echo "工作目录：$GITHUB_WORKSPACE"
       - name: build and publish
-        run: cd website && yarn run publish-gh-pages
+        working-directory: $GITHUB_WORKSPACE/website
+        run: yarn run publish-gh-pages
