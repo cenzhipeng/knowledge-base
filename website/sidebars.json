@@ -1,0 +1,34 @@
+{
+  "docs": {
+    "Docusaurus": [
+      "docusaurus/install",
+      "docusaurus/config",
+      "docusaurus/build"
+    ],
+    "First Category": [
+      "doc2"
+    ],
+    "Second Category": [
+      "doc3"
+    ],
+    "测试折叠标题": [
+      "doc2",
+      "doc1",
+      {
+        "type": "subcategory",
+        "label": "My Example Subcategory",
+        "ids": [
+          "doc3",
+          "doc3",
+          "doc1"
+        ]
+      }
+    ]
+  },
+  "docs-other": {
+    "First Category": [
+      "doc4",
+      "doc5"
+    ]
+  }
+}
