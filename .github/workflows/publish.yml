@@ -32,5 +32,6 @@ jobs:
       - name: build and publish
         working-directory: ./website
         run: |
-          yarn run publish-gh-pages
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          yarn run publish-gh-pages
+
