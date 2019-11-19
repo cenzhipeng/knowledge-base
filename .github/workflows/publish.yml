@@ -20,10 +20,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
             node-version: '10.x'
-      - name: echo working directory
-        run: echo "工作目录：$GITHUB_WORKSPACE"
       - name: install yarn
         run: npm install yarn
+      - name: install docusaurus
+        run: yarn global add docusaurus-publish
+
       - name: build and publish
         working-directory: ./website
         run: yarn run publish-gh-pages
