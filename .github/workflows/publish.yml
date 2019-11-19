@@ -22,8 +22,8 @@ jobs:
             node-version: '10.x'
       - name: install yarn
         run: npm install yarn
-      - name: install docusaurus
-        run: yarn global add docusaurus-init
+      - name: install dependencies
+        run: yarn install
 
       - name: build and publish
         working-directory: ./website
