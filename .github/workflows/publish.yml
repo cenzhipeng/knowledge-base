@@ -25,5 +25,5 @@ jobs:
       - name: install yarn
         run: npm install yarn
       - name: build and publish
-        working-directory: $GITHUB_WORKSPACE/website
+        working-directory: "$GITHUB_WORKSPACE/website"
         run: pwd
