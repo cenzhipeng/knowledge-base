@@ -23,7 +23,7 @@ jobs:
       - name: install yarn
         run: npm install yarn
       - name: install docusaurus
-        run: yarn global add docusaurus-publish
+        run: yarn global add docusaurus-init
 
       - name: build and publish
         working-directory: ./website
