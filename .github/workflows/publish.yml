@@ -24,4 +24,4 @@ jobs:
         run: echo "工作目录：$GITHUB_WORKSPACE"
       - name: build and publish
         working-directory: $GITHUB_WORKSPACE/website
-        run: yarn run publish-gh-pages
+        run: npm run publish-gh-pages
