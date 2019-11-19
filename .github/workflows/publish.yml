@@ -36,8 +36,8 @@ jobs:
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
           git checkout gh-pages
-          git pull
           cd ..
+          git pull
           echo $CUSTOM_DOMAIN > CNAME
           git add .
           git commit -m "Deploy website"
