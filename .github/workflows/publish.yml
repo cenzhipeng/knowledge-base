@@ -9,6 +9,7 @@ env:
   GIT_USER: cenzhipeng
   CURRENT_BRANCH: master
   USE_SSH: false
+  CUSTOM_DOMAIN: cenzhipeng.com
 
 jobs:
   build-publish:
@@ -34,4 +35,12 @@ jobs:
         run: |
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
+          git checkout gh-pages
+          git pull
+          cd ..
+          echo $CUSTOM_DOMAIN > CNAME
+          git add .
+          git commit -m "Deploy website"
+          git push
+
 
