@@ -112,7 +112,6 @@ yarn run build
   <span class="hljs-attr">USE_SSH:</span> <span class="hljs-literal">false</span>
   <span class="hljs-attr">CUSTOM_DOMAIN:</span> <span class="hljs-string">cenzhipeng.com</span>
 
-<span class="hljs-comment"># ${{ secrets.GITHUB_TOKEN }} 是 github actions 会自动提供的 token(毕竟是自家出的)</span>
 <span class="hljs-attr">jobs:</span>
   <span class="hljs-attr">build-publish:</span>
 
@@ -146,4 +145,8 @@ yarn run build
           git commit -m "Deploy website"
           git push
 </span></code></pre>
+<blockquote>
+<p>${{ secrets.GT_TOKEN }} 是 Github Actions的语法，引用了 GT_TOKEN，GT_TOKEN 是我在仓库 settings/secrets 中创建的，它的值是我创建的 github 的 token，这个 token 的创建路径在你个人的 Settings/Developer settings/Personal access tokens</p>
+<p>另外，Github Actions 其实本身提供了${{ secrets.GITHUB_TOKEN }}，这个 token 不需要配置，但是无法触发 Github Pages 的构建，所以还是使用我们自己创建的 token 最好。</p>
+</blockquote>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/docusaurus/快速开始/config"><span class="arrow-prev">← </span><span>目录结构和配置</span></a><a class="docs-next button" href="/docs/doc2"><span>document number 2</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#构建静态-html">构建静态 HTML</a><ul class="toc-headings"><li><a href="#操作">操作</a></li></ul></li><li><a href="#推送到-github-pages">推送到 Github Pages</a><ul class="toc-headings"><li><a href="#修改-siteconfigjs">修改 siteConfig.js</a></li><li><a href="#构建并且推送到-gh-pages-分支">构建并且推送到 gh-pages 分支</a></li><li><a href="#使用-github-actions-自动发布">使用 Github Actions 自动发布</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Your Name or Your Company Name</section></footer></div></body></html>
