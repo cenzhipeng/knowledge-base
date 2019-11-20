@@ -37,10 +37,10 @@ jobs:
           yarn run publish-gh-pages
       - name: add CNAME
         run: |
+          git stash
           git checkout gh-pages
-          git pull
           echo $CUSTOM_DOMAIN > CNAME
-          git add .
+          git add ./CNAME
           git commit -m "Deploy website"
           git push
 
