@@ -113,7 +113,6 @@ env:
   USE_SSH: false
   CUSTOM_DOMAIN: cenzhipeng.com
 
-# ${{ secrets.GITHUB_TOKEN }} 是 github actions 会自动提供的 token(毕竟是自家出的)
 jobs:
   build-publish:
 
@@ -147,4 +146,12 @@ jobs:
           git commit -m "Deploy website"
           git push
 ```
+
+
+
+> ${{ secrets.GT_TOKEN }} 是 Github Actions的语法，引用了 GT_TOKEN，GT_TOKEN 是我在仓库 settings/secrets 中创建的，它的值是我创建的 github 的 token，这个 token 的创建路径在你个人的 Settings/Developer settings/Personal access tokens
+>
+> 
+>
+> 另外，Github Actions 其实本身提供了${{ secrets.GITHUB_TOKEN }}，这个 token 不需要配置，但是无法触发 Github Pages 的构建，所以还是使用我们自己创建的 token 最好。
 
