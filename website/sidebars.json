@@ -1,9 +1,9 @@
 {
   "docs": {
     "Docusaurus": [
-      "docusaurus/install",
-      "docusaurus/config",
-      "docusaurus/build"
+      "docusaurus/快速开始/install",
+      "docusaurus/快速开始/config",
+      "docusaurus/快速开始/build"
     ],
     "First Category": [
       "doc2"

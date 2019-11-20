@@ -73,3 +73,78 @@ cmd /C "set GIT_USER=<GIT_USER> && set CURRENT_BRANCH=master && set USE_SSH=true
 >
 > 该命令的执行路径不是项目根目录，而是出于 website 目录下，也就是我们必须出于这个目录才能推送成功
 
+
+
+### 使用 Github Actions 自动发布
+
+#### Github Actions 介绍
+
+Github Actions 的功能类似于 travis，主要作用也是 CI/CD，我们可以在仓库的根目录下建立 `.github/workflows/*.yml` 文件来定义我们的 Actions，这些配置文件定义了项目的 CI 过程。
+
+
+
+#### 预期目的
+
+本地编写 markdown 文档，然后推送到 github，github 自动触发流程，对 markdown 进行编译然后推送到 gh-pages 分支作为 Github Pages 发布。
+
+
+
+#### 思路
+
+定义 Github Actions，监听 master 分支的 push 事件，在 master 分支 push 时，就进行 docusaurus 的构建和发布工作，推送到 gh-pages 分支。
+
+
+
+#### 工作流配置
+
+文件路径：`.github/workflows/publish.yml`
+
+```yaml
+name: pubsh
+
+# 只在master分支有push的时候，进行构建和发布
+on: 
+  push:
+    branches: master
+
+env:
+  GIT_USER: cenzhipeng
+  CURRENT_BRANCH: master
+  USE_SSH: false
+  CUSTOM_DOMAIN: cenzhipeng.com
+
+# ${{ secrets.GITHUB_TOKEN }} 是 github actions 会自动提供的 token(毕竟是自家出的)
+jobs:
+  build-publish:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+            node-version: '10.x'
+      - name: config git
+        run:  |
+          git config --global user.email "cenzhipeng@aliyun.com"
+          git config --global user.name "cenzhipeng"
+      - name: install yarn
+        run: npm install yarn
+      - name: install dependencies
+        run: yarn install
+        working-directory: ./website
+      - name: build and publish
+        working-directory: ./website
+        run: |
+          echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          yarn run publish-gh-pages
+      - name: add CNAME
+        run: |
+          git stash
+          git checkout gh-pages
+          echo $CUSTOM_DOMAIN > CNAME
+          git add ./CNAME
+          git commit -m "Deploy website"
+          git push
+```
+
