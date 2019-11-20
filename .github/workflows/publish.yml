@@ -39,6 +39,7 @@ jobs:
         run: |
           git stash
           git checkout gh-pages
+          git pull
           echo $CUSTOM_DOMAIN > CNAME
           git add ./CNAME
           git commit -m "Deploy website"
