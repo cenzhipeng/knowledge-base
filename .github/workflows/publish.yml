@@ -47,6 +47,7 @@ jobs:
           sed -i 's/html lang="en"/html lang="zh-CN"/' $var; \
           done
           git add ./CNAME
+          find .  -iname "*.html" |grep -v /en/ | xargs git add
           git commit -m "Deploy website"
           git push
 
