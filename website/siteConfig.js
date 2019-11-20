@@ -105,6 +105,8 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  blogSidebarCount: 'ALL',
+  blogSidebarTitle: { default: '最近博客', all: '所有博客' },
 };
 
 module.exports = siteConfig;

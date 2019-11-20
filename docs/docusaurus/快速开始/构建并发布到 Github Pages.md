@@ -2,7 +2,6 @@
 id: build
 title: 本文内容
 sidebar_label: 构建并发布到 Github Pages
-todo
 ---
 
 本篇介绍 docusaurus 构建静态页面，并且发布到 Github Pages的方法
@@ -100,7 +99,7 @@ Github Actions 的功能类似于 travis，主要作用也是 CI/CD，我们可�
 文件路径：`.github/workflows/publish.yml`
 
 ```yaml
-name: pubsh
+name: publish
 
 # 只在master分支有push的时候，进行构建和发布
 on: 
@@ -135,12 +134,13 @@ jobs:
       - name: build and publish
         working-directory: ./website
         run: |
-          echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          echo "machine github.com login ${GIT_USER} password ${{ secrets.GT_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
       - name: add CNAME
         run: |
-          git stash
           git checkout gh-pages
+          git stash
+          git pull
           echo $CUSTOM_DOMAIN > CNAME
           git add ./CNAME
           git commit -m "Deploy website"
