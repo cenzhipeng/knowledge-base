@@ -35,6 +35,7 @@ jobs:
         run: |
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
+          
       - name: add CNAME
         run: |
           git stash
