@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: '影子的知识库', // Title for your website.
   tagline: '后端知识技能库',
-  url: 'https://lovepp.org', // Your website URL
+  url: 'https://www.lovepp.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -109,7 +109,7 @@ const siteConfig = {
   blogSidebarTitle: { default: '最近博客', all: '所有博客' },
   docsSideNavCollapsible: true,
   enableUpdateTime: true,
-  cname: 'lovepp.org'
+  cname: 'www.lovepp.org'
 };
 
 module.exports = siteConfig;
