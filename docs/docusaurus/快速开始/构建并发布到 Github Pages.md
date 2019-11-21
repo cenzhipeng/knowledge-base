@@ -2,6 +2,7 @@
 id: build
 title: 本文内容
 sidebar_label: 构建并发布到 Github Pages
+todo
 ---
 
 本篇介绍 docusaurus 构建静态页面，并且发布到 Github Pages的方法
@@ -142,7 +143,13 @@ jobs:
           git stash
           git pull
           echo $CUSTOM_DOMAIN > CNAME
+          for var in $(find .  -iname "*.html" |grep -v /en/); \
+          do \
+          sed -i 's/html lang=""/html lang="zh-CN"/' $var; \
+          sed -i 's/html lang="en"/html lang="zh-CN"/' $var; \
+          done
           git add ./CNAME
+          find .  -iname "*.html" |grep -v /en/ | xargs git add
           git commit -m "Deploy website"
           git push
 ```
@@ -154,4 +161,8 @@ jobs:
 > 
 >
 > 另外，Github Actions 其实本身提供了${{ secrets.GITHUB_TOKEN }}，这个 token 不需要配置，但是无法触发 Github Pages 的构建，所以还是使用我们自己创建的 token 最好。
+>
+> 
+>
+> 最后有一个步骤是修改 html 文件的语言种类，这个是 docusaurus 的国际化还没有做好，所以我自己写的一个脚本将所有生成的 html 文件的语言修改为了中文，不然每次 chrome 浏览页面的时候都会提示你是否要翻译。在即将发布的 docusaurus 2 中，会对国际化做更好的支持，到时候应该就不用这么 hack 的方式来支持中文页面了
 

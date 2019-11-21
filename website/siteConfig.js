@@ -54,7 +54,7 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#819242',
+    primaryColor: '#2e8554',
     secondaryColor: '#5a662e',
   },
 
@@ -77,7 +77,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark-reasonable',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -107,6 +107,8 @@ const siteConfig = {
   //   repoUrl: 'https://github.com/facebook/test-site',
   blogSidebarCount: 'ALL',
   blogSidebarTitle: { default: '最近博客', all: '所有博客' },
+  docsSideNavCollapsible: true,
+  enableUpdateTime: true
 };
 
 module.exports = siteConfig;
