@@ -137,6 +137,21 @@ jobs:
         run: |
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GT_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
+      - name: change language
+        run: |
+          git checkout gh-pages
+          git stash
+          git pull
+          # echo $CUSTOM_DOMAIN > CNAME
+          for var in $(find .  -iname "*.html" |grep -v /en/); \
+          do \
+          sed -i 's/html lang=""/html lang="zh-CN"/' $var; \
+          sed -i 's/html lang="en"/html lang="zh-CN"/' $var; \
+          done
+          # git add ./CNAME
+          find .  -iname "*.html" |grep -v /en/ | xargs git add
+          git commit -m "Deploy website"
+          git push
 ```
 
 
