@@ -109,7 +109,7 @@ const siteConfig = {
   blogSidebarTitle: { default: '最近博客', all: '所有博客' },
   docsSideNavCollapsible: true,
   enableUpdateTime: true,
-  cname: 'lovepp.org\nwww.lovepp.org'
+  cname: 'lovepp.org'
 };
 
 module.exports = siteConfig;
