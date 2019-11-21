@@ -136,6 +136,21 @@ yarn run build
         <span class="hljs-attr">run:</span> <span class="hljs-string">|
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GT_TOKEN }}" &gt; ~/.netrc
           yarn run publish-gh-pages
+</span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">change</span> <span class="hljs-string">language</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">|
+          git checkout gh-pages
+          git stash
+          git pull
+          # echo $CUSTOM_DOMAIN &gt; CNAME
+          for var in $(find .  -iname "*.html" |grep -v /en/); \
+          do \
+          sed -i 's/html lang=""/html lang="zh-CN"/' $var; \
+          sed -i 's/html lang="en"/html lang="zh-CN"/' $var; \
+          done
+          # git add ./CNAME
+          find .  -iname "*.html" |grep -v /en/ | xargs git add
+          git commit -m "Deploy website"
+          git push
 </span></code></pre>
 <blockquote>
 <p>${{ secrets.GT_TOKEN }} 是 Github Actions的语法，引用了 GT_TOKEN，GT_TOKEN 是我在仓库 settings/secrets 中创建的，它的值是我创建的 github 的 token，这个 token 的创建路径在你个人的 Settings/Developer settings/Personal access tokens</p>
