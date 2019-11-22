@@ -2,7 +2,6 @@
 id: build
 title: 本文内容
 sidebar_label: 构建并发布到 Github Pages
-todo
 ---
 
 本篇介绍 docusaurus 构建静态页面，并且发布到 Github Pages的方法
