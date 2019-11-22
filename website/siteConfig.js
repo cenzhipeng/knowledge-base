@@ -48,14 +48,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/favicon.ico',
-  footerIcon: 'img/favicon.ico',
+  headerIcon: 'img/mark-github.svg',
+  footerIcon: 'img/mark-github.svg',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#2e8554',
-    secondaryColor: '#5a662e',
+    primaryColor: '#24292e',
+    secondaryColor: '#24292e',
   },
 
   /* Custom fonts for website */

@@ -1,5 +1,21 @@
 /* your custom css */
+/* #footer {
+    background: #24292e!important;
+    color: #24292e;
+}
 
+.nav-home {
+    background: #24292e!important;
+    color: #24292e;
+}
+a.nav-home {
+    background: #24292e!important;
+    color: #24292e;
+}
+img[alt="影子的知识库"]{
+    background: #24292e!important;
+    color: #24292e;
+} */
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
@@ -13,4 +29,44 @@
 }
 
 @media only screen and (min-width: 1500px) {
+}
+
+.nav-footer {
+    background: #24292e;
+    color: #24292e;
+}
+
+.nav-footer .sitemap .nav-home {
+    display: table;
+    height: 72px;
+    margin: -12px 20px 0 0;
+    opacity: 1;
+    padding: 10px;
+    transition: opacity 0.15s ease-in-out;
+    width: 72px;
+}
+
+.nav-footer .sitemap .nav-home:hover,
+.nav-footer .sitemap .nav-home:focus {
+  opacity: 0.8;
+}
+
+header a[href="/"] {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.fixedHeaderContainer a {
+    align-items: center;
+    border: 0;
+    color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 34px;
+    z-index: 10000;
+    padding: 1px;
+}
+
+header a[href="/"]:hover{
+  opacity: 0.8;
 }
