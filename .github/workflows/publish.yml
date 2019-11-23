@@ -41,12 +41,14 @@ jobs:
           git stash
           git pull
           # echo $CUSTOM_DOMAIN > CNAME
+          echo 'User-agent: * Allow: /' > robots.txt
           for var in $(find .  -iname "*.html" |grep -v /en/); \
           do \
           sed -i 's/html lang=""/html lang="zh-CN"/' $var; \
           sed -i 's/html lang="en"/html lang="zh-CN"/' $var; \
           done
           # git add ./CNAME
+          git add ./robots.txt
           find .  -iname "*.html" |grep -v /en/ | xargs git add
           git commit -m "Deploy website"
           git push
