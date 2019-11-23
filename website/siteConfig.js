@@ -38,10 +38,10 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
-    {page: 'help', label: 'Help'},
-    {blog: true, label: 'Blog'},
+    {doc: 'docusaurus/快速开始/install', label: '知识库'},
+    // {doc: 'doc4', label: 'API'},
+    // {page: 'help', label: 'Help'},
+    // {blog: true, label: 'Blog'},
   ],
 
   // If you have users set above, you add it here:
@@ -109,7 +109,12 @@ const siteConfig = {
   blogSidebarTitle: { default: '最近博客', all: '所有博客' },
   docsSideNavCollapsible: true,
   enableUpdateTime: true,
-  cname: 'www.lovepp.org'
+  cname: 'www.lovepp.org',
+  algolia: {
+    apiKey: '411affb22749e84f2506f330ffac2fba',
+    indexName: 'knowledge_base',
+    appId: 'QY49S75304'
+  },
 };
 
 module.exports = siteConfig;
