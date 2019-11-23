@@ -77,7 +77,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'atom-one-dark-reasonable',
+    theme: 'default',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -115,6 +115,14 @@ const siteConfig = {
     indexName: 'knowledge_base',
     appId: 'QY49S75304'
   },
+  docsUrl: '',
+  editUrl: 'https://github.com/cenzhipeng/knowledge-base/tree/master/docs/',
+  gaTrackingId: 'UA-153148512-1',
+  githubHost: 'cenzhipeng',
+  scrollToTop: true,
+  scrollToTopOptions: {
+    scrollDuration: 400
+  }
 };
 
 module.exports = siteConfig;
