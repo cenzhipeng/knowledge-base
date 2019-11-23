@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
   
     addButtons(
       '.hljs',
-      button('Copy', 'Copy code to clipboard', copyIcon, 'btnClipboard'),
+      button('复制', 'Copy code to clipboard', copyIcon, 'btnClipboard'),
     );
   
     const clipboard = new ClipboardJS('.btnClipboard', {
