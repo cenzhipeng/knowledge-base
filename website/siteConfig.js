@@ -118,7 +118,6 @@ const siteConfig = {
   docsUrl: '',
   editUrl: 'https://github.com/cenzhipeng/knowledge-base/tree/master/docs/',
   gaTrackingId: 'UA-153148512-1',
-  githubHost: 'cenzhipeng',
   scrollToTop: true,
   scrollToTopOptions: {
     scrollDuration: 400
