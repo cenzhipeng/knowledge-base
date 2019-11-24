@@ -38,7 +38,9 @@ jobs:
           git stash
           git checkout gh-pages
           git pull
+          wget https://raw.githubusercontent.com/cenzhipeng/knowledge-base/master/custom_config.sh
           bash custom_config.sh
+          rm -rf custom_config.sh
           git add ./robots.txt
           find .  -iname "*.html" |grep -v /en/ | xargs git add
           git commit -m "Deploy website"
