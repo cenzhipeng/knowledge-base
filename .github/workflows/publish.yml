@@ -29,9 +29,7 @@ jobs:
         run: npm install yarn
       - name: install dependencies
         run: yarn install
-        working-directory: ./website
       - name: build and publish
-        working-directory: ./website
         run: |
           echo "machine github.com login ${GIT_USER} password ${{ secrets.GT_TOKEN }}" > ~/.netrc
           yarn run publish-gh-pages
