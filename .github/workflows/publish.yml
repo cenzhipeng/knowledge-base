@@ -35,8 +35,8 @@ jobs:
           yarn run publish-gh-pages
       - name: change language && and robots.txt && modify js cdn
         run: |
-          git checkout gh-pages
           git stash
+          git checkout gh-pages
           git pull
           bash custom_config.sh
           git add ./robots.txt
