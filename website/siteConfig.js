@@ -9,6 +9,7 @@
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
+const path = require('path');
 const users = [
   {
     caption: 'User1',
@@ -21,6 +22,7 @@ const users = [
 ];
 
 const siteConfig = {
+  customDocsPath: path.basename(__dirname) + '/docs',
   title: '影子的知识库', // Title for your website.
   tagline: '后端知识技能库',
   url: 'https://www.lovepp.org', // Your website URL
@@ -78,7 +80,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    themeUrl: 'https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css'
   },
 
   // Add custom scripts here that would be placed in <script> tags.
