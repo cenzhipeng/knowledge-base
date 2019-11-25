@@ -5,12 +5,6 @@
       "docusaurus/快速开始/config",
       "docusaurus/快速开始/build"
     ],
-    "First Category": [
-      "doc2"
-    ],
-    "Second Category": [
-      "doc3"
-    ],
     "测试折叠标题": [
       "doc2",
       "doc1",
@@ -23,6 +17,10 @@
           "doc1"
         ]
       }
+    ],
+    "后期计划": [
+      "后期计划/学习计划",
+      "后期计划/专题研究计划"
     ]
   },
   "docs-other": {
