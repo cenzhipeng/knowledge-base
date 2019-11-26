@@ -1,5 +1,5 @@
 ---
-id: JS 学习笔记
+id: JS-学习笔记
 title: 本文内容
 sidebar_label: JS 学习笔记
 ---
