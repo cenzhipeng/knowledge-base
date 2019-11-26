@@ -1,6 +1,7 @@
 ---
 id: JS 学习笔记
 title: 本文内容
+sidebar_label: JS 学习笔记
 ---
 
 本文主要是 JS 的学习笔记，主要书籍是《JavaScript 编程全解》。内容主要是 ES 5 的标准，ES 6 的标准学习会在另外的文章中单独记录。
