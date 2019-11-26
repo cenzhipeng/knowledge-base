@@ -185,5 +185,5 @@ console.log(typeof 'sobj') // string
 
 - `new String()` 是生成了一个 `String 对象`
 
-
+![image-20191126190442035](../assets/image-20191126190442035.png)
 
