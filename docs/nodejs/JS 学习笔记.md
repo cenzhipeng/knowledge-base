@@ -184,3 +184,6 @@ console.log(typeof 'sobj') // string
   s 和 s2 是一毛钱的区别都没有的，完全一样。
 
 - `new String()` 是生成了一个 `String 对象`
+
+
+
