@@ -185,5 +185,17 @@ console.log(typeof 'sobj') // string
 
 - `new String()` 是生成了一个 `String 对象`
 
-![image-20191126190442035](../assets/image-20191126190442035.png)
+
+
+#### String 类的功能
+
+String 类的对象也是不可变的，它具有以下功能。
+
+![image-20191126190733373](../assets/image-20191126190733373.png)
+
+![image-20191126190742092](../assets/image-20191126190742092.png)
+
+![image-20191126190754749](../assets/image-20191126190754749.png)
+
+![image-20191126190805114](../assets/image-20191126190805114.png)
 
