@@ -5,9 +5,10 @@
       "docusaurus/快速开始/config",
       "docusaurus/快速开始/build"
     ],
+    "Node JS":[
+      "nodejs/JS 学习笔记"
+    ],
     "测试折叠标题": [
-      "doc2",
-      "doc1",
       {
         "type": "subcategory",
         "label": "My Example Subcategory",
