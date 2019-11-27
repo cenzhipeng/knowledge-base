@@ -48,7 +48,8 @@ jobs:
       - name: push index to algolia
         run: |
           git checkout master
-          yarn add jq
+          sudo apt-get update -y
+          sudo apt-get install -y jq
           docker run -it \
           -e APPLICATION_ID=QY49S75304 \
           -e API_KEY=${{ secrets.GT_TOKEN }}  \
