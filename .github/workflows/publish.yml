@@ -48,16 +48,14 @@ jobs:
       - name: push index to algolia
         run: |
           git checkout master
-          # sudo apt-get update -y
-          # sudo apt-get install -y jq
           docker run -i \
           -e APPLICATION_ID=QY49S75304 \
-          -e API_KEY=${{ secrets.GT_TOKEN }}  \
+          -e API_KEY=${{ secrets.ALGOLIA_API_KEY }}  \
           -e "CONFIG=$(cat ./algolia-config.json | jq -r tostring)" \
           algolia/docsearch-scraper
           docker run -i \
           -e APPLICATION_ID=QY49S75304 \
-          -e API_KEY=${{ secrets.GT_TOKEN }}  \
+          -e API_KEY=${{ secrets.ALGOLIA_API_KEY }}  \
           -e "CONFIG=$(cat ./algolia-config-another.json | jq -r tostring)" \
           algolia/docsearch-scraper
 
