@@ -1,2 +1,6 @@
-function a(){};
-console.log(typeof a);
+var obj = {
+    toString: function () {
+        return 1;
+    }
+    valueOf: 2
+}
