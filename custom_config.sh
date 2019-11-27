@@ -1,4 +1,4 @@
-echo -e 'User-agent: * \nAllow: /' > robots.txt
+echo -e 'User-agent: * \nAllow: /' > build/knowledge-base/robots.txt
 for var in $(find .  -iname "*.html" |grep -v /en/); \
 do \
 sed -i 's/html lang=""/html lang="zh-CN"/' "$var"; \
