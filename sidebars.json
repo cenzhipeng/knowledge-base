@@ -6,7 +6,8 @@
       "docusaurus/快速开始/build"
     ],
     "Node JS":[
-      "nodejs/JS-学习笔记"
+      "nodejs/语法基础和数据类型",
+      "nodejs/数据类型转换"
     ],
     "测试折叠标题": [
       {
