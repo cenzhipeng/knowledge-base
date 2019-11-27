@@ -50,12 +50,12 @@ jobs:
           git checkout master
           # sudo apt-get update -y
           # sudo apt-get install -y jq
-          docker run -it \
+          docker run -i \
           -e APPLICATION_ID=QY49S75304 \
           -e API_KEY=${{ secrets.GT_TOKEN }}  \
           -e "CONFIG=$(cat ./algolia-config.json | jq -r tostring)" \
           algolia/docsearch-scraper
-          docker run -it \
+          docker run -i \
           -e APPLICATION_ID=QY49S75304 \
           -e API_KEY=${{ secrets.GT_TOKEN }}  \
           -e "CONFIG=$(cat ./algolia-config-another.json | jq -r tostring)" \
