@@ -8,7 +8,7 @@ sidebar_label: JS 学习笔记
 
 
 
-## 语法基础（ES 5）
+# 语法基础（ES 5）
 
 - 变量没有类型（指的是 `var a = 123;` 中的 `a`，后续我们可以把任何内容再次赋值给它，比如 `a = "str123"`，一般也不建议这样做）
 
@@ -94,7 +94,7 @@ sidebar_label: JS 学习笔记
 
 
 
-## 数据类型（ES 5）
+# 数据类型（ES 5）
 
 5 种基本类型（实例称为“值”）：
 
@@ -132,7 +132,7 @@ Object 类型（实例称为“对象”）：
 
 
 
-### String 类型
+## String 类型
 
 JS 中存在 string 到 String 的隐式类型转换，例如：
 
@@ -172,7 +172,7 @@ console.log(typeof 'sobj') // string
 
 
 
-#### `String()` 和 `new String()` 的区别
+### `String()` 和 `new String()` 的区别
 
 - `String()` 实际上底层是调用了 `toString()`方法，是将一个变量转换成 string 值，也就是说 
 
@@ -187,7 +187,7 @@ console.log(typeof 'sobj') // string
 
 
 
-#### String 类的功能
+### String 类的功能
 
 String 类的对象也是不可变的，它具有以下功能。
 
