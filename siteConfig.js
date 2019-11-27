@@ -112,7 +112,7 @@ const siteConfig = {
   blogSidebarTitle: { default: '最近博客', all: '所有博客' },
   docsSideNavCollapsible: true,
   enableUpdateTime: true,
-  cname: 'www.lovepp.org',
+  // cname: 'www.lovepp.org',
   algolia: {
     apiKey: '411affb22749e84f2506f330ffac2fba',
     indexName: 'knowledge_base',
