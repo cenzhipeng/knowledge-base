@@ -53,6 +53,7 @@ jobs:
           -e API_KEY=${{ secrets.ALGOLIA_API_KEY }}  \
           -e "CONFIG=$(cat ./algolia-config.json | jq -r tostring)" \
           algolia/docsearch-scraper
+          sed -i s/knowledge_base/knowledge_base_cenzhipeng/ ./siteConfig.js
           docker run -i \
           -e APPLICATION_ID=QY49S75304 \
           -e API_KEY=${{ secrets.ALGOLIA_API_KEY }}  \
