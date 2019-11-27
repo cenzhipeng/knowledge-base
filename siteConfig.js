@@ -114,11 +114,11 @@ const siteConfig = {
   enableUpdateTime: true,
   cname: 'www.lovepp.org',
   algolia: {
-    apiKey: '8285c2c15d9c6f1ea28002fa7c617b88',
+    apiKey: '411affb22749e84f2506f330ffac2fba',
     indexName: 'knowledge_base',
     appId: 'QY49S75304'
   },
-  docsUrl: '',
+  // docsUrl: '',
   editUrl: 'https://github.com/cenzhipeng/knowledge-base/tree/master/docs/',
   gaTrackingId: 'UA-153148512-1',
   scrollToTop: true,

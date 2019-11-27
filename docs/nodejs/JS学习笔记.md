@@ -199,3 +199,47 @@ String 类的对象也是不可变的，它具有以下功能。
 
 ![image-20191126190805114](../assets/image-20191126190805114.png)
 
+
+
+## 数值类型（number）
+
+`Javascript` 中的数值型（number），既可以表示整数，也可以表示小数，内部结构实质上是个64位的浮点数。从代码的角度看，只要是**写为整数就能够当整数使用**。
+
+
+
+## 数值类（Number 类）
+
+`Number 与 number` 的关系，和 `String 与 string` 的关系类似，也是有转换关系。参考上面 String 类型的相关内容就能分析出来 `Number` 的一些特性，例如：
+
+```javascript
+var a = Number(3); // 将 3 显式转换成 number，注意这里是转换成 number 而不是 Number
+var b = new Number(3); // 生成一个 Number 对象
+console.log(typeof a); // 将会输出 number
+console.log(typeof b); // 将会输出 object
+```
+
+
+
+如果无法转换成数值类型，`Number` 函数将会返回 `NaN`，使用 `new` 运算符构造 `Number` 对象的时候也会如此，例如：
+
+```javascript
+var a = Number('x');
+console.log(a); // NaN
+console.log(typeof a); // number
+
+var b = new Number('x');
+console.log(b); // [Number: NaN]
+console.log(typeof b); // object
+```
+
+
+
+### Number 类的功能
+
+![image-20191127093106522](../assets/image-20191127093106522.png)
+
+![image-20191127093126054](../assets/image-20191127093126054.png)
+
+![image-20191127093143354](../assets/image-20191127093143354.png)
+
+![image-20191127093152015](../assets/image-20191127093152015.png)

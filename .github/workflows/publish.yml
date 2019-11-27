@@ -45,6 +45,20 @@ jobs:
           find .  -iname "*.html" |grep -v /en/ | xargs git add
           git commit -m "Deploy website"
           git push
+      - name: push index to algolia
+        run: |
+          git checkout master
+          yarn install jq
+          docker run -it \
+          -e APPLICATION_ID=QY49S75304 \
+          -e API_KEY=${{ secrets.GT_TOKEN }}  \
+          -e "CONFIG=$(cat ./algolia-config.json | jq -r tostring)" \
+          algolia/docsearch-scraper
+          docker run -it \
+          -e APPLICATION_ID=QY49S75304 \
+          -e API_KEY=${{ secrets.GT_TOKEN }}  \
+          -e "CONFIG=$(cat ./algolia-config-another.json | jq -r tostring)" \
+          algolia/docsearch-scraper
 
 
 
