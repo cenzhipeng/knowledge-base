@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文主要是记录 `Javascript` 中关于变量与对象的内容"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文主要是记录 `Javascript` 中关于变量与对象的内容"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Node JS</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Docusaurus<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/docusaurus/快速开始/install">安装运行</a></li><li class="navListItem"><a class="navItem" href="/docs/docusaurus/快速开始/config">目录结构和配置</a></li><li class="navListItem"><a class="navItem" href="/docs/docusaurus/快速开始/build">构建并发布到 Github Pages</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node JS<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/nodejs/语法基础和数据类型">语法基础和数据类型</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/数据类型转换">数据类型转换</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/语句-表达式-运算符">语句 表达式 运算符</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/nodejs/变量与对象">变量与对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/常用API">常用 API</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/重点知识">重点知识</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">后期计划<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/后期计划/学习计划">学习计划</a></li><li class="navListItem"><a class="navItem" href="/docs/后期计划/专题研究计划">专题研究计划</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/nodejs/变量与对象.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><p>本文主要是记录 <code>Javascript</code> 中关于变量与对象的内容</p>
+<h2><a class="anchor" aria-hidden="true" id="变量声明"></a><a href="#变量声明" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>变量声明</h2>
+<ul>
+<li><p>声明后没有赋值的，值为 <code>undefined</code></p></li>
+<li><p>重复声明不会改变该变量，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">7</span>;
+<span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// 7</span>
+<span class="hljs-keyword">var</span> a;
+<span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// 7</span>
+</code></pre></li>
+<li><p>常用的非覆盖操作：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> a = a || <span class="hljs-number">7</span>; <span class="hljs-comment">// 如果 a 已经有值就直接使用，否则赋值 7</span>
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="变量和引用"></a><a href="#变量和引用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>变量和引用</h2>
+<ul>
+<li><p>和 <code>Java</code> 相似，变量可能指向基本类型和引用类型</p></li>
+<li><p>函数传参是值传递，如果传递是参数是引用类型，相当于把引用类型的引用地址传递给了参数(可以这么理解)，对象并没有进行复制，所以函数内部对传递的<strong>对象型参数</strong>进行修改是对外部有效的，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> a = {<span class="hljs-attr">x</span>:<span class="hljs-number">1</span>};
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">arg</span>)</span>{
+    arg.x++;
+}
+test(a);
+<span class="hljs-built_in">console</span>.log(a.x); <span class="hljs-comment">// 输出 2</span>
+</code></pre></li>
+<li><p>变量和属性可以认为是完全一样的，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">3</span>
+<span class="hljs-keyword">var</span> b = {<span class="hljs-attr">x</span>:<span class="hljs-number">3</span>};
+<span class="hljs-comment">// 可以认为 a 和 b.x 的地位是一样的，只不过两者的名称不同</span>
+</code></pre></li>
+<li><p>web 环境中，全局对象是 <code>window</code>，node 环境中，全局对象是 <code>global</code>，web 环境中，我们在函数外部声明的变量都属于全局对象，可以将 JS 理解成一棵树，全局对象就是树根，我们定义的变量都是挂载树根下的，然后变量可能也是个对象，它也有属性，这样一层一层的，就构造成了一颗全局对象树。</p></li>
+<li><p>局部变量是调用函数时隐式生成的对象的属性，我们调用一个函数，就隐式生成了一个 Call 对象。</p></li>
+<li><p>默认参数的惯用写法：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDistance</span>(<span class="hljs-params">pos</span>) </span>{
+    pos = pos || { <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">z</span>: <span class="hljs-number">0</span> }; <span class="hljs-comment">// 如果没有收到参数 pos 的话，则使用默认值</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z);
+}
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="构造函数和-new-表达式-es-5"></a><a href="#构造函数和-new-表达式-es-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构造函数和 new 表达式 (ES 5)</h2>
+<p>构造函数是用于生成对象的函数，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 构造函数（类的定义）</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyClass</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-keyword">this</span>.x = x;
+    <span class="hljs-keyword">this</span>.y = y;
+}
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(obj.x, obj.y);
+<span class="hljs-comment">// 输出 3 2</span>
+</code></pre>
+<p>从形式看，构造函数有以下特质：</p>
+<ul>
+<li>构造函数本身和普通的函数声明形式相同</li>
+<li>构造函数通过 new 表达式来调用</li>
+<li>调用构造函数的 new 表达式的值是（被新生成的）对象的引用</li>
+<li>通过 new 表达式调用的构造函数内的 this 引用了（被新生成的）对象</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="new-表达式的操作"></a><a href="#new-表达式的操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>new 表达式的操作</h3>
+<ul>
+<li>生成一个不具有特别的操作对象（类型是函数名称）。</li>
+<li>构造函数的 this 指向这个新生成的空对象</li>
+<li>将这个新生成对象的引用返回（函数作为构造函数进行调用的时候，最后会隐式 <code>return this</code>）</li>
+<li>如果构造函数内最后有 return 语句，那么有以下情况：
+<ul>
+<li>return 返回的是基本类型，或者只有 return 没有其它值，那么行为跟上述一致，最终构造函数返回了构造出的新对象。（构造函数会无视掉基本类型和空的 <code>return</code>）</li>
+<li>return 返回的是引用类型，那么构造函数返回的是这个引用，而不是构造的新对象</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="this-引用规则"></a><a href="#this-引用规则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>this 引用规则</h2>
+<p><strong>最外层代码中，this 引用的是全局对象（非模块化的情况下，在 node 中无法还原 <code>this === global</code>，在浏览器环境中有 <code>this === window</code>）</strong></p>
+<p>在函数内，this 引用根据 <strong>函数调用方式</strong> 具有不同的指向：</p>
+<table>
+<thead>
+<tr><th>函数的调用方式</th><th>this 引用的引用对象</th></tr>
+</thead>
+<tbody>
+<tr><td>构造函数调用</td><td>构造的新对象</td></tr>
+<tr><td>方法调用</td><td>接收方对象，例如 <code>obj.method()</code>指向 <code>obj</code></td></tr>
+<tr><td>apply 或是 call 调用</td><td>由 apply 或 call 的参数指定的对象</td></tr>
+<tr><td>其他方式的调用</td><td>全局对象</td></tr>
+</tbody>
+</table>
+<p>接收方对象的示例：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-attr">doit</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'method is called.'</span> + <span class="hljs-keyword">this</span>.x);
+        <span class="hljs-keyword">var</span> innerObj = {
+            <span class="hljs-attr">x</span>: <span class="hljs-number">20</span>,
+            <span class="hljs-attr">inner</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'inner method is called.'</span> + <span class="hljs-keyword">this</span>.x);
+            }
+        }
+        innerObj.inner();
+    }
+}
+obj.doit();
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-comment">// method is called.100</span>
+<span class="hljs-comment">// inner method is called.20</span>
+</code></pre>
+<p>进一步说明接收方的概念（以下示例是跑在 node 环境中，所以全局对象是 <code>global</code>）：</p>
+<pre><code class="hljs css language-javascript">global.x = <span class="hljs-number">3</span>; <span class="hljs-comment">// 给全局对象添加属性 x = 3</span>
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-attr">doit</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'method is called.'</span> + <span class="hljs-keyword">this</span>.x);
+    }
+}
+obj.doit(); <span class="hljs-comment">// 接收方是 obj，所以输出的是 obj.x = 100</span>
+<span class="hljs-keyword">var</span> tmp = obj.doit;
+tmp(); <span class="hljs-comment">// 没有接收方，this 指向全局对象 global，所以输出的是 global.x = 3;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="apply-与-call"></a><a href="#apply-与-call" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>apply 与 call</h2>
+<p>通过 apply 与 call 调用的函数的 this 引用可以指向任意对象。也就是说，它们可以显式地指定接收对象，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.x);
+}
+<span class="hljs-keyword">var</span> obj = { <span class="hljs-attr">x</span>: <span class="hljs-number">4</span> };
+f.apply(obj); <span class="hljs-comment">// 指定此次调用中，f指向的接收对象是 obj，因此输出 obj.x = 4</span>
+f.call(obj); <span class="hljs-comment">// 指定此次调用中，f指向的接收对象是 obj，因此输出 obj.x = 4</span>
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">doit</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'method is called.'</span> + <span class="hljs-keyword">this</span>.x);
+    }
+};
+<span class="hljs-keyword">var</span> obj2 = { <span class="hljs-attr">x</span>: <span class="hljs-number">5</span> };
+obj.doit.apply(obj2); <span class="hljs-comment">// 指定此次调用中，f指向的接收对象是 obj2，因此输出 obj2.x = 5</span>
+</code></pre>
+<p>两种方法的第一个参数都是接收方对象，两种方式的区别仅仅在于后续传递参数的方式，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'this.x = '</span> + <span class="hljs-keyword">this</span>.x + <span class="hljs-string">', a = '</span> + a + <span class="hljs-string">', b = '</span> + b);
+}
+f.apply({ <span class="hljs-attr">x</span>: <span class="hljs-number">4</span> }, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]); <span class="hljs-comment">// apply 后续参数需要使用数组传递 [1,2]</span>
+f.call({ <span class="hljs-attr">x</span>: <span class="hljs-number">4</span> }, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// call 后续参数按照原来参数的顺序进行传递 1,2</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="原型链"></a><a href="#原型链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>原型链</h2>
+<p>记住以下 2 条即可：</p>
+<ul>
+<li><p>JavaScript 对象有一个指向一个原型对象的引用(称之为 <code>__proto__</code>)。当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该对象的原型对象，以及该对象的原型对象的原型对象，依次层层向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾（一直找到 Object 到 null）。例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'obj1'</span>;
+    }
+};
+<span class="hljs-keyword">var</span> obj2 = {
+    <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'obj2'</span>;
+    }
+};
+<span class="hljs-keyword">var</span> obj3 = {
+    <span class="hljs-attr">z</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'obj3'</span>;
+    },
+    <span class="hljs-attr">toString</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>) {
+            <span class="hljs-keyword">if</span> (x !== <span class="hljs-string">'name'</span> &amp;&amp; x !== <span class="hljs-string">'toString'</span>) {
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Object: '</span> + <span class="hljs-keyword">this</span>.name() + <span class="hljs-string">', '</span> + x + <span class="hljs-string">': '</span> + <span class="hljs-keyword">this</span>[x]);
+            }
+        }
+    }
+};
+obj1.__proto__ = obj2;
+obj2.__proto__ = obj3;
+<span class="hljs-comment">// 经过以上操作，现在 obj1 的原型对象是 obj2，obj2 的原型对象是 obj3</span>
+<span class="hljs-comment">// 因此 obj1 拥有 obj2 和 obj3 的属性 y 和 z，obj2 拥有 obj3 的属性 z</span>
+obj1.toString();
+obj2.toString();
+obj3.toString();
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-comment">// Object: obj1, x: 1</span>
+<span class="hljs-comment">// Object: obj1, y: 2</span>
+<span class="hljs-comment">// Object: obj1, z: 3</span>
+<span class="hljs-comment">// Object: obj2, y: 2</span>
+<span class="hljs-comment">// Object: obj2, z: 3</span>
+<span class="hljs-comment">// Object: obj3, z: 3</span>
+</code></pre>
+<blockquote>
+<p>注意：</p>
+<p><code>__proto__</code> 不是一个标准属性，但是许多 JS 环境都实现了该属性。</p>
+<p>从 ES 6 开始，我们可以通过 <code>Object.getPrototypeOf(obj)</code> 和 <code>Object.setPrototypeOf(obj)</code> 来访问一个对象的原型对象，这个等同于非标准实现的对象的 <code>__proto__</code> 属性。</p>
+<p>为了避免混淆，本文就一直使用 <code>__proto__</code> 来代表一个对象的原型对象。</p>
+<p>千万注意 <code>__proto__</code> 和下文要讲的 <code>prototype</code> 属性是两个完全不同的属性</p>
+</blockquote></li>
+</ul>
+<ul>
+<li><p>被构造函数创建的<strong>实例对象</strong>的 <code>___proto__</code> 指向这个<strong>构造函数</strong>的 <code>prototype</code> 属性，例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{ }
+<span class="hljs-comment">/**
+ * a 对象(函数也是个对象)的原型现在是这个 { x: 3 } 对象
+ * 因此 a.x = 3
+ */</span>
+a.__proto__ = { <span class="hljs-attr">x</span>: <span class="hljs-number">3</span> };
+
+a.prototype.x = <span class="hljs-number">5</span>; <span class="hljs-comment">// 将 a 的 prototype 属性对象，添加一个属性 x = 5</span>
+
+<span class="hljs-comment">/**
+ * 由构造函数(a 对象)生成的对象，它的原型对象等于构造函数对象的 prototype 属性
+ * 也就是说 b.__proto__ === a.prototype 此时是成立的
+ * 如果我调用 a.prototype = otherObj，直接修改指针指向的话
+ * 那么 b.__proto__ === a.prototype 这个等式就不成立了
+ */</span>
+<span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> a();
+
+<span class="hljs-built_in">console</span>.log(a.x); <span class="hljs-comment">// a.x = a.__proto__.x = 3</span>
+<span class="hljs-comment">/**
+ * b.x = b.__proto__.x = a.prototype.x = 5
+ * 记住（b.__proto__ === a.prototype）
+ */</span>
+<span class="hljs-built_in">console</span>.log(b.x); 
+</code></pre>
+<p>也可以这么说：只有构造函数对象的 <code>prototype</code> 属性才是有意义的，普通对象的 <code>prototype</code> 属性没有其它的含义（暂时理解是这样），而所有对象（包括构造函数对象）的 <code>___proto__</code> 属性都指向了这个对象本身的原型对象。</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="objectcreate-方法（mdn-文档：objectcreatehttpsdevelopermozillaorgzh-cndocswebjavascriptreferenceglobal_objectsobjectcreate）"></a><a href="#objectcreate-方法（mdn-文档：objectcreatehttpsdevelopermozillaorgzh-cndocswebjavascriptreferenceglobal_objectsobjectcreate）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object.create 方法（MDN 文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Object.create()</a>）</h2>
+<p><code>Javascript</code> 官方一共有 3 种对象生成方法：</p>
+<ul>
+<li>对象字面量</li>
+<li>new 表达式</li>
+<li>Object.create</li>
+</ul>
+<p>API：<code>Object.create(proto[, propertiesObject])</code></p>
+<p>作用：创建一个新对象，使用现有的对象来提供新创建的对象的<code>__proto__</code>。</p>
+<p>例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> Proto = { <span class="hljs-attr">x</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">3</span> };
+<span class="hljs-keyword">var</span> obj = <span class="hljs-built_in">Object</span>.create(Proto); <span class="hljs-comment">// 相当于 var obj = {}; obj.__proto__ = Proto</span>
+<span class="hljs-built_in">console</span>.log(obj.x); <span class="hljs-comment">// 输出 2</span>
+</code></pre>
+<p>这个方法的第二个参数是一个关联数组，key 是新对象的属性名，值是属性描述符（描述这个属性的值、元属性的值），例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> Proto = { <span class="hljs-attr">x</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">3</span> };
+<span class="hljs-keyword">var</span> obj = <span class="hljs-built_in">Object</span>.create(Proto,
+    {
+        <span class="hljs-attr">a</span>: { <span class="hljs-attr">value</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span> },
+        <span class="hljs-attr">b</span>: { <span class="hljs-attr">value</span>: <span class="hljs-number">8</span>, <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span> }
+    }
+);
+<span class="hljs-built_in">console</span>.log(obj.a); <span class="hljs-comment">// 输出 5</span>
+<span class="hljs-built_in">console</span>.log(obj.b); <span class="hljs-comment">// 输出 8</span>
+<span class="hljs-built_in">console</span>.log(obj.x); <span class="hljs-comment">// 输出 2</span>
+<span class="hljs-built_in">console</span>.log(obj.y); <span class="hljs-comment">// 输出 3</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/1/2019</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/nodejs/语句-表达式-运算符"><span class="arrow-prev">← </span><span>语句 表达式 运算符</span></a><a class="docs-next button" href="/docs/nodejs/常用API"><span>常用 API</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#变量声明">变量声明</a></li><li><a href="#变量和引用">变量和引用</a></li><li><a href="#构造函数和-new-表达式-es-5">构造函数和 new 表达式 (ES 5)</a><ul class="toc-headings"><li><a href="#new-表达式的操作">new 表达式的操作</a></li></ul></li><li><a href="#this-引用规则">this 引用规则</a></li><li><a href="#apply-与-call">apply 与 call</a></li><li><a href="#原型链">原型链</a></li><li><a href="#objectcreate-方法（mdn-文档：objectcreatehttpsdevelopermozillaorgzh-cndocswebjavascriptreferenceglobal_objectsobjectcreate）">Object.create 方法（MDN 文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Object.create()</a>）</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
