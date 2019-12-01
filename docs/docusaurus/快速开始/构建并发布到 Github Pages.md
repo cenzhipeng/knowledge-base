@@ -70,7 +70,7 @@ cmd /C "set GIT_USER=<GIT_USER> && set CURRENT_BRANCH=master && set USE_SSH=true
 >
 > CURRENT_BRANCH 表示用哪个分支进行构建，不填的话就是我们执行命令的时候的当前分支
 >
-> 该命令的执行路径不是项目根目录，而是出于 website 目录下，也就是我们必须出于这个目录才能推送成功
+> 该命令的执行路径不是项目根目录，而是处于 `website` 目录下，也就是我们必须出于这个目录才能推送成功
 
 
 

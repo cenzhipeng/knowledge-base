@@ -1,0 +1,4 @@
+Host node
+    HostName 192.168.3.33
+    User vagrant
+    Port 22
