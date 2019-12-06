@@ -1,12 +1,3 @@
-var language = {
-    set current(name) {
-        this.log.push(name);
-    },
-    log: []
-}
-
-language.current = 'EN';
-language.current = 'FA';
-
-console.log(language.log);
-  // expected output: Array ["EN", "FA"]
+var str = "深入浅出node.js";
+var buf = new Buffer(str, 'utf-8');
+console.log(buf);

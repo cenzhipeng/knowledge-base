@@ -9,6 +9,33 @@ todo
 
 
 
+## 标准对象
+
+下表是在 ECMAScript 第 5 版中定义的标准内建对象（built-in object）。其中的一些对象是 以类的形式来表述的，这是因为将它们视为类的话将会更易于理解。
+
+| 名称             | 说明                             |
+| ---------------- | -------------------------------- |
+| Object           | 所有对象的基类                   |
+| （通称）全局对象 | 该对象的属性是全局变量或全局函数 |
+| String           | 字符串类                         |
+| Array            | 数组类                           |
+| Function         | 函数类                           |
+| Number           | 数值类                           |
+| Boolean          | 布尔类                           |
+| Math             | 数学函数对象                     |
+| Date             | 日期类                           |
+| RegExp           | 正则表达式类                     |
+| JSON             | JSON 解释器类                    |
+| Error            | 错误基类                         |
+| EvalError        | 求值错误类                       |
+| RangeError       | 越界错误类                       |
+| ReferenceError   | 引用错误类                       |
+| SystaxError      | 语法错误类                       |
+| TypeError        | 类型错误类                       |
+| URIError         | URI 错误类                       |
+
+
+
 ## Object 类
 
 函数以及构造函数的调用
