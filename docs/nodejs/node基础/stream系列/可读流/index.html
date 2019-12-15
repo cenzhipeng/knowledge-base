@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文主要记录 node 中可读流的相关内容"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文主要记录 node 中可读流的相关内容"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/nodejs/node基础/stream系列/可读流.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><p>本文主要记录 node 中可读流的相关内容</p>
+<h2><a class="anchor" aria-hidden="true" id="什么是可读流"></a><a href="#什么是可读流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>什么是可读流</h2>
+<p>可读流就是一个能够产生字节序列，并且被我们读取的流。</p>
+<p>所有可写流都实现了 <code>stream.Readable</code> 类定义的接口。</p>
+<p>重点就是：可读流会产生字节序列被我们读取。这个字节序列可能是从别处来的，也可能是可读流自己生成的，总之可读流可以产生字节序列。</p>
+<h2><a class="anchor" aria-hidden="true" id="两种读取模式"></a><a href="#两种读取模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>两种读取模式</h2>
+<p>可读流有两种读取模式：流动模式（flowing）或暂停模式（paused）</p>
+<ul>
+<li>在流动模式中，数据自动从底层系统读取，并通过 <code>EventEmitter</code> 接口的事件尽可能快地被提供给应用程序。</li>
+<li>在暂停模式中，必须显式调用 <code>stream.read()</code> 读取数据块。</li>
+</ul>
+<p>也就是说，流动模式中，可读流自动的进行 <code>read</code> 调用，并且将读取到的数据，通过 <code>data</code> 事件发送出来。我们的程序就监控 <code>data</code> 事件即可获取到读取的内容。而暂停模式中我们要在触发 <code>readable</code> 事件时手动读取，我们可以对读取做出更多的控制（例如控制读取的字节数，对于一些二进制协议可能很有必要）</p>
+<blockquote>
+<p>当我们创建可读流时，流最开始都处于暂停模式，也就是说，不会自动开始读取。</p>
+</blockquote>
+<p>我们可以通过以下方式切换到流动模式：</p>
+<ul>
+<li>添加 <code>'data'</code> 事件句柄，也就是调用 <code>readable.on('data',callback)</code> 添加了对 <code>data</code> 的监听后，就会切换为流动模式。</li>
+<li>调用 <code>stream.resume()</code> 方法。</li>
+<li>调用 <code>stream.pipe()</code> 方法将数据发送到可写流</li>
+</ul>
+<p>可以通过以下方式切换回暂停模式：</p>
+<ul>
+<li>如果没有管道目标，则调用 <code>stream.pause()</code></li>
+<li>如果有管道目标，则移除所有管道目标。调用 <code>stream.unpipe()</code> 可以移除多个管道目标</li>
+</ul>
+<p>只有提供了消费或忽略数据的机制后，可读流才会产生数据。 如果消费的机制被禁用或移除，则可读流会停止产生数据。</p>
+<p>为了向后兼容，移除 <code>'data'</code> 事件句柄不会自动地暂停流。 如果有管道目标，一旦目标变为 <code>drain</code> 状态并请求接收数据时，则调用 <code>stream.pause()</code> 也不能保证流会保持暂停模式（总之就是：移除管道目标，然后调用了 <code>pause</code> 才能保证流暂停了）</p>
+<p>如果可读流切换到流动模式，且没有可用的消费者来处理数据，则数据将会丢失。 例如，当调用 <code>readable.resume()</code> 时，没有监听 <code>'data'</code> 事件或 <code>'data'</code> 事件句柄已移除。</p>
+<p>添加 <code>'readable'</code> 事件句柄会使流自动停止流动，并通过 <code>readable.read()</code> 消费数据。 如果 <code>'readable'</code> 事件句柄被移除，且存在 <code>'data'</code> 事件句柄，则流会再次开始流动。</p>
+<h2><a class="anchor" aria-hidden="true" id="选择一种-api-风格"></a><a href="#选择一种-api-风格" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选择一种 API 风格</h2>
+<p>可读流的 API 有很多个版本混合在其中，混合使用 <code>on('data')</code>、 <code>on('readable')</code>、 <code>pipe()</code> 或异步迭代器，会导致不明确的行为。所以我们在使用的时候应该选择一种统一的 API</p>
+<p>对于大多数用户，建议使用 <code>readable.pipe()</code>，因为它是消费流数据最简单的方式。 如果开发者需要精细地控制数据的传递与产生，可以使用 <code>EventEmitter</code>、 <code>readable.on('readable')</code>/<code>readable.read()</code> 或 <code>readable.pause()</code>/<code>readable.resume()</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="close-事件"></a><a href="#close-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>close 事件</h2>
+<p>当流或其底层资源（比如文件描述符）被关闭时触发 <code>'close'</code> 事件。 该事件表明不会再触发其他事件，也不会再发生操作。</p>
+<p>如果使用 <code>emitClose</code> 选项创建可读流，那么流在最后一定会触发 <code>close</code> 事件。</p>
+<p>这个事件是流最后一次触发的事件了，触发后等于说流就再也不可用了，大多数是文件描述符被关闭了。</p>
+<p>这个事件不一定会发生，取决于流的实现者，所以我们用这个事件比较少</p>
+<h2><a class="anchor" aria-hidden="true" id="data事件"></a><a href="#data事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>data事件</h2>
+<p>当流将数据块传送给消费者后触发。 当调用 <code>readable.pipe()</code>， <code>readable.resume()</code> 或绑定监听器到 <code>'data'</code> 事件时，流会转换到流动模式。 当调用 <code>readable.read()</code> 且有数据块返回时，也会触发 <code>'data'</code> 事件。</p>
+<p>（实际上就是当流内部调用了 <code>readable.push(chunk)</code> 的时候就会触发 <code>data</code> 事件）</p>
+<p>将 <code>'data'</code> 事件监听器附加到尚未显式暂停的流将会使流切换为流动模式。 数据将会在可用时立即传递。</p>
+<p>如果使用 <code>readable.setEncoding()</code> 为流指定了默认的字符编码，则监听器回调传入的数据为字符串，否则传入的数据为 <code>Buffer</code>。例如：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 默认情况接收的是 Buffer 也就是字节数组</span>
+<span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+<span class="hljs-comment">// 如果调用了下面这句，那就会传入字符串，相当于是帮你编码了</span>
+<span class="hljs-comment">// readable.setEncoding('utf8');</span>
+readable.on(<span class="hljs-string">'data'</span>, (chunk) =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`接收到 <span class="hljs-subst">${chunk.length}</span> 个字节的数据`</span>);
+});
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="end-事件"></a><a href="#end-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>end 事件</h2>
+<p>当可读流没有更多可用数据，并且已读取所有可用数据时发出。</p>
+<p>（也就是流已经完全读完了，实际来说是流内部调用了 <code>readable.push(null)</code>）</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+readable.on(<span class="hljs-string">'data'</span>, (chunk) =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`接收到 <span class="hljs-subst">${chunk.length}</span> 个字节的数据`</span>);
+});
+readable.on(<span class="hljs-string">'end'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'已没有数据'</span>);
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="error-事件"></a><a href="#error-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>error 事件</h2>
+<p><code>'error'</code> 事件可能随时由 <code>Readable</code> 实现触发。 通常，如果底层的流由于底层内部的故障而无法生成数据，或者流的实现尝试推送无效的数据块，则可能会发生这种情况。</p>
+<p>监听器回调将会传入一个 <code>Error</code> 对象。紧随其后的事件通常是 <code>close</code> 事件，但是不能保证这一点。</p>
+<p>（实际就是说，底层去拿数据的时候出错了，例如一个读 <code>socket</code> 的可读流，忽然 <code>tcp</code> 连接断了）</p>
+<h2><a class="anchor" aria-hidden="true" id="pause-事件"></a><a href="#pause-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pause 事件</h2>
+<p>可读流暂停的时候会发出。通常是我们调用 <code>readable.pause()</code> 或者是流收到了背压的影响：可读流往可写流里写入时，可写流缓冲满了，此时可读流就会主动调用 <code>pause()</code> ，直到发生 <code>drain</code> 事件，再重新启动 <code>resume()</code>。一般没啥用这个事件，调试的时候可能会有点作用。</p>
+<h2><a class="anchor" aria-hidden="true" id="readable-事件"></a><a href="#readable-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable 事件</h2>
+<p>表示流目前处于可读状态，这个事件代表流的状态的更新。一般利用 <code>readable</code> 事件读取流的方式如下：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+readable.on(<span class="hljs-string">'readable'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// 有数据可读取。</span>
+  <span class="hljs-keyword">let</span> data;
+
+  <span class="hljs-keyword">while</span> (data = <span class="hljs-keyword">this</span>.read()) {
+    <span class="hljs-built_in">console</span>.log(data);
+  }
+});
+</code></pre>
+<p>有几个要点：</p>
+<ul>
+<li>暂停模式触发 <code>readable</code> 事件后，我们必须要一直循环读取数据，一直读到 <code>null</code> 为止，所以这种处理模式中一定有一个类似于 <code>while(data !== null){... data = stream.read()}</code> 的循环结构，保证触发 <code>readable</code> 事件后将数据读取完毕</li>
+<li>当到达流数据的尽头时， <code>'readable'</code> 事件也会触发，但是在 <code>'end'</code> 事件之前触发。</li>
+<li><code>'readable'</code> 事件表明流有新的动态：要么有新的数据，要么到达流的尽头。 对于前者，<code>stream.read()</code> 会返回可用的数据。 对于后者，<code>stream.read()</code> 会返回 <code>null</code>。</li>
+</ul>
+<p>也就是说在 <code>readable</code> 事件中，我们一般要读到 <code>null</code> 时才从回调方法中退出来。此时代表着流的可读缓冲区里已经没数据了，需要等待流的底层读取获取到更多数据到缓冲。等待流的缓冲中又有数据后，就会再次触发 <code>readable</code> 事件。</p>
+<p>下面是我自己写的一个例子，循环读取 10、20、30 个字节：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> rs = fs.createReadStream(__filename);
+<span class="hljs-keyword">var</span> readerCall = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> stage = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> data = <span class="hljs-keyword">this</span>.read(nextReadSize(stage));
+        <span class="hljs-keyword">while</span> (data !== <span class="hljs-literal">null</span>) {
+            stage++;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'File size:'</span>, data.length);
+            data = <span class="hljs-keyword">this</span>.read(nextReadSize(stage));
+        }
+    }
+}
+rs.on(<span class="hljs-string">'readable'</span>, readerCall());
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">nextReadSize</span>(<span class="hljs-params">stage</span>) </span>{
+    <span class="hljs-keyword">return</span> ((stage % <span class="hljs-number">3</span>) + <span class="hljs-number">1</span>) * <span class="hljs-number">10</span>;
+}
+<span class="hljs-comment">// 10 20 30 的循环读取，使用闭包来保存读取状态</span>
+</code></pre>
+<p>当到达流数据的尽头时， <code>'readable'</code> 事件也会触发，但是在 <code>'end'</code> 事件之前触发。</p>
+<h2><a class="anchor" aria-hidden="true" id="resume-事件"></a><a href="#resume-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>resume 事件</h2>
+<p>当调用 <code>resume()</code> 或者是流收到背压，下游传来了 <code>drain</code> 事件，流就会重新被唤醒</p>
+<h2><a class="anchor" aria-hidden="true" id="readabledestroyerror"></a><a href="#readabledestroyerror" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.destroy([error])</h2>
+<ul>
+<li><code>error</code>  将会在 <code>'error'</code> 事件中的回调里作为那个 <code>error</code> 参数</li>
+<li>返回: <code>this</code></li>
+</ul>
+<p>销毁流。 可选地触发 <code>'error'</code> 事件，并触发 <code>'close'</code> 事件（除非将 <code>emitClose</code> 设置为 <code>false</code>）。 在此调用之后，可读流将会释放所有内部的资源，并且将会忽略对 <code>push()</code> 的后续调用。 实现者不应该重写此方法，而应该实现 <code>readable._destroy()</code></p>
+<h2><a class="anchor" aria-hidden="true" id="readabledestroyed"></a><a href="#readabledestroyed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.destroyed</h2>
+<p>在调用 <code>readable.destroy()</code>之后为 <code>true</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="readableispaused"></a><a href="#readableispaused" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.isPaused()</h2>
+<p><code>readable.isPaused()</code> 方法返回可读流当前的操作状态。 主要用于 <code>readable.pipe()</code> 底层的机制。 大多数情况下无需直接使用该方法。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = <span class="hljs-keyword">new</span> stream.Readable();
+
+readable.isPaused(); <span class="hljs-comment">// === false</span>
+readable.pause();
+readable.isPaused(); <span class="hljs-comment">// === true</span>
+readable.resume();
+readable.isPaused(); <span class="hljs-comment">// === false</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="readablepause"></a><a href="#readablepause" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.pause()</h2>
+<p><code>readable.pause()</code> 方法使流动模式的流停止触发 <code>'data'</code> 事件，并切换出流动模式（切成暂停模式）。 任何可用的数据都会保留在内部缓存中。</p>
+<pre><code class="hljs css language-javas">const readable = getReadableStreamSomehow();
+readable.<span class="hljs-literal">on</span>(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-params">(chunk)</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(`<span class="javascript">接收到 ${chunk.length} 字节的数据</span>`);
+  readable.pause();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'暂停一秒'</span>);
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'数据重新开始流动'</span>);
+    readable.resume();
+  }, <span class="hljs-number">1000</span>);
+});
+</code></pre>
+<p>如果存在 <code>'readable'</code> 事件监听器，则 <code>readable.pause()</code> 方法不会造成任何效果</p>
+<h2><a class="anchor" aria-hidden="true" id="readablepipedestination-options"></a><a href="#readablepipedestination-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.pipe(destination[, options])</h2>
+<ul>
+<li><code>destination</code>  数据写入的目标（可写流）</li>
+<li><code>options</code> 管道选项。
+<ul>
+<li><code>end</code> 当读取器结束时终止写入器。<strong>默认值:</strong> <code>true</code>，也就是我们可以传入 {end: false}</li>
+</ul></li>
+<li>返回目标可写流，如果是 <code>Duplex</code> 流或 <code>Transform</code> 流则可以形成管道链（也就是可以接着再调用 <code>pipe</code> 形成一种流水线一样的处理方式）</li>
+</ul>
+<p><code>readable.pipe()</code> 方法绑定可写流到可读流，将可读流自动切换到流动模式，并将可读流的所有数据推送到绑定的可写流。 数据流会被自动管理，所以即使可读流更快，目标可写流也不会超负荷。</p>
+<blockquote>
+<p>注：本方法最主要的作用就是，可以自动的进行管道连接，并且自动平衡两个流的速度，就类似于 UNIX 的管道一样</p>
+</blockquote>
+<p>例子，将可读流的所有数据通过管道推送到 <code>file.txt</code> 文件：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+<span class="hljs-keyword">const</span> writable = fs.createWriteStream(<span class="hljs-string">'file.txt'</span>);
+<span class="hljs-comment">// readable 的所有数据都推送到 'file.txt'。</span>
+readable.pipe(writable);
+</code></pre>
+<p>可以在单个可读流上绑定多个可写流。（例如读取多个文件进行单词技术）</p>
+<p><code>readable.pipe()</code> 会返回目标流的引用，这样就可以对流进行链式地管道操作：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> r = fs.createReadStream(<span class="hljs-string">'file.txt'</span>);
+<span class="hljs-keyword">const</span> z = zlib.createGzip();
+<span class="hljs-keyword">const</span> w = fs.createWriteStream(<span class="hljs-string">'file.txt.gz'</span>);
+r.pipe(z).pipe(w);
+</code></pre>
+<p>默认情况下，当来源可读流触发 <a href="http://nodejs.cn/s/ZgviqU"><code>'end'</code></a> 事件时，目标可写流也会调用 <a href="http://nodejs.cn/s/nvArK4"><code>stream.end()</code></a> 结束写入。 若要禁用这种默认行为， <code>end</code> 选项应设为 <code>false</code>，这样目标流就会保持打开：</p>
+<pre><code class="hljs css language-javascript">reader.pipe(writer, { <span class="hljs-attr">end</span>: <span class="hljs-literal">false</span> });
+reader.on(<span class="hljs-string">'end'</span>, () =&gt; {
+  writer.end(<span class="hljs-string">'结束'</span>);
+});
+</code></pre>
+<p>如果可读流在处理期间发送错误，则可写流目标不会自动关闭。 如果发生错误，则需要手动关闭每个流以防止内存泄漏。</p>
+<p><code>process.stderr</code> 和 <code>process.stdout</code> 可写流在 Node.js 进程退出之前永远不会关闭，无论指定的选项如何。</p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadsize"></a><a href="#readablereadsize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.read([size])</h2>
+<ul>
+<li><code>size</code> 要读取的数据的字节数</li>
+<li>返回: string | Buffer | null | any</li>
+</ul>
+<p>从内部缓冲拉取并返回数据。 如果没有可读的数据，则返回 <code>null</code>。 默认情况下， <code>readable.read()</code> 返回的数据是 <code>Buffer</code> 对象，除非使用 <code>readable.setEncoding()</code> 指定字符编码或流处于对象模式。</p>
+<p>可选的 <code>size</code> 参数指定要读取的特定字节数。 如果无法读取 <code>size</code> 个字节，并且流还没有结束的话，则会返回 <code>null</code>，如果此时流已经结束了，那么将会把剩下的数据都读出来。</p>
+<p>如果没有指定 <code>size</code> 参数，则返回内部缓冲中的所有数据。</p>
+<p><code>readable.read()</code> 应该只对处于暂停模式的可读流调用。 在流动模式中， <code>readable.read()</code> 会自动调用直到内部缓冲的数据完全耗尽。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+readable.on(<span class="hljs-string">'readable'</span>, () =&gt; {
+  <span class="hljs-keyword">let</span> chunk;
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">null</span> !== (chunk = readable.read())) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`接收到 <span class="hljs-subst">${chunk.length}</span> 字节的数据`</span>);
+  }
+});
+</code></pre>
+<p>使用 <code>readable.read()</code> 处理数据时， <code>while</code> 循环是必需的。 只有在 <code>readable.read()</code> 返回 <code>null</code> 之后，才会触发 <code>'readable'</code></p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadable"></a><a href="#readablereadable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.readable</h2>
+<p>如果可以安全地调用 <code>readable.read()</code>，则为 <code>true</code></p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadableencoding"></a><a href="#readablereadableencoding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.readableEncoding</h2>
+<p>获取用于给定可读流的 <code>encoding</code> 属性。 可以使用 <code>readable.setEncoding()</code> 方法设置 <code>encoding</code> 属性</p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadableended"></a><a href="#readablereadableended" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.readableEnded</h2>
+<p>当 <code>'end'</code> 事件被触发后变为 <code>true</code></p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadablehighwatermark"></a><a href="#readablereadablehighwatermark" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.readableHighWaterMark</h2>
+<p>返回构造可读流时传入的 <code>highWaterMark</code> 的值</p>
+<h2><a class="anchor" aria-hidden="true" id="readablereadablelength"></a><a href="#readablereadablelength" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.readableLength</h2>
+<p>此属性包含准备读取的队列中的字节数（或对象数）。 该值提供有关 <code>highWaterMark</code> 状态的内省数据。</p>
+<p>说白了，返回的是缓冲中当前的字节数。</p>
+<h2><a class="anchor" aria-hidden="true" id="readablesetencodingencoding"></a><a href="#readablesetencodingencoding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.setEncoding(encoding)</h2>
+<ul>
+<li><code>encoding</code> 字符编码</li>
+<li>返回: this</li>
+</ul>
+<p>对可读流设置字符编码。</p>
+<p>默认情况下没有设置字符编码，流数据返回的是 <code>Buffer</code> 对象。 如果设置了字符编码，则流数据返回指定编码的字符串。 例如，调用 <code>readable.setEncoding('utf-8')</code> 会将数据解析为 UTF-8 数据，并返回字符串，调用 <code>readable.setEncoding('hex')</code> 则会将数据编码成十六进制字符串。</p>
+<p>可读流将会正确地处理通过流传递的多字节字符，否则如果简单地从流中作为 <code>Buffer</code> 对象拉出，则会被不正确地解码。（内部会缓冲被截断的数据，我们在读取时很可能不是一个完整的字符，设置编码后会自动处理这种情况）</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> readable = getReadableStreamSomehow();
+readable.setEncoding(<span class="hljs-string">'utf8'</span>);
+readable.on(<span class="hljs-string">'data'</span>, (chunk) =&gt; {
+  assert.equal(<span class="hljs-keyword">typeof</span> chunk, <span class="hljs-string">'string'</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'读取到 %d 个字符的字符串数据'</span>, chunk.length);
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="readableunpipedestination"></a><a href="#readableunpipedestination" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable.unpipe([destination])</h2>
+<ul>
+<li><code>destination</code> 要移除管道的可写流</li>
+<li>返回: this</li>
+</ul>
+<p><code>readable.unpipe()</code> 方法解绑之前使用 <code>stream.pipe()</code> 方法绑定的可写流。</p>
+<blockquote>
+<p>注：</p>
+<ul>
+<li><p>如果没有指定 <code>destination</code>, 则解绑所有管道</p></li>
+<li><p>如果指定了 <code>destination</code>, 但它没有建立管道，则不起作用</p></li>
+</ul>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/15/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#什么是可读流">什么是可读流</a></li><li><a href="#两种读取模式">两种读取模式</a></li><li><a href="#选择一种-api-风格">选择一种 API 风格</a></li><li><a href="#close-事件">close 事件</a></li><li><a href="#data事件">data事件</a></li><li><a href="#end-事件">end 事件</a></li><li><a href="#error-事件">error 事件</a></li><li><a href="#pause-事件">pause 事件</a></li><li><a href="#readable-事件">readable 事件</a></li><li><a href="#resume-事件">resume 事件</a></li><li><a href="#readabledestroyerror">readable.destroy([error])</a></li><li><a href="#readabledestroyed">readable.destroyed</a></li><li><a href="#readableispaused">readable.isPaused()</a></li><li><a href="#readablepause">readable.pause()</a></li><li><a href="#readablepipedestination-options">readable.pipe(destination[, options])</a></li><li><a href="#readablereadsize">readable.read([size])</a></li><li><a href="#readablereadable">readable.readable</a></li><li><a href="#readablereadableencoding">readable.readableEncoding</a></li><li><a href="#readablereadableended">readable.readableEnded</a></li><li><a href="#readablereadablehighwatermark">readable.readableHighWaterMark</a></li><li><a href="#readablereadablelength">readable.readableLength</a></li><li><a href="#readablesetencodingencoding">readable.setEncoding(encoding)</a></li><li><a href="#readableunpipedestination">readable.unpipe([destination])</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

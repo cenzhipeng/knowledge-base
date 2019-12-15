@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文记录一些关于如何自定义流的内容"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文记录一些关于如何自定义流的内容"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/nodejs/node基础/stream系列/自定义流.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><p>本文记录一些关于如何自定义流的内容</p>
+<h2><a class="anchor" aria-hidden="true" id="如何自定义流"></a><a href="#如何自定义流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何自定义流</h2>
+<p>声明一个新的 JavaScript 类，该类继承了四个基本流类之一（<code>stream.Writeable</code>、 <code>stream.Readable</code>、 <code>stream.Duplex</code> 或 <code>stream.Transform</code>），并确保调用了相应的父类构造函数:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Writable } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyWritable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Writable</span> </span>{
+  <span class="hljs-keyword">constructor</span>({ highWaterMark, ...options }) {
+    <span class="hljs-keyword">super</span>({
+      highWaterMark,
+      <span class="hljs-attr">autoDestroy</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">emitClose</span>: <span class="hljs-literal">true</span>
+    });
+    <span class="hljs-comment">// ...</span>
+  }
+}
+</code></pre>
+<p>当继承流时，在传入基本构造函数之前，务必清楚使用者可以且应该提供哪些选项。 例如，如果实现需要 <code>autoDestroy</code> 和 <code>emitClose</code> 选项，则不允许使用者覆盖这些选项。 应明确要传入的选项，而不是隐式地传入所有选项。</p>
+<p>自定义的流需要实现以下方法：</p>
+<table>
+<thead>
+<tr><th style="text-align:left">用例</th><th style="text-align:left">继承类</th><th style="text-align:left">需要实现的方法</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:left">可读流</td><td style="text-align:left"><code>Readable</code></td><td style="text-align:left"><code>_read()</code></td></tr>
+<tr><td style="text-align:left">可写流</td><td style="text-align:left"><code>Writable</code></td><td style="text-align:left"><code>_write()</code>、<code>_writev()</code>、<code>_final()</code></td></tr>
+<tr><td style="text-align:left">可读可写</td><td style="text-align:left"><code>Duplex</code></td><td style="text-align:left"><code>_read()</code>、<code>_write()</code>、<code>_writev()</code>、<code>_final()</code></td></tr>
+<tr><td style="text-align:left">对写入的数据进行操作，然后读取结果</td><td style="text-align:left"><code>Transform</code></td><td style="text-align:left"><code>_transform()</code>、<code>_flush()</code>、<code>_final()</code></td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="简单实现"></a><a href="#简单实现" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>简单实现</h3>
+<p>对于简单的案例，构造流可以不依赖继承。 直接创建 <code>stream.Writable</code>、 <code>stream.Readable</code>、 <code>stream.Duplex</code> 或 <code>stream.Transform</code> 的实例，并传入对应的方法作为构造函数选项。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Writable } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+
+<span class="hljs-keyword">const</span> myWritable = <span class="hljs-keyword">new</span> Writable({
+  write(chunk, encoding, callback) {
+    <span class="hljs-comment">// ...</span>
+  }
+});
+</code></pre>
+<blockquote>
+<p>注：</p>
+<p>也就是说，实现自定义流有 2 种方式：</p>
+<ul>
+<li>继承方式
+<ul>
+<li>继承要实现的 4 种流之一</li>
+<li>自定义流的构造方法中调用基类的构造方法</li>
+<li>自定义流实现内部必须的方法，例如自定义可读流，需要实现 <code>_read(size)</code> 方法</li>
+</ul></li>
+<li>新建对象方式
+<ul>
+<li>new 基本流</li>
+<li>传入参数对象中包含 <code>write</code>、 <code>read</code> 等方法，用来覆盖 <code>_write</code> 和 <code>_read</code> 方法。具体有哪些方法，请参考上面的列表</li>
+</ul></li>
+</ul>
+<p>这两种方案，下面那种稍微简单一点，但是可配置性较差。上面那种方案，我们可以配置更多的自定义流的属性和行为，更加灵活</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="自定义可读流"></a><a href="#自定义可读流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义可读流</h2>
+<h3><a class="anchor" aria-hidden="true" id="new-streamreadableoptions"></a><a href="#new-streamreadableoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>new stream.Readable([options])</h3>
+<p>可以传入的参数：</p>
+<ul>
+<li><code>highWaterMark</code> 从底层资源读取数据并存储在内部缓冲区中的最大字节数。 <strong>默认值:</strong> <code>16384</code> (16kb), 对象模式的流默认为 <code>16</code>。</li>
+<li><code>encoding</code> 如果指定了，则使用指定的字符编码将 buffer 解码成字符串。 <strong>默认值:</strong> <code>null</code>。</li>
+<li><code>objectMode</code> 流是否可以是一个对象流。 也就是说 <code>stream.read(n)</code> 会返回对象而不是 <code>Buffer</code>。 <strong>默认值:</strong> <code>false</code>。</li>
+<li><code>emitClose</code> 流被销毁后是否应该触发 <code>'close'</code>。<strong>默认值:</strong> <code>true</code>。</li>
+<li><code>read</code> 对 <code>stream._read()</code> 方法的实现。</li>
+<li><code>destroy</code> 对 <code>stream._destroy()</code> 方法的实现。</li>
+<li><code>autoDestroy</code> 流是否应在结束后自动调用 <code>.destroy()</code>。<strong>默认值:</strong> <code>false</code>。</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Readable, Writable } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SerialCharStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Readable</span> </span>{
+    <span class="hljs-keyword">constructor</span>(max, options) {
+        <span class="hljs-keyword">super</span>(options);
+        <span class="hljs-keyword">this</span>.max = max;
+        <span class="hljs-keyword">this</span>.num = <span class="hljs-number">0</span>;
+    }
+    _read(size) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'size is: '</span> + size);
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">this</span>.max &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.push(<span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-string">'a'</span>.charCodeAt(<span class="hljs-number">0</span>) + <span class="hljs-keyword">this</span>.num % <span class="hljs-number">26</span>)));
+            <span class="hljs-keyword">this</span>.num++;
+            <span class="hljs-keyword">this</span>.max--;
+            size--;
+            <span class="hljs-keyword">if</span> (size &lt; <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+        <span class="hljs-keyword">this</span>.push(<span class="hljs-literal">null</span>);
+    }
+}
+<span class="hljs-keyword">const</span> rns = <span class="hljs-keyword">new</span> SerialCharStream(<span class="hljs-number">100</span>, {
+    <span class="hljs-attr">highWaterMark</span>: <span class="hljs-number">4</span>
+});
+<span class="hljs-built_in">console</span>.log(rns.read(<span class="hljs-number">5</span>));
+</code></pre>
+<p>如上，就自定义了一个可读流，关键就是构造函数，以及 <code>_read(size)</code> 方法</p>
+<p>更多详情，可以参阅 <a href="/docs/nodejs/node基础/stream系列/流的缓冲">流的缓冲</a></p>
+<h2><a class="anchor" aria-hidden="true" id="自定义可写流"></a><a href="#自定义可写流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义可写流</h2>
+<h3><a class="anchor" aria-hidden="true" id="new-streamwritableoptions"></a><a href="#new-streamwritableoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>new stream.Writable([options])</h3>
+<p>可以传入的参数：</p>
+<ul>
+<li><code>highWaterMark</code> 当调用 <code>stream.write()</code> 开始返回 <code>false</code> 时的缓冲大小。 默认为 <code>16384</code> (16kb), 对象模式的流默认为 <code>16</code>。</li>
+<li><code>decodeStrings</code> 是否把传入 <code>stream._write()</code>的 <code>string</code> 编码为 <code>Buffer</code>，使用的字符编码为调用 <code>stream.write()</code>时指定的。 不转换其他类型的数据（即不将 <code>Buffer</code> 解码为 <code>string</code>）。 设置为 <code>false</code> 将会阻止转换 <code>string</code>。 <strong>默认值:</strong> <code>true</code>。</li>
+<li><code>defaultEncoding</code> 当 <code>stream.write()</code>的参数没有指定字符编码时默认的字符编码。<strong>默认值:</strong> <code>'utf8'</code>。</li>
+<li><code>objectMode</code> 是否可以调用 <code>stream.write(anyObj)</code>。 一旦设为 <code>true</code>，则除了字符串、 <code>Buffer</code> 或 <code>Uint8Array</code>，还可以写入流实现支持的其他 JavaScript 值。<strong>默认值:</strong> <code>false</code>。</li>
+<li><code>emitClose</code> 流被销毁后是否触发 <code>'close'</code> 事件。<strong>默认值:</strong> <code>true</code>。</li>
+<li><code>write</code> 对 <code>stream._write()</code> 方法的实现。</li>
+<li><code>writev</code> 对 <code>stream._writev()</code> 方法的实现。</li>
+<li><code>destroy</code> 对 <code>stream._destroy()</code>方法的实现。</li>
+<li><code>final</code> 对 <code>stream._final()</code>方法的实现。</li>
+<li><code>autoDestroy</code> 此流是否应在结束后自动调用 <code>.destroy()</code>。<strong>默认值:</strong> <code>false</code>.</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Readable, Writable } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OutputStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Writable</span> </span>{
+    _write(chunk, enc, done) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'_write is called: '</span> + chunk.toString().toUpperCase() + <span class="hljs-string">' | time is: '</span> + process.uptime());
+        setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            done();
+        }, <span class="hljs-number">10000</span>); <span class="hljs-comment">// 表示我们输出一次需要10秒钟</span>
+    }
+}
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> OutputStream({ <span class="hljs-attr">highWaterMark</span>: <span class="hljs-number">8</span> });
+<span class="hljs-built_in">console</span>.log(out.write(<span class="hljs-string">'1111'</span>));
+<span class="hljs-built_in">console</span>.log(out.writableBuffer);
+<span class="hljs-built_in">console</span>.log(out.write(<span class="hljs-string">'222'</span>));
+<span class="hljs-built_in">console</span>.log(out.write(<span class="hljs-string">'3333'</span>));
+<span class="hljs-built_in">console</span>.log(out.writableBuffer);
+</code></pre>
+<p>如上，就自定义了一个可写流，关键就是构造函数，以及 <code>_write(size)</code> 方法</p>
+<p>更多详情，可以参阅 <a href="/docs/nodejs/node基础/stream系列/流的缓冲">流的缓冲</a></p>
+<h3><a class="anchor" aria-hidden="true" id="_writechunk-encoding-callback-方法"></a><a href="#_writechunk-encoding-callback-方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>_write(chunk, encoding, callback) 方法</h3>
+<ul>
+<li><code>chunk</code>：要写入的 <code>Buffer</code>，从传给 <code>stream.write()</code> 的 <code>string</code> 转换而来。 如果流的 <code>decodeStrings</code> 选项为 <code>false</code> 或者流在对象模式下运行，则数据块将不会被转换，并且将是传给 <code>stream.write()</code> 的任何内容。</li>
+<li><code>encoding</code>：如果 <code>chunk</code> 是字符串，则指定字符编码。 如果 <code>chunk</code> 是 <code>Buffer</code> 或者流处于对象模式，则无视该选项。</li>
+<li><code>callback</code>：当数据块被处理完成后的回调函数。这个回调通知可写流：这次的底层输出的调用已经完成了，可以接着下一次的输出了。当出现错误时，也可以传递一个 error 参数。</li>
+</ul>
+<p>这个方法是底层输出调用，只应该在可写流内部使用。当缓冲区有数据时，就会调用这个方法去输出到底层输出。当 <code>callback</code> 回调被调用之后，输出流就知道本次的底层输出完成了，如果缓冲区有数据，就会进行下一次的 <code>_write()</code> 调用去输出缓冲区里的数据，如果缓冲区里没有数据了，就会发送 <code>drain</code> 事件，表示底层输出完毕了，可以接着往缓冲区写数据了。</p>
+<blockquote>
+<p>注意：一定要调用了 <code>callback</code> 才能通知流：本次输出完毕了。如果没有调用 <code>callback</code>，流就会认为还在输出中（有的输出相当耗时，例如网络IO），从而不会调用下一次输出</p>
+<p>无论是成功完成写入还是写入失败出现错误，都必须调用 <code>callback</code>。 如果调用失败，则 <code>callback</code> 的第一个参数必须是 <code>Error</code> 对象。 如果写入成功，则 <code>callback</code> 的第一个参数为 <code>null</code></p>
+</blockquote>
+<p>在 <code>writable._write()</code> 被调用之后且 <code>callback</code> 被调用之前，所有对 <code>writable.write()</code> 的调用都会把要写入的数据缓冲起来。 当调用 <code>callback</code> 时，流将会触发 <code>'drain'</code>事件。 如果流的实现需要同时处理多个数据块，则应该实现 <code>writable._writev()</code> 方法。</p>
+<p>如果在构造函数选项中设置 <code>decodeStrings</code> 属性为 <code>false</code>，则 <code>chunk</code> 会保持原样传入 <code>.write()</code>，它可能是字符串而不是 <code>Buffer</code>。 这是为了实现对某些特定字符串数据编码的支持。 在这种情况下， <code>encoding</code> 参数将指示字符串的字符编码。 否则，可以安全地忽略编码参数。</p>
+<h3><a class="anchor" aria-hidden="true" id="writable_writevchunks-callback"></a><a href="#writable_writevchunks-callback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>writable._writev(chunks, callback)</h3>
+<p>跟 <code>_write(chunk,encoding,callback)</code> 差不多，只不过是可以传入多个缓冲</p>
+<ul>
+<li><code>chunks</code> Object[] 格式，要写入的多个数据块。 每个数据块的格式为<code>{ chunk: ..., encoding: ... }</code>。</li>
+<li><code>callback</code> 当全部数据块被处理完成后的回调函数。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="writable_destroyerr-callback"></a><a href="#writable_destroyerr-callback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>writable._destroy(err, callback)</h3>
+<p><code>_destroy()</code> 方法会被 <code>writable.destroy()</code>调用。 它可以被子类重写，但不能直接调用</p>
+<h3><a class="anchor" aria-hidden="true" id="writable_finalcallback"></a><a href="#writable_finalcallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>writable._final(callback)</h3>
+<ul>
+<li><code>callback</code> 当结束写入所有剩余数据时的回调函数。</li>
+</ul>
+<p><code>_final()</code> 方法不能直接调用。 它应该由子类实现，且只能通过内部的 <code>Writable</code> 类的方法调用。</p>
+<p>该方法会在流关闭之前被调用，且在 <code>callback</code> 被调用后触发 <code>'finish'</code> 事件。 主要用于在流结束之前关闭资源或写入缓冲的数据。</p>
+<p>也就是说，流的执行是如下顺序：</p>
+<ul>
+<li>先调用 <code>writable.end()</code></li>
+<li>可写流的所有数据都被写入完毕了</li>
+<li>自动调用 <code>writable._final(callback)</code> 里的 <code>callback</code> 回调</li>
+<li>触发 <code>finish</code> 事件</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="自定义双工流"></a><a href="#自定义双工流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义双工流</h2>
+<p>双工流同时实现了可读流和可写流，例如 TCP socket 连接。</p>
+<p>因为 JavaScript 不支持多重继承，所以使用 <code>stream.Duplex</code> 类实现双工流（而不是使用 <code>stream.Readable</code> 类和 <code>stream.Writable</code> 类）。</p>
+<p><code>stream.Duplex</code> 类的原型继承自 <code>stream.Readable</code> 和 <code>stream.Writable</code>，但是 <code>instanceof</code> 对这两个基础类都可用，因为重写了 <code>stream.Writable</code> 的 <code>Symbol.hasInstance</code>。</p>
+<p>自定义的双工流必须调用 <code>new stream.Duplex([options])</code> 构造函数并实现 <code>readable._read()</code> 和 <code>writable._write()</code> 方法。</p>
+<h3><a class="anchor" aria-hidden="true" id="new-streamduplexoptions"></a><a href="#new-streamduplexoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>new stream.Duplex(options)</h3>
+<ul>
+<li><code>allowHalfOpen</code> 如果设为 <code>false</code>，则当可读端结束时，可写端也会自动结束。 默认为 <code>true</code>。</li>
+<li><code>readableObjectMode</code> 设置流的可读端为 <code>objectMode</code>。 如果 <code>objectMode</code> 为 <code>true</code>，则不起作用。 默认为 <code>false</code>。</li>
+<li><code>writableObjectMode</code> 设置流的可写端为 <code>objectMode</code>。 如果 <code>objectMode</code> 为 <code>true</code>，则不起作用。 默认为 <code>false</code>。</li>
+<li><code>readableHighWaterMark</code> 设置流的可读端的 <code>highWaterMark</code>。 如果已经设置了 <code>highWaterMark</code>，则不起作用。</li>
+<li><code>writableHighWaterMark</code> 设置流的可写端的 <code>highWaterMark</code>。 如果已经设置了 <code>highWaterMark</code>，则不起作用。</li>
+<li><code>read</code> 对 <code>stream._read()</code> 方法的实现。</li>
+<li><code>write</code> 对 <code>stream._write()</code> 方法的实现。</li>
+</ul>
+<p>例如，实现一个可以将输入流输出 2 遍的双工流</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Duplex } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DoubleStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Duplex</span> </span>{
+    <span class="hljs-keyword">constructor</span>(options) {
+        <span class="hljs-keyword">super</span>(options);
+        <span class="hljs-keyword">this</span>._data = [];
+    }
+
+    _read(size) {
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">this</span>._data.length &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">var</span> str = <span class="hljs-keyword">this</span>._data.shift();
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.push(str)) {
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+        <span class="hljs-comment">/**
+         * 这里表示，这个双工流作为可写流，已经被写完了所有的数据
+         * 也就是说，双工流已经接收完了所有的数据来源
+         * 此时 this._data.length = 0 ，this.writableFinished = true
+         * 表示双工流作为可读流已经被读取完了所有的字节了
+         * 因此可以 this.push(null)  对双工流的可读流的部分触发 end 事件
+         */</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.writableFinished) {
+            <span class="hljs-keyword">this</span>.push(<span class="hljs-literal">null</span>);
+        }
+        setTimeout(<span class="hljs-keyword">this</span>._read.bind(<span class="hljs-keyword">this</span>), <span class="hljs-number">100</span>);
+    }
+
+    _write(chunk, encoding, callback) {
+        <span class="hljs-comment">// 这里就是将读取进行双份处理</span>
+        <span class="hljs-keyword">this</span>._data.push(chunk);
+        <span class="hljs-keyword">this</span>._data.push(chunk);
+        callback();
+    }
+}
+<span class="hljs-keyword">var</span> myDouble = <span class="hljs-keyword">new</span> DoubleStream();
+<span class="hljs-comment">// 标准输入经过双工流处理，然后输出给标准输出，就像一个常规 UNIX 进程那样</span>
+process.stdin
+    .pipe(myDouble)
+    .pipe(process.stdout);
+<span class="hljs-comment">// 这里 end 触发表示双工流作为可读流，已经被标准输出读走了所有的数据</span>
+myDouble.once(<span class="hljs-string">'end'</span>, () =&gt; {
+    <span class="hljs-comment">// 这里表示，不断检查标准输出是否已经输出完了：process.stdout.writableLength == 0</span>
+    <span class="hljs-comment">// 常规的输出流调用 writable.end() 即可，并且还会触发 finish 事件</span>
+    <span class="hljs-comment">// 但是 stdout 比较特殊，无法被关闭，也不会触发 finish 事件，因此使用缓冲区长度来判断</span>
+    (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAndExit</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> (process.stdout.writableLength == <span class="hljs-number">0</span>) {
+            process.exit(<span class="hljs-number">0</span>);
+        } <span class="hljs-keyword">else</span> {
+            setTimeout(checkAndExit, <span class="hljs-number">500</span>);
+        }
+    })();
+});
+
+
+</code></pre>
+<ul>
+<li><code>_data</code> 用来保存内部数据</li>
+<li><code>_write</code> 的时候，<code>push</code> 两遍数据到 <code>_data</code></li>
+<li><code>_read</code> 的时候，从 <code>_data</code> 中取数据</li>
+</ul>
+<p>输出：</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ <span class="hljs-built_in">echo</span> <span class="hljs-string">'哈哈爱斯达克交换机卡书法家看哈'</span>| node hello.js
+哈哈爱斯达克交换机卡书法家看哈
+哈哈爱斯达克交换机卡书法家看哈
+</code></pre>
+<blockquote>
+<p>注：</p>
+<p>这种双工流的逻辑是：</p>
+<ul>
+<li>先作为可写流从上游接收输出，保存在自己内部的某个数据中</li>
+<li>然后作为可读流为下游提供数据，从上一步保存的数据中进行输出</li>
+</ul>
+</blockquote>
+<p><strong>上面的代码，实际上有很大的问题，后续修改如下：</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Duplex } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DoubleStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Duplex</span> </span>{
+    <span class="hljs-keyword">constructor</span>(options) {
+        <span class="hljs-keyword">super</span>(options);
+        <span class="hljs-keyword">this</span>._data = [];
+    }
+    _read(size) {
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">this</span>._data.length &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">var</span> str = <span class="hljs-keyword">this</span>._data.shift();
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.push(str)) {
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.writableFinished) {
+            <span class="hljs-keyword">this</span>.push(<span class="hljs-literal">null</span>);
+            <span class="hljs-comment">// 这里必须 return</span>
+            <span class="hljs-keyword">return</span>;
+        }
+        setTimeout(<span class="hljs-keyword">this</span>._read.bind(<span class="hljs-keyword">this</span>), <span class="hljs-number">100</span>);
+    }
+
+    _write(chunk, encoding, callback) {
+        <span class="hljs-comment">// 这里就是将读取进行双份处理</span>
+        <span class="hljs-keyword">this</span>._data.push(chunk);
+        <span class="hljs-keyword">this</span>._data.push(chunk);
+        callback();
+    }
+}
+<span class="hljs-keyword">var</span> myDouble = <span class="hljs-keyword">new</span> DoubleStream();
+<span class="hljs-comment">// 标准输入经过双工流处理，然后输出给标准输出，就像一个常规 UNIX 进程那样</span>
+process.stdin
+    .pipe(myDouble)
+    .pipe(process.stdout);
+</code></pre>
+<p>注意：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.writableFinished) {
+  <span class="hljs-keyword">this</span>.push(<span class="hljs-literal">null</span>);
+  <span class="hljs-comment">// 这里必须 return</span>
+  <span class="hljs-keyword">return</span>;
+}
+setTimeout(<span class="hljs-keyword">this</span>._read.bind(<span class="hljs-keyword">this</span>), <span class="hljs-number">100</span>);
+</code></pre>
+<p>不加 return 的话，就会一直存在 <code>timeOut</code> 事件，导致进程无法退出。（所以我第一版代码里是最后用了 <code>process.exit</code>，那时候没有弄明白真正无法退出的原因，以为是 <code>stdout</code> 的问题）</p>
+<h2><a class="anchor" aria-hidden="true" id="自定义转换流"></a><a href="#自定义转换流" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义转换流</h2>
+<p>转换流是一种双工流，它会对输入做些计算然后输出。 例如 zlib 流和 crypto 流会压缩、加密或解密数据。</p>
+<p>输出流的大小、数据块的数量都不一定会和输入流的一致。 例如， <code>Hash</code> 流在输入结束时只会输出一个数据块，而 <code>zlib</code> 流的输出可能比输入大很多或小很多。</p>
+<p>继承 <code>stream.Transform</code> 类可用于实现一个转换流。</p>
+<p><code>stream.Transform</code> 类继承自 <code>stream.Duplex</code>，并且实现了自有的 <code>writable._write()</code> 和 <code>readable._read()</code> 方法。 自定义的转换流必须实现 <code>transform._transform()</code> 方法，<code>transform._flush()</code> 方法是可选的。</p>
+<p>当使用转换流时，如果可读端的输出没有被消费，则写入流的数据可能会导致可写端被暂停。</p>
+<blockquote>
+<p>注：</p>
+<p>也就是说：</p>
+<ul>
+<li>转换流就是双攻流</li>
+<li>转换流自己实现了 <code>_write()</code> 和 <code>_read()</code>，用来控制转换的相关逻辑</li>
+<li>我们只需要实现 <code>transform._transform()</code> 方法（和可选的 <code>.flush()</code>），转换流就可以实现从上游读取，然后经过转换处理输出给下游的逻辑了</li>
+<li>我们上面的自定义双工流其实就可以算是一种转换流了，只不过是我们自己实现的 read 和 write，转换流这两个方法是内置的，重点是 transform 转换</li>
+</ul>
+<p>我们用到的绝大部分双工流都是转换流，实现自定义转换流方法如下：</p>
+<ul>
+<li>继承 Transform 类</li>
+<li>实现 _transform() 方法</li>
+<li>实现 _flush() 方法（可以不实现）</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="new-streamtransformoptions"></a><a href="#new-streamtransformoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>new stream.Transform([options])</h3>
+<p><code>options</code> 同时传给 <code>Writable</code> 和 <code>Readable</code> 的构造函数。</p>
+<ul>
+<li><code>transform</code> 对 <code>stream._transform()</code> 的实现。</li>
+<li><code>flush</code> 对 <code>stream._flush()</code> 的实现。</li>
+</ul>
+<p>实现一个和上面双工流一样的程序，将输入流的数据输出 2 遍，使用转换流的话如下：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Transform } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DoubleStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Transform</span> </span>{
+    <span class="hljs-keyword">constructor</span>(options) {
+        <span class="hljs-keyword">super</span>(options);
+    }
+    _transform(chunk, encoding, callback) {
+        <span class="hljs-keyword">this</span>.push(chunk);
+        <span class="hljs-keyword">this</span>.push(chunk);
+        callback();
+    }
+}
+<span class="hljs-keyword">var</span> myDouble = <span class="hljs-keyword">new</span> DoubleStream();
+process.stdin
+    .pipe(myDouble)
+    .pipe(process.stdout);
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ <span class="hljs-built_in">echo</span> <span class="hljs-string">'哈哈爱斯达克交换机卡书法家看哈'</span>| node hello.js
+哈哈爱斯达克交换机卡书法家看哈
+哈哈爱斯达克交换机卡书法家看哈
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="finish-和-end-事件"></a><a href="#finish-和-end-事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>finish 和 end 事件</h3>
+<p><code>finish</code> 事件来自 <code>stream.Writable</code> 类，<code>end</code> 事件来自 <code>stream.Readable</code> 类。 当调用了 <code>stream.end()</code> 并且 <code>stream._transform()</code> 处理完全部数据块之后，触发 <code>'finish'</code> 事件。</p>
+<p>（表示作为可写流的部分，已经将所有的数据都写入了）</p>
+<p>当调用了 <code>transform._flush()</code> 中的回调函数并且所有数据已经输出之后，触发 <code>'end'</code> 事件。</p>
+<p>（表示作为可读流的分布，所有的数据都被读取完毕了）</p>
+<h3><a class="anchor" aria-hidden="true" id="transform_flushcallback"></a><a href="#transform_flushcallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transform._flush(callback)</h3>
+<p><code>callback</code>：当剩余的数据被 flush 后的回调函数</p>
+<p>某些情况下，转换操作可能需要在流的末尾发送一些额外的数据。 例如， <code>zlib</code> 压缩流时会储存一些用于优化输出的内部状态。 当流结束时，这些额外的数据需要被 flush 才算完成压缩。</p>
+<p>自定义的转换流的 <code>transform._flush()</code> 方法是可选的。 当没有更多数据要被消费时，就会调用这个方法，但如果是在 <code>'end'</code> 事件被触发之前调用则会发出可读流结束的信号。</p>
+<p>在 <code>transform._flush()</code> 的实现中， <code>readable.push()</code> 可能会被调用零次或多次。 当 flush 操作完成时，必须调用 <code>callback</code> 函数。</p>
+<p><strong>也就是说，这个方法是用来在转换流的末尾添加数据的，改写上面的例子如下：</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> { Transform } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>);
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DoubleStream</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Transform</span> </span>{
+    <span class="hljs-keyword">constructor</span>(options) {
+        <span class="hljs-keyword">super</span>(options);
+    }
+    _transform(chunk, encoding, callback) {
+        <span class="hljs-keyword">this</span>.push(chunk);
+        <span class="hljs-keyword">this</span>.push(chunk);
+        callback();
+    }
+    _flush(callback) {
+        <span class="hljs-keyword">this</span>.push(<span class="hljs-string">'嘻嘻嘻了呢\n'</span>);
+        callback();
+    }
+}
+<span class="hljs-keyword">var</span> myDouble = <span class="hljs-keyword">new</span> DoubleStream();
+process.stdin
+    .pipe(myDouble)
+    .pipe(process.stdout);
+</code></pre>
+<p>最后输出了 <code>嘻嘻嘻了呢</code> 加上一个换行符</p>
+<p>输出如下：</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ <span class="hljs-built_in">echo</span> <span class="hljs-string">'哈哈爱斯达克交换机卡书法家看哈'</span>|node hello.js
+哈哈爱斯达克交换机卡书法家看哈
+哈哈爱斯达克交换机卡书法家看哈
+嘻嘻嘻了呢
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="transform_transformchunk-encoding-callback"></a><a href="#transform_transformchunk-encoding-callback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transform._transform(chunk, encoding, callback)</h3>
+<ul>
+<li><code>chunk</code> 要转换的 <code>Buffer</code>，从传给 <code>stream.write()</code> 的 <code>string</code> 转换而来。 如果流的 <code>decodeStrings</code> 选项为 <code>false</code> 或者流在对象模式下运行，则数据块将不会被转换，并且将是传给 <code>stream.write()</code> 的任何内容。</li>
+<li><code>encoding</code> 如果数据块是一个字符串，则这是编码类型。 如果数据块是一个 buffer，则为特殊值 <code>'buffer'</code>。在这种情况下忽略它。</li>
+<li><code>callback</code> 当 <code>chunk</code> 处理完成时的回调函数。</li>
+</ul>
+<p>所有转换流的实现都必须提供 <code>_transform()</code> 方法来接收输入并生产输出。 <code>transform._transform()</code> 的实现会处理写入的字节，进行一些计算操作，然后使用 <code>readable.push()</code> 输出到可读流。</p>
+<p><code>transform.push()</code> 可能会被调用零次或多次用来从每次输入的数据块产生输出，调用的次数取决需要多少数据来产生输出的结果。</p>
+<p>输入的数据块有可能不会产生任何输出。</p>
+<p>当前数据被完全消费之后，必须调用 <code>callback</code> 函数。 当处理输入的过程中发生出错时， <code>callback</code> 的第一个参数传入 <code>Error</code> 对象，否则传入 <code>null</code>。 如果 <code>callback</code> 传入了第二个参数，则它会被转发到 <code>readable.push()</code>。 就像下面的例子：</p>
+<pre><code class="hljs css language-javascript">transform.prototype._transform = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, encoding, callback</span>) </span>{
+  <span class="hljs-keyword">this</span>.push(data);
+  callback();
+};
+
+transform.prototype._transform = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, encoding, callback</span>) </span>{
+  callback(<span class="hljs-literal">null</span>, data);
+};
+</code></pre>
+<p>上面这两个是等价的方法</p>
+<p><code>transform._transform()</code> 不能并行调用。 流使用了队列机制，无论同步或异步的情况下，都必须先调用 <code>callback</code> 之后才能接收下一个数据块。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/15/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#如何自定义流">如何自定义流</a><ul class="toc-headings"><li><a href="#简单实现">简单实现</a></li></ul></li><li><a href="#自定义可读流">自定义可读流</a><ul class="toc-headings"><li><a href="#new-streamreadableoptions">new stream.Readable([options])</a></li></ul></li><li><a href="#自定义可写流">自定义可写流</a><ul class="toc-headings"><li><a href="#new-streamwritableoptions">new stream.Writable([options])</a></li><li><a href="#_writechunk-encoding-callback-方法">_write(chunk, encoding, callback) 方法</a></li><li><a href="#writable_writevchunks-callback">writable._writev(chunks, callback)</a></li><li><a href="#writable_destroyerr-callback">writable._destroy(err, callback)</a></li><li><a href="#writable_finalcallback">writable._final(callback)</a></li></ul></li><li><a href="#自定义双工流">自定义双工流</a><ul class="toc-headings"><li><a href="#new-streamduplexoptions">new stream.Duplex(options)</a></li></ul></li><li><a href="#自定义转换流">自定义转换流</a><ul class="toc-headings"><li><a href="#new-streamtransformoptions">new stream.Transform([options])</a></li><li><a href="#finish-和-end-事件">finish 和 end 事件</a></li><li><a href="#transform_flushcallback">transform._flush(callback)</a></li><li><a href="#transform_transformchunk-encoding-callback">transform._transform(chunk, encoding, callback)</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文介绍一些跟 IO 相关的内容 todo"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文介绍一些跟 IO 相关的内容 todo"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/nodejs/node-cookbook/IO相关.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><p>本文介绍一些跟 IO 相关的内容 todo</p>
+<h2><a class="anchor" aria-hidden="true" id="tty-检测"></a><a href="#tty-检测" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TTY 检测</h2>
+<p>我们可以使用 isTTY 来检测标准输入标准输出是否连接到了一个 TTY 终端，这对于我们决定是否要输出彩色文字等具有一定帮助。</p>
+<p>例如：</p>
+<ul>
+<li>当我们使用常规的 <code>node xxx.js</code> 时，标准输入连接到了 TTY 终端，因此 <code>process.stdin.isTTY === true</code></li>
+<li>当我们使用类似于 <code>echo &quot;xxx | node xxx.js&quot;</code> 时，标准输入是经过了重定向的，因此 <code>process.stdin.isTTY === false</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="操作文件"></a><a href="#操作文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>操作文件</h2>
+<p>首先，创建一个 1MB 的随机文件</p>
+<pre><code class="hljs css language-bash">$ node -p <span class="hljs-string">"Buffer.allocUnsafe(1e6).toString()"</span> &gt; file.dat
+</code></pre>
+<p>创建一个文件，<code>null-byte-remover.js</code>，它的作用是清空文件里的 0 字节，内容如下：</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>) 
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> cwd = process.cwd()
+<span class="hljs-keyword">const</span> bytes = fs.readFileSync(path.join(cwd, <span class="hljs-string">'file.dat'</span>))
+<span class="hljs-keyword">const</span> clean = bytes.filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n) 
+fs.writeFileSync(path.join(cwd, <span class="hljs-string">'clean.dat'</span>), clean)
+fs.appendFileSync( path.join(cwd, <span class="hljs-string">'log.txt'</span>), (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>) + <span class="hljs-string">' '</span> + (bytes.length - clean.length) + <span class="hljs-string">' bytes removed\n'</span> ) <span class="hljs-comment">// 这个方法，不存在文件时会自动创建</span>
+</code></pre>
+<p>最后</p>
+<pre><code class="hljs css language-bash">$ node null-byte-remover.js
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="异步文件操作"></a><a href="#异步文件操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>异步文件操作</h2>
+<p>我们把源码改成这样：</p>
+<pre><code class="hljs css language-javascript">setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> process.stdout.write(<span class="hljs-string">'.'</span>), <span class="hljs-number">10</span>).unref()
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> cwd = process.cwd()
+fs.readFile(path.join(cwd, <span class="hljs-string">'file.dat'</span>), (err, bytes) =&gt; {
+    <span class="hljs-keyword">if</span> (err) { <span class="hljs-built_in">console</span>.error(err); process.exit(<span class="hljs-number">1</span>); }
+    <span class="hljs-keyword">const</span> clean = bytes.filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n)
+    fs.writeFile(path.join(cwd, <span class="hljs-string">'clean.dat'</span>), clean, (err) =&gt; {
+        <span class="hljs-keyword">if</span> (err) { <span class="hljs-built_in">console</span>.error(err); process.exit(<span class="hljs-number">1</span>); }
+        fs.appendFile(
+            path.join(cwd, <span class="hljs-string">'log.txt'</span>),
+            (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>) + <span class="hljs-string">' '</span> + (bytes.length - clean.length) + <span class="hljs-string">' bytes removed\n'</span>,
+            () =&gt; { }
+        )
+    })
+})
+</code></pre>
+<p>实际执行了大概 200ms，但是却只输出了 2-3 个点号，这是因为 <code>const clean = bytes.filter(n =&gt; n)</code> 也是个稍微耗时的同步操作。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用-stream-增量处理"></a><a href="#使用-stream-增量处理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 Stream 增量处理</h2>
+<p>首先我们安装第三方包 <code>strip-bytes-stream</code></p>
+<pre><code class="hljs css language-javascript">npm install --save strip-bytes-stream
+</code></pre>
+<p>修改代码为：</p>
+<pre><code class="hljs css language-javascript">setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> process.stdout.write(<span class="hljs-string">'.'</span>), <span class="hljs-number">10</span>).unref()
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> cwd = process.cwd()
+<span class="hljs-keyword">const</span> sbs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'strip-bytes-stream'</span>)
+fs.createReadStream(path.join(cwd, <span class="hljs-string">'file.dat'</span>))
+    .pipe(sbs(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n))
+    .on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ log(<span class="hljs-keyword">this</span>.total) })
+    .pipe(fs.createWriteStream(path.join(cwd, <span class="hljs-string">'clean.dat'</span>)))
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params">total</span>) </span>{
+    fs.appendFile(
+        path.join(cwd, <span class="hljs-string">'log.txt'</span>),
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>) + <span class="hljs-string">' '</span> + total + <span class="hljs-string">' bytes removed\n'</span>,
+        () =&gt; { }
+    )
+}
+</code></pre>
+<p>这次应该输出的点号会多一点(我的多了3个点)</p>
+<p>通常来说 <code>fs.createReadStream</code> 和 <code>fs.createWriteStream</code> 是最适合用来读写文件的方式</p>
+<h2><a class="anchor" aria-hidden="true" id="处理元数据"></a><a href="#处理元数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>处理元数据</h2>
+<p>这里我们将编写一个命令行小工具，用来处理文件系统的元数据，例如权限、时间等</p>
+<p>输出格式化：使用 <code>npm install --save tableaux</code> ，这个第三方包帮助我们格式化输出</p>
+<p>创建文件：<code>meta.js</code></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> tableaux = <span class="hljs-built_in">require</span>(<span class="hljs-string">'tableaux'</span>)
+<span class="hljs-comment">// 创建表头</span>
+<span class="hljs-keyword">const</span> write = tableaux(
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'Name'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">20</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'Created'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">30</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'DeviceId'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">10</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'Mode'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">8</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'Lnks'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">4</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">'Size'</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">6</span> }
+)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">dir</span>) </span>{
+    fs.readdirSync(dir)
+        .map(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> ({ file, dir }))
+        .map(toMeta)
+        .forEach(output)
+    write.newline()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toMeta</span>(<span class="hljs-params">{ file, dir }</span>) </span>{
+    <span class="hljs-keyword">const</span> stats = fs.statSync(path.join(dir, file))
+    <span class="hljs-keyword">var</span> { birthtime, ino, mode, nlink, size } = stats
+    birthtime = birthtime.toUTCString()
+    mode = mode.toString(<span class="hljs-number">8</span>)
+    size += <span class="hljs-string">'B'</span>
+    <span class="hljs-keyword">return</span> {
+        file,
+        dir,
+        <span class="hljs-attr">info</span>: [birthtime, ino, mode, nlink, size],
+        <span class="hljs-attr">isDir</span>: stats.isDirectory()
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">output</span>(<span class="hljs-params">{ file, dir, info, isDir }</span>) </span>{
+    write(file, ...info)
+    <span class="hljs-keyword">if</span> (!isDir) { <span class="hljs-keyword">return</span> }
+    <span class="hljs-keyword">const</span> p = path.join(dir, file)
+    write.arrow()
+    fs.readdirSync(p)
+        .forEach(<span class="hljs-function">(<span class="hljs-params">f</span>) =&gt;</span> {
+            <span class="hljs-keyword">const</span> stats = fs.statSync(path.join(p, f))
+            <span class="hljs-keyword">const</span> style = stats.isDirectory() ? <span class="hljs-string">'bold'</span> : <span class="hljs-string">'dim'</span>
+            write[style](f)
+        })
+    write.newline()
+}
+
+print(process.argv[<span class="hljs-number">2</span>] || <span class="hljs-string">'.'</span>)
+</code></pre>
+<p>接着创建一个目录结构，用来测试我们的工具：</p>
+<pre><code class="hljs css language-bash">$ mkdir -p my-folder/my-subdir/my-subsubdir 
+$ <span class="hljs-built_in">cd</span> my-folder 
+$ touch my-file my-private-file 
+$ chmod 000 my-private-file 
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"my edit"</span> &gt; my-file 
+$ ln -s my-file my-symlink 
+$ touch my-subdir/another-file 
+$ touch my-subdir/my-subsubdir/too-deep
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/15/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#tty-检测">TTY 检测</a></li><li><a href="#操作文件">操作文件</a></li><li><a href="#异步文件操作">异步文件操作</a></li><li><a href="#使用-stream-增量处理">使用 Stream 增量处理</a></li><li><a href="#处理元数据">处理元数据</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
