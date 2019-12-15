@@ -28,18 +28,18 @@
           "nodejs/node基础/npm脚本的使用",
           "nodejs/node基础/Buffer",
           "nodejs/node基础/Stream",
-          {
-            "type": "subcategory",
-            "label": "stream系列",
-            "ids": [
-              "nodejs/node基础/stream系列/流的缓冲",
-              "nodejs/node基础/stream系列/可读流",
-              "nodejs/node基础/stream系列/可写流",
-              "nodejs/node基础/stream系列/双工流和转换流",
-              "nodejs/node基础/stream系列/自定义流"
-            ]
-          },
           "nodejs/node基础/示例代码"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "stream系列",
+        "ids": [
+          "nodejs/node基础/stream系列/流的缓冲",
+          "nodejs/node基础/stream系列/可读流",
+          "nodejs/node基础/stream系列/可写流",
+          "nodejs/node基础/stream系列/双工流和转换流",
+          "nodejs/node基础/stream系列/自定义流"
         ]
       }
     ],
