@@ -1,19 +1,2 @@
-const { Transform } = require('stream');
-class DoubleStream extends Transform {
-    constructor(options) {
-        super(options);
-    }
-    _transform(chunk, encoding, callback) {
-        this.push(chunk);
-        this.push(chunk);
-        callback();
-    }
-    _flush(callback) {
-        this.push('嘻嘻嘻了呢\n');
-        callback();
-    }
-}
-var myDouble = new DoubleStream();
-process.stdin
-    .pipe(myDouble)
-    .pipe(process.stdout);
+var dt = new Date(2012,0,1); // 2012 年 1 月 1 日
+console.log(dt.toString());
