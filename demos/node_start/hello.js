@@ -1,2 +1,5 @@
-var dt = new Date(2012,0,1); // 2012 年 1 月 1 日
-console.log(dt.toString());
+let map = new Map([['k1', 'v1'], ['k2', 'v2'], ['k3', 'v3']]);
+map.forEach((v, k, m) => {
+    console.log(k);
+    console.log(v);
+});
