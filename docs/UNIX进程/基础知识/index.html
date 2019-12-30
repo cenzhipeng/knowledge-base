@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文记录 UNIX 的一些基本知识。示例基本是用 node 写的，不是因为精通 node，是因为我最近在学 node 😄。其实我主力是搞 java 的"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文记录 UNIX 的一些基本知识。示例基本是用 node 写的，不是因为精通 node，是因为我最近在学 node 😄。其实我主力是搞 java 的"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="本文记录 UNIX 的一些基本知识。示例基本是用 node 写的，不是因为精通 node，是因为我最近在学 node 😄。其实我主力是搞 java 的"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="本文记录 UNIX 的一些基本知识。示例基本是用 node 写的，不是因为精通 node，是因为我最近在学 node 😄。其实我主力是搞 java 的"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -6,7 +6,7 @@
 
               ga('create', 'UA-153148512-1', 'auto');
               ga('send', 'pageview');
-            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100,"scrollDuration":400}
@@ -84,7 +84,164 @@
 <h2><a class="anchor" aria-hidden="true" id="资源限制"></a><a href="#资源限制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>资源限制</h2>
 <p>文件描述符代表已打开的资源。你可能注意到当资源没有被关闭时，文件描述符编号一直处于递增状态。这就产生一个问题：一个进程可以拥有多少个文件描述符？</p>
 <p>答案取决于你的系统配置，不过重要的一点是：内核为进程施加了某些资源限制。</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/21/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#unix-手册页（manpages）">UNIX 手册页（manpages）</a></li><li><a href="#进程id">进程ID</a></li><li><a href="#父进程">父进程</a></li><li><a href="#文件描述符">文件描述符</a><ul class="toc-headings"><li><a href="#描述符代表资源">描述符代表资源</a></li><li><a href="#标准流">标准流</a></li></ul></li><li><a href="#资源限制">资源限制</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>我们可以使用 Python 来查询进程能够支持的文件描述符最大编号：</p>
+<pre><code class="hljs css language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> resource
+<span class="hljs-meta">&gt;&gt;&gt; </span>resource.getrlimit(resource.RLIMIT_NOFILE)
+(<span class="hljs-number">300000</span>, <span class="hljs-number">300000</span>)
+</code></pre>
+<blockquote>
+<p>为什么用 Python：</p>
+<ul>
+<li>node 内置没有提供关于 RLIMIT 的 API，我们需要自己写 C++ 插件来支持。</li>
+<li>Java 也没有提供关于 RLIMIT 的 API，我们也需要提供 C 代码，然后通过 JNI 来支持。</li>
+</ul>
+<p>所以了，这俩都不支持，我只好用 python 来实验了（手头上没有 C、Rust 等语言的环境）</p>
+</blockquote>
+<p>以上输出（300000，300000）的含义：</p>
+<ul>
+<li>左边表示软限制</li>
+<li>右边表示硬限制</li>
+</ul>
+<p>实际上来说，一般系统的限制值没有这么大，</p>
+<p>而且软限制会比硬限制小。我的系统输出了 300000 是因为我自己曾经修改过限制值。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://becomethesolution.com/blogs/mac/increase-open-file-descriptor-limits-fix-too-many-open-files-errors-mac-os-x-10-14">macos修改文件最大打开数</a></li>
+<li><a href="http://www.dalong.me/system/macos/change_ulimit/">macos修改文件最大打开数</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="软限制和硬限制"></a><a href="#软限制和硬限制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>软限制和硬限制</h3>
+<p>软限制其实算不上一种限制。也就是说如果超出了软限制（在这里指一次打开了超过 2560 个资源），将会产生异常，但是我们在进程内部，<strong>可以自己主动修改软限制</strong>。而对于硬限制，只有超级用户可以修改。</p>
+<p>修改软限制和硬限制：</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> resource
+resource.setrlimit(resource.RLIMIT_NOFILE,(<span class="hljs-number">1000</span>,<span class="hljs-number">2000</span>))
+print(resource.getrlimit(resource.RLIMIT_NOFILE))
+</code></pre>
+<p>我们可以主动降低硬限制和软限制。硬限制一旦降低了，对于进程来说是不可逆的（除非我们的进程有超级管理员权限）。我们最多可以将软限制设置的和硬限制一样大，不能将软限制设为大于硬限制的值</p>
+<h3><a class="anchor" aria-hidden="true" id="超出资源限制"></a><a href="#超出资源限制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>超出资源限制</h3>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> resource
+
+resource.setrlimit(resource.RLIMIT_NOFILE, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+open(<span class="hljs-string">'test.py'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>)
+</code></pre>
+<p>将会报错：</p>
+<pre><code class="hljs css language-python">(py3<span class="hljs-number">.5</span>) czp@:~/workspace/knowledge-base/demos/node_start$ python test.py
+Traceback (most recent call last):
+  File <span class="hljs-string">"test.py"</span>, line <span class="hljs-number">3</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+OSError: [Errno <span class="hljs-number">24</span>] Too many open files: <span class="hljs-string">'test.py'</span>
+</code></pre>
+<p><code>Too many open files</code>：因为我们将限制设置为了 3 ，而一个进程自身初始就打开了 3 个文件描述符，分别是输入流、输出流、错误流，所以我们再读取一个文件时，就超出了软限制的值，就会报错了。</p>
+<h3><a class="anchor" aria-hidden="true" id="其它资源限制"></a><a href="#其它资源限制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>其它资源限制</h3>
+<p>除了文件描述符的限制之外，实际上一个进程还有其它类型的资源限制，例如：</p>
+<ul>
+<li><strong>RLIMIT_CORE</strong>：当前进程可以创建的核心文件的最大大小（以字节为单位）</li>
+<li><strong>RLIMIT_CPU</strong>：一个进程可以使用的最大处理器时间（以秒为单位）。如果超出此限制，则将发送 <code>SIGXCPU</code>信号到进程</li>
+<li><strong>RLIMIT_FSIZE</strong>：进程可以创建的文件的最大大小</li>
+</ul>
+<p>总之有一大堆的限制值，查看完整内容：</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/resource.html">python进程资源限制</a></li>
+<li><a href="http://man7.org/linux/man-pages/man2/getrlimit.2.html">getrlimit 手册</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="最佳实践"></a><a href="#最佳实践" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>最佳实践</h3>
+<p>我们可能需要调整进程资源限制的情形：</p>
+<ul>
+<li>开发并发网络应用时，可能需要调高限制</li>
+<li>执行第三方代码时，可能需要调低限制，例如限制进程能创建的最大文件大小、CPU 使用时间等</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="系统调用"></a><a href="#系统调用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>系统调用</h3>
+<p>getrlimit 和 setrlimit</p>
+<h2><a class="anchor" aria-hidden="true" id="环境变量"></a><a href="#环境变量" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>环境变量</h2>
+<p>环境变量是包含进程数据的键值对集合。所有进程都从其父进程处继承环境变量。它们由父进程设置并被子进程所继承。每一个进程都有环境变量，环境变量对于特定进程而言是全局性的。</p>
+<p>在 bash 中设置一个环境变量，并且使用 node 来读取：</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ MESSAGE=<span class="hljs-string">'set a env'</span> node -p <span class="hljs-string">'process.env.MESSAGE'</span>
+<span class="hljs-built_in">set</span> a env
+</code></pre>
+<p><code>VAR=value</code> 这种语法是 bash 设置环境变量的方法。</p>
+<p>环境变量经常作为一种将输入传递到命令行程序中的通用方法。所有 的终端（Unix 或 Windows）均已支持环境变量，而且大多数程序员 对此颇为熟悉。比起解析命令行选项，使用环境变量的开销通常更小 一些。</p>
+<h2><a class="anchor" aria-hidden="true" id="进程参数"></a><a href="#进程参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进程参数</h2>
+<p>所有的进程都有一个表示进程参数的数组 argv，不同的编程语言可能在实现方式上略微不同，但是都会有 argv</p>
+<p>例如 node 中</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ node hello.js
+[
+  <span class="hljs-string">'/usr/local/Cellar/node/13.1.0/bin/node'</span>,
+  <span class="hljs-string">'/Users/czp/workspace/knowledge-base/demos/node_start/hello.js'</span>
+]
+</code></pre>
+<p>而在 Java 中，我们也可以访问 argv</p>
+<pre><code class="hljs css language-java">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+     
+    }
+</code></pre>
+<p>args 数组就是进程的参数数组，例如 <code>java -jar xxx.jar a b c</code> 将会获取到 <code>[a,b,c]</code> 组成的数组</p>
+<p>在 bash 中，则是这样访问参数数组的</p>
+<pre><code class="hljs css language-bash"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">echo</span> 参数一: <span class="hljs-variable">$0</span>
+<span class="hljs-built_in">echo</span> 参数二: <span class="hljs-variable">$1</span>
+</code></pre>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ ./test.sh 123
+参数一: ./test.sh
+参数二: 123
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="进程名称"></a><a href="#进程名称" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进程名称</h2>
+<p>每个进程都有名称，例如我们使用 node 启动一个 node 脚本，进程的名称就是 node。进程的名称可以更改，以便于查找。</p>
+<p>node 修改进程名称</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">console</span>.log(process.title);
+process.title = <span class="hljs-string">'ccccc'</span>;
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    
+}, <span class="hljs-number">10000</span>);
+</code></pre>
+<p>我们可以使用如下命令查找进程：</p>
+<pre><code class="hljs css language-bash">(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ pgrep ccccc
+49724
+(py3.5) czp@:~/workspace/knowledge-base/demos/node_start$ ps -ef |grep ccccc
+  501 49724  6468   0  7:02下午 ttys003    0:00.10 ccccc
+  501 49735 49389   0  7:02下午 ttys005    0:00.00 grep ccccc
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="进程退出码"></a><a href="#进程退出码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进程退出码</h2>
+<p>所有进程在退出的时候都带有数字退出码（0-255），用于指明进程是否顺利结束。</p>
+<blockquote>
+<p>C 语言标准中 main 函数是需要有 int 返回值的，这个返回值实际上就是这个 C 程序的进程退出码，所以程序没有什么问题的时候，我们都是 return 0，表示程序正常结束</p>
+</blockquote>
+<p>坚持“退出码 0 代表顺利结束”的传统，这样你的程序就能同其他的 Unix 工具顺畅合作。</p>
+<h2><a class="anchor" aria-hidden="true" id="进程衍生-fork"></a><a href="#进程衍生-fork" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进程衍生 fork</h2>
+<p>在 UNIX 中，一个进程想产生另外一个进程，唯一的办法就是使用 fork 系统调用</p>
+<p>fork 系统调用允许运行中的进程以编程的形式创建新的进程，这个新进程和原始进程<strong>一模一样</strong></p>
+<p>调用 fork 的进程称为父进程，新创建的进程被称为子进程</p>
+<blockquote>
+<p>子进程从父进程处继承了其所占用内存中的所有内容，以及所有属于父进程的已打开的文件描述符</p>
+</blockquote>
+<ul>
+<li><p>子进程的 ppid 就是调用 fork 的进程的 pid。</p></li>
+<li><p>在 fork 调用时，子进程从父进程处继承了所有的文件描述符，也获得了父进程所有的文件描述符的编号，这样，两个进程就可以共享打开的文件、套接字</p></li>
+<li><p>fork 调用几乎瞬间就可以返回</p></li>
+<li><p>子进程可以随意更改其内存内容的副本，而不会对父进程造成任何影响（copy-on-write）</p></li>
+</ul>
+<p>下面是 Ruby 中的 fork 例子（node 和 java 都不是原始的 fork，经过了语言的虚拟机的层层封装）：</p>
+<pre><code class="hljs css language-ruby"><span class="hljs-keyword">if</span> fork
+    puts <span class="hljs-string">"entered the if block"</span>
+<span class="hljs-keyword">else</span>
+    puts <span class="hljs-string">"entered the else block"</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs css language-bash">entered the <span class="hljs-keyword">if</span> block
+entered the <span class="hljs-keyword">else</span> block
+</code></pre>
+<p>解释：</p>
+<ul>
+<li>fork 衍生出了一个子进程，此时有一父一子两个进程，都运行在了 <code>if fork</code> 这一行</li>
+<li>父进程中的 fork 返回值是子进程的 pid</li>
+<li>子进程中的 fork 返回值是 0</li>
+<li>if 语句块中的代码是由父进程执行的</li>
+<li>else 语句块中的代码是子进程执行的</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="孤儿进程"></a><a href="#孤儿进程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>孤儿进程</h2>
+<ul>
+<li>当父进程结束后，子进程会安然无恙，也就是说对子进程毫无影响</li>
+<li></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/30/2019</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#unix-手册页（manpages）">UNIX 手册页（manpages）</a></li><li><a href="#进程id">进程ID</a></li><li><a href="#父进程">父进程</a></li><li><a href="#文件描述符">文件描述符</a><ul class="toc-headings"><li><a href="#描述符代表资源">描述符代表资源</a></li><li><a href="#标准流">标准流</a></li></ul></li><li><a href="#资源限制">资源限制</a><ul class="toc-headings"><li><a href="#软限制和硬限制">软限制和硬限制</a></li><li><a href="#超出资源限制">超出资源限制</a></li><li><a href="#其它资源限制">其它资源限制</a></li><li><a href="#最佳实践">最佳实践</a></li><li><a href="#系统调用">系统调用</a></li></ul></li><li><a href="#环境变量">环境变量</a></li><li><a href="#进程参数">进程参数</a></li><li><a href="#进程名称">进程名称</a></li><li><a href="#进程退出码">进程退出码</a></li><li><a href="#进程衍生-fork">进程衍生 fork</a></li><li><a href="#孤儿进程">孤儿进程</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2019 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
