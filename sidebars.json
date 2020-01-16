@@ -1,9 +1,9 @@
 {
   "docs": {
-    "Docusaurus": [
-      "docusaurus/快速开始/install",
-      "docusaurus/快速开始/config",
-      "docusaurus/快速开始/build"
+    "JVM系列": [
+      "JVM系列/JVM内存区域",
+      "JVM系列/对象创建-布局-访问",
+      "JVM系列/内存溢出实战"
     ],
     "Node": [
       {
@@ -18,6 +18,22 @@
           "nodejs/数据处理",
           "nodejs/常用API",
           "nodejs/重点知识"
+        ]
+      },{
+        "type": "subcategory",
+        "label": "ES6",
+        "ids": [
+          "nodejs/ES6/块级作用域",
+          "nodejs/ES6/字符串和正则表达式",
+          "nodejs/ES6/函数",
+          "nodejs/ES6/对象",
+          "nodejs/ES6/结构",
+          "nodejs/ES6/Symbol",
+          "nodejs/ES6/Set和Map",
+          "nodejs/ES6/迭代器和生成器",
+          "nodejs/ES6/类",
+          "nodejs/ES6/数组",
+          "nodejs/ES6/Promise"
         ]
       },
       {
