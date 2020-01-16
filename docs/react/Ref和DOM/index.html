@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## react 元素的 ref 属性"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## react 元素的 ref 属性"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/react/Ref和DOM.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="react-元素的-ref-属性"></a><a href="#react-元素的-ref-属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>react 元素的 ref 属性</h2>
+<p>react 元素中，ref 是一个特殊属性，利用它，我们可以得到元素本身或者是它挂载的DOM节点</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.myRef = React.createRef();
+  }
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.myRef}</span> /&gt;</span>;
+  }
+}
+</span></code></pre>
+<ul>
+<li>首先，<code>this.myRef = React.createRef();</code> 创建了一个 ref</li>
+<li><code>&lt;div ref={this.myRef} /&gt;</code> 将 div 这个 dom 节点的 ref 属性设置成了 <code>{this.myRef}</code></li>
+<li>这个设置属性的含义是：将 div 这个 dom 节点（一个 JS 对象），赋值给 <code>this.myRef.current</code></li>
+<li>也就是说，我们使用 <code>this.myRef.current</code> 可以操纵这个 dom，就像是使用 CSS 选择器选择到了节点一样</li>
+</ul>
+<p>例如</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.myRef = React.createRef();
+    }
+
+    componentDidMount() {
+        <span class="hljs-keyword">this</span>.myRef.current.innerHTML = <span class="hljs-string">'哈哈哈'</span>
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.myRef}</span> /&gt;</span>;
+    }
+}
+
+ReactDOM.render(
+    <span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> /&gt;</span>,
+    document.getElementById('root')
+);
+</span></code></pre>
+<p>你将会看到元素的信息是</p>
+<pre><code class="hljs css language-javascript">&lt;div&gt;哈哈哈&lt;/div&gt;
+</code></pre>
+<p>这证明我们引用到了这个 div 节点，并且设置了它的属性</p>
+<h2><a class="anchor" aria-hidden="true" id="访问-refs"></a><a href="#访问-refs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问 Refs</h2>
+<p>当 ref 被传递给 <code>render</code> 中的元素时，对该节点的引用可以在 ref 的 <code>current</code> 属性中被访问。</p>
+<p><code>const node = this.myRef.current;</code></p>
+<p>ref 的值根据节点的类型而有所不同：</p>
+<ul>
+<li><p>当 <code>ref</code> 属性用于 HTML 元素时，构造函数中使用 <code>React.createRef()</code> 创建的 <code>ref</code> 接收底层 DOM 元素作为其 <code>current</code> 属性。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.myRef = React.createRef();
+    }
+
+    componentDidMount() {
+        <span class="hljs-keyword">this</span>.myRef.current.innerHTML = <span class="hljs-string">'哈哈哈'</span>
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.myRef}</span> /&gt;</span>;
+    }
+}
+</span></code></pre>
+<p>这里就是接收了 div 元素作为 ref</p></li>
+<li><p>当 <code>ref</code> 属性用于自定义 class 组件时，<code>ref</code> 对象接收组件的挂载实例作为其 <code>current</code> 属性。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.myRef = React.createRef();
+    }
+
+    componentDidMount() {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.myRef.current);
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyDiv</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.myRef}/</span>&gt;</span>;
+    }
+}
+
+class MyDiv extends React.Component {
+    constructor(props) {
+        super(props);
+        this.myAttr = 122;
+    }
+
+    render() {
+        return <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">{1}</span>&gt;</span>sss<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+ReactDOM.render(
+    <span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span>/&gt;</span>,
+    document.getElementById('root')
+);
+</span></code></pre>
+<p><img src="../assets/image-20200110100103628.png" alt="image-20200110100103628"></p>
+<p>可以看到，我们返回的是这个 React 组件的实例</p></li>
+<li><p><strong>你不能在函数组件上使用 <code>ref</code> 属性</strong>，因为他们没有实例。</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="回调-ref"></a><a href="#回调-ref" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>回调 Ref</h2>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoFocusInput</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  componentDidMount () {
+    <span class="hljs-keyword">this</span>.input.focus()
+  }
+
+  render () {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{(input)</span> =&gt;</span> this.input = input} /&gt;
+    )
+  }
+}
+
+ReactDOM.render(
+  <span class="hljs-tag">&lt;<span class="hljs-name">AutoFocusInput</span> /&gt;</span>,
+  document.getElementById('root')
+)
+</span></code></pre>
+<p>我们可以将一个回调函数传递给 ref，回调函数的第一个参数代表这个节点本身的引用。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/16/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#react-元素的-ref-属性">react 元素的 ref 属性</a></li><li><a href="#访问-refs">访问 Refs</a></li><li><a href="#回调-ref">回调 Ref</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

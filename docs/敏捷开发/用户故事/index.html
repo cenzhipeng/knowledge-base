@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 什么是用户故事"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 什么是用户故事"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/敏捷开发/用户故事.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="什么是用户故事"></a><a href="#什么是用户故事" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>什么是用户故事</h2>
+<p>用户故事描述了对用户、系统或软件购买者有价值的功能，由以下三部分组成</p>
+<ul>
+<li>一份书面的故事描述，用来做计划和作为提示  （卡片 Card）</li>
+<li>有关故事的对话，用于具体化故事细节  （对话 Conversation）</li>
+<li>测试，用于表达和编写故事细节且可以用于确定故事何时完成  （确认 Confirmation）</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="用户故事示例"></a><a href="#用户故事示例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用户故事示例</h3>
+<p><strong>故事卡 1.1       写在卡片上的用户故事雏形</strong></p>
+<blockquote>
+<p>用户可以在网站上发布简历</p>
+</blockquote>
+<p>示例基本使用一个求职网站作为例子，示例故事可能包括</p>
+<ul>
+<li>用户可以搜索职位</li>
+<li>公司可以发布新职位</li>
+<li>用户可以限制浏览他简历的人</li>
+</ul>
+<p>用户故事代表对用户有价值的功能，所以下面的例子就不是好的用户故事</p>
+<ul>
+<li>这个软件用 Java 来写
+<ul>
+<li>用户不关心用什么语言写，但是如果是一个 API 或者 SDK 之类的产品，就可能是一个好的用户故事</li>
+</ul></li>
+<li>程序将通过连接池连接到数据库
+<ul>
+<li>用户不关心连接池的细节</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="细节在哪里"></a><a href="#细节在哪里" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>细节在哪里</h4>
+<p>“用户可以搜索工作” 说起来很简单，但是想要开发却很难，因为还有大量的细节不明确</p>
+<ul>
+<li>用户可以搜索哪些值？省份？城市？职位？关键字？</li>
+<li>用户必须是注册会员吗？</li>
+<li>搜索参数可以保存吗？</li>
+<li>要显示哪些与工作匹配的信息？</li>
+</ul>
+<p>这里面有一大堆的细节，可以用更小的用户故事来描述，多个小故事比一个大故事更有价值，实际来说，一个求职网站可能就是两个大故事：用户可以搜索工作、公司可以发布职位信息。</p>
+<p>很明显这两个故事太大了，我们需要细化</p>
+<h3><a class="anchor" aria-hidden="true" id="史诗故事"></a><a href="#史诗故事" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>史诗故事</h3>
+<p>如果一个故事很大，我们就将其称为史诗故事，例如：用户可以搜索工作。史诗故事可以分解成多个小故事，例如 <strong>用户可以搜索工作</strong> 这个故事可以分解成下面的故事</p>
+<ul>
+<li>用户可以通过地区、薪水范围、职位、公司名和发布日期来搜索工作</li>
+<li>用户可以查看搜索结果中每个工作的信息</li>
+<li>用户可以查看发布工作的公司的详细信息</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="编写用户故事"></a><a href="#编写用户故事" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编写用户故事</h2>
+<p>好的用户故事需要具备以下特点</p>
+<ul>
+<li>独立的（Independent）</li>
+<li>可讨论的（Negotiable）</li>
+<li>对用户或客户有价值的（Valuable）</li>
+<li>可估计的（Estimatable）</li>
+<li>小的（Small）</li>
+<li>可测试的（Testable）</li>
+</ul>
+<p>合起来就是 INVEST 原则</p>
+<h3><a class="anchor" aria-hidden="true" id="独立的"></a><a href="#独立的" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>独立的</h3>
+<p>我们要避免故事间的相互依赖。如果一个高优先级的故事依赖一个低优先级的故事，就会出现问题。</p>
+<p>如果现在编写客户公司如何对职位进行付费的故事，编写出如下的故事</p>
+<ul>
+<li>公司可以用 Visa 信用卡对发布职位进行付费</li>
+<li>公司可以用万事达信用卡对发布职位进行付费</li>
+<li>公司可以用美国运通卡对发布职位进行付费</li>
+</ul>
+<p>假设我们估计支持第一种信用卡需要 3 天（不考虑具体是哪一种），然后我们支持第二种和第三种可能只需要 1 天（这里面肯定有可以复用的地方），对于这种有依赖的故事，你就不知道具体该给哪个故事 3 天的时间</p>
+<p>有 2 种方法绕过这种依赖</p>
+<ul>
+<li>将相互依赖的故事合并成一个大的、独立的故事</li>
+<li>用一个不同的方式拆分故事</li>
+</ul>
+<p>在这个案例中，将这三个故事合并成 <strong>公司可以用信用卡对发布职位进行付费</strong> 是非常合理的，合并后可以预估 5 天完成。</p>
+<h3><a class="anchor" aria-hidden="true" id="可讨论的"></a><a href="#可讨论的" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可讨论的</h3>
+<p>故事是可以讨论的。故事卡是功能的简短描述，<strong>细节将在客户团队和开发团队的讨论中产生</strong>。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/16/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#什么是用户故事">什么是用户故事</a><ul class="toc-headings"><li><a href="#用户故事示例">用户故事示例</a></li><li><a href="#史诗故事">史诗故事</a></li></ul></li><li><a href="#编写用户故事">编写用户故事</a><ul class="toc-headings"><li><a href="#独立的">独立的</a></li><li><a href="#可讨论的">可讨论的</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

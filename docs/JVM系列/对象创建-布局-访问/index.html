@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 对象的创建过程"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 对象的创建过程"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/docusaurus/快速开始/install" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>JVM系列</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">JVM系列<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/JVM系列/JVM内存区域">JVM内存区域</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/JVM系列/对象创建-布局-访问">对象创建-布局-访问</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/内存溢出实战">内存溢出实战</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">JS 基础</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/语法基础和数据类型">语法基础和数据类型</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/数据类型转换">数据类型转换</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/语句-表达式-运算符">语句 表达式 运算符</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/变量与对象">变量与对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/函数">函数</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/数据处理">数据处理</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/常用API">常用 API</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/重点知识">重点知识</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">ES6</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/块级作用域">块级作用域</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/字符串和正则表达式">字符串和正则表达式</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/函数">函数</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/对象">对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Set和Map">Set和Map</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/迭代器和生成器">迭代器和生成器</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/类">类</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/数组">数组</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Promise">Promise</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Node 基础</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/模块系统">模块系统</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/package.json">package.json</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/内置对象">内置对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/npm脚本的使用">npm脚本的使用</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/Buffer">Buffer</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/Stream">Stream</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/事件循环机制">事件循环机制</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/示例代码">示例代码</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">stream系列</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/流的缓冲">流的缓冲</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/可读流">可读流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/可写流">可写流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/双工流和转换流">双工流和转换流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/自定义流">自定义流</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">后期计划<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/后期计划/学习计划">学习计划</a></li><li class="navListItem"><a class="navItem" href="/docs/后期计划/专题研究计划">专题研究计划</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/JVM系列/对象创建-布局-访问.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="对象的创建过程"></a><a href="#对象的创建过程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象的创建过程</h2>
+<p>一般主要过程如下：</p>
+<ul>
+<li>new 指令，生成类的对象的指令</li>
+<li>检查类是否加载、解析、初始化过</li>
+<li>在堆上分配一个对象的固定内存大小出来（编译时就可以知道这个对象本身需要占用多少内存）</li>
+<li>将这片内存全部赋值为零值</li>
+<li>设置对象头</li>
+<li>执行初始化方法</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="类加载检查"></a><a href="#类加载检查" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类加载检查</h3>
+<p>当Java虚拟机遇到一条字节码new指令时，首先将去检查这个指令的参数是否能在常量池中定位到一个类的符号引用，并且<strong>检查这个符号引用代表的类是否已被加载、解析和初始化过</strong>。如果没有，那必须先执行相应的类加载过程。</p>
+<p>在类加载检查通过后，接下来虚拟机将为新生对象<strong>分配内存</strong>。对象所需内存的大小在类加载完成后便可完全确定：</p>
+<ul>
+<li>原始类型：按照原始类型的固定值计算，很简单，例如布尔值一个字节，整数值四个字节</li>
+<li>引用类型：按照指针大小计算，一般是八个或者四个字节
+<ul>
+<li>同时再在引用的地址上分配引用的这个对象本身所占用的内存，类似一个递归的过程</li>
+<li>一直到最终的底层对象，全部都是原始值，或者是一个字符串常量，占用的内存大小是确定的</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="对象在堆上的内存划分"></a><a href="#对象在堆上的内存划分" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象在堆上的内存划分</h3>
+<p>为对象分配空间的任务实际上便等同于把一块确定大小的内存块从Java堆中划分出来，这种划分有分两种情况：</p>
+<ul>
+<li>如果Java堆中内存是绝对规整的，所有被使用过的内存都被放在一边，空闲的内存被放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间方向挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”</li>
+<li>如果Java堆中的内存并不是规整的，已被使用的内存和空闲的内存相互交错在一起，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录，这种分配方式称为“空闲列表”</li>
+</ul>
+<p>因此，选择何种划分主要取决于堆是否规整，而堆是否规整又取决于垃圾收集器，是否具有压缩整理功能。最简单的标记清除方式，即使一开始堆是规整的，经过垃圾回收后，也会变的不规整，因为必然有的对象被回收有的没有被回收。</p>
+<p>因此，当使用Serial、ParNew等带压缩整理过程的收集器时，系统采用的分配算法是指针碰撞，既简单又高效；而当使用CMS这种基于清除（Sweep）算法的收集器时，理论上就只能采用较为复杂的空闲列表来分配内存。</p>
+<blockquote>
+<p>强调“理论上”是因为在CMS的实现里面，为了能在多数情况下分配得更快，设计了一个叫作Linear Allocation Buffer的分配缓冲区，通过空闲列表拿到一大块分配缓冲区之后，在它里面仍然可以使用指针碰撞方式来分配。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="对象创建的并发问题"></a><a href="#对象创建的并发问题" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象创建的并发问题</h3>
+<p>对象是在堆中创建的，堆是所有线程共享的内存区域，那么当我们多个线程执行时，多个线程都会想要在堆上分配内存去创建对象。这时，就会出现一个问题：多个线程同时去操作堆的分界指针，或者是空闲列表，导致了创建对象的并发的问题。可能出现正在给对象A分配内存，指针还没来得及修改，对象B又同时使用了原来的指针来分配内存的情况。</p>
+<p>解决这个问题有两种可选方案：</p>
+<ul>
+<li><p>一种是对分配内存空间的动作进行同步处理——实际上虚拟机是采用CAS配上失败重试的方式保证更新操作的原子性；</p></li>
+<li><p>另外一种是把内存分配的动作按照线程划分在不同的空间之中进行，即每个线程在Java堆中预先分配一小块内存，称为本地线程分配缓冲（Thread Local Allocation Buffer，TLAB），哪个线程要分配内存，就在哪个线程的本地缓冲区中分配，只有本地缓冲区用完了，分配新的缓存区时才需要同步锁定。虚拟机是否使用TLAB，可以通过-XX：+/-UseTLAB参数来设定。</p>
+<blockquote>
+<p>这种方式就是说：堆上有属于各个线程自己的一片空间，线程为自己新创建的对象分配内存时，先分配自己的堆空间，此时不需要竞争。如果自己的堆空间不够了，再去全局的堆空间上分配，此时需要使用CAS来竞争</p>
+</blockquote></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="对象内存空间赋零值"></a><a href="#对象内存空间赋零值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象内存空间赋零值</h3>
+<p>内存分配完成之后，虚拟机必须将分配到的内存空间（但不包括对象头）都初始化为零值，如果使用了TLAB的话，这一项工作也可以提前至TLAB分配时顺便进行。这步操作保证了对象的实例字段在Java代码中可以不赋初始值就直接使用，使程序能访问到这些字段的数据类型所对应的零值。</p>
+<h3><a class="anchor" aria-hidden="true" id="设置对象头"></a><a href="#设置对象头" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>设置对象头</h3>
+<p>接下来，Java虚拟机还要对对象进行必要的设置，例如这个对象是哪个类的实例、如何才能找到类的元数据信息、对象的哈希码（实际上对象的哈希码会延后到真正调用Object::hashCode()方法时才计算）、对象的GC分代年龄等信息。这些信息存放在对象的对象头（Object Header）之中。根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式。关于对象头的具体内容，稍后会详细介绍。</p>
+<h3><a class="anchor" aria-hidden="true" id="执行初始化方法"></a><a href="#执行初始化方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>执行初始化方法</h3>
+<p>在上面工作都完成之后，从虚拟机的视角来看，一个新的对象已经产生了。但是从Java程序的视角看来，对象创建才刚刚开始——构造函数，即Class文件中的&lt; init &gt;()方法还没有执行，所有的字段都为默认的零值，对象需要的其他资源和状态信息也还没有按照预定的意图构造好。一般来说（由字节码流中new指令后面是否跟随invokespecial指令所决定，Java编译器会在遇到new关键字的地方同时生成这两条字节码指令，但如果直接通过其他方式产生的则不一定如此），new指令之后会接着执行&lt; init &gt;()方法，按照程序员的意愿对对象进行初始化，这样一个真正可用的对象才算完全被构造出来。</p>
+<h2><a class="anchor" aria-hidden="true" id="对象的内存布局"></a><a href="#对象的内存布局" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象的内存布局</h2>
+<p>在HotSpot虚拟机里，对象在堆内存中的存储布局可以划分为三个部分：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。</p>
+<h3><a class="anchor" aria-hidden="true" id="对象头"></a><a href="#对象头" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象头</h3>
+<p>HotSpot虚拟机中，对象头有两类数据，一类是对象本身的运行时数据，另一类是类型指针。</p>
+<p><strong>运行时数据</strong></p>
+<ul>
+<li>hash 码</li>
+<li>GC 分代年龄</li>
+<li>锁状态标志</li>
+<li>线程持有的锁</li>
+<li>偏向线程 ID</li>
+<li>偏向时间戳等</li>
+</ul>
+<p>以上这些数据，长度在32位和64位的虚拟机（未开启压缩指针）中分别为32个比特和64个比特，官方称它为“Mark Word”</p>
+<p>这些数据加起来其实已经超过了32位或者64位，为了更高效的空间存储，Mark Word被设计成一个有着动态定义的数据结构，以便在极小的空间内存储尽量多的数据，根据对象的状态复用自己的存储空间。</p>
+<p>例如在32位的HotSpot虚拟机中，如对象未被同步锁锁定的状态下，Mark Word的32个比特存储空间中的25个比特用于存储对象哈希码，4个比特用于存储对象分代年龄，2个比特用于存储锁标志位，1个比特固定为0</p>
+<p>在其他状态（轻量级锁定、重量级锁定、GC标记、可偏向）下对象的存储内容如表所示</p>
+<p><img src="../assets/image-20200115171057631.png" alt="image-20200115171057631"></p>
+<blockquote>
+<p>也就是说，对象处于不同的状态时，对象头的 Mark Word 存储的内容都是不一样的</p>
+<p>如上所说：</p>
+<ul>
+<li>对象没被锁标记时，存储的是 hash码、分代年龄、锁标志位 01、固定的0</li>
+<li>对象被轻量级锁定时，存储的是 指向锁记录的指针、锁标志位 00</li>
+<li>重量级锁时，存储的是 指向重量级锁的指针、锁标志位 10</li>
+<li>GC 标记时，存储的是 空内容、锁标志位 11</li>
+<li>可偏向锁时，存储的是 偏向线程ID、偏向时间戳、分代年龄、锁标志位 01</li>
+</ul>
+<p>也就是说，我们首先根据锁标志位，可以判断对象处于什么状态，然后根据不同的状态，可以得到对象的不同的数据，例如分代年龄、偏向线程ID、hash码等等</p>
+</blockquote>
+<p><strong>类型指针</strong></p>
+<p>即对象指向它的类型元数据的指针，Java虚拟机通过这个指针来确定该对象是哪个类的实例。（HotSpot是如此实现的，别的虚拟机不一定是这样实现的）</p>
+<p>此外，如果对象是一个Java数组，那在对象头中还必须有一块用于记录数组长度的数据，因为虚拟机可以通过普通Java对象的元数据信息确定Java对象的大小，但是如果数组的长度是不确定的，将无法通过元数据中的信息推断出数组的大小。（对象元数据记录了对象类型，而通过类型是可以知道一个对象占用多少内存的）</p>
+<h3><a class="anchor" aria-hidden="true" id="实例数据"></a><a href="#实例数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实例数据</h3>
+<p>实例数据是对象存储的真正有效的信息，也就是我们定义的字段。无论是从父类继承下来的，还是在子类中定义的字段都在这里进行存储。</p>
+<p>这部分的存储顺序会受到虚拟机分配策略参数（-XX：FieldsAllocationStyle参数）和字段在Java源码中定义顺序的影响。</p>
+<p>HotSpot虚拟机默认的分配顺序为longs/doubles、ints、shorts/chars、bytes/booleans、oops（Ordinary Object Pointers，OOPs）</p>
+<blockquote>
+<p>首先存储原始类型，从长到短存储。</p>
+<p>然后是按照字典序，存储指针类型。</p>
+</blockquote>
+<p>在满足这个前提条件的情况下，在父类中定义的变量会出现在子类之前。如果HotSpot虚拟机的+XX：CompactFields参数值为true（默认就为true），那子类之中较窄的变量也允许插入父类变量的空隙之中，以节省出一点点空间。</p>
+<h3><a class="anchor" aria-hidden="true" id="对齐填充"></a><a href="#对齐填充" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对齐填充</h3>
+<p>这并不是必然存在的，也没有特别的含义，它仅仅起着占位符的作用。由于HotSpot虚拟机的自动内存管理系统要求对象起始地址必须是8字节的整数倍，换句话说就是任何对象的大小都必须是8字节的整数倍。对象头部分已经被精心设计成正好是8字节的倍数（1倍或者2倍），因此，如果对象实例数据部分没有对齐的话，就需要通过对齐填充来补全。</p>
+<h2><a class="anchor" aria-hidden="true" id="对象的访问"></a><a href="#对象的访问" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象的访问</h2>
+<p>我们写代码的时候，都是通过一个引用去使用这个引用代表的对象。引用其实是处于虚拟机栈上的栈帧的局部变量表里。引用本身的大小是固定的，8个字节（没有开启指针压缩的时候），可以理解成一个类似于数字的值。</p>
+<p>实际上来说，虚拟机要做的工作就是从这个引用值，定位到这个引用值代表的对象，一共有2种方式：</p>
+<ul>
+<li><p>直接指针，也就是说引用记录的值就是对象在内存中的地址（进程的内存空间地址），那么根据这个内存地址的值，就可以索引到引用的对象了，也就是说：引用 ---&gt; 对象</p>
+<p><img src="../assets/image-20200115203352625.png" alt="image-20200115203352625"></p></li>
+<li><p>句柄，也就是说 Java 堆专门开辟了一块儿空间用来存储句柄，一个句柄记录了一个对象的内存地址信息，而我们的引用则是记录了句柄的内存地址，也就是说：引用 ---&gt; 句柄 ---&gt; 对象</p>
+<p><img src="../assets/image-20200115203300390.png" alt="image-20200115203300390"></p></li>
+</ul>
+<p>这两种方式有各自不同的优缺点：</p>
+<ul>
+<li>使用直接指针，速度更快。因为少了一次索引的过程，指针可以直接索引到对象。（HotSpot 主要就使用这种方式）但是缺点是当垃圾回收后，需要去修改引用的值，因为对象的内存地址经过垃圾回收后可能发生了变化</li>
+<li>使用句柄，当垃圾回收后，引用不需要修改，只需要修改句柄即可。也就是说引用的值是稳定的</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/16/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/JVM系列/JVM内存区域"><span class="arrow-prev">← </span><span>JVM内存区域</span></a><a class="docs-next button" href="/docs/JVM系列/内存溢出实战"><span>内存溢出实战</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#对象的创建过程">对象的创建过程</a><ul class="toc-headings"><li><a href="#类加载检查">类加载检查</a></li><li><a href="#对象在堆上的内存划分">对象在堆上的内存划分</a></li><li><a href="#对象创建的并发问题">对象创建的并发问题</a></li><li><a href="#对象内存空间赋零值">对象内存空间赋零值</a></li><li><a href="#设置对象头">设置对象头</a></li><li><a href="#执行初始化方法">执行初始化方法</a></li></ul></li><li><a href="#对象的内存布局">对象的内存布局</a><ul class="toc-headings"><li><a href="#对象头">对象头</a></li><li><a href="#实例数据">实例数据</a></li><li><a href="#对齐填充">对齐填充</a></li></ul></li><li><a href="#对象的访问">对象的访问</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
