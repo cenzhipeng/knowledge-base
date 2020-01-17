@@ -40,7 +40,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'docusaurus/快速开始/install', label: '知识库'},
+    {doc: 'JVM系列/JVM内存区域', label: '知识库'},
     {href: 'https://github.com/cenzhipeng/knowledge-base', label: 'GitHub' },
     // {doc: 'doc4', label: 'API'},
     // {page: 'help', label: 'Help'},
