@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 应用的内容"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 应用的内容"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/electron/2.创建应用.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="应用的内容"></a><a href="#应用的内容" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>应用的内容</h2>
+<ul>
+<li>用户在应用中输入 URL</li>
+<li>应用访问这个 URL，获取页面标题</li>
+<li>将标题保存到应用的 localStorage 中</li>
+<li>应用展示已经保存了的所有标题和链接</li>
+</ul>
+<p>大致如图</p>
+<p><img src="../assets/image-20200214211829518.png" alt="image-20200214211829518" style="zoom:50%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="工作步骤"></a><a href="#工作步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>工作步骤</h2>
+<h3><a class="anchor" aria-hidden="true" id="创建项目"></a><a href="#创建项目" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建项目</h3>
+<pre><code class="hljs css language-bash">$ git <span class="hljs-built_in">clone</span> git@github.com:cenzhipeng/bookmarker.git
+$ <span class="hljs-built_in">cd</span> bookmarker/
+$ mkdir app
+$ touch app/main.js app/render.js app/style.css app/index.html
+$ npm init
+$ tree
+</code></pre>
+<p><img src="../assets/image-20200214213245247.png" alt="image-20200214213245247" style="zoom:50%;" /></p>
+<h3><a class="anchor" aria-hidden="true" id="安装-electron"></a><a href="#安装-electron" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装 electron</h3>
+<pre><code class="hljs css language-bash">$ npm install electron
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="packagejson"></a><a href="#packagejson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>package.json</h3>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"bookmarker"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"electron 书签应用"</span>,
+  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"app/main.js"</span>,
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"electron ."</span>,
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  },
+  <span class="hljs-attr">"repository"</span>: {
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"git"</span>,
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"git+https://github.com/cenzhipeng/bookmarker.git"</span>
+  },
+  <span class="hljs-attr">"author"</span>: <span class="hljs-string">"cenzhipeng"</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-attr">"bugs"</span>: {
+    <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://github.com/cenzhipeng/bookmarker/issues"</span>
+  },
+  <span class="hljs-attr">"homepage"</span>: <span class="hljs-string">"https://github.com/cenzhipeng/bookmarker#readme"</span>,
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"electron"</span>: <span class="hljs-string">"^8.0.0"</span>
+  }
+}
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="mainjs"></a><a href="#mainjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>main.js</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> {app, BrowserWindow} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+
+<span class="hljs-keyword">let</span> mainWindow = <span class="hljs-literal">null</span>;
+
+app.on(<span class="hljs-string">'ready'</span>, () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'electron 启动...'</span>);
+    mainWindow = <span class="hljs-keyword">new</span> BrowserWindow(); <span class="hljs-comment">// 创建一个窗口（一个页面）</span>
+});
+</code></pre>
+<p>执行命令：<code>npm start</code>，效果如下</p>
+<p><img src="../assets/image-20200214214959880.png" alt="image-20200214214959880"></p>
+<blockquote>
+<p>mainWindow 变量定义在外面是为了避免垃圾回收后，窗口直接消失</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="创建-appindexhtml"></a><a href="#创建-appindexhtml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建 app/index.html</h3>
+<pre><code class="hljs css language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-CN"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width,initial-scale=1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>书签<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>欢迎使用 electron<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="更新-appmainjs-加载-html"></a><a href="#更新-appmainjs-加载-html" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新 app/main.js 加载 HTML</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> {app, BrowserWindow} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+
+<span class="hljs-keyword">let</span> mainWindow = <span class="hljs-literal">null</span>;
+
+app.on(<span class="hljs-string">'ready'</span>, () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'electron 启动...'</span>);
+    mainWindow = <span class="hljs-keyword">new</span> BrowserWindow(); <span class="hljs-comment">// 创建一个窗口（一个页面）</span>
+    <span class="hljs-comment">/**
+     * 浏览器窗口加载一个 HTML 文件
+     */</span>
+    mainWindow.webContents.loadFile(<span class="hljs-string">'app/index.html'</span>);
+});
+</code></pre>
+<p>执行命令：<code>npm start</code>，效果如下</p>
+<p><img src="../assets/image-20200214215958008.png" alt="image-20200214215958008"></p>
+<h3><a class="anchor" aria-hidden="true" id="更新-appindexhtml-apprenderjs-添加新按钮以及脚本"></a><a href="#更新-appindexhtml-apprenderjs-添加新按钮以及脚本" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新 app/index.html app/render.js 添加新按钮以及脚本</h3>
+<p>常规的页面上只能使用浏览器端的 JS，但是 electron 的页面脚本中，可以使用 node 的 API</p>
+<p>app/index.html</p>
+<pre><code class="hljs css language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-CN"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"content-security-policy"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    connect-src *"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width,initial-scale=1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>书签<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>欢迎使用 electron<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert"</span>&gt;</span>当前目录<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">'./render'</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>app/render.js</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/**
+ * 以下代码，同时使用了浏览器的 API（alert方法），以及 node 的 API（__dirname变量）
+ * 在 electron 的渲染器进程中是成立的
+ */</span>
+<span class="hljs-keyword">const</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.alert'</span>);
+button.addEventListener(<span class="hljs-string">'click'</span>, () =&gt; {
+    alert(__dirname); <span class="hljs-comment">// 注意，常规页面中，这个属于 node 的 API 是无法工作的</span>
+});
+</code></pre>
+<p><img src="../assets/image-20200214225700031.png" alt="image-20200214225700031"></p>
+<h3><a class="anchor" aria-hidden="true" id="在渲染进程中添加样式"></a><a href="#在渲染进程中添加样式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在渲染进程中添加样式</h3>
+<p>app/style.css</p>
+<pre><code class="hljs css language-css"><span class="hljs-selector-tag">html</span> {
+    <span class="hljs-attribute">box-sizing</span>: border-box;
+}
+
+*, *<span class="hljs-selector-pseudo">:before</span>, *<span class="hljs-selector-pseudo">:after</span> {
+    <span class="hljs-attribute">box-sizing</span>: inherit;
+}
+
+<span class="hljs-selector-tag">body</span>, <span class="hljs-selector-tag">input</span> {
+    <span class="hljs-attribute">font</span>: menu; <span class="hljs-comment">/* 使用运行页面的操作系统的默认系统字体 */</span>
+}
+</code></pre>
+<p>然后在 html 中像常规方式一样引入这个 css 即可（head 区域）</p>
+<h3><a class="anchor" aria-hidden="true" id="实现-ui-界面"></a><a href="#实现-ui-界面" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实现 UI 界面</h3>
+<p>app/index.html</p>
+<pre><code class="hljs css language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-CN"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"content-security-policy"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    connect-src *"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width,initial-scale=1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>书签<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"style.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>书签栏<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"error-message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"add-new-link"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"new-link-form"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"new-link-url"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"URL"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">required</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"new-link-submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span> <span class="hljs-attr">disabled</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"links"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"controls"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"clear-storage"</span>&gt;</span>清空链接<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">'./render'</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>app/render.js</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> linkSection = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.links'</span>);
+<span class="hljs-keyword">const</span> errorMessage = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.error-message'</span>);
+<span class="hljs-keyword">const</span> newLinkForm = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-form'</span>);
+<span class="hljs-keyword">const</span> newLinkUrl = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-url'</span>);
+<span class="hljs-keyword">const</span> newLinkSubmit = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-submit'</span>);
+<span class="hljs-keyword">const</span> clearStorageButton = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.clear-storage'</span>);
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+
+newLinkUrl.addEventListener(<span class="hljs-string">'keyup'</span>, () =&gt; {
+    newLinkSubmit.disabled = !newLinkUrl.validity.valid; <span class="hljs-comment">// 校验通过才可以提交</span>
+});
+
+<span class="hljs-keyword">const</span> clearForm = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    newLinkUrl.value = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 提交后，清除输入框</span>
+};
+
+<span class="hljs-comment">/**
+ * 从 localstorage 中，提取出 URL 和 title，挂载到 DOM 中进行渲染
+ */</span>
+<span class="hljs-keyword">const</span> renderUI = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> linkElements = <span class="hljs-built_in">Object</span>.keys(localStorage).map(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> convert2LinkElement(k, localStorage.getItem(k))
+    }).join(<span class="hljs-string">''</span>);
+    linkSection.innerHTML = linkElements;
+};
+
+<span class="hljs-comment">/**
+ * 将 HTML 文本转化为 DOM 树，找到 title 标签
+ * @param htmlText
+ * @returns {string}
+ */</span>
+<span class="hljs-keyword">const</span> findTitle = <span class="hljs-function"><span class="hljs-params">htmlText</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> parser = <span class="hljs-keyword">new</span> DOMParser();
+    <span class="hljs-keyword">const</span> dom = parser.parseFromString(htmlText, <span class="hljs-string">'text/html'</span>);
+    <span class="hljs-keyword">return</span> dom.querySelector(<span class="hljs-string">'title'</span>).innerText;
+};
+
+<span class="hljs-comment">/**
+ * 生成链接的 HTML 标签文本，后续挂载到 DOM 中
+ * @param url
+ * @param title
+ * @returns {string}
+ */</span>
+<span class="hljs-keyword">const</span> convert2LinkElement = <span class="hljs-function">(<span class="hljs-params">url, title</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;div class="link"&gt;
+        &lt;h3&gt;<span class="hljs-subst">${title}</span>&lt;/h3&gt;
+        &lt;p&gt;
+            &lt;a href="<span class="hljs-subst">${url}</span>"&gt;<span class="hljs-subst">${url}</span>&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    
+    `</span>;
+};
+
+<span class="hljs-comment">/**
+ * 发送请求，去取出整个 HTML 文本
+ * @param url
+ * @returns {Promise&lt;void&gt;}
+ */</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTitle</span>(<span class="hljs-params">url</span>) </span>{
+    <span class="hljs-keyword">const</span> title = <span class="hljs-keyword">await</span> axios.get(url)
+        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> findTitle(response.data))
+        .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(e.errorMessage);
+        });
+    storeTitle(url, title);
+    clearForm();
+    renderUI();
+}
+
+<span class="hljs-comment">/**
+ * 将 url 和 title 存储到 localstorage
+ * <span class="hljs-doctag">@param <span class="hljs-variable">url</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-variable">title</span></span>
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">storeTitle</span>(<span class="hljs-params">url, title</span>) </span>{
+    localStorage.setItem(url, title);
+}
+
+
+<span class="hljs-comment">/**
+ * 提交时去获取 title 并展示
+ */</span>
+newLinkForm.addEventListener(<span class="hljs-string">'submit'</span>, e =&gt; {
+    e.preventDefault(); <span class="hljs-comment">// 阻止默认行为，防止页面刷新</span>
+    getTitle(newLinkUrl.value).catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(e.errorMessage);
+    });
+});
+
+<span class="hljs-comment">/**
+ * 点击时清空数据，并重新刷新UI
+ */</span>
+clearStorageButton.addEventListener(<span class="hljs-string">'click'</span>, e =&gt; {
+    e.preventDefault();
+    localStorage.clear();
+    renderUI();
+});
+
+<span class="hljs-comment">/**
+ * 首次进入时展示数据
+ */</span>
+renderUI();
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="点击链接时调用系统的默认浏览器"></a><a href="#点击链接时调用系统的默认浏览器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>点击链接时调用系统的默认浏览器</h3>
+<p>当我们直接点击链接时，页面会进入到这个链接里，但是我们没有后退按钮，界面就再也回不来了，所以我们要使用默认的浏览器来打开这个链接</p>
+<p><img src="../assets/image-20200215132822822.png" alt="image-20200215132822822"></p>
+<p>app/render.js</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> linkSection = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.links'</span>);
+<span class="hljs-keyword">const</span> errorMessage = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.error-message'</span>);
+<span class="hljs-keyword">const</span> newLinkForm = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-form'</span>);
+<span class="hljs-keyword">const</span> newLinkUrl = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-url'</span>);
+<span class="hljs-keyword">const</span> newLinkSubmit = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.new-link-submit'</span>);
+<span class="hljs-keyword">const</span> clearStorageButton = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.clear-storage'</span>);
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+
+newLinkUrl.addEventListener(<span class="hljs-string">'keyup'</span>, () =&gt; {
+    newLinkSubmit.disabled = !newLinkUrl.validity.valid; <span class="hljs-comment">// 校验通过才可以提交</span>
+});
+
+<span class="hljs-keyword">const</span> clearForm = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    newLinkUrl.value = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 提交后，清除输入框</span>
+};
+
+<span class="hljs-comment">/**
+ * 从 localstorage 中，提取出 URL 和 title，挂载到 DOM 中进行渲染
+ */</span>
+<span class="hljs-keyword">const</span> renderUI = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> linkElements = <span class="hljs-built_in">Object</span>.keys(localStorage).map(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> convert2LinkElement(k, localStorage.getItem(k))
+    }).join(<span class="hljs-string">''</span>);
+    linkSection.innerHTML = linkElements;
+};
+
+<span class="hljs-comment">/**
+ * 将 HTML 文本转化为 DOM 树，找到 title 标签
+ * @param htmlText
+ * @returns {string}
+ */</span>
+<span class="hljs-keyword">const</span> findTitle = <span class="hljs-function"><span class="hljs-params">htmlText</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> parser = <span class="hljs-keyword">new</span> DOMParser();
+    <span class="hljs-keyword">const</span> dom = parser.parseFromString(htmlText, <span class="hljs-string">'text/html'</span>);
+    <span class="hljs-keyword">return</span> dom.querySelector(<span class="hljs-string">'title'</span>).innerText;
+};
+
+<span class="hljs-comment">/**
+ * 生成链接的 HTML 标签文本，后续挂载到 DOM 中
+ * @param url
+ * @param title
+ * @returns {string}
+ */</span>
+<span class="hljs-keyword">const</span> convert2LinkElement = <span class="hljs-function">(<span class="hljs-params">url, title</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;div class="link"&gt;
+        &lt;h3&gt;<span class="hljs-subst">${title}</span>&lt;/h3&gt;
+        &lt;p&gt;
+            &lt;a href="<span class="hljs-subst">${url}</span>"&gt;<span class="hljs-subst">${url}</span>&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    
+    `</span>;
+};
+
+<span class="hljs-comment">/**
+ * 发送请求，去取出整个 HTML 文本
+ * @param url
+ * @returns {Promise&lt;void&gt;}
+ */</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getTitle</span>(<span class="hljs-params">url</span>) </span>{
+    <span class="hljs-keyword">const</span> title = <span class="hljs-keyword">await</span> axios.get(url)
+        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> findTitle(response.data))
+        .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(e.errorMessage);
+        });
+    storeTitle(url, title);
+    clearForm();
+    renderUI();
+}
+
+<span class="hljs-comment">/**
+ * 将 url 和 title 存储到 localstorage
+ * <span class="hljs-doctag">@param <span class="hljs-variable">url</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-variable">title</span></span>
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">storeTitle</span>(<span class="hljs-params">url, title</span>) </span>{
+    localStorage.setItem(url, title);
+}
+
+
+<span class="hljs-comment">/**
+ * 提交时去获取 title 并展示
+ */</span>
+newLinkForm.addEventListener(<span class="hljs-string">'submit'</span>, e =&gt; {
+    e.preventDefault(); <span class="hljs-comment">// 阻止默认行为，防止页面刷新</span>
+    getTitle(newLinkUrl.value).catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(e.errorMessage);
+    });
+});
+
+<span class="hljs-comment">/**
+ * 点击时清空数据，并重新刷新UI
+ */</span>
+clearStorageButton.addEventListener(<span class="hljs-string">'click'</span>, e =&gt; {
+    e.preventDefault();
+    localStorage.clear();
+    renderUI();
+});
+
+<span class="hljs-comment">/**
+ * 首次进入时展示数据
+ */</span>
+renderUI();
+
+<span class="hljs-comment">// 引入了这个 API，我们可以打开默认浏览器</span>
+<span class="hljs-keyword">const</span> {shell} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+
+<span class="hljs-comment">/**
+ * 当我们点击链接时打开浏览器，我们是在外层元素上监听的，chrome 支持事件的冒泡
+ */</span>
+linkSection.addEventListener(<span class="hljs-string">'click'</span>, e =&gt; {
+    <span class="hljs-comment">// 如果是一个链接，才处理这个事件</span>
+    <span class="hljs-keyword">if</span> (e.target.href) {
+        e.preventDefault();
+        shell.openExternal(e.target.href); <span class="hljs-comment">// 使用默认浏览器打开链接</span>
+    }
+});
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/12/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#应用的内容">应用的内容</a></li><li><a href="#工作步骤">工作步骤</a><ul class="toc-headings"><li><a href="#创建项目">创建项目</a></li><li><a href="#安装-electron">安装 electron</a></li><li><a href="#packagejson">package.json</a></li><li><a href="#mainjs">main.js</a></li><li><a href="#创建-appindexhtml">创建 app/index.html</a></li><li><a href="#更新-appmainjs-加载-html">更新 app/main.js 加载 HTML</a></li><li><a href="#更新-appindexhtml-apprenderjs-添加新按钮以及脚本">更新 app/index.html app/render.js 添加新按钮以及脚本</a></li><li><a href="#在渲染进程中添加样式">在渲染进程中添加样式</a></li><li><a href="#实现-ui-界面">实现 UI 界面</a></li><li><a href="#点击链接时调用系统的默认浏览器">点击链接时调用系统的默认浏览器</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 参考"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 参考"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/electron/6.electron集成react.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="参考"></a><a href="#参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考</h2>
+<p><a href="http://jartto.wang/2019/07/13/use-electron-5/">使用 Electron5.0 构建你的 React 项目</a></p>
+<p><a href="https://github.com/timarney/react-app-rewired/blob/master/README_zh.md">react-app-rewired</a></p>
+<p><a href="https://github.com/electron/electron/issues/9920">react 引用 electron 的问题</a></p>
+<h2><a class="anchor" aria-hidden="true" id="步骤"></a><a href="#步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>步骤</h2>
+<h3><a class="anchor" aria-hidden="true" id="使用-create-react-app-创建-react-项目"></a><a href="#使用-create-react-app-创建-react-项目" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 create-react-app 创建 react 项目</h3>
+<pre><code class="hljs css language-bash">$ npx create-react-app [项目名称]
+$ <span class="hljs-built_in">cd</span> [项目根目录]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="添加-electron-相关依赖"></a><a href="#添加-electron-相关依赖" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 electron 相关依赖</h3>
+<pre><code class="hljs css language-bash">$ yarn add electron electron-builder --dev
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="添加相关工具"></a><a href="#添加相关工具" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加相关工具</h3>
+<pre><code class="hljs css language-bash">$ yarn add <span class="hljs-built_in">wait</span>-on concurrently --dev
+$ yarn add cross-env electron-is-dev
+$ yarn add react-app-rewired --dev
+</code></pre>
+<blockquote>
+<p>wait-on 工具可以用来等待某资源完成，比如等待 http 请求返回 200，这样就可以确保服务器进程已经启动完成了，在这里我们会等待 react 页面加载完成</p>
+<p>concurrently 工具是在 npm 中同时启动多个命令，用法是 <code>concurrently &quot;npm run start&quot; &quot;npm run test&quot;</code> 这里同时启动 2 个 npm 命令</p>
+<p>cross-env 工具可以将命令行改造成统一的环境变量，在 linux/unix 系中，bash 命令行使用环境变量的格式是 ENV1=arg1，而在 windows 中将会报错，cross-env 工具的作用就是将进程环境变量都改造成 ENV1=arg1 的格式</p>
+<p>electron-is-dev 的作用就是检测 electron 是不是处于 dev 环境</p>
+<p>react-app-rewired 的作用是覆盖 create-react-app 的默认 webpack 配置</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="添加-publicelectronjs-主进程文件"></a><a href="#添加-publicelectronjs-主进程文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 public/electron.js 主进程文件</h3>
+<pre><code class="hljs css language-bash">$ touch public/electron.js
+</code></pre>
+<p>内容如下</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// Modules to control application life and create native browser window</span>
+<span class="hljs-keyword">const</span> {app, BrowserWindow} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">const</span> isDev = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron-is-dev'</span>);
+
+<span class="hljs-comment">// Keep a global reference of the window object, if you don't, the window will</span>
+<span class="hljs-comment">// be closed automatically when the JavaScript object is garbage collected.</span>
+<span class="hljs-keyword">let</span> mainWindow;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createWindow</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Create the browser window.</span>
+    mainWindow = <span class="hljs-keyword">new</span> BrowserWindow({
+        <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+        <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+        <span class="hljs-attr">webPreferences</span>: {
+            <span class="hljs-attr">nodeIntegration</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-comment">// preload: path.join(__dirname, 'preload.js')</span>
+        },
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> <span class="hljs-comment">// 刚创建出来时，不要显示，避免先显示短暂的白屏</span>
+    });
+    mainWindow.maximize();
+    mainWindow.loadURL(isDev ?
+        <span class="hljs-string">'http://localhost:3000'</span> : <span class="hljs-string">`file://<span class="hljs-subst">${path.join(__dirname, <span class="hljs-string">"../build/index.html"</span>)}</span>`</span>
+    );
+
+    <span class="hljs-comment">// Open the DevTools.</span>
+    <span class="hljs-comment">// mainWindow.webContents.openDevTools()</span>
+
+    <span class="hljs-comment">// Emitted when the window is closed.</span>
+    mainWindow.on(<span class="hljs-string">'closed'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// Dereference the window object, usually you would store windows</span>
+        <span class="hljs-comment">// in an array if your app supports multi windows, this is the time</span>
+        <span class="hljs-comment">// when you should delete the corresponding element.</span>
+        mainWindow = <span class="hljs-literal">null</span>
+    });
+    mainWindow.once(<span class="hljs-string">'ready-to-show'</span>, () =&gt; {
+        mainWindow.show(); <span class="hljs-comment">// 加载完成后显示</span>
+    });
+}
+
+<span class="hljs-comment">// This method will be called when Electron has finished</span>
+<span class="hljs-comment">// initialization and is ready to create browser windows.</span>
+<span class="hljs-comment">// Some APIs can only be used after this event occurs.</span>
+app.on(<span class="hljs-string">'ready'</span>, createWindow);
+
+<span class="hljs-comment">// Quit when all windows are closed.</span>
+app.on(<span class="hljs-string">'window-all-closed'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// On macOS it is common for applications and their menu bar</span>
+    <span class="hljs-comment">// to stay active until the user quits explicitly with Cmd + Q</span>
+    <span class="hljs-keyword">if</span> (process.platform !== <span class="hljs-string">'darwin'</span>) app.quit()
+});
+
+app.on(<span class="hljs-string">'activate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// On macOS it's common to re-create a window in the app when the</span>
+    <span class="hljs-comment">// dock icon is clicked and there are no other windows open.</span>
+    <span class="hljs-keyword">if</span> (mainWindow === <span class="hljs-literal">null</span>) createWindow()
+});
+
+<span class="hljs-comment">// In this file you can include the rest of your app's specific main process</span>
+<span class="hljs-comment">// code. You can also put them in separate files and require them here.</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="根目录添加-config-overridesjs-文件"></a><a href="#根目录添加-config-overridesjs-文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>根目录添加 config-overrides.js 文件</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/* config-overrides.js */</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">override</span>(<span class="hljs-params">config, env</span>) </span>{
+    <span class="hljs-comment">//do stuff with the webpack config...</span>
+    config.target = <span class="hljs-string">'electron-renderer'</span>;
+    <span class="hljs-keyword">return</span> config;
+};
+</code></pre>
+<blockquote>
+<p>这个文件用来修改 create-react-app 的默认 webpack 配置，config 对象就是那个配置</p>
+<p>主要是添加了 <code>target = 'electron-renderer';</code> 配置，不加这个的话，在 react 中引用 electron 会有点问题</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="修改-packagejson"></a><a href="#修改-packagejson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改 package.json</h3>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"electron5-react-demo"</span>,
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+    <span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"main"</span>: <span class="hljs-string">"public/electron.js"</span>,
+    <span class="hljs-attr">"homepage"</span>: <span class="hljs-string">"./"</span>,
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改启动脚本"></a><a href="#修改启动脚本" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改启动脚本</h3>
+<pre><code class="hljs css language-json">    "react-start": "react-app-rewired start",
+    "react-build": "react-app-rewired build",
+    "electron-start": "electron .",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build &amp;&amp; electron-builder --publish=always",
+    "build": "yarn react-build &amp;&amp; yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 &amp;&amp; electron .\"",
+    "debug": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 &amp;&amp; electron . --remote-debugging-port=9222\"",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+</code></pre>
+<blockquote>
+<p>使用 react-app-rewired 替换 react-script 脚本，从而完成默认 webpack 的覆盖</p>
+<p>debug 添加了 --remote-debugging-port=9222，在 webstorm 中使用 attach to chrome 9222 端口就可以开启 debug 十分方便</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="启动"></a><a href="#启动" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动</h3>
+<pre><code class="hljs css language-bash">$ yarn debug
+</code></pre>
+<blockquote>
+<p>这里热修改也是生效的</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="构建"></a><a href="#构建" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构建</h3>
+<pre><code class="hljs css language-bash">$ yarn build
+</code></pre>
+<blockquote>
+<p>构建的目标文件在 dist 目录中</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/12/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#参考">参考</a></li><li><a href="#步骤">步骤</a><ul class="toc-headings"><li><a href="#使用-create-react-app-创建-react-项目">使用 create-react-app 创建 react 项目</a></li><li><a href="#添加-electron-相关依赖">添加 electron 相关依赖</a></li><li><a href="#添加相关工具">添加相关工具</a></li><li><a href="#添加-publicelectronjs-主进程文件">添加 public/electron.js 主进程文件</a></li><li><a href="#根目录添加-config-overridesjs-文件">根目录添加 config-overrides.js 文件</a></li><li><a href="#修改-packagejson">修改 package.json</a></li><li><a href="#修改启动脚本">修改启动脚本</a></li><li><a href="#启动">启动</a></li><li><a href="#构建">构建</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

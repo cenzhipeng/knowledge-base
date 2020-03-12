@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概述"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 概述"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/electron/5.跨进程通信.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概述"></a><a href="#概述" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概述</h2>
+<p>首先我们知道：有些 <strong>electron模块</strong> 只能在主进程中使用、有些只能在渲染进程中使用，有些两种进程都能使用。而所有的 node 模块，在两种进程中都能使用（只要开启了渲染进程的 node 集成，electron 5.0 之后默认是关闭的）</p>
+<p>因此，如果在渲染进程中想要使用一些主进程中才有的功能的话（比如GUI渲染），就需要渲染进程向主进程进行通信，告诉主进程：我想要使用 XXX 能力。所以 electron 在渲染进程中加入了 remote模块，来专门实现这个功能。</p>
+<p>而 remote 模块只是渲染进程主动向主进程通信的方式，如果主进程想要主动向渲染进程通信，例如给渲染进程提供一些数据，那么就需要使用 webContents.send 方法，然后在渲染进程中使用 ipcRenderer 监听事件频道，获取到主进程发送来的数据。</p>
+<h3><a class="anchor" aria-hidden="true" id="渲染进程使用主进程对象"></a><a href="#渲染进程使用主进程对象" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>渲染进程使用主进程对象</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 渲染进程</span>
+<span class="hljs-keyword">const</span> {remote} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> remote.dialog.showOpenDialog(),<span class="hljs-number">5000</span>);
+</code></pre>
+<blockquote>
+<p>渲染进程使用 remote，然后就可以使用主进程的对象，类似于 Java 的 RMI 机制</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="主进程通知渲染进程"></a><a href="#主进程通知渲染进程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>主进程通知渲染进程</h3>
+<pre><code class="hljs css language-javascript">mainWindow.webContents.send(<span class="hljs-string">'file-opened'</span>, filePath, content);
+</code></pre>
+<blockquote>
+<p>主进程使用渲染进程的窗口对象的 webContents，调用 send，发送消息。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="渲染进程从主进程获取消息"></a><a href="#渲染进程从主进程获取消息" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>渲染进程从主进程获取消息</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> {remote, ipcRenderer} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+ipcRenderer.on(<span class="hljs-string">'file-opened'</span>, (event, filePath, content) =&gt; {
+    markdownView.value = content;
+    renderMarkdown2Html(content);
+    alert(filePath);
+});
+</code></pre>
+<blockquote>
+<p>渲染进程使用 ipcRenderer，监听对应的消息，获取数据</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="remote-的简单使用"></a><a href="#remote-的简单使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>remote 的简单使用</h2>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 渲染进程</span>
+<span class="hljs-keyword">const</span> {remote} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> remote.dialog.showOpenDialog(),<span class="hljs-number">5000</span>);
+</code></pre>
+<p>渲染进程中的 <code>remote.dialog</code> 就类似于主进程中的 <code>require('electron').dialog</code> 一样</p>
+<h2><a class="anchor" aria-hidden="true" id="基本原理"></a><a href="#基本原理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本原理</h2>
+<p>原理其实和 RMI 类似，渲染进程中访问 <code>remote.dialog</code> 的时候，就会向主进程发送一些信息，例如调用 <code>remote.dialog.showOpenDialog()</code> 时，就相当于告诉主进程：你需要调用 <code>electron.dialog.showOpenDialog()</code>，这个过程有点类似于 Java 的 RMI 机制：</p>
+<ul>
+<li>在客户端（渲染进程）中创建了一个代理对象，代理了远程对象的一些接口</li>
+<li>我们访问客户端对象的接口，RMI 底层就会将消息传递给远程对象，远程对象调用真正的实现方法</li>
+<li>然后将结果再发送给客户端</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="访问-electron-内置模块"></a><a href="#访问-electron-内置模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问 electron 内置模块</h2>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 渲染进程</span>
+<span class="hljs-keyword">const</span> {remote} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> remote.dialog.showOpenDialog(),<span class="hljs-number">5000</span>);
+</code></pre>
+<p>渲染进程中的 <code>remote.dialog</code> 就类似于主进程中的 <code>require('electron').dialog</code> 一样</p>
+<p>渲染进程中的 remote.app 就类似于主进程中的<code>require('electron').app</code> 一样</p>
+<p>所以：访问 electron 内置模块使用 <code>remote.模块名</code> 即可</p>
+<blockquote>
+<p>我们在主进程中也许没有引入这些模块，但是这些模块对象依然是存在于主进程中的，仅仅是主进程的 js 代码中没有获取到这些对象的引用而已，使用 remote 模块依然是能获取到这些对象的远程引用的</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="访问自定义的对象"></a><a href="#访问自定义的对象" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问自定义的对象</h2>
+<pre><code class="hljs"><span class="hljs-comment">// 主进程</span>
+app.sss = <span class="hljs-string">'主进程字符串'</span>;
+
+<span class="hljs-comment">// 渲染进程</span>
+<span class="hljs-keyword">const</span> {remote} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+alert(remote.app.sss);
+</code></pre>
+<p>结果：</p>
+<p><img src="../assets/image-20200222151001912.png" alt="image-20200222151001912"></p>
+<blockquote>
+<p>建议将一些自定义对象挂载在主进程的 electron.app 对象上</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="访问模块-require"></a><a href="#访问模块-require" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问模块 require</h2>
+<p>有时候有一些现成的模块，例如：</p>
+<pre><code class="hljs"><span class="hljs-comment">// foo.js</span>
+<span class="hljs-keyword">module</span>.<span class="hljs-keyword">exports</span> = <span class="hljs-string">'bar'</span>
+</code></pre>
+<p>我们可以使用</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 渲染进程</span>
+<span class="hljs-keyword">const</span> foo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).remote.require(<span class="hljs-string">'./foo'</span>) <span class="hljs-comment">// bar</span>
+</code></pre>
+<p>来引入这个模块，这个相当于做了以下操作：</p>
+<ul>
+<li>主进程执行了 <code>require('./foo')</code> 获取到了 mainFoo 对象</li>
+<li>渲染进程产生了 mainFoo 对象的代理对象 foo</li>
+<li>通过渲染进程的 foo 访问主进程的 mainFoo</li>
+</ul>
+<blockquote>
+<p>从以上可以看出 <code>require('./foo')</code> 里的 <code>./foo</code> 这个相对路径必须是相对于主进程的主模块来说的</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="remote-的回调坑"></a><a href="#remote-的回调坑" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>remote 的回调坑</h2>
+<p>简单就是一句：尽量别把回调函数传递给主进程</p>
+<p>实在不得不这么搞了，就自求多福多测试bug吧</p>
+<h2><a class="anchor" aria-hidden="true" id="主进程向渲染进程发送数据"></a><a href="#主进程向渲染进程发送数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>主进程向渲染进程发送数据</h2>
+<p>前面的 remote 模块，发起通信的都是渲染进程，是一个单向的过程。如果主进程想要发起向渲染进程的通信，需要使用 webContents.send 方法</p>
+<pre><code class="hljs css language-javascript">mainWindow.webContents.send(<span class="hljs-string">'file-opened'</span>, filePath, content);
+</code></pre>
+<blockquote>
+<p>第一个参数是消息通道，后面的参数都是具体的数据</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="渲染进程从主进程获取数据"></a><a href="#渲染进程从主进程获取数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>渲染进程从主进程获取数据</h2>
+<p>主进程使用 webContents.send 像渲染进程发送数据后，渲染进程想要获取，需要使用如下的方式</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> {remote, ipcRenderer} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+ipcRenderer.on(<span class="hljs-string">'file-opened'</span>, (event, filePath, content) =&gt; {
+    markdownView.value = content;
+    renderMarkdown2Html(content);
+    alert(filePath);
+});
+</code></pre>
+<blockquote>
+<p>第一个参数是消息通道名称（实际就是类似于事件名称），第二个参数是回调。</p>
+<p>回调的第一个参数 event 表示此次事件</p>
+<p>回调的后面几个参数，就是主进程传递过来的几个参数数据</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/12/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概述">概述</a><ul class="toc-headings"><li><a href="#渲染进程使用主进程对象">渲染进程使用主进程对象</a></li><li><a href="#主进程通知渲染进程">主进程通知渲染进程</a></li><li><a href="#渲染进程从主进程获取消息">渲染进程从主进程获取消息</a></li></ul></li><li><a href="#remote-的简单使用">remote 的简单使用</a></li><li><a href="#基本原理">基本原理</a></li><li><a href="#访问-electron-内置模块">访问 electron 内置模块</a></li><li><a href="#访问自定义的对象">访问自定义的对象</a></li><li><a href="#访问模块-require">访问模块 require</a></li><li><a href="#remote-的回调坑">remote 的回调坑</a></li><li><a href="#主进程向渲染进程发送数据">主进程向渲染进程发送数据</a></li><li><a href="#渲染进程从主进程获取数据">渲染进程从主进程获取数据</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

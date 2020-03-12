@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="表单元素由于具有内部属性，因此 React 推荐使用组件的 state 统一管理表单"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="表单元素由于具有内部属性，因此 React 推荐使用组件的 state 统一管理表单"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="表单元素由于具有内部属性，因此 React 推荐使用组件的 state 统一管理表单"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="表单元素由于具有内部属性，因此 React 推荐使用组件的 state 统一管理表单"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -6,7 +6,7 @@
 
               ga('create', 'UA-153148512-1', 'auto');
               ga('send', 'pageview');
-            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100,"scrollDuration":400}
@@ -34,13 +34,13 @@
 
   render() {
     <span class="hljs-keyword">return</span> (
-      &lt;form onSubmit={this.handleSubmit}&gt;
-        &lt;label&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{this.handleSubmit}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
           名字:
-          &lt;input type="text" value={this.state.value} onChange={this.handleChange} /&gt;
-        &lt;/label&gt;
-        &lt;input type="submit" value="提交" /&gt;
-      &lt;/form&gt;
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.value}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
     );
   }
 }
@@ -73,13 +73,13 @@
 
   render() {
     <span class="hljs-keyword">return</span> (
-      &lt;form onSubmit={this.handleSubmit}&gt;
-        &lt;label&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{this.handleSubmit}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
           文章:
-          &lt;textarea value={this.state.value} onChange={this.handleChange} /&gt;
-        &lt;/label&gt;
-        &lt;input type="submit" value="提交" /&gt;
-      &lt;/form&gt;
+          <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.value}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
     );
   }
 }
@@ -87,11 +87,11 @@
 <h2><a class="anchor" aria-hidden="true" id="select-标签"></a><a href="#select-标签" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>select 标签</h2>
 <p>在 HTML 中，<code>&lt;select&gt;</code> 创建下拉列表标签。例如，如下 HTML 创建了水果相关的下拉列表：</p>
 <pre><code class="hljs css language-javascript">&lt;select&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"grapefruit"</span>&gt;</span>葡萄柚<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"lime"</span>&gt;</span>酸橙<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">selected</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"coconut"</span>&gt;</span>椰子<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span>
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"mango"</span>&gt;</span>芒果<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span>
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span>
+  &lt;option value="grapefruit"&gt;葡萄柚&lt;/option&gt;
+  &lt;option value="lime"&gt;酸橙&lt;/option&gt;
+  &lt;option selected value="coconut"&gt;椰子&lt;/option&gt;
+  &lt;option value="mango"&gt;芒果&lt;/option&gt;
+&lt;/select&gt;
 </code></pre>
 <p>请注意，由于 <code>selected</code> 属性的缘故，椰子选项默认被选中。React 并不会使用 <code>selected</code> 属性，而是在根 <code>select</code> 标签上使用 <code>value</code> 属性。这在受控组件中更便捷，因为您只需要在根标签中更新它。例如：</p>
 <pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlavorForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
@@ -125,11 +125,11 @@
           <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span> /&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
     );
   }
 }
-</span></code></pre>
+</code></pre>
 <blockquote>
 <p>注意</p>
 <p>你可以将数组传递到 <code>value</code> 属性中，以支持在 <code>select</code> 标签中选择多个选项：</p>
@@ -164,25 +164,25 @@
 
   render() {
     <span class="hljs-keyword">return</span> (
-      &lt;form&gt;
-        &lt;label&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
           参与:
-          &lt;input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} /&gt;
-        &lt;/label&gt;
-        &lt;br /&gt;
-        &lt;label&gt;
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"isGoing"</span>
+            <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span>
+            <span class="hljs-attr">checked</span>=<span class="hljs-string">{this.state.isGoing}</span>
+            <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleInputChange}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
           来宾人数:
-          &lt;input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} /&gt;
-        &lt;/label&gt;
-      &lt;/form&gt;
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+            <span class="hljs-attr">name</span>=<span class="hljs-string">"numberOfGuests"</span>
+            <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span>
+            <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.numberOfGuests}</span>
+            <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleInputChange}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
     );
   }
 }
@@ -190,11 +190,11 @@
 <h2><a class="anchor" aria-hidden="true" id="受控输入空值"></a><a href="#受控输入空值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>受控输入空值</h2>
 <p>在受控组件上指定 value 的值可以防止用户更改输入。如果指定了 <code>value</code>，但输入仍可编辑，则可能是意外地将 <code>value</code> 设置为 <code>undefined</code> 或 <code>null</code>。</p>
 <p>下面的代码演示了这一点。（输入最初被锁定，但在短时间延迟后变为可编辑。）</p>
-<pre><code class="hljs css language-javascript">ReactDOM.render(&lt;input value="hi" /&gt;, mountNode);
+<pre><code class="hljs css language-javascript">ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"hi"</span> /&gt;</span></span>, mountNode);
 
-setTimeout(function() {
-  ReactDOM.render(&lt;input value={null} /&gt;, mountNode);
-}, 1000);
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{null}</span> /&gt;</span></span>, mountNode);
+}, <span class="hljs-number">1000</span>);
 </code></pre>
 <blockquote>
 <p>最开始，我们指定 value = 'hi'，那么这个值就无法再更改，达到了锁定输入框的目的</p>

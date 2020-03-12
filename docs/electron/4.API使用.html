@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 创建文件选择框"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 创建文件选择框"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/electron/4.API使用.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="创建文件选择框"></a><a href="#创建文件选择框" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建文件选择框</h2>
+<p>我们有时候需要让用户选择文件，可以使用 dialog</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> {app, BrowserWindow, dialog} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFileFromUser</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> files = dialog.showOpenDialog({ <span class="hljs-comment">// 弹出文件打开对话框</span>
+        <span class="hljs-comment">/**
+         * 对话框可以设置有不同的属性 这里表示对话框只选择 一个 文件而不是目录或者多个文件
+         * 其它可用的有：openDirectory multiselections
+         */</span>
+        <span class="hljs-attr">properties</span>: [<span class="hljs-string">'openFile'</span>],
+        <span class="hljs-comment">/**
+         * 限定能够选择的文件的类型
+         */</span>
+        <span class="hljs-attr">filters</span>:[
+            {<span class="hljs-attr">name</span>: <span class="hljs-string">'txt文件'</span>,<span class="hljs-attr">extensions</span>: [<span class="hljs-string">'txt'</span>]},
+            {<span class="hljs-attr">name</span>: <span class="hljs-string">'markdown文件'</span>,<span class="hljs-attr">extensions</span>: [<span class="hljs-string">'md'</span>,<span class="hljs-string">'markdown'</span>]}
+        ]
+    });
+    files.then(<span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> {
+        <span class="hljs-comment">// arr.canceled 表示用户是否点了取消选择文件，如果是的话，那么 arr.filePaths 就是空数组</span>
+        <span class="hljs-comment">// console.log(arr.filePaths); // 这个路径是选中文件的数组，我们选择单个文件数组就只会有一个值</span>
+        <span class="hljs-keyword">if</span>(arr.canceled){
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">const</span> filePath = arr.filePaths[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">const</span> content = fs.readFileSync(filePath).toString();
+        <span class="hljs-built_in">console</span>.log(content);
+    });
+}
+</code></pre>
+<p>在 macos 显示如下</p>
+<p><img src="../assets/image-20200222140416390.png" alt="image-20200222140416390"></p>
+<p>我们创建了 2 个文件的过滤选项，macos 要点击选项这里才能进行选择使用哪个选项，所以为了避免麻烦，可以只使用默认的一个</p>
+<p><img src="../assets/image-20200222140544477.png" alt="image-20200222140544477"></p>
+<h3><a class="anchor" aria-hidden="true" id="支持模态框"></a><a href="#支持模态框" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>支持模态框</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFileFromUser</span>(<span class="hljs-params">window</span>) </span>{
+    <span class="hljs-keyword">const</span> files = dialog.showOpenDialog(<span class="hljs-built_in">window</span>,{ <span class="hljs-comment">// 弹出文件打开对话框</span>
+        <span class="hljs-comment">/**
+         * 对话框可以设置有不同的属性 这里表示对话框只选择 一个 文件而不是目录或者多个文件
+         * 其它可用的有：openDirectory multiselections
+         */</span>
+        <span class="hljs-attr">properties</span>: [<span class="hljs-string">'openFile'</span>],
+        <span class="hljs-comment">/**
+         * 限定能够选择的文件的类型
+         */</span>
+        <span class="hljs-attr">filters</span>:[
+            {<span class="hljs-attr">name</span>: <span class="hljs-string">'txt文件'</span>,<span class="hljs-attr">extensions</span>: [<span class="hljs-string">'txt'</span>]},
+            {<span class="hljs-attr">name</span>: <span class="hljs-string">'markdown文件'</span>,<span class="hljs-attr">extensions</span>: [<span class="hljs-string">'md'</span>,<span class="hljs-string">'markdown'</span>]}
+        ]
+    });
+    files.then(<span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> {
+        <span class="hljs-comment">// arr.canceled 表示用户是否点了取消选择文件，如果是的话，那么 arr.filePaths 就是空数组</span>
+        <span class="hljs-comment">// console.log(arr.filePaths); // 这个路径是选中文件的数组，我们选择单个文件数组就只会有一个值</span>
+        <span class="hljs-keyword">if</span>(arr.canceled){
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">const</span> filePath = arr.filePaths[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">const</span> content = fs.readFileSync(filePath).toString();
+        <span class="hljs-built_in">console</span>.log(content);
+    });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appReady</span>(<span class="hljs-params"></span>) </span>{
+    mainWindow = <span class="hljs-keyword">new</span> BrowserWindow({
+        <span class="hljs-comment">// width: 100%,</span>
+        <span class="hljs-comment">// height: 600,</span>
+        <span class="hljs-attr">webPreferences</span>: {
+            <span class="hljs-attr">nodeIntegration</span>: <span class="hljs-literal">true</span>
+        },
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span>  <span class="hljs-comment">// 刚创建出来时，不要显示，避免先显示短暂的白屏</span>
+    });
+    mainWindow.maximize(); <span class="hljs-comment">// 最大化 不等于全屏，最大化是保留系统任务栏等的</span>
+    mainWindow.loadFile(<span class="hljs-string">'app/index.html'</span>);
+    mainWindow.on(<span class="hljs-string">'close'</span>, () =&gt; {
+        mainWindow = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 关闭窗口后，将其设为 null</span>
+    });
+    mainWindow.once(<span class="hljs-string">'ready-to-show'</span>, () =&gt; {
+        mainWindow.show(); <span class="hljs-comment">// 主界面加载完成了才显示</span>
+        getFileFromUser(mainWindow);
+    })
+}
+</code></pre>
+<p>效果如图</p>
+<p><img src="../assets/image-20200222141352536.png" alt="image-20200222141352536"></p>
+<p>当我们向 showOpenDialog 传入的第一个参数是 BrowserWindow 的时候，这个文件选择框将会变成这个 BrowserWindow 的模态窗口，阻塞 BrowserWindow 的运行</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/12/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#创建文件选择框">创建文件选择框</a><ul class="toc-headings"><li><a href="#支持模态框">支持模态框</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
