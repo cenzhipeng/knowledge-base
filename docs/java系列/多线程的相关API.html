@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Runnable 接口"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## Runnable 接口"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/java系列/12.多线程的相关API.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="runnable-接口"></a><a href="#runnable-接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runnable 接口</h2>
+<pre><code class="hljs css language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>Runnable 用于<strong>定义</strong>一种没有返回值的<strong>异步任务</strong>，我们创建一个 Runnable 实例之后，相当于定义了一个异步任务的逻辑部分，但是并没有执行它。简单的使用就是将其使用另一个线程中执行，或者是放到线程池中执行。</p>
+<h3><a class="anchor" aria-hidden="true" id="使用-thread-执行-runnable-异步任务"></a><a href="#使用-thread-执行-runnable-异步任务" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 Thread 执行 Runnable 异步任务</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+  Runnable runnable = () -&gt; {
+    System.out.println(<span class="hljs-string">"异步线程："</span>+ Thread.currentThread().getName());
+  };
+  System.out.println(<span class="hljs-string">"主线程："</span>+ Thread.currentThread().getName());
+  <span class="hljs-keyword">new</span> Thread(runnable).start();
+}
+
+输出：
+主线程：main
+异步线程：Thread-<span class="hljs-number">0</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="使用-executorservice-执行-runnable-异步任务"></a><a href="#使用-executorservice-执行-runnable-异步任务" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 ExecutorService 执行 Runnable 异步任务</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+  Runnable runnable = () -&gt; {
+    System.out.println(<span class="hljs-string">"异步线程："</span>+ Thread.currentThread().getName());
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-comment">// 线程睡眠1s，模拟多个异步任务提交</span>
+      Thread.sleep(<span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+  };
+  ExecutorService executorService = Executors.newFixedThreadPool(<span class="hljs-number">2</span>);
+  <span class="hljs-comment">// 提交 2 个异步任务</span>
+  executorService.execute(runnable);
+  executorService.execute(runnable);
+  System.out.println(<span class="hljs-string">"主线程："</span>+ Thread.currentThread().getName());
+  <span class="hljs-keyword">new</span> Thread(runnable).start();
+}
+
+输出：
+主线程：main
+异步线程：pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span>
+异步线程：pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span>
+异步线程：Thread-<span class="hljs-number">0</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="runnable-运行时异常的问题"></a><a href="#runnable-运行时异常的问题" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runnable 运行时异常的问题</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+  Runnable runnable = () -&gt; {
+    System.out.println(<span class="hljs-string">"异步线程："</span>+ Thread.currentThread().getName());
+    <span class="hljs-comment">// 模拟一个运行时异常</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">""</span>);
+  };
+  ExecutorService executorService = Executors.newFixedThreadPool(<span class="hljs-number">2</span>);
+  <span class="hljs-comment">// 提交 3 个异步任务</span>
+  executorService.execute(runnable);
+  executorService.execute(runnable);
+  executorService.execute(runnable);
+  System.out.println(<span class="hljs-string">"主线程："</span>+ Thread.currentThread().getName());
+  <span class="hljs-keyword">new</span> Thread(runnable).start();
+}
+
+输出：
+主线程：main
+异步线程：pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span>
+异步线程：pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">2</span>
+异步线程：pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">3</span>
+Exception in thread <span class="hljs-string">"pool-1-thread-1"</span> Exception in thread <span class="hljs-string">"pool-1-thread-2"</span> Exception in thread <span class="hljs-string">"pool-1-thread-3"</span> java.lang.RuntimeException: 
+    at com.example.javademo.JavaDemoApplication.lambda$main$<span class="hljs-number">0</span>(JavaDemoApplication.java:<span class="hljs-number">40</span>)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="hljs-number">1149</span>)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="hljs-number">624</span>)
+    at java.lang.Thread.run(Thread.java:<span class="hljs-number">748</span>)
+java.lang.RuntimeException: 
+    at com.example.javademo.JavaDemoApplication.lambda$main$<span class="hljs-number">0</span>(JavaDemoApplication.java:<span class="hljs-number">40</span>)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="hljs-number">1149</span>)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="hljs-number">624</span>)
+    at java.lang.Thread.run(Thread.java:<span class="hljs-number">748</span>)
+java.lang.RuntimeException: 
+    at com.example.javademo.JavaDemoApplication.lambda$main$<span class="hljs-number">0</span>(JavaDemoApplication.java:<span class="hljs-number">40</span>)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="hljs-number">1149</span>)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="hljs-number">624</span>)
+    at java.lang.Thread.run(Thread.java:<span class="hljs-number">748</span>)
+</code></pre>
+<blockquote>
+<p>重点是：<code>异步线程：pool-1-thread-3</code> ，我们这个固定大小为 2 的线程池，创建了至少三个线程，因为前两个线程执行的时候都抛出了异常，线程直接挂了。所以只能创建新的线程去执行第三个任务</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<ul>
+<li>Runnable 只是异步任务的一种定义，我们只有使用别的线程将其执行才有意义。使用单独的线程执行它，或者使用 ExecutorService 执行它</li>
+<li>Runnable 接口的方法没有返回值，表示它是一种不期待结果的异步任务，我们一些后台操作就很适合用 Runnable 接口来定义，比如说定时更新缓存、定时记录一些日志等，这种任务不需要有明确的结果返回</li>
+<li>Runnable 需要自己处理所有的异常，抛出异常的话线程就直接挂了。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="callable-和-future-接口"></a><a href="#callable-和-future-接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Callable 和 Future 接口</h2>
+<pre><code class="hljs css language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Callable</span>&lt;<span class="hljs-title">V</span>&gt; </span>{
+    <span class="hljs-function">V <span class="hljs-title">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Future</span>&lt;<span class="hljs-title">V</span>&gt; </span>{
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">cancel</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> mayInterruptIfRunning)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isCancelled</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isDone</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException</span>;
+    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeout, TimeUnit unit)</span>
+        <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;
+}
+</code></pre>
+<p>Callable 接口也是定义一种异步任务，但是跟 Runnable 不同的是，Callable 定义的异步任务是有返回值的，比如我们在后台进行一定的计算，最终需要返回一个值给程序的其它线程使用。</p>
+<p>这个返回值一般就是使用 Future 接口来表示。Future 接口定义的是一种异步任务的<strong>执行结果</strong>。它的泛型表示某个异步任务的返回结果，这个返回结果可以在将来的某个时间被获取到或者是抛出异常。</p>
+<p>一般的模式就是，使用 Callable 定义异步任务的执行逻辑，将其提交到线程池中 submit，然后立刻得到一个 Future 表示这个异步任务的执行结果。</p>
+<h3><a class="anchor" aria-hidden="true" id="使用-executorservice-提交-callable"></a><a href="#使用-executorservice-提交-callable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 ExecutorService 提交 Callable</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>{
+  Callable&lt;Integer&gt; callable = () -&gt; {
+    <span class="hljs-comment">// 模拟一个耗时操作</span>
+    Thread.sleep(<span class="hljs-number">2000</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+  };
+  ExecutorService executorService = Executors.newFixedThreadPool(<span class="hljs-number">2</span>);
+  <span class="hljs-comment">// 提交这个 callable，将会得到一个 future，</span>
+  Future&lt;Integer&gt; result = executorService.submit(callable);
+  <span class="hljs-keyword">long</span> start = System.currentTimeMillis();
+  <span class="hljs-comment">// 想要获取异步任务结果的线程，这里也就是主线程，将会阻塞直到获取结果或者抛出异常</span>
+  Integer num = result.get();
+  <span class="hljs-keyword">long</span> end = System.currentTimeMillis();
+  System.out.println(<span class="hljs-string">"获取到结果："</span> + num);
+  System.out.println(<span class="hljs-string">"总耗时："</span> + (end - start) + <span class="hljs-string">" 毫秒"</span>);
+}
+输出：
+获取到结果：<span class="hljs-number">3</span>
+总耗时：<span class="hljs-number">2003</span> 毫秒
+</code></pre>
+<p>可以看到，我们的使用模式如下：</p>
+<ul>
+<li>定义一个 callble 操作</li>
+<li>将其提交到一个线程池，使用的是 submit 这个接口。这个接口将会执行异步任务，并且将异步任务的结果封装为一个 future，这一步是一个非阻塞的方法，仅仅是提交到线程池然后立刻得到 future，并不会阻塞到这个异步任务执行完毕。</li>
+<li>我们通过 future 的 get 方法来获取异步任务的结果，很明显的道理就是，当我们调用 get 的时候，异步任务并不一定完成了，future 的策略就是：调用 get 方法的那个线程直接阻塞直到获取到异步任务的结果，或者是抛出异常。</li>
+<li>因此我们的主线程中获取结果的总耗时也是差不多 2000 毫秒</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="总结-1"></a><a href="#总结-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<ul>
+<li>Callable 也是一种异步任务的定义，它定义了异步任务的执行过程，以及最后应该返回的内容</li>
+<li>我们一般通过 ExecutorService 线程池的 submit 接口，提交 callable 异步任务，然后立刻获取到 future 代表的异步任务的结果。</li>
+<li>我们拿到 future 后，一般会在将来的某一个时刻调用它的 get 方法，阻塞当前的线程获取这个 future 的结果</li>
+<li>也可以通过 future 的 isDone 接口来判断任务是否完成，任务没有完成的话，当前线程继续执行其他操作，任务完成了就调用 get，这样就提高了当前线程的效率</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="future-接口"></a><a href="#future-接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Future 接口</h2>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Future</span>&lt;<span class="hljs-title">V</span>&gt; </span>{
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">cancel</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> mayInterruptIfRunning)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isCancelled</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isDone</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException</span>;
+    <span class="hljs-function">V <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeout, TimeUnit unit)</span>
+        <span class="hljs-keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;
+}
+</code></pre>
+<ul>
+<li><p>get</p>
+<ul>
+<li>􏰋􏰵􏲆􏰄􏱫􏳍􏲞􏱲􏰶􏲏􏰪􏰎􏱈􏲇􏰗􏱈􏲞􏱲􏰤􏲡􏲽􏰺􏰨􏱜􏲇􏱐􏳴􏲀􏰆􏴋􏰋􏰵􏲆􏰄􏱫􏳍􏲞􏱲􏰶􏲏􏰪􏰎􏱈􏲇􏰗􏱈􏲞􏱲􏰤􏲡􏲽􏰺􏰨􏱜􏲇􏱐􏳴􏲀􏰆􏴋􏰋􏰵􏲆􏰄􏱫􏳍􏲞􏱲􏰶􏲏􏰪􏰎􏱈􏲇􏰗􏱈􏲞􏱲􏰤􏲡􏲽􏰺􏰨􏱜􏲇􏱐􏳴􏲀􏰆􏴋返回异步任务最终的结果，如果异步任务还没有执行完毕，则当前调用 get 的这个线程阻塞，直到异步任务获取到了结果</li>
+<li>带参数的 get 方法定义了阻塞的最长时间</li>
+<li>当异步任务被取消的时候，抛出 CancellationException</li>
+<li>当异步任务本身抛出异常的时候，我们调用 get 的线程抛出异常 ExecutionException</li>
+<li>如果当前的线程被中断了，抛出异常 InterruptedException</li>
+<li>如果等待超时了，抛出异常 TimeoutException</li>
+</ul></li>
+<li><p>cancel</p>
+<ul>
+<li>用于取消任务，如果任务已完成、或者已经取消、或者由于某种原因不能被取消，返回 false，否则返回 true</li>
+<li>如果任务还没开始，则任务不再运行了，如果任务已经在运行，则不一定能取消</li>
+<li>参数 mayInterruptIfRunning 表示，如果任务正在执行，是否调用 interrupt 方法中断线程</li>
+</ul></li>
+<li><p>isCancelled</p>
+<ul>
+<li>查询任务是否被取消，只要 cancel 方法返回了 true，后续 isCancelled 方法都返回 true</li>
+</ul></li>
+<li><p>isDone</p>
+<ul>
+<li>查询任务是否已经结束，不管是什么原因都算，任务可能是正常结束了，也可能是抛出异常了，也可能是是被取消了</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="总结-2"></a><a href="#总结-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<p>Future 接口封装了一个异步的任务结果，但是不关注异步任务的具体执行，Future 仅仅关注异步任务是否完成了，以及获取它的结果，另外可以控制是否取消异步任务。</p>
+<h2><a class="anchor" aria-hidden="true" id="runnablefuture-接口"></a><a href="#runnablefuture-接口" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RunnableFuture 接口</h2>
+<p>先看类图：</p>
+<p><img src="../assets/image-20200315131534257.png" alt="image-20200315131534257" style="zoom:50%;" /></p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RunnableFuture</span>&lt;<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Runnable</span>, <span class="hljs-title">Future</span>&lt;<span class="hljs-title">V</span>&gt; </span>{
+    <span class="hljs-comment">/**
+     * Sets this Future to the result of its computation
+     * unless it has been cancelled.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FutureTask</span>&lt;<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">RunnableFuture</span>&lt;<span class="hljs-title">V</span>&gt;
+</span></code></pre>
+<p>这个 RunnableFuture 接口的含义和名字一样，就是说它既是一个 Runnable 又是一个 Future。</p>
+<p>前面说了，Runnable 是一个异步任务的执行过程的定义，而 Future 是一个异步任务执行结果的定义。</p>
+<p>那么 RunnableFuture 接口，就是既定义了异步任务的执行过程，又定义了异步任务的执行结果。实际上来说，我们很少单独用到这个接口，这个接口在 ExecutorService 的 submit 接口中使用。</p>
+<h3><a class="anchor" aria-hidden="true" id="submit-方法的逻辑"></a><a href="#submit-方法的逻辑" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>submit 方法的逻辑</h3>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">Future&lt;T&gt; <span class="hljs-title">submit</span><span class="hljs-params">(Callable&lt;T&gt; task)</span> </span>{
+  <span class="hljs-keyword">if</span> (task == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();
+  RunnableFuture&lt;T&gt; ftask = newTaskFor(task);
+  execute(ftask);
+  <span class="hljs-keyword">return</span> ftask;
+}
+
+<span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">Future&lt;T&gt; <span class="hljs-title">submit</span><span class="hljs-params">(Runnable task, T result)</span> </span>{
+  <span class="hljs-keyword">if</span> (task == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();
+  RunnableFuture&lt;T&gt; ftask = newTaskFor(task, result);
+  execute(ftask);
+  <span class="hljs-keyword">return</span> ftask;
+}
+</code></pre>
+<ul>
+<li>不论是 Callable 还是 Runnable，都被包装成了 RunnableFuture
+<ul>
+<li>Runnable 实际上可以看做是 <code>Callable&lt;Void&gt;</code></li>
+</ul></li>
+<li>将 RunnableFuture 视作一个 Runnable，提交到某处去执行（某个新的线程、或者当前线程、或者是某个已经存在的线程）</li>
+<li>直接返回这个 RunnableFuture</li>
+<li>这个 RunnableFuture 实际上就是 FutureTask 类来实现的</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="总结-3"></a><a href="#总结-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<ul>
+<li>RunnableFuture 既是 Runnable 又是 Future</li>
+<li>无论是 Runnable 还是 Callable 在 submit 的时候，都被 ExecutorService 包装成了 RunnableFuture，然后将其视为一个 Runnable 去 execute 执行了</li>
+<li>我们接受到的 Future 就是 RunnableFuture 的实现类 FutureTask 的实例</li>
+<li>很少单独直接使用这个接口</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="futuretask-类"></a><a href="#futuretask-类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FutureTask 类</h2>
+<p>这个类主要用来实现 Future 接口功能的，详细的源码分析留在以后有时间再写</p>
+<p>简单说下实现的思路吧：</p>
+<ul>
+<li>首先是接受一个 Callable 表示这个异步任务的具体逻辑。对于 Runnable 也可以包装成 <code>Callable&lt;Void&gt;</code> 类型，所以都看做是 Callable 即可</li>
+<li>当我们调用 run 方法的时候，可以获取到当前正在执行 run 方法的进程，也就是 runner，然后我们执行内部的 callable 的 call 方法，执行完毕之后将结果设置到内部状态变量 result 里，并且将 runner 线程状态设置为 complete</li>
+<li>上面的 run 方法是在某个线程中执行的</li>
+<li>我们的主线程调用 get 的时候，就进入一个死循环，一直去看线程状态是否是 complete 或者是 cancel、exception 或者是超时了，最后再给出结果</li>
+<li>我们的主线程调用 isDone 的时候就是简单的去看一下状态变量</li>
+<li>内部的线程状态 state 是 volatile 修饰的，主要是解决多线程同时修改 future，比如同时去取消的时候，同时去设置的时候的可见性问题</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="completablefuture"></a><a href="#completablefuture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CompletableFuture</h2>
+<p>简单一句话概括：就是 Java 里的 Promise</p>
+<p>参考：<a href="https://colobu.com/2018/03/12/20-Examples-of-Using-Java%E2%80%99s-CompletableFuture/">https://colobu.com/2018/03/12/20-Examples-of-Using-Java%E2%80%99s-CompletableFuture/</a></p>
+<h3><a class="anchor" aria-hidden="true" id="1创建一个已完成的-completablefuture"></a><a href="#1创建一个已完成的-completablefuture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.创建一个已完成的 CompletableFuture</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.completedFuture(<span class="hljs-string">"123"</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="2创建一个异步-completablefuture"></a><a href="#2创建一个异步-completablefuture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.创建一个异步 CompletableFuture</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+  <span class="hljs-comment">//做一些计算类的操作</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"x"</span>;
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="3直接运行一个没有返回值的异步任务"></a><a href="#3直接运行一个没有返回值的异步任务" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.直接运行一个没有返回值的异步任务</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;Void&gt; result = CompletableFuture.runAsync(() -&gt; {
+  <span class="hljs-comment">// 做一些异步任务，不需要返回值</span>
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="4使用-thenapply-方法，进行-completablefuture-的连接"></a><a href="#4使用-thenapply-方法，进行-completablefuture-的连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.使用 thenApply 方法，进行 CompletableFuture 的连接</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+  <span class="hljs-comment">//做一些计算类的操作</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"x"</span>;
+});
+future.thenApply(x -&gt; {
+  String name = Thread.currentThread().getName();
+  System.out.println(name);
+  <span class="hljs-keyword">return</span> name;
+}).thenApply(x -&gt; {
+  String name = Thread.currentThread().getName();
+  System.out.println(name);
+  <span class="hljs-keyword">return</span> name;
+});
+输出；
+main
+main
+</code></pre>
+<blockquote>
+<p>跟 Promise 的 then 很像，接收上一步的结果，然后执行一个函数。</p>
+<p>但是这里有个问题就是，执行这个函数的就是调用这个 thenApply 方法的进程，所以这里线程名称输出的都是 main</p>
+<p>由于执行这个回调函数的线程就是当前调用 thenApply 的线程，所以实际上类似于 Future 的 get 调用了，当异步任务耗时较长时，当前调用 thenApply 的线程就会阻塞比较长，所以尽量不要用 thenApply 方法</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="5使用-thenapplyasync-方法，进行-completablefuture-的连接"></a><a href="#5使用-thenapplyasync-方法，进行-completablefuture-的连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.使用 thenApplyAsync 方法，进行 CompletableFuture 的连接</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+  <span class="hljs-comment">//做一些计算类的操作</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"x"</span>;
+});
+future.thenApplyAsync(x -&gt; {
+  String name = Thread.currentThread().getName();
+  System.out.println(name);
+  <span class="hljs-keyword">return</span> name;
+}).thenApplyAsync(x -&gt; {
+  String name = Thread.currentThread().getName();
+  System.out.println(name);
+  <span class="hljs-keyword">return</span> name;
+}, Executors.newSingleThreadExecutor());
+System.out.println(<span class="hljs-string">"结束"</span>);
+
+输出：
+ForkJoinPool.commonPool-worker-<span class="hljs-number">1</span>
+结束
+pool-<span class="hljs-number">1</span>-thread-<span class="hljs-number">1</span>
+</code></pre>
+<blockquote>
+<p>这个 thenApplyAsync 才是我们真正应该推荐使用的方法，它有两个重载</p>
+<ul>
+<li>默认情况下，thenApplyAsync 使用 ForkJoinPool.commonPool 来运行回调</li>
+<li>我们可以提供第二个可选的参数 <code>Executor e</code> ，让这个执行器来执行回调，一般来说，我们可以自己创建一个线程池传入进去</li>
+<li>ForkJoinPool.commonPool 的线程数量有限，与 CPU 核数一致，我们如果有很多 CompletableFuture 都进行了阻塞调用，这个默认的线程池很快就炸了</li>
+<li>因此在有阻塞代码的情况下，我们必须传入自己创建的线程池作为 thenApplyAsync 的第二个参数</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="6使用-thenacceptthenacceptasync-方法，消费前面的结果"></a><a href="#6使用-thenacceptthenacceptasync-方法，消费前面的结果" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.使用 thenAccept/thenAcceptAsync 方法，消费前面的结果</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+  <span class="hljs-comment">//做一些计算类的操作</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"x"</span>;
+});
+CompletableFuture&lt;Void&gt; result = future.thenAcceptAsync(x -&gt; {
+  String name = Thread.currentThread().getName();
+  System.out.println(name);
+  System.out.println(x);
+});
+System.out.println(<span class="hljs-string">"结束"</span>);
+Thread.sleep(<span class="hljs-number">1000</span>);
+
+输出：
+结束
+ForkJoinPool.commonPool-worker-<span class="hljs-number">1</span>
+x
+</code></pre>
+<blockquote>
+<p>这种情况其实跟 thenApply/thenApplyAsync 差不多，唯一的区别回调是不需要返回值，此时返回的 CompletableFuture 的泛型将会是 Void，依然可以在后面继续进行 thenApply 这种连接</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="7使用-handlehandleasync-方法，处理异常"></a><a href="#7使用-handlehandleasync-方法，处理异常" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7.使用 handle/handleAsync 方法，处理异常</h3>
+<pre><code class="hljs css language-java">CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+  <span class="hljs-keyword">if</span> (System.nanoTime() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"第一个异常"</span>);
+  }
+  <span class="hljs-comment">//做一些计算类的操作</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"x"</span>;
+});
+future.thenApplyAsync(x -&gt; {
+  <span class="hljs-keyword">if</span> (System.nanoTime() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"第二个异常"</span>);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"xx"</span>;
+}).thenApplyAsync(x -&gt; {
+  <span class="hljs-keyword">if</span> (System.nanoTime() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"第三个异常"</span>);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"xxx"</span>;
+}).thenApplyAsync(x -&gt; {
+  <span class="hljs-keyword">if</span> (System.nanoTime() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"第四个异常"</span>);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>;
+}).handleAsync((num, e) -&gt; {
+  <span class="hljs-keyword">if</span> (e != <span class="hljs-keyword">null</span>) {
+    System.out.println(<span class="hljs-string">"发生了异常："</span> + e.getMessage());
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+});
+System.out.println(<span class="hljs-string">"结束"</span>);
+Thread.sleep(<span class="hljs-number">1000</span>);
+
+输出：
+结束
+发生了异常：java.lang.RuntimeException: 第三个异常  (这里一二三四都有可能)
+</code></pre>
+<blockquote>
+<p>整个 CompletableFuture 链条，当发生异常时，就会停止，后面的 thenApplyAsync 方法不再执行</p>
+<p>当我们调用 handleAsync 处理异常的时候，可以捕获到前面任何一个阶段抛出的异常，因为异常一旦发生整个链条就不执行了，所以说只可能会有一个异常被我们捕获到</p>
+<p>handle 方法可以看做是强化版本的 thenApply 方法，接收上一步骤的结果和之前可能发生了的异常，返回一个结果</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="8使用-applytoeitherapplytoeitherasync-方法，表示任意一个完成"></a><a href="#8使用-applytoeitherapplytoeitherasync-方法，表示任意一个完成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.使用 applyToEither/applyToEitherAsync 方法，表示任意一个完成</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;Integer&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">8</span>;
+  });
+  CompletableFuture&lt;Integer&gt; f3 = f1.applyToEitherAsync(f2, (num) -&gt; {
+    System.out.println(num);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+  });
+  Thread.sleep(<span class="hljs-number">2000</span>);
+  System.out.println(f3.isDone());
+  System.out.println(f3.join());
+}
+
+输出：
+<span class="hljs-number">5</span>
+<span class="hljs-keyword">true</span>
+<span class="hljs-number">3</span>
+  
+或者输出：
+<span class="hljs-number">8</span>
+<span class="hljs-keyword">true</span>
+<span class="hljs-number">3</span>
+</code></pre>
+<blockquote>
+<p>f1.applyToEitherAsync(f2, fn) 表示 f1 和 f2 任意一个完成的时候，将结果传递给 fn 作为参数来执行 fn。而执行 fn 得到的结果就是这个方法返回的 f3 的结果</p>
+<p>注意：如果 f1 或者 f2 执行的时候抛出异常了，fn 将不会执行，f3 获取的结果也将会是抛出异常，这是要特别注意的一点</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="9使用-accepteitheraccepteitherasync-方法，表示任意一个完成后消费"></a><a href="#9使用-accepteitheraccepteitherasync-方法，表示任意一个完成后消费" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>9.使用 acceptEither/acceptEitherAsync 方法，表示任意一个完成后消费</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;Integer&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">8</span>;
+  });
+  CompletableFuture&lt;Void&gt; f3 = f1.acceptEitherAsync(f2, (num) -&gt; {
+    System.out.println(num);
+  });
+  Thread.sleep(<span class="hljs-number">2000</span>);
+  System.out.println(f3.isDone());
+  System.out.println(f3.join());
+}
+</code></pre>
+<blockquote>
+<p>跟 applyToEitherAsync 是一个意思，唯一的区别是这里的 fn 是个消费者，不返回值</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="10使用-runafterbothrunafterbothasync-方法，表示都完成后执行"></a><a href="#10使用-runafterbothrunafterbothasync-方法，表示都完成后执行" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>10.使用 runAfterBoth/runAfterBothAsync 方法，表示都完成后执行</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;Integer&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">8</span>;
+  });
+  CompletableFuture&lt;Void&gt; f3 = f1.runAfterBothAsync(f2, () -&gt; {
+    <span class="hljs-keyword">if</span>(f1.isDone() &amp;&amp; f2.isDone()){
+      System.out.println(<span class="hljs-string">"两个都完成了"</span>);
+    }
+  });
+  Thread.sleep(<span class="hljs-number">2000</span>);
+}
+
+输出是：
+两个都完成了
+</code></pre>
+<blockquote>
+<p>注意：这里执行的是 Runnable，我们想要使用这两个已经完成了的 future 的结果的话，可以使用 f1.join() 和 f2.join()</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="11使用-thenacceptboththenacceptbothasync，也表示都完成后执行"></a><a href="#11使用-thenacceptboththenacceptbothasync，也表示都完成后执行" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>11.使用 thenAcceptBoth/thenAcceptBothAsync，也表示都完成后执行</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;String&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"8"</span>;
+  });
+  CompletableFuture&lt;Void&gt; f3 = f1.thenAcceptBothAsync(f2, (num,str) -&gt; {
+    <span class="hljs-keyword">if</span>(f1.isDone() &amp;&amp; f2.isDone()){
+      System.out.println(<span class="hljs-string">"两个都完成了"</span>);
+      System.out.println(num);
+      System.out.println(str);
+    }
+  });
+  Thread.sleep(<span class="hljs-number">2000</span>);
+}
+</code></pre>
+<blockquote>
+<p>这个方法与 runAfterBothAsync 的行为几乎一致</p>
+<p>唯一的区别是这里传入的是 BiConsumer，可以获取到两个 future 的结果</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="12使用-thencombinethencombineasync，组合两个值返回新值"></a><a href="#12使用-thencombinethencombineasync，组合两个值返回新值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>12.使用 thenCombine/thenCombineAsync，组合两个值返回新值</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;String&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"8"</span>;
+  });
+  CompletableFuture&lt;String&gt; f3 = f1.thenCombineAsync(f2, (num, str) -&gt; {
+    System.out.println(<span class="hljs-string">"两个都完成了"</span>);
+    System.out.println(num);
+    System.out.println(str);
+    <span class="hljs-keyword">return</span> num + str;
+  });
+  Thread.sleep(<span class="hljs-number">2000</span>);
+}
+</code></pre>
+<blockquote>
+<p>这个方法就是说：等待 f1 和 f2 都完成，然后使用他们的结果执行一个函数获取新值，返回一个新的 future</p>
+<p>常用在这种场景：去 A 请求一个信息，去 B 请求一个信息，然后结合两个信息再做一些事情</p>
+<p>这样子就有了 future 的组合的能力</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="13使用-thencomposethencomposeasync，解耦-future"></a><a href="#13使用-thencomposethencomposeasync，解耦-future" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>13.使用 thenCompose/thenComposeAsync，解耦 future</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+  CompletableFuture&lt;Integer&gt; f1 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+  });
+  CompletableFuture&lt;String&gt; f2 = CompletableFuture.supplyAsync(() -&gt; {
+    <span class="hljs-keyword">try</span> {
+      Thread.sleep(Math.abs(<span class="hljs-keyword">new</span> Random().nextInt()) % <span class="hljs-number">1000</span>);
+    } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+      e.printStackTrace();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"8"</span>;
+  });
+  CompletableFuture&lt;Integer&gt; f3 = f1.thenComposeAsync(num -&gt; CompletableFuture.completedFuture(num));
+  Thread.sleep(<span class="hljs-number">2000</span>);
+}
+</code></pre>
+<blockquote>
+<p><code>f1.thenComposeAsync(num -&gt; CompletableFuture.completedFuture(num))</code> 的返回结果是 <code>CompletableFuture&lt;Integer&gt;</code></p>
+<p>而 <code>f1.thenApplyAsync(num -&gt; CompletableFuture.completedFuture(num))</code> 的返回结果是 <code>CompletableFuture&lt;CompletableFuture&lt;Integer&gt;&gt;</code></p>
+<p>这两个方法的关系就像是 map 和 flatMap，当我们封装了很多的异步方法时，例如 <code>(xxx) -&gt; CompleteFuture&lt;Result&gt;</code> ，使用 thenComposeAsync 就会十分方便</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="14使用-anyof-，表示任意一个完成后的-future"></a><a href="#14使用-anyof-，表示任意一个完成后的-future" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>14.使用 anyOf ，表示任意一个完成后的 future</h3>
+<pre><code class="hljs css language-java">CompletableFuture.anyOf(f1, f2).whenCompleteAsync((num, e) -&gt; {
+  System.out.println(num);
+});
+</code></pre>
+<blockquote>
+<p>这个语义表示：f1 和 f2 任意一个完成后，执行后面的函数</p>
+<p>第一个参数表示：任意一个执行完成的结果</p>
+<p>第二个参数表示：最先完成的那个 future 的异常</p>
+<p>这两个参数必有一个是 null，异常是 null 表示正确完成。</p>
+<p>这种检查方式跟 golang 差不多</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="15使用-allof，表示全部完成后的-future"></a><a href="#15使用-allof，表示全部完成后的-future" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>15.使用 allOf，表示全部完成后的 future</h3>
+<pre><code class="hljs css language-java">CompletableFuture.allOf(f1, f2).whenCompleteAsync((num, e) -&gt; {
+  <span class="hljs-comment">// 分别处理 f1 和 f2，</span>
+});
+</code></pre>
+<blockquote>
+<p>这个语义表示：f1 和 f2 都完成</p>
+<p>当这个组合的 future 完成后，我们就可以在内部的函数中分别处理 f1 和 f2，单独去看它们是否有异常</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="总结-4"></a><a href="#总结-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<ul>
+<li>CompletableFuture 相当于 JS 里的 Promise</li>
+<li>xxx 和 xxxAsync 方法的区别是 xxxAsync 会在 ForkJoinPool.commonPool 中执行，xxx 大部分情况下会在调用 xxx 这个方法的线程中执行</li>
+<li>xxxAsync 方法最后一个参数都可以传入一个 Executor 表示它要执行的地点</li>
+<li>建议全都使用 xxxAsync 方法</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/20/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#runnable-接口">Runnable 接口</a><ul class="toc-headings"><li><a href="#使用-thread-执行-runnable-异步任务">使用 Thread 执行 Runnable 异步任务</a></li><li><a href="#使用-executorservice-执行-runnable-异步任务">使用 ExecutorService 执行 Runnable 异步任务</a></li><li><a href="#runnable-运行时异常的问题">Runnable 运行时异常的问题</a></li><li><a href="#总结">总结</a></li></ul></li><li><a href="#callable-和-future-接口">Callable 和 Future 接口</a><ul class="toc-headings"><li><a href="#使用-executorservice-提交-callable">使用 ExecutorService 提交 Callable</a></li><li><a href="#总结-1">总结</a></li></ul></li><li><a href="#future-接口">Future 接口</a><ul class="toc-headings"><li><a href="#总结-2">总结</a></li></ul></li><li><a href="#runnablefuture-接口">RunnableFuture 接口</a><ul class="toc-headings"><li><a href="#submit-方法的逻辑">submit 方法的逻辑</a></li><li><a href="#总结-3">总结</a></li></ul></li><li><a href="#futuretask-类">FutureTask 类</a></li><li><a href="#completablefuture">CompletableFuture</a><ul class="toc-headings"><li><a href="#1创建一个已完成的-completablefuture">1.创建一个已完成的 CompletableFuture</a></li><li><a href="#2创建一个异步-completablefuture">2.创建一个异步 CompletableFuture</a></li><li><a href="#3直接运行一个没有返回值的异步任务">3.直接运行一个没有返回值的异步任务</a></li><li><a href="#4使用-thenapply-方法，进行-completablefuture-的连接">4.使用 thenApply 方法，进行 CompletableFuture 的连接</a></li><li><a href="#5使用-thenapplyasync-方法，进行-completablefuture-的连接">5.使用 thenApplyAsync 方法，进行 CompletableFuture 的连接</a></li><li><a href="#6使用-thenacceptthenacceptasync-方法，消费前面的结果">6.使用 thenAccept/thenAcceptAsync 方法，消费前面的结果</a></li><li><a href="#7使用-handlehandleasync-方法，处理异常">7.使用 handle/handleAsync 方法，处理异常</a></li><li><a href="#8使用-applytoeitherapplytoeitherasync-方法，表示任意一个完成">8.使用 applyToEither/applyToEitherAsync 方法，表示任意一个完成</a></li><li><a href="#9使用-accepteitheraccepteitherasync-方法，表示任意一个完成后消费">9.使用 acceptEither/acceptEitherAsync 方法，表示任意一个完成后消费</a></li><li><a href="#10使用-runafterbothrunafterbothasync-方法，表示都完成后执行">10.使用 runAfterBoth/runAfterBothAsync 方法，表示都完成后执行</a></li><li><a href="#11使用-thenacceptboththenacceptbothasync，也表示都完成后执行">11.使用 thenAcceptBoth/thenAcceptBothAsync，也表示都完成后执行</a></li><li><a href="#12使用-thencombinethencombineasync，组合两个值返回新值">12.使用 thenCombine/thenCombineAsync，组合两个值返回新值</a></li><li><a href="#13使用-thencomposethencomposeasync，解耦-future">13.使用 thenCompose/thenComposeAsync，解耦 future</a></li><li><a href="#14使用-anyof-，表示任意一个完成后的-future">14.使用 anyOf ，表示任意一个完成后的 future</a></li><li><a href="#15使用-allof，表示全部完成后的-future">15.使用 allOf，表示全部完成后的 future</a></li><li><a href="#总结-4">总结</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

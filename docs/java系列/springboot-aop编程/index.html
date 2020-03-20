@@ -1,0 +1,531 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## AOP 概念"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## AOP 概念"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Java系列</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">JVM系列<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/JVM系列/JVM内存区域">JVM内存区域</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/对象创建-布局-访问">对象创建-布局-访问</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/内存溢出实战">内存溢出实战</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/内存区域回收">内存区域回收</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/四大引用">四大引用</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/垃圾回收算法">垃圾回收算法</a></li><li class="navListItem"><a class="navItem" href="/docs/JVM系列/HotSpot回收算法细节">HotSpot回收算法细节</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Java系列<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/java系列/java注解">java注解</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot请求参数绑定">springboot请求参数绑定</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot请求参数校验框架">springboot请求参数校验框架</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/YAML语法">YAML语法</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/动态代理">动态代理</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/classpath和java命令">classpath和java命令</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/java系列/springboot-aop编程">springboot-aop编程</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot统一异常处理">springboot统一异常处理</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot数据库和事务">springboot数据库和事务</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot拦截器">springboot拦截器</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot中的web配置">springboot中的web配置</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/docker的简单开发">docker的简单开发</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot自动配置">springboot自动配置</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/数据库的隔离级别">数据库的隔离级别</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/springboot监控">springboot监控</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/java类加载">java类加载</a></li><li class="navListItem"><a class="navItem" href="/docs/java系列/java-agent的相关内容">java-agent的相关内容</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Node<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">JS 基础</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/语法基础和数据类型">语法基础和数据类型</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/数据类型转换">数据类型转换</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/语句-表达式-运算符">语句 表达式 运算符</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/变量与对象">变量与对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/函数">函数</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/数据处理">数据处理</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/常用API">常用 API</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/重点知识">重点知识</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">ES6</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/块级作用域">块级作用域</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/字符串和正则表达式">字符串和正则表达式</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/函数">函数</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/对象">对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Symbol">Symbol</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Set和Map">Set和Map</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/迭代器和生成器">迭代器和生成器</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/类">类</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/数组">数组</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/ES6/Promise">Promise</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Node 基础</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/模块系统">模块系统</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/package.json">package.json</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/内置对象">内置对象</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/npm脚本的使用">npm脚本的使用</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/Buffer">Buffer</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/Stream">Stream</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/事件循环机制">事件循环机制</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/示例代码">示例代码</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">stream系列</h4><ul><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/流的缓冲">流的缓冲</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/可读流">可读流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/可写流">可写流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/双工流和转换流">双工流和转换流</a></li><li class="navListItem"><a class="navItem" href="/docs/nodejs/node基础/stream系列/自定义流">自定义流</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">后期计划<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/后期计划/学习计划">学习计划</a></li><li class="navListItem"><a class="navItem" href="/docs/后期计划/专题研究计划">专题研究计划</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/java系列/7.springboot-aop编程.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="aop-概念"></a><a href="#aop-概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AOP 概念</h2>
+<p>以下是 AOP 的核心概念：</p>
+<ul>
+<li>连接点(joinpoint)：连接点是应用程序执行期间明确的一个点，比如方法调用、类初始化、对象实例化等。可以理解为一个时间点，我们的 AOP 就是定义在这个到了时间点上的时候想要做些什么（典型案例就是：方法调用的时候记录日志）。Spring只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器</li>
+<li>通知(advice)：所谓通知指的就是拦截到连接点之后要执行的代码，通知分为前置、后置、异常、后置返回、环绕、引入通知六类</li>
+<li>切入点(pointcut)：<strong>切入点是一个</strong>用来选择什么时候执行通知的<strong>定义</strong>。我们创建一个切入点，其实就是从连接点中选择出一些符合我们的条件的连接点，我们的通知只在这些被选中的连接点上执行，而不是所有的连接点都执行</li>
+<li>切面(aspect)：切面是封装在类中的通知和切入点的组合，这种组合定义了应该被执行的位置和执行的逻辑。简单说就是，切面包含两个方面：在哪里执行这些代码、以及这些代码具体的逻辑</li>
+<li>织入(weaving)：将通知添加到目标类的具体连接点上的过程。这个过程不是我们处理的，而是 AOP 框架处理的。对于 AspectJ 来说，它有单独的编译器对 AOP 进行编译，实际上来说已经有点改变了 Java 语法，这是编译器织入的方式。对于 Spring AOP 来说，是通过动态代理来进行织入的，是一种运行时织入的方式，使用的是纯粹的 Java 方式，不需要单独编译</li>
+<li>目标对象(target)：被 AOP 修改了的对象，也就是被通知(advised)的对象</li>
+<li>引入(introduction)：这是通过引入其它方法或者字段，来修改类的结构的过程。通过引入的方式，我们可以在运行时让任何的类实现任何的接口，而不需要该类显示的实现该接口。简单来说，引入修改了类的结构，改变了字段或者方法。</li>
+</ul>
+<blockquote>
+<p>连接点和切入点的区别：</p>
+<p>我们去餐厅吃饭的时候，连接点就像是菜单上的菜名，而切入点则是我们想要选择的菜的想法。</p>
+<p>例如：我想要所有的牛肉做成的菜，这句话就是一个切入点。这个切入点可能从菜单上（所有的连接点组成的集合）筛选出了某几个连接点（比如选出了：小炒黄牛肉、凉拌牛肉）</p>
+<p>可以这样理解：</p>
+<ul>
+<li>在 spring AOP 中，连接点就是所有的方法调用的集合</li>
+<li>而切入点就是我们定义的表达式，这个表达式的作用是说明：我想要选择中哪些方法。最终这个切入点就定义了一些连接点的集合</li>
+<li>所以一般来说我们只需要定义切入点即可</li>
+</ul>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="spring-编码式-aop"></a><a href="#spring-编码式-aop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring 编码式 AOP</h2>
+<p>Spring 支持 aopaliance 这种通用 AOP 标准，因此我们可以先写一个这种编码式的 AOP 来体验一下 Spring 中的 AOP 使用过程</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JavaDemoApplication</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RealServe</span> </span>{
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">serve</span><span class="hljs-params">()</span> </span>{
+            System.out.println(<span class="hljs-string">"原始对象运行"</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"原始对象"</span>;
+        }
+    }
+
+    <span class="hljs-comment">//import org.aopalliance.intercept.MethodInterceptor;</span>
+    <span class="hljs-comment">// 这个是一个 AOP 标准，使用这个标准实现的 AOP 可以运行在别的 AOP 框架下</span>
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RealServeDecorator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MethodInterceptor</span> </span>{
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(MethodInvocation invocation)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+            System.out.print(<span class="hljs-string">"插入到前面的AOP，"</span>);
+            Object result = invocation.proceed();
+            System.out.println(<span class="hljs-string">"返回值是："</span> + result);
+            <span class="hljs-keyword">return</span> result;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        RealServe realServe = <span class="hljs-keyword">new</span> RealServe();
+        ProxyFactory pf = <span class="hljs-keyword">new</span> ProxyFactory();
+        pf.addAdvice(<span class="hljs-keyword">new</span> RealServeDecorator());
+        pf.setTarget(realServe);
+        RealServe realServeProxy = (RealServe) pf.getProxy();
+        realServeProxy.serve();
+    }
+}
+</code></pre>
+<ul>
+<li><p><code>import org.aopalliance.intercept.MethodInterceptor;</code></p>
+<ul>
+<li>这是 AOP 的一种通用标准</li>
+</ul></li>
+<li><p><code>ProxyFactory</code></p>
+<pre><code class="hljs css language-java">ProxyFactory pf = <span class="hljs-keyword">new</span> ProxyFactory();
+pf.addAdvice(<span class="hljs-keyword">new</span> RealServeDecorator());
+pf.setTarget(realServe);
+RealServe realServeProxy = (RealServe) pf.getProxy();
+</code></pre>
+<ul>
+<li>Spring 提供的代理工厂</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="spring-aop架构"></a><a href="#spring-aop架构" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring AOP架构</h2>
+<p>Spring AOP 的实现方式是基于代理的，也就是生成原始对象的代理对象，AOP 的逻辑都封装在了代理对象里，我们在调用 bean 的逻辑的时候，实际上访问到的都是代理之后的 bean。</p>
+<p><img src="../assets/image-20200313152347090.png" alt="image-20200313152347090"></p>
+<p>在运行时，Spring 会分析我们为 bean 定义的切入点，并且动态生成代理 bean，此时，不会直接调用目标 bean，而是将调用者注入代理 bean。</p>
+<p>Spring AOP 的代理有两种实现方式：CGLIB 和 JDK 动态代理。默认情况下：</p>
+<ul>
+<li>当被通知的目标对象实现一个接口时，使用 JDK 动态代理</li>
+<li>当目标对象没有实现接口时，使用 CGLIB 代理</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="spring-aop-中的连接点"></a><a href="#spring-aop-中的连接点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring AOP 中的连接点</h3>
+<p>Spring AOP 中的连接点只支持方法调用，绝大部分情况下这种就够用了。如果想要更多的连接点，应该使用 AspectJ，AspectJ 和 Spring AOP 是可以一起用的</p>
+<h3><a class="anchor" aria-hidden="true" id="spring-aop-中的切面"></a><a href="#spring-aop-中的切面" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring AOP 中的切面</h3>
+<p>在 Spring AOP 中，切面由实现了 Advisor 接口的类的实例表示。Spring 提供了一些可以复用的 Advisor 实现。Advisor 有两个子接口：PointcutAdvisor、IntroductionAdvisor</p>
+<p>所有的 Advisor 实现都实现了 PointcutAdvisor 接口，这些实现使用切入点来控制要作用于哪些连接点。在 Spring 中，IntroductionAdvisor 被视为特殊类型的通知。</p>
+<h3><a class="anchor" aria-hidden="true" id="关于-proxyfactory-类"></a><a href="#关于-proxyfactory-类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>关于 ProxyFactory 类</h3>
+<p>ProxyFactory 类的作用：</p>
+<ul>
+<li>控制织入和代理的创建的过程</li>
+<li>使用 setTarget 表示被代理的是哪个对象</li>
+<li>在内部将代理对象的创建过程交给了 cglib 或者 jdk 动态代理，具体是哪一个，取决于应用的配置</li>
+<li>使用 addAdvice 将通知应用于这个对象的所有方法调用，而不是有选择的应用，在内部使用的是一个默认的切入点，这个切入点包含了所有的连接点（也就是所有的方法调用）</li>
+<li>当想要更多的控制所创建的 advisor 或者想要向代理添加引入时，可以自己创建 Advisor 并且使用 ProxyFactory 的 addAdvisor 方法（其实就是添加切面啦，切面里包含有切入点和通知，所以可以控制向目标对象哪些方法进行通知）</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="spring-aop-的六种通知"></a><a href="#spring-aop-的六种通知" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring AOP 的六种通知</h3>
+<ul>
+<li>前置通知
+<ul>
+<li>org.springframework.aop.MethodBeforeAdvice</li>
+<li>可以在连接点执行之前执行，也就是在被代理的方法执行之前进行执行。前置通知可以访问被代理的方法，但是无法控制方法本身的执行，如果前置通知抛出异常，那么拦截器链条的进一步执行会终止，并且将异常传回给拦截器链条。也就是说，可以通过抛出异常的方式来终止代理方法的执行</li>
+</ul></li>
+<li>后置返回通知
+<ul>
+<li>org.springframework.aop.AfterReturningAdvice</li>
+<li>在连接点的方法调用完成并且返回之后执行，它可以访问被调用的方法、参数和它的返回值。此时方法已经调用完成，所以无法阻止方法的执行。如果目标方法抛出异常，则不会执行这个通知。并且异常将会照常传回调用堆栈</li>
+</ul></li>
+<li>后置通知
+<ul>
+<li>org.springframework.aop.AfterAdvice</li>
+<li>仅当被通知方法正常完成时才执行后置通知，无论被通知方法的执行结果是什么，都会执行后置通知，即使抛出异常也会执行这个通知</li>
+</ul></li>
+<li>环绕通知
+<ul>
+<li>org.aopalliance.intercept.MethodInterceptor</li>
+<li>在 Spring 中，环绕通知使用方法拦截器的 aopalliance 标准进行建模。环绕通知允许在方法调用之前和调用之后执行，并且可以控制方法的调用，控制返回值，如果需要的话可以完全绕过该方法，自己实现相应的逻辑</li>
+</ul></li>
+<li>异常通知
+<ul>
+<li>org.springframework.aop.ThrowsAdvice</li>
+<li>异常通知在方法调用返回后执行，但是只有抛出异常的时候才执行。异常通知只能捕获特定的异常。使用异常通知可以访问抛出异常的方法、传递给调用的参数以及调用的目标</li>
+</ul></li>
+<li>引入通知
+<ul>
+<li>org.springframework.aop.IntroductionInterceptor</li>
+<li>Spring 将引入建模为特殊类型的拦截器。通过使用引入拦截器，可以指定由引入通知引入的方法的实现</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="spring-boot-aop-的使用"></a><a href="#spring-boot-aop-的使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spring boot AOP 的使用</h2>
+<ul>
+<li><p>Maven 引入 spring-boot-starter-aop 依赖</p>
+<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre></li>
+<li><p>在 application.properties 中配置启用 AOP</p>
+<pre><code class="hljs css language-properties"><span class="hljs-meta">spring.aop.auto</span>=<span class="hljs-string">true</span>
+<span class="hljs-meta">spring.aop.proxy-target-class</span>=<span class="hljs-string">true</span>
+</code></pre>
+<ul>
+<li>第一个配置表示：启用 AOP 功能</li>
+<li>第二个配置表示：强制使用 CGLIB 来进行动态代理</li>
+</ul></li>
+<li><p>使用 @Aspect 定义切面，切面里包含切入点和通知</p></li>
+</ul>
+<p>前面两项就不多说了，直接从后面的 demo 示例开始写</p>
+<h3><a class="anchor" aria-hidden="true" id="定义一个即将被增强的bean"></a><a href="#定义一个即将被增强的bean" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定义一个即将被增强的bean</h3>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// 我们的通知主要集中在这个接口的 sayHello 方法</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DemoService</span> </span>{
+    <span class="hljs-function">String <span class="hljs-title">sayHello</span><span class="hljs-params">(String name)</span></span>;
+}
+<span class="hljs-comment">// 这个接口用来介绍引入型通知的功能</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MoreService</span> </span>{
+    <span class="hljs-function">String <span class="hljs-title">more</span><span class="hljs-params">()</span></span>;
+}
+<span class="hljs-comment">// 引入型通知调用接口时的底层实现</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MoreServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MoreService</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">more</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"增加的功能"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"增加功能"</span>;
+    }
+}
+
+
+<span class="hljs-comment">// 这个方法有一定的几率抛出异常</span>
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">DemoService</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">sayHello</span><span class="hljs-params">(String name)</span> </span>{
+        System.out.println(<span class="hljs-string">"你好，"</span> + name);
+        <span class="hljs-keyword">if</span> (System.nanoTime() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+            System.out.println(<span class="hljs-string">"本次执行发生了异常"</span>);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"本次执行发生了异常"</span>);
+        }
+        <span class="hljs-keyword">return</span> name;
+    }
+}
+</code></pre>
+<p>以上是一个简单的 service。</p>
+<p>注意一个很重要的事情：Spring AOP 一定是对 bean 进行增强，我们所要代理的类，必须在容器中有实例</p>
+<h3><a class="anchor" aria-hidden="true" id="定义一个切面"></a><a href="#定义一个切面" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定义一个切面</h3>
+<pre><code class="hljs css language-java"><span class="hljs-meta">@Aspect</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-meta">@Order</span>(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoAspect</span> </span>{
+    <span class="hljs-comment">// 引入型通知</span>
+    <span class="hljs-meta">@DeclareParents</span>(
+            value = <span class="hljs-string">"com.example.javademo.service.DemoServiceImpl"</span>, <span class="hljs-comment">// 被增强的类</span>
+            defaultImpl = MoreServiceImpl<span class="hljs-class">.<span class="hljs-keyword">class</span> // 使用什么实现来增强
+    )
+    <span class="hljs-title">private</span> <span class="hljs-title">MoreService</span> <span class="hljs-title">moreService</span></span>; <span class="hljs-comment">// 表示想要增加的接口</span>
+
+    <span class="hljs-meta">@Pointcut</span>(<span class="hljs-string">"execution(* com.example.javademo.service.DemoServiceImpl.sayHello(..))"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHelloPoint</span><span class="hljs-params">()</span> </span>{
+    }
+
+    <span class="hljs-meta">@Before</span>(<span class="hljs-string">"sayHelloPoint() &amp;&amp; args(name)"</span>) <span class="hljs-comment">// args(name) 表示获取这个方法的第一个参数，参数名称并不一定要叫做 name</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cBefore</span><span class="hljs-params">(JoinPoint joinPoint, String name)</span> </span>{
+        System.out.println(<span class="hljs-string">"name参数是："</span> + name);
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前3"</span>);
+        System.out.println(<span class="hljs-string">"参数是："</span> + Arrays.stream(joinPoint.getArgs()) <span class="hljs-comment">//获取方法参数</span>
+                .map(str -&gt; (String) str)
+                .collect(Collectors.joining()));
+    }
+
+    <span class="hljs-meta">@Before</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aBefore</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前1"</span>);
+    }
+
+    <span class="hljs-meta">@Before</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bBefore</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前2"</span>);
+    }
+
+    <span class="hljs-meta">@Around</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">around</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前环绕"</span>);
+        Object result = joinPoint.proceed();
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之后环绕"</span>);
+        <span class="hljs-keyword">return</span> result; <span class="hljs-comment">// 这里我们可以修改函数的返回值，如果返回其它的结果，函数返回值就被修改了</span>
+    }
+
+    <span class="hljs-comment">// 环绕类型传入的参数应该是 ProceedingJoinPoint</span>
+    <span class="hljs-meta">@Around</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">around2</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前环绕2"</span>);
+        Object result = joinPoint.proceed(); <span class="hljs-comment">// 继续调用原始对象的方法，我们可以修改它的入参</span>
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之后环绕2"</span>);
+        <span class="hljs-keyword">return</span> result; <span class="hljs-comment">// 这里我们可以修改函数的返回值，如果返回其它的结果，函数返回值就被修改了</span>
+    }
+
+    <span class="hljs-meta">@After</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">after</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用之后"</span>);
+    }
+
+    <span class="hljs-meta">@AfterReturning</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterReturning</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用并且返回之后，抛出异常则不执行这里了"</span>);
+    }
+
+    <span class="hljs-meta">@AfterThrowing</span>(<span class="hljs-string">"sayHelloPoint()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterThrowing</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"sayHelloPoint 调用抛出异常后执行这里"</span>);
+    }
+    
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="main-方法和输出"></a><a href="#main-方法和输出" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>main 方法和输出</h3>
+<pre><code class="hljs css language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+  ConfigurableApplicationContext context = SpringApplication.run(JavaDemoApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
+  DemoService demoService = context.getBean(DemoService<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+  MoreService moreService = (MoreService)demoService;
+  demoService.sayHello(<span class="hljs-string">"岑志鹏"</span>);
+  moreService.more();
+}
+</code></pre>
+<p>没有异常的时候的输出如下</p>
+<pre><code class="hljs css language-java">sayHelloPoint 调用之前环绕
+sayHelloPoint 调用之前环绕<span class="hljs-number">2</span>
+sayHelloPoint 调用之前<span class="hljs-number">1</span>
+sayHelloPoint 调用之前<span class="hljs-number">2</span>
+name参数是：岑志鹏
+sayHelloPoint 调用之前<span class="hljs-number">3</span>
+参数是：岑志鹏
+你好，岑志鹏
+sayHelloPoint 调用之后环绕<span class="hljs-number">2</span>
+sayHelloPoint 调用之后环绕
+sayHelloPoint 调用之后
+sayHelloPoint 调用并且返回之后，抛出异常则不执行这里了
+增加的功能
+</code></pre>
+<p>抛出异常的时候的输出如下</p>
+<pre><code class="hljs"><span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之前环绕</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之前环绕2</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之前1</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之前2</span>
+<span class="hljs-attr">name参数是：岑志鹏</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之前3</span>
+<span class="hljs-attr">参数是：岑志鹏</span>
+<span class="hljs-attr">你好，岑志鹏</span>
+<span class="hljs-attr">本次执行发生了异常</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用之后</span>
+<span class="hljs-attr">sayHelloPoint</span> <span class="hljs-string">调用抛出异常后执行这里</span>
+<span class="hljs-attr">Exception</span> <span class="hljs-string">in thread "main" java.lang.RuntimeException: 本次执行发生了异常</span>
+</code></pre>
+<p>下面的内容进行详细分析这个切面的工作机制</p>
+<h2><a class="anchor" aria-hidden="true" id="切面用到的注解"></a><a href="#切面用到的注解" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>切面用到的注解</h2>
+<ul>
+<li><p>Component</p>
+<ul>
+<li>这个是 Spring 容器所需要的注解，如果不定义这个注解，Spring 容器不会将切面生效，因为容器里没扫描这个切面的 bean</li>
+</ul></li>
+<li><p>Aspect</p>
+<ul>
+<li>这个是真正定义切面的注解，用来提醒 Spring AOP，这个被注解的类是一个切面</li>
+</ul></li>
+<li><p><code>@Order(1)</code></p>
+<ul>
+<li>这个注解不是必须的</li>
+<li>这个注解用来定义切面的优先级，数字越小，优先级越高</li>
+<li>当有多个切面的时候，如果没有添加 Order 注解，不同的切面的优先级是未定义的</li>
+</ul></li>
+<li><p><code>@Pointcut(&quot;execution(* com.example.javademo.service.DemoServiceImpl.sayHello(..))&quot;)</code></p>
+<ul>
+<li>这个是定义切入点的注解，使用的是 execution 表达式</li>
+<li><code>execution(* com.example.javademo.service.DemoServiceImpl.sayHello(..))</code>
+<ul>
+<li>这里开头的 * 号表示：任何任何类型的返回值，也就是任何方法都匹配，我们也可以匹配一个特别的类型比如说 String</li>
+<li><code>com.example.javademo.service.DemoServiceImpl.sayHello</code> 表示：匹配这个包名这个类的这个 sayHello 方法，对这个方法做增强</li>
+<li><code>sayHello(..)</code> 这里的两个点号表示匹配的方法可以具有任何参数，也就是所有重载的 sayHello 方法都匹配的上，我们也可以匹配某个特定签名的方法</li>
+</ul></li>
+</ul></li>
+<li><p><code>@Around(&quot;sayHelloPoint()&quot;)</code></p>
+<ul>
+<li>这个是定义环绕通知的注解，表示在方法执行过程中所要进行的操作</li>
+<li><code>sayHelloPoint()</code> 这个是之前的 @PointCut 注解修饰的方法，用来代指这个切入点，表示这个环绕通知要应用在这个切入点之上</li>
+</ul></li>
+<li><p><code>@Before(&quot;sayHelloPoint()&quot;)</code></p>
+<ul>
+<li>这个是定义前置通知的注解，表示在方法执行之前所要进行的操作</li>
+<li><code>sayHelloPoint()</code> 含义如上</li>
+</ul></li>
+<li><p><code>@After(&quot;sayHelloPoint()&quot;)</code></p>
+<ul>
+<li>这个是定义后置通知的注解，表示在方法执行之后所要进行的操作</li>
+</ul></li>
+<li><p><code>@AfterReturning(&quot;sayHelloPoint()&quot;)</code></p>
+<ul>
+<li>这个是定义后置返回通知的注解，表示在方法执行并且返回之后所要进行的操作</li>
+<li>如果方法抛出了异常，那么这个通知就不会再执行了</li>
+</ul></li>
+<li><p><code>@AfterThrowing(&quot;sayHelloPoint()&quot;)</code></p>
+<ul>
+<li>这个是定义异常通知的注解，表示在方法抛出异常之后所要进行的操作</li>
+<li>如果方法没抛出异常，这个通知不会执行</li>
+<li>可以看出 <code>AfterThrowing</code> 和 <code>AfterReturning</code> 只会执行其中的一个</li>
+</ul></li>
+<li><p>引入型通知</p>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// 引入型通知</span>
+<span class="hljs-meta">@DeclareParents</span>(
+  value = <span class="hljs-string">"com.example.javademo.service.DemoServiceImpl"</span>, <span class="hljs-comment">// 被增强的类</span>
+  defaultImpl = MoreServiceImpl<span class="hljs-class">.<span class="hljs-keyword">class</span> // 使用什么实现来增强
+)
+<span class="hljs-title">private</span> <span class="hljs-title">MoreService</span> <span class="hljs-title">moreService</span></span>; <span class="hljs-comment">// 表示想要增加的接口</span>
+</code></pre>
+<ul>
+<li>使用 @DeclareParents 注解来定义引入型通知</li>
+<li>value 参数表示：我们想要哪个类被增强。被增强的这个类将会增加新的接口实现。如果添加了 加号，例如 <code>DemoServiceImpl+</code>，在 springboot 2 之后，表示增加它的子类，但是不包含这个类自身</li>
+<li><code>private MoreService moreService;</code> 表示我们想要上面 value 这个被增强的类增加什么接口。这里表示说：我们想要让 DemoServiceImpl 多实现一个 MoreService 接口</li>
+<li>defaultImpl 参数表示：DemoServiceImpl 多实现的这个 MoreService 接口，具体的方法是由谁来执行的。因为 DemoServiceImpl 本身是没有实现 MoreService 接口的，所以当我们调用 DemoServiceImpl 关于 MoreService 的接口方法时，需要一个底层的方法实现，这个实现就是 defaultImpl 定义的 MoreServiceImpl</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="切面的执行顺序"></a><a href="#切面的执行顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>切面的执行顺序</h2>
+<h3><a class="anchor" aria-hidden="true" id="相同类型通知的执行顺序"></a><a href="#相同类型通知的执行顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>相同类型通知的执行顺序</h3>
+<p>参考：<a href="https://segmentfault.com/a/1190000011283029">https://segmentfault.com/a/1190000011283029</a></p>
+<p>在我们上面的切面示例中，有 3 个前置通知，它们的顺序是有定义的，是按照通知的方法名字排序的，参考 <code>ReflectiveAspectJAdvisorFactory.getAdvisorMethods(..)</code>方法 ，里面有一行是 <code>methods.sort(METHOD_COMPARATOR);</code>，这里的比较器就是通过方法名进行排序的。</p>
+<p>在我们的切面示例中，3 个前置通知的方法名分别是：aBefore、bBefore、cBefore</p>
+<p>最后的执行顺序也是按照这个方法名的字符排序来的，小的在前面，所以 aBefore 是最先执行的</p>
+<p><strong>因此，在同一个切面中，相同类型的通知（前置、后置等叫做类型），是按照方法名进行排序的</strong></p>
+<h3><a class="anchor" aria-hidden="true" id="单个切面不同类型通知的执行顺序"></a><a href="#单个切面不同类型通知的执行顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>单个切面不同类型通知的执行顺序</h3>
+<p><img src="../assets/image-20200314142924526.png" alt="image-20200314142924526" style="zoom:50%;" /></p>
+<p>环绕通知分为三个部分：</p>
+<ul>
+<li>调用 <code>proceedJoinPoint.proceed()</code> 之前的代码部分</li>
+<li>调用 <code>proceedJoinPoint.proceed()</code> 的部分</li>
+<li>调用 <code>proceedJoinPoint.proceed()</code> 之后的代码部分</li>
+</ul>
+<p>在环绕通知确实调用了 <code>proceedJoinPoint.proceed()</code> 的情况下，顺序是这样的：</p>
+<ul>
+<li>环绕通知中，调用 <code>proceedJoinPoint.proceed()</code> 之前的代码部分</li>
+<li>所有的前置通知</li>
+<li>环绕通知中，调用 <code>proceedJoinPoint.proceed()</code> 的部分</li>
+<li>所有的后置通知</li>
+<li>所有的后置返回通知/异常通知 （这两种通知是互斥的，只有一种执行）</li>
+</ul>
+<blockquote>
+<p>在环绕通知没有调用 <code>proceedJoinPoint.proceed()</code> 的情况下，顺序与上面几乎一致，唯一的区别就是：所有的前置通知都取消了，也就是前置通知统统不生效了。但是后置的那些通知是还生效的</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="不同切面的顺序"></a><a href="#不同切面的顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>不同切面的顺序</h3>
+<p><img src="../assets/image-20200314143649013.png" alt="image-20200314143649013"></p>
+<p>不同切面的优先级是不确定的，但是我们可以给切面添加 Order 注解来定义切面的优先级，Order 数字越小，优先级越高</p>
+<p>不同切面的通知执行顺序如下：</p>
+<ul>
+<li>高优先级的切面的环绕通知调用 <code>proceedJoinPoint.proceed()</code> 之前的代码部分</li>
+<li>高优先级的切面的前置通知</li>
+<li>低优先级的切面的全部通知执行完成（按照上面单个切面不同类型通知的执行顺序进行执行）</li>
+<li>高优先级的切面的环绕通知调用 <code>proceedJoinPoint.proceed()</code> 的部分</li>
+<li>高优先级的切面的所有的后置通知</li>
+<li>高优先级的切面的所有的后置返回通知/异常通知</li>
+</ul>
+<blockquote>
+<p>一句话概括就是：高优先级的切面执行环绕的前半部分以及前置通知，然后把低一级的切面全部执行完。回过头来再继续执行高优先级的切面。</p>
+<p>也就是说：</p>
+<ul>
+<li>高优先级的前半部分先执行，后半部分后执行</li>
+<li>低优先级切面（称作第二级）之后如果还有更低一级别的切面（称作第三级别），则是递归这个过程。
+<ul>
+<li>第二级切面执行环绕的前半部分以及前置通知</li>
+<li>把第三级的切面全部执行完</li>
+<li>回过头来再继续执行第二级的切面</li>
+</ul></li>
+<li>对于环绕通知，我们只需要在最低的那个级别的切面中调用 <code>proceedJoinPoint.proceed()</code></li>
+</ul>
+<p>还有一种高优先级切面中环绕通知不执行 <code>proceedJoinPoint.proceed()</code> 的情况：</p>
+<ul>
+<li>这种情况下，由于 <code>proceedJoinPoint.proceed()</code> 没有执行</li>
+<li>所以高优先级切片的前置通知也不会生效了</li>
+<li>从而导致低优先级切面完全失效，任何通知都不起效（除了引入型通知）</li>
+<li>相当于直接屏蔽了低优先级切面</li>
+</ul>
+<p>另外，在多个环绕通知中调用 <code>proceedJoinPoint.proceed()</code> 并不会导致被拦截的底层方法执行多次。底层方法只会执行一次，这里我们可以拿到返回值，然后将返回值不做修改返回出去，因此，每个环绕通知一般来说都要调用 <code>proceedJoinPoint.proceed()</code></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="切点表达式"></a><a href="#切点表达式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>切点表达式</h3>
+<p>参考：</p>
+<ul>
+<li><a href="https://my.oschina.net/zhangxufeng/blog/1824275">https://my.oschina.net/zhangxufeng/blog/1824275</a></li>
+<li><a href="https://www.cnblogs.com/myitnews/p/11553177.html">https://www.cnblogs.com/myitnews/p/11553177.html</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="通知的参数"></a><a href="#通知的参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通知的参数</h3>
+<ul>
+<li><p>如果你不想要参数的话，这些通知方法都可以不加参数</p></li>
+<li><p>非环绕型通知：第一个参数都可以是 JoinPoint，后面的参数通过下面的方式获取</p>
+<pre><code class="hljs css language-java"><span class="hljs-meta">@Before</span>(<span class="hljs-string">"sayHelloPoint() &amp;&amp; args(name)"</span>) <span class="hljs-comment">// args(name) 表示获取这个被拦截的方法的第一个参数，参数名称并不一定要叫做 name</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cBefore</span><span class="hljs-params">(JoinPoint joinPoint, String name)</span> </span>{
+  System.out.println(<span class="hljs-string">"name参数是："</span> + name);
+  System.out.println(<span class="hljs-string">"sayHelloPoint 调用之前3"</span>);
+  System.out.println(<span class="hljs-string">"参数是："</span> + Arrays.stream(joinPoint.getArgs()) <span class="hljs-comment">//获取方法参数</span>
+                     .map(str -&gt; (String) str)
+                     .collect(Collectors.joining()));
+}
+</code></pre></li>
+<li><p>环绕型通知：第一个参数可以是 ProceedingJoinPoint，用来决定方法是否继续执行</p></li>
+<li><p>AfterReturning 中可以添加 return 的名称，然后绑定在方法的入参里</p></li>
+<li><p>AfterThrowing 中可以添加 throw 的名称，然后绑定在方法的入参里</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="最佳实践"></a><a href="#最佳实践" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>最佳实践</h3>
+<ul>
+<li>尽量减少使用环绕通知</li>
+<li>更多使用前置通知、后置通知等更加明确的通知范围</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/20/2020</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/java系列/classpath和java命令"><span class="arrow-prev">← </span><span>classpath和java命令</span></a><a class="docs-next button" href="/docs/java系列/springboot统一异常处理"><span>springboot统一异常处理</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#aop-概念">AOP 概念</a></li><li><a href="#spring-编码式-aop">Spring 编码式 AOP</a></li><li><a href="#spring-aop架构">Spring AOP架构</a><ul class="toc-headings"><li><a href="#spring-aop-中的连接点">Spring AOP 中的连接点</a></li><li><a href="#spring-aop-中的切面">Spring AOP 中的切面</a></li><li><a href="#关于-proxyfactory-类">关于 ProxyFactory 类</a></li><li><a href="#spring-aop-的六种通知">Spring AOP 的六种通知</a></li></ul></li><li><a href="#spring-boot-aop-的使用">Spring boot AOP 的使用</a><ul class="toc-headings"><li><a href="#定义一个即将被增强的bean">定义一个即将被增强的bean</a></li><li><a href="#定义一个切面">定义一个切面</a></li><li><a href="#main-方法和输出">main 方法和输出</a></li></ul></li><li><a href="#切面用到的注解">切面用到的注解</a></li><li><a href="#切面的执行顺序">切面的执行顺序</a><ul class="toc-headings"><li><a href="#相同类型通知的执行顺序">相同类型通知的执行顺序</a></li><li><a href="#单个切面不同类型通知的执行顺序">单个切面不同类型通知的执行顺序</a></li><li><a href="#不同切面的顺序">不同切面的顺序</a></li><li><a href="#切点表达式">切点表达式</a></li><li><a href="#通知的参数">通知的参数</a></li><li><a href="#最佳实践">最佳实践</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
