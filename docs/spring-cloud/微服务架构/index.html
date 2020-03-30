@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## spring boot 和 spring cloud 版本对应关系"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## spring boot 和 spring cloud 版本对应关系"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/spring-cloud/1.微服务架构.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="spring-boot-和-spring-cloud-版本对应关系"></a><a href="#spring-boot-和-spring-cloud-版本对应关系" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>spring boot 和 spring cloud 版本对应关系</h2>
+<table>
+<thead>
+<tr><th style="text-align:left">Release Train</th><th style="text-align:left">Boot Version</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:left">Hoxton</td><td style="text-align:left">2.2.x</td></tr>
+<tr><td style="text-align:left">Greenwich</td><td style="text-align:left">2.1.x</td></tr>
+<tr><td style="text-align:left">Finchley</td><td style="text-align:left">2.0.x</td></tr>
+<tr><td style="text-align:left">Edgware</td><td style="text-align:left">1.5.x</td></tr>
+<tr><td style="text-align:left">Dalston</td><td style="text-align:left">1.5.x</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>spring cloud 项目官网有这个信息</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="单体架构的不足"></a><a href="#单体架构的不足" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>单体架构的不足</h2>
+<ul>
+<li>业务复杂后，代码量越来越大，可读性、可维护性、可扩展性下降。新人接手需要的时间增多</li>
+<li>随着用户的增加，程序承受的并发越来越高，并发能力有瓶颈</li>
+<li>测试的难度越来越大，牵一发动全身</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="单体架构使用集群模式时候的不足"></a><a href="#单体架构使用集群模式时候的不足" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>单体架构使用集群模式时候的不足</h3>
+<p><img src="../assets/image-20200328115732015.png" alt="image-20200328115732015"></p>
+<ul>
+<li>系统仍然是单体应用，依然还是可读性可维护性很差</li>
+<li>数据库成为瓶颈，解决方案是使用分布式数据库，也就是将数据库进行分库分表</li>
+<li>持续交付能力差，因为太复杂</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="微服务应该具有的特点"></a><a href="#微服务应该具有的特点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微服务应该具有的特点</h2>
+<ul>
+<li>按照业务划分为一个个独立的程序，也就是服务单元</li>
+<li>服务之间通过 RPC 通信（通常是 http）</li>
+<li>自动化部署</li>
+<li>可以用不同的编程语言</li>
+<li>可以用不用的存储技术</li>
+<li>服务集中化管理</li>
+<li>微服务是一个分布式系统</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="微服务的优势"></a><a href="#微服务的优势" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微服务的优势</h2>
+<ul>
+<li>复杂业务拆分成多个小的业务，降低单个业务的复杂度，可读性和可维护性提高</li>
+<li>服务具有很强的横向扩展能力</li>
+<li>单个微服务内部高度耦合，服务与服务之间完全独立，无耦合。提高开发效率，降低开发成本</li>
+<li>由于服务之间不会耦合，所以接手的时候比较简单</li>
+<li>服务独立部署，单个服务的修改和部署对其它服务没有影响，测试简单</li>
+<li>微服务在 CAP 理论中采用的是 AP 架构，具有高可用和分区容错的特点。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="微服务的不足"></a><a href="#微服务的不足" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微服务的不足</h2>
+<ul>
+<li>微服务本身的复杂度就比较高，因为网络的通信就是比进程内通信更复杂</li>
+<li>分布式事务。根据 CAP 理论，同时满足 一致性、可用性、分区容错 是不可能的。因此微服务系统的分布式事务十分困难和复杂</li>
+<li>服务的划分很困难。</li>
+<li>服务的部署更复杂，因为要部署的东西更多了，它们之间的调用网络也很复杂</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="微服务应该具备的功能"></a><a href="#微服务应该具备的功能" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>微服务应该具备的功能</h2>
+<h3><a class="anchor" aria-hidden="true" id="服务的注册与发现"></a><a href="#服务的注册与发现" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务的注册与发现</h3>
+<p><img src="../assets/image-20200328121736299.png" alt="image-20200328121736299"></p>
+<p>服务注册中心保存所有微服务的地址以及它们的健康状态。</p>
+<p>服务注册是指服务提供者将自己的信息（名称、ip等）告诉服务注册中心。</p>
+<p>服务提供者会定期向注册中心发送心跳包，表示自己还活着。</p>
+<h3><a class="anchor" aria-hidden="true" id="服务的负载均衡"></a><a href="#服务的负载均衡" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务的负载均衡</h3>
+<p>服务的负载均衡就是：服务的消费者如何找到某个服务实例</p>
+<p>微服务中，一个服务提供者将会水平部署多个，我们一次实际上只需要消费其中一个实例，决定这一个具体的实例，就是服务的负载均衡所干的事情。</p>
+<h3><a class="anchor" aria-hidden="true" id="服务的容错"></a><a href="#服务的容错" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务的容错</h3>
+<p>微服务系统中，服务的数量往往非常多，网络天生就是不可靠的，经常会面临某个组件忽然连接不到的情况（网络延迟或者是故障了），这时候就会影响到依赖这个服务的其它服务。</p>
+<p>这个时候可能就<strong>线程阻塞</strong>了，然后在并发量高的情况下，一堆线程阻塞，直接完蛋了。</p>
+<p>这个就导致了雪崩。</p>
+<p>为了避免这种情况的发生，微服务使用一种熔断机制，当一个服务的失败次数或者是响应时间超过阈值的时候，熔断器就打开了，这个时候所有的请求就执行快速失败，也就是不再使用这个可能不可用的服务了，直接降级给出一些信息。</p>
+<p><img src="../assets/image-20200328131829870.png" alt="image-20200328131829870"></p>
+<p>这种机制除了防止雪崩，还有以下作用：</p>
+<ul>
+<li>将资源进行隔离：如果某个服务的某个 API 出了问题，只会隔离这个 API，不会影响到其它的 API</li>
+<li>服务降级的功能：当服务处于正常的状态时，大量的请求短时间内同时涌入，超过了处理能力，这是熔断器就会打开将服务降级，一面服务器负载过高而故障</li>
+<li>自我修复能力：当某个微小的故障，导致网络暂时不可用，熔断器被打开。网络恢复后，熔断器又自动关闭了，十分方便</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="服务网关"></a><a href="#服务网关" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务网关</h3>
+<p>微服务系统中，API 接口资源通常由服务网关统一暴露（API 网关），内部服务不直接对外提供服务，这样做的好处是将内部的服务隐藏起来，在一定程度上可以对服务进行统一处理。</p>
+<ul>
+<li>网关将所有服务统一聚合，对外统一暴露，外界不需要知道内部服务的复杂性。同时网关也保护了内部服务，防止被外部直接调用以及服务的敏感信息对外暴露</li>
+<li>网关可以做一些身份认证、权限认证等功能</li>
+<li>网关可以实现监控功能、实时日志输出，对请求进行记录</li>
+<li>网关可以用来做流量监控，在高流量的情况下对服务降级</li>
+<li>API 接口从内部服务分离出来，方便做测试</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="服务配置的统一管理"></a><a href="#服务配置的统一管理" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务配置的统一管理</h3>
+<p>在实际开发过程中，每个服务都有很多配置文件，随着服务数量的增加，管理这些配置文件也很麻烦和复杂。需要一个统一的配置管理组件，例如 spring cloud config，大致流程如下：</p>
+<ul>
+<li>首先，config server 读取配置文件仓库的配置信息（可以是存放在配置服务的本地仓库，或者是远程的 git 仓库例如 github）</li>
+<li>config server 启动后，读取配置文件信息，存放在自己的内存中</li>
+<li>当启动服务 A、B 时，由于服务 A、B 指定了向 config server 读取配置信息，服务 A、B 向 config server 读取配置信息</li>
+<li>当服务的配置信息需要修改且修改完成后，向 config server 发送 post 请求进行刷新，这是服务 A、B 会向 config server 重新读取配置文件</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="服务链路追踪"></a><a href="#服务链路追踪" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>服务链路追踪</h3>
+<p>微服务系统中，服务的调用链路可能十分复杂</p>
+<p><img src="../assets/image-20200328133222814.png" alt="image-20200328133222814"></p>
+<p>一旦出了问题，想定位问题十分困难，所以要实现分布式链路追踪。</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/30/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#spring-boot-和-spring-cloud-版本对应关系">spring boot 和 spring cloud 版本对应关系</a></li><li><a href="#单体架构的不足">单体架构的不足</a><ul class="toc-headings"><li><a href="#单体架构使用集群模式时候的不足">单体架构使用集群模式时候的不足</a></li></ul></li><li><a href="#微服务应该具有的特点">微服务应该具有的特点</a></li><li><a href="#微服务的优势">微服务的优势</a></li><li><a href="#微服务的不足">微服务的不足</a></li><li><a href="#微服务应该具备的功能">微服务应该具备的功能</a><ul class="toc-headings"><li><a href="#服务的注册与发现">服务的注册与发现</a></li><li><a href="#服务的负载均衡">服务的负载均衡</a></li><li><a href="#服务的容错">服务的容错</a></li><li><a href="#服务网关">服务网关</a></li><li><a href="#服务配置的统一管理">服务配置的统一管理</a></li><li><a href="#服务链路追踪">服务链路追踪</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
