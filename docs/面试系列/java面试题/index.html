@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1.java是解释执行吗"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 1.java是解释执行吗"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/面试系列/java面试题.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1java是解释执行吗"></a><a href="#1java是解释执行吗" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.java是解释执行吗</h2>
+<p>并不完全是解释执行，对于运行时的热点代码会被 JIT 编译成机器码，这部分就是编译执行的了</p>
+<ul>
+<li>Server 模式的 JVM 统计的数据更多，需要上万次的调用才会进行 JIT 编译</li>
+<li>Client 模式的 JVM 统计的数据较少，门限是 1500 次就进行 JIT 编译</li>
+</ul>
+<p>JVM 参数：</p>
+<ul>
+<li><code>-Xint</code> 只解释执行，不进行 JIT 编译</li>
+<li><code>-Xcomp</code> 只编译执行，并不一定比普通 JIT 快
+<ul>
+<li>首先是启动会慢</li>
+<li>其次是一些分支预测不进行 profiling 的话，不能有效优化</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="2为什么-jvm-不全程-jit"></a><a href="#2为什么-jvm-不全程-jit" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.为什么 JVM 不全程 JIT</h2>
+<ul>
+<li>首先，编译有时间开销，对于一些只执行少数次数的代码，JIT 没啥卵用可能更慢</li>
+<li>第二是编译也有空间开销，编译后的大小扩增了 10 倍以上</li>
+<li>对于一些代码只有运行的时候才知道怎么更好的优化，所以只能先解释执行看看效果，收集一下 profile</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3exception-和-error-的区别"></a><a href="#3exception-和-error-的区别" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.Exception 和 Error 的区别</h2>
+<p><img src="../assets/accba531a365e6ae39614ebfa3273900.png" alt="img"></p>
+<ul>
+<li>首先，Error 和 Exception 都继承自 Throwable，只有 Throwable 类型的实例才可以被抛出或者捕获</li>
+<li>Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。</li>
+<li>Error 是指在正常情况下，不大可能出现的情况，绝大部分的 Error 都会导致程序（比如 JVM 自身）处于非正常的、不可恢复状态。既然是非正常情况，所以不便于也不需要捕获，常见的比如 OutOfMemoryError 之类，都是 Error 的子类。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="4运行时异常与一般异常有什么区别？"></a><a href="#4运行时异常与一般异常有什么区别？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.运行时异常与一般异常有什么区别？</h2>
+<ul>
+<li>Exception 分为可检查异常和非检查异常，可检查异常必须显示的捕获，非检查异常不是必须要显示捕获的</li>
+<li>运行时异常一般是编码的时候可以避免的异常，根据具体的需要来自行决定是否捕获</li>
+</ul>
+<p>常见的检查异常：</p>
+<ul>
+<li>IOException</li>
+<li>FileNotFoundException</li>
+<li>ClassNotFoundException</li>
+<li>InterruptedException</li>
+<li>NoSuchMethodException</li>
+<li>SQLException</li>
+<li>ConnectException</li>
+</ul>
+<p>常见的运行时异常：</p>
+<ul>
+<li>NullPointerException</li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>ClassCastException</li>
+<li>IllegalArgumentException</li>
+<li>UnsupportedOperationException</li>
+<li>NumberFormatException</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="5noclassdeffounderror-和-classnotfoundexception-的区别"></a><a href="#5noclassdeffounderror-和-classnotfoundexception-的区别" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.NoClassDefFoundError 和 ClassNotFoundException 的区别</h2>
+<p>ClassNotFoundException 产生的原因：</p>
+<ul>
+<li>使用 Class.forName 方法来动态地加载类，类加载器没找到这个类的字节码，抛出 ClassNotFoundException，这是一个普通的检查异常</li>
+</ul>
+<p>NoClassDefFoundError 产生的原因：</p>
+<ul>
+<li>编译的时候有这个类，例如使用 <code>A a = new A()</code> 这种语句引用的类，类信息是编译的时候获取到的，在编译的时候找到了这个类</li>
+<li>而在运行的时候没有这个 class 文件。造成该问题的原因可能是打包过程漏掉了部分类，或者jar包出现损坏或者篡改。解决这个问题的办法是查找那些在开发期间存在于类路径下但在运行期间却不在类路径下的类。</li>
+</ul>
+<blockquote>
+<p>Class.forName 传入的只是类名字符串，所以编译时其实是不知道类信息的</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="6强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？"></a><a href="#6强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？</h2>
+<ul>
+<li><p>强引用，就是普通写代码的时候指向对象的引用。这种引用只要存在，被引用的对象就不会被回收</p></li>
+<li><p>软引用，就是只有当 JVM 认为内存不足时，才会去试图回收软引用指向的对象。JVM 会确保在抛出 OOM 之前，清理软引用指向的对象。软引用通常用来实现内存敏感的缓存，如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。</p>
+<blockquote>
+<p>即将 OOM 时回收，如果不发生 OOM，也会在一段时间后被回收，通过</p>
+<p><code>-XX:SoftRefLRUPolicyMSPerMB=3000</code> 设置 3000 毫秒后回收</p>
+<p>但是这种设置取决于 JVM 实现，不能过度依赖</p>
+</blockquote></li>
+<li><p>弱引用（WeakReference）并不能使对象豁免垃圾收集，仅仅是提供一种访问在弱引用状态下对象的途径。这就可以用来构建一种没有特定约束的关系，比如，维护一种非强制性的映射关系，如果试图获取时对象还在，就使用它，否则重现实例化。它同样是很多缓存实现的选择。</p>
+<blockquote>
+<p>被垃圾收集器发现了的时候回收</p>
+</blockquote></li>
+<li><p>对于幻象引用，有时候也翻译成虚引用，你不能通过它访问对象。幻象引用仅仅是提供了一种确保对象被 finalize 以后，做某些事情的机制，比如，通常用来做所谓的 Post-Mortem 清理机制，我在专栏上一讲中介绍的 Java 平台自身 Cleaner 机制等，也有人利用幻象引用监控对象的创建和销毁。</p>
+<blockquote>
+<p>我们只是在它被回收的时候收到一个通知</p>
+</blockquote></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="7string、stringbuffer、stringbuilder有什么区别？"></a><a href="#7string、stringbuffer、stringbuilder有什么区别？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7.String、StringBuffer、StringBuilder有什么区别？</h2>
+<ul>
+<li><p>String 是不可变的字符串，同时也是一个 final 的类。由于是不可变的，所以它的操作都会产生新的 String 对象，对于性能来说会弱一点（但是 immutable 对于编程的语义来说是很提倡的）</p></li>
+<li><p>StringBuilder 是为了解决 String 的不可变特性导致的太多中间小对象而出现的，它的 append 和 add 方法等不会产生中间对象。</p>
+<blockquote>
+<p>不保证拼接操作的线程安全</p>
+</blockquote></li>
+<li><p>StringBuffer 则是线程安全的 StringBuilder 实现，它的操作保证了线程安全性。但是开销较大</p>
+<blockquote>
+<p>各种修改方法都是 synchronize 方法</p>
+</blockquote></li>
+</ul>
+<p>总结就是：</p>
+<ul>
+<li>常规使用 String</li>
+<li>大量拼接操作使用 StringBuilder</li>
+<li>多个线程进行同一个字符串的大量拼接操作的话用 StringBuffer</li>
+</ul>
+<p>实际上来说我们直接拼接字符串也未必就一定真的是用 String，javac 编译时可能优化成了 StringBuilder。</p>
+<h3><a class="anchor" aria-hidden="true" id="字符串常量池"></a><a href="#字符串常量池" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串常量池</h3>
+<p>我们可以使用 <code>&quot;abc&quot;.intern()</code> 把这个字符串加入到字符串常量池中，这个常量池就是存储在堆区中的一个 hashTable（JDK 7 以及之后的版本），这个方法返回的就是常量池中的这个字符串对象的引用。</p>
+<p>这样就避免了创建重复的字符串之后被强引用，导致堆中有很多重复字符串无法释放。</p>
+<p>这个常量池的大小现在是 60013，也就是说这个 HashTable 有 60013 个槽位，显然如果我们缓存的数量越多，发生 hash 碰撞的概率越大，通过调整 <code>-XX:StringTableSize=N</code> 参数来修改这个常量池的槽位的数量</p>
+<h3><a class="anchor" aria-hidden="true" id="g1-自动排重"></a><a href="#g1-自动排重" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>G1 自动排重</h3>
+<p>上面的 intern 常量池方法需要自己显式调用，在 Oracle JDK 8u20 之后，推出了一个新的特性，也就是 G1 GC 下的字符串排重（JVM 自动排重）</p>
+<p>个功能目前是默认关闭的，你需要使用下面参数开启，并且记得指定使用 G1 GC：</p>
+<p><code>-XX:+UseStringDeduplication</code></p>
+<h2><a class="anchor" aria-hidden="true" id="8动态代理是基于什么原理？"></a><a href="#8动态代理是基于什么原理？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.动态代理是基于什么原理？</h2>
+<p>动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC 调用、面向切面的编程（AOP）。</p>
+<p>用的较多的有 JDK 动态代理、CGLib 动态代理，其它的方式还有 javaassist、asm 等直接生成字节码的方式</p>
+<ul>
+<li>JDK 动态代理，只能对接口进行代理，也就是代理对象实现了这些接口</li>
+<li>CGLib 动态代理，可以对接口和类进行代理，代理对象实际上是继承的子类，它只能代理父类所有的非 final 的 public 方法</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="9hashmap相关的问题"></a><a href="#9hashmap相关的问题" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>9.HashMap相关的问题</h2>
+<ul>
+<li><p>为什么容量是 2 的幂</p>
+<ul>
+<li><p>因为计算下标值的时候，不是使用的 mod 算法，而是使用了位运算</p></li>
+<li><pre><code class="hljs css language-java">    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>{
+        <span class="hljs-keyword">int</span> h;
+        <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);
+    }
+</code></pre></li>
+<li><p>这里计算出的新的 hash 主要是为了让高位的数据也参与到低位来</p></li>
+<li><p>因为 length 一般较小，起作用的主要还是低位的数据，所以需要把高位的影响也添加进来</p></li>
+<li><p><code>p = tab[i = (n - 1) &amp; hash]</code>，这里 n 表示容量，如果 n 是 2 的幂的话，<code>n -1</code> 的二进制就是一串连续的 1，这样 hash 就能保证每个桶都有可能。如果 n 不是 2 的幂，此时 <code>n -1</code> 的二进制就包含了 0 ，那么按位与的时候这个值对应的桶肯定不会被分到</p></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/30/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1java是解释执行吗">1.java是解释执行吗</a></li><li><a href="#2为什么-jvm-不全程-jit">2.为什么 JVM 不全程 JIT</a></li><li><a href="#3exception-和-error-的区别">3.Exception 和 Error 的区别</a></li><li><a href="#4运行时异常与一般异常有什么区别？">4.运行时异常与一般异常有什么区别？</a></li><li><a href="#5noclassdeffounderror-和-classnotfoundexception-的区别">5.NoClassDefFoundError 和 ClassNotFoundException 的区别</a></li><li><a href="#6强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？">6.强引用、软引用、弱引用、幻象引用有什么区别？具体使用场景是什么？</a></li><li><a href="#7string、stringbuffer、stringbuilder有什么区别？">7.String、StringBuffer、StringBuilder有什么区别？</a><ul class="toc-headings"><li><a href="#字符串常量池">字符串常量池</a></li><li><a href="#g1-自动排重">G1 自动排重</a></li></ul></li><li><a href="#8动态代理是基于什么原理？">8.动态代理是基于什么原理？</a></li><li><a href="#9hashmap相关的问题">9.HashMap相关的问题</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
