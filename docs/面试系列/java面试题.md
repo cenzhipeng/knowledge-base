@@ -1,7 +1,7 @@
 ---
-id: 面试题
+id: java面试题
 title: 本文内容
-sidebar_label: 面试题
+sidebar_label: java面试题
 ---
 
 
@@ -149,3 +149,26 @@ NoClassDefFoundError 产生的原因：
 
 - JDK 动态代理，只能对接口进行代理，也就是代理对象实现了这些接口
 - CGLib 动态代理，可以对接口和类进行代理，代理对象实际上是继承的子类，它只能代理父类所有的非 final 的 public 方法
+
+
+
+## 9.HashMap相关的问题
+
+- 为什么容量是 2 的幂
+
+  - 因为计算下标值的时候，不是使用的 mod 算法，而是使用了位运算
+
+  - ```java
+        static final int hash(Object key) {
+            int h;
+            return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        }
+    ```
+
+  - 这里计算出的新的 hash 主要是为了让高位的数据也参与到低位来
+
+  - 因为 length 一般较小，起作用的主要还是低位的数据，所以需要把高位的影响也添加进来
+
+  - `p = tab[i = (n - 1) & hash]`，这里 n 表示容量，如果 n 是 2 的幂的话，`n -1` 的二进制就是一串连续的 1，这样 hash 就能保证每个桶都有可能。如果 n 不是 2 的幂，此时 `n -1` 的二进制就包含了 0 ，那么按位与的时候这个值对应的桶肯定不会被分到
+
+  
