@@ -172,3 +172,32 @@ NoClassDefFoundError 产生的原因：
   - `p = tab[i = (n - 1) & hash]`，这里 n 表示容量，如果 n 是 2 的幂的话，`n -1` 的二进制就是一串连续的 1，这样 hash 就能保证每个桶都有可能。如果 n 不是 2 的幂，此时 `n -1` 的二进制就包含了 0 ，那么按位与的时候这个值对应的桶肯定不会被分到
 
   
+
+## 10.ThreadLocal 内存泄漏
+
+![img](../assets/7432604-072ea1eed5e63601.jpg)
+
+- 每个线程持有一个 ThreadLocalMap
+- 这个 Map 是一个 Entry 数组，也就是说 ThreadLocalMap 是基于开放寻址的方式来实现的（线性探测）
+- 当我们使用 `someThreadLocal.set(obj)` 的时候，将会构造一个 Entry，key 就是 `someThreadLocal` 这个 ThreadLocal 对象引用，value 是 obj
+- 这个 Entry 同时继承了 WeakReference，构造函数使用的是 super(k)，也就是说，key 是一个弱引用
+- 当我们使用 `someThreadLocal.get()` 的时候，它将自身作为 key，然后计算 hash，找到对应的 Entry，然后比对这个 entry 的 key
+- 如果不对，就继续探测下一个 Entry 进行比对（线性探测）
+
+
+
+内存泄漏的原因：
+
+- ThreadLocal 对象的强引用一旦被置为 null，Entry 里的弱引用 key 就会在下次 GC 被回收
+- 于是就出现了很多 key 取出来是 null 的 Entry，我们无法使用这些 entry 里的 value
+
+
+
+最佳实践：
+
+- 使用完了 ThreadLocal 对象就调用它的 remove 方法，将其从线程的 ThreadLocalMap 中删除
+
+
+
+## 11.并发容器
+
