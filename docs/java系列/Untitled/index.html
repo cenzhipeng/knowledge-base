@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>java系列/Untitled · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# 标准分链应用迁移 BaaS 方案调研"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="java系列/Untitled · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="# 标准分链应用迁移 BaaS 方案调研"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>java系列/Untitled · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# 标准分链应用迁移 BaaS 方案调研"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="java系列/Untitled · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="# 标准分链应用迁移 BaaS 方案调研"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -6,7 +6,7 @@
 
               ga('create', 'UA-153148512-1', 'auto');
               ga('send', 'pageview');
-            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100,"scrollDuration":400}
@@ -255,7 +255,432 @@ bin/cita start test-chain/<span class="hljs-number">3</span>
 <p>等待几秒后，发现 cita-new 的值已经是 100，cita-base 的值不变</p>
 <p><strong>此时已经证明：两条链已经不是同一条链了，已经成功的进行了链的迁移</strong></p>
 <h2><a class="anchor" aria-hidden="true" id="节点数据同步然后分叉"></a><a href="#节点数据同步然后分叉" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>节点数据同步然后分叉</h2>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/13/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#环境说明">环境说明</a></li><li><a href="#节点数据打包迁移">节点数据打包迁移</a><ul class="toc-headings"><li><a href="#准备-cita-链实例组">准备 CITA 链实例组</a></li><li><a href="#构建-cita-链">构建 CITA 链</a></li><li><a href="#验证节点并且构造交易">验证节点并且构造交易</a></li><li><a href="#构建新的实例组（迁移组）">构建新的实例组（迁移组）</a></li></ul></li><li><a href="#节点数据同步然后分叉">节点数据同步然后分叉</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<h3><a class="anchor" aria-hidden="true" id="构建-cita-链-1"></a><a href="#构建-cita-链-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构建 CITA 链</h3>
+<p><img src="../assets/image-20200414185634972.png" alt="image-20200414185634972"></p>
+<p>在每个节点都执行以下命令：</p>
+<pre><code class="hljs"><span class="hljs-string">sudo </span><span class="hljs-string">su </span><span class="hljs-string">czp
+</span><span class="hljs-string">cd </span>~
+<span class="hljs-string">wget </span><span class="hljs-string">https:</span>//<span class="hljs-string">github.</span><span class="hljs-string">com/</span><span class="hljs-string">citahub/</span><span class="hljs-string">cita/</span><span class="hljs-string">releases/</span><span class="hljs-string">download/</span><span class="hljs-string">v0.</span><span class="hljs-string">24.</span>2/<span class="hljs-string">cita_sm2_sm3.</span><span class="hljs-string">tar.</span><span class="hljs-string">gz
+</span><span class="hljs-string">tar </span>-<span class="hljs-string">zxvf </span><span class="hljs-string">cita_sm2_sm3.</span><span class="hljs-string">tar.</span><span class="hljs-string">gz
+</span><span class="hljs-string">cd </span><span class="hljs-string">cita_sm2_sm3/</span>
+<span class="hljs-string">curl </span>-<span class="hljs-string">fsSL </span><span class="hljs-string">https:</span>//<span class="hljs-string">get.</span><span class="hljs-string">docker.</span><span class="hljs-string">com </span>-o <span class="hljs-built_in">get-docker.sh</span>
+<span class="hljs-string">sudo </span><span class="hljs-string">sh </span><span class="hljs-built_in">get-docker.sh</span>
+<span class="hljs-string">sudo </span><span class="hljs-string">usermod </span>-<span class="hljs-string">aG </span><span class="hljs-string">docker </span><span class="hljs-string">czp
+</span><span class="hljs-string">sudo </span><span class="hljs-string">su </span><span class="hljs-string">czp
+</span></code></pre>
+<p>在第一台机器上执行以下命令，构建链的节点</p>
+<pre><code class="hljs">bin/cita create --super_admin "<span class="hljs-number">0</span>x141d051b1b1922bf686f5df8aad45cefbcb0b696" --nodes "<span class="hljs-number">10.170.0.20</span>:<span class="hljs-number">4000,10.170</span>.<span class="hljs-number">0.18:4000</span>,<span class="hljs-number">10.170.0.19</span>:<span class="hljs-number">4000,10.170</span>.<span class="hljs-number">0.21:4000</span>"
+</code></pre>
+<p>将节点复制到其它3台机器（需要配置ssh秘钥，自行设置不再描述了）</p>
+<pre><code class="hljs">scp -r test-chain/ czp@cita-base<span class="hljs-number">-70</span>jb:<span class="hljs-regexp">/home/czp/cita_sm2_sm3/</span>
+scp -r test-chain/ czp@cita-base-dbj2:<span class="hljs-regexp">/home/czp/cita_sm2_sm3/</span>
+scp -r test-chain/ czp@cita-base-lh9h:<span class="hljs-regexp">/home/czp/cita_sm2_sm3/</span>
+</code></pre>
+<p>然后是，每台机器只保留一个节点，自行删除多余的重复节点即可（test-chain 目录下只保留一个数字开头的节点目录）</p>
+<p>最后是在每个机器上依次启动节点</p>
+<pre><code class="hljs"><span class="hljs-comment"># 第1台</span>
+./bin/cita setup test-chain/0
+./bin/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">0</span>
+<span class="hljs-comment"># 第2台</span>
+./<span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">1</span>
+./<span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">1</span>
+<span class="hljs-comment"># 第3台</span>
+./<span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">2</span>
+./<span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">2</span>
+<span class="hljs-comment"># 第4台</span>
+./<span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">3</span>
+./<span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">3</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="验证节点并且构造交易-1"></a><a href="#验证节点并且构造交易-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>验证节点并且构造交易</h3>
+<p>查看块高，持续增长表示正常</p>
+<pre><code class="hljs">curl -X POST <span class="hljs-params">--data</span> '{<span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,<span class="hljs-string">"method"</span>:<span class="hljs-string">"blockNumber"</span>,<span class="hljs-string">"params"</span>:[],<span class="hljs-string">"id"</span><span class="hljs-function">:83</span>}' 127.0.0.1<span class="hljs-function">:1337</span>
+</code></pre>
+<p>安装 cita-cli</p>
+<pre><code class="hljs"><span class="hljs-comment"># 安装 cita-cli</span>
+wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/citahub/</span>cita-cli<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/20.2.0/</span>cita-cli-x86_64-musl-tls-<span class="hljs-number">20.2</span>.<span class="hljs-number">0</span>.tar.gz
+tar -zxvf cita-cli-x86_64-musl-tls-<span class="hljs-number">20.2</span>.<span class="hljs-number">0</span>.tar.gz
+sudo mv cita-cli <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>
+</code></pre>
+<p>测试合约</p>
+<pre><code class="hljs">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.24</span>;
+
+contract SimpleStorage {
+    <span class="hljs-keyword">uint</span> storedData;
+    <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Init</span>(<span class="hljs-params">address, <span class="hljs-keyword">uint</span></span>)</span>;
+    <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Set</span>(<span class="hljs-params">address, <span class="hljs-keyword">uint</span></span>)</span>;
+    <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Stored</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span></span>)</span>;
+
+    constructor() <span class="hljs-keyword">public</span> {
+        storedData = <span class="hljs-number">100</span>;
+        <span class="hljs-function">emit <span class="hljs-title">Init</span>(<span class="hljs-params">msg.sender, <span class="hljs-number">100</span></span>)</span>;
+    }
+
+    <span class="hljs-function">function <span class="hljs-title">set</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> x</span>) <span class="hljs-keyword">public</span></span> {
+        <span class="hljs-function">emit <span class="hljs-title">Stored</span>(<span class="hljs-params">x</span>)</span>;
+        storedData = x;
+        <span class="hljs-function">emit <span class="hljs-title">Set</span>(<span class="hljs-params">msg.sender, x</span>)</span>;
+    }
+
+    <span class="hljs-function">function <span class="hljs-title">get</span>(<span class="hljs-params"></span>) <span class="hljs-keyword">public</span> constant <span class="hljs-title">returns</span> (<span class="hljs-params"><span class="hljs-keyword">uint</span></span>)</span> {
+        <span class="hljs-keyword">return</span> storedData;
+    }
+}
+</code></pre>
+<p>部署合约进行测试</p>
+<pre><code class="hljs"><span class="hljs-comment"># 部署合约</span>
+czp@cita-base-0p53:~<span class="hljs-string">/cita_sm2_sm3</span>$ cita-cli rpc sendRawTransaction     <span class="hljs-params">--code</span> 0x608060405234801561001057600080fd5b5060df8061001f6000396000f3006080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c146078575b600080fd5b348015605957600080fd5b5060766004803603810190808035906020019092919050505060a0565b005b348015608357600080fd5b50608a60aa565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058205aed214856a5c433292a354261c9eb88eed1396c83dabbe105bde142e49838ac0029     <span class="hljs-params">--private-key</span> 0x3ef2627393529fed043c7dbfd9358a4ae47a88a59949b07e7631722fd6959002     <span class="hljs-params">--algorithm</span> sm2
+{
+  <span class="hljs-string">"id"</span>: 4,
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"result"</span>: {
+    <span class="hljs-string">"hash"</span>: <span class="hljs-string">"0xb938c8676aa654aeec378678cb33bee02df87da0e131797d37467a8f4ceedd78"</span>,
+    <span class="hljs-string">"status"</span>: <span class="hljs-string">"OK"</span>
+  }
+}
+czp@cita-base-0p53:~<span class="hljs-string">/cita_sm2_sm3</span>$ cita-cli rpc getTransactionReceipt <span class="hljs-params">--hash</span> 0xb938c8676aa654aeec378678cb33bee02df87da0e131797d37467a8f4ceedd78
+{
+  <span class="hljs-string">"id"</span>: 1,
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"result"</span>: {
+    <span class="hljs-string">"blockHash"</span>: <span class="hljs-string">"0x966380af8be0a28ea510b4573c0c2b3235e9f7dde70c3ae6854b1523f2af7a2b"</span>,
+    <span class="hljs-string">"blockNumber"</span>: <span class="hljs-string">"0x8a"</span>,
+    <span class="hljs-string">"contractAddress"</span>: <span class="hljs-string">"0x9fd6e15f2df01991887b3b7b871d8944db9a8d86"</span>,
+    <span class="hljs-string">"cumulativeQuotaUsed"</span>: <span class="hljs-string">"0x17d9d"</span>,
+    <span class="hljs-string">"errorMessage"</span>: null,
+    <span class="hljs-string">"logs"</span>: [
+    ],
+    <span class="hljs-string">"logsBloom"</span>: <span class="hljs-string">"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"</span>,
+    <span class="hljs-string">"quotaUsed"</span>: <span class="hljs-string">"0x17d9d"</span>,
+    <span class="hljs-string">"root"</span>: null,
+    <span class="hljs-string">"transactionHash"</span>: <span class="hljs-string">"0xb938c8676aa654aeec378678cb33bee02df87da0e131797d37467a8f4ceedd78"</span>,
+    <span class="hljs-string">"transactionIndex"</span>: <span class="hljs-string">"0x0"</span>
+  }
+}
+<span class="hljs-comment"># 获得合约地址是 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86</span>
+<span class="hljs-comment"># 测试合约 将 x 设置为 18</span>
+cita-cli rpc sendRawTransaction \
+    <span class="hljs-params">--code</span> 0x60fe47b10000000000000000000000000000000000000000000000000000000000000018 \
+    <span class="hljs-params">--private-key</span> 0x3ef2627393529fed043c7dbfd9358a4ae47a88a59949b07e7631722fd6959002 \
+    <span class="hljs-params">--address</span> 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86 \
+    <span class="hljs-params">--algorithm</span> sm2
+<span class="hljs-comment"># 测试合约 获取 x 的值</span>
+czp@cita-base-0p53:~<span class="hljs-string">/cita_sm2_sm3</span>$ cita-cli rpc call \
+&gt;      <span class="hljs-params">--to</span> 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86 \
+&gt;      <span class="hljs-params">--data</span> 0x6d4ce63c \
+&gt;      <span class="hljs-params">--url</span> http:<span class="hljs-string">//127.0.0.1</span><span class="hljs-function">:1337</span>
+{
+  <span class="hljs-string">"id"</span>: 1,
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"result"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000018"</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="构建新的实例组（同步迁移组）"></a><a href="#构建新的实例组（同步迁移组）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>构建新的实例组（同步迁移组）</h3>
+<p><img src="../assets/image-20200414193729075.png" alt="image-20200414193729075"></p>
+<p>在源 cita 链上添加 4 个新节点作为同步节点</p>
+<pre><code class="hljs">czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-0</span><span class="hljs-string">p53:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita append --chain_name test-chain --node <span class="hljs-string">"10.170.0.25:4000"</span>
+czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-0</span><span class="hljs-string">p53:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita append --chain_name test-chain --node <span class="hljs-string">"10.170.0.23:4000"</span>
+czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-0</span><span class="hljs-string">p53:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita append --chain_name test-chain --node <span class="hljs-string">"10.170.0.22:4000"</span>
+czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-0</span><span class="hljs-string">p53:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita append --chain_name test-chain --node <span class="hljs-string">"10.170.0.24:4000"</span>
+</code></pre>
+<p>在 cita-sync 的 4 个节点中安装 docker 和 cita 软件包</p>
+<pre><code class="hljs"><span class="hljs-string">sudo </span><span class="hljs-string">su </span><span class="hljs-string">czp
+</span><span class="hljs-string">cd </span>~
+<span class="hljs-string">wget </span><span class="hljs-string">https:</span>//<span class="hljs-string">github.</span><span class="hljs-string">com/</span><span class="hljs-string">citahub/</span><span class="hljs-string">cita/</span><span class="hljs-string">releases/</span><span class="hljs-string">download/</span><span class="hljs-string">v0.</span><span class="hljs-string">24.</span>2/<span class="hljs-string">cita_sm2_sm3.</span><span class="hljs-string">tar.</span><span class="hljs-string">gz
+</span><span class="hljs-string">tar </span>-<span class="hljs-string">zxvf </span><span class="hljs-string">cita_sm2_sm3.</span><span class="hljs-string">tar.</span><span class="hljs-string">gz
+</span><span class="hljs-string">cd </span><span class="hljs-string">cita_sm2_sm3/</span>
+<span class="hljs-string">curl </span>-<span class="hljs-string">fsSL </span><span class="hljs-string">https:</span>//<span class="hljs-string">get.</span><span class="hljs-string">docker.</span><span class="hljs-string">com </span>-o <span class="hljs-built_in">get-docker.sh</span>
+<span class="hljs-string">sudo </span><span class="hljs-string">sh </span><span class="hljs-built_in">get-docker.sh</span>
+<span class="hljs-string">sudo </span><span class="hljs-string">usermod </span>-<span class="hljs-string">aG </span><span class="hljs-string">docker </span><span class="hljs-string">czp
+</span><span class="hljs-string">sudo </span><span class="hljs-string">su </span><span class="hljs-string">czp
+</span></code></pre>
+<p>将源节点发送到目标节点</p>
+<pre><code class="hljs">ssh <span class="hljs-number">10.170</span>.0.<span class="hljs-number">25</span> mkdir -p cita_sm2_sm3/test-chain &amp;&amp; scp -r test-chain/<span class="hljs-number">4</span> czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">25</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span>
+ssh <span class="hljs-number">10.170</span>.0.<span class="hljs-number">23</span> mkdir -p cita_sm2_sm3/test-chain &amp;&amp; scp -r test-chain/<span class="hljs-number">5</span> czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">23</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span>
+ssh <span class="hljs-number">10.170</span>.0.<span class="hljs-number">22</span> mkdir -p cita_sm2_sm3/test-chain &amp;&amp; scp -r test-chain/<span class="hljs-number">6</span> czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">22</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span>
+ssh <span class="hljs-number">10.170</span>.0.<span class="hljs-number">24</span> mkdir -p cita_sm2_sm3/test-chain &amp;&amp; scp -r test-chain/<span class="hljs-number">7</span> czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">24</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span>
+</code></pre>
+<p>启动 4 个同步节点</p>
+<pre><code class="hljs">czp@cita-sync-p3f0:~/cita_sm2_sm3$ bin/cita setup test-chain/4
+czp@cita-sync-p3f0:~/cita_sm2_sm3$ bin/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">4</span>
+czp@cita-<span class="hljs-keyword">sync</span>-qdpz:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">5</span>
+czp@cita-<span class="hljs-keyword">sync</span>-qdpz:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">5</span>
+czp@cita-<span class="hljs-keyword">sync</span>-rnc4:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">6</span>
+czp@cita-<span class="hljs-keyword">sync</span>-rnc4:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">6</span>
+czp@cita-<span class="hljs-keyword">sync</span>-z544:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita setup <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">7</span>
+czp@cita-<span class="hljs-keyword">sync</span>-z544:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">7</span>
+</code></pre>
+<p>同步节点上安装 cita-cli</p>
+<pre><code class="hljs"><span class="hljs-comment"># 安装 cita-cli</span>
+wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/citahub/</span>cita-cli<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/20.2.0/</span>cita-cli-x86_64-musl-tls-<span class="hljs-number">20.2</span>.<span class="hljs-number">0</span>.tar.gz
+tar -zxvf cita-cli-x86_64-musl-tls-<span class="hljs-number">20.2</span>.<span class="hljs-number">0</span>.tar.gz
+sudo mv cita-cli <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>
+</code></pre>
+<p>查看块高，发现在不断增长</p>
+<pre><code class="hljs">czp<span class="hljs-meta">@cita</span>-<span class="hljs-keyword">sync</span>-p3f0:~/cita_sm2_sm3$ cita-cli rpc blockNumber --url http:<span class="hljs-comment">//127.0.0.1:1341</span>
+{
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"result"</span>: <span class="hljs-string">"0x1074"</span>
+}
+</code></pre>
+<p>查看之前部署的合约的值，发现是同一个值，可以证明已经是同一条链了</p>
+<pre><code class="hljs">czp@cita-sync-p3f0:~<span class="hljs-string">/cita_sm2_sm3</span>$ cita-cli rpc call \
+&gt;       <span class="hljs-params">--to</span> 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86 \
+&gt;       <span class="hljs-params">--data</span> 0x6d4ce63c \
+&gt;       <span class="hljs-params">--url</span> http:<span class="hljs-string">//127.0.0.1</span><span class="hljs-function">:1341</span>
+{
+  <span class="hljs-string">"id"</span>: 1,
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"result"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000000000000000000000000000018"</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="同步后迁移"></a><a href="#同步后迁移" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>同步后迁移</h3>
+<p>我们以 0x1000 这个高度为限，进行迁移，首先是等待 4 个同步节点达到该高度，这一块儿只要等待同步即可。在真实的生产环境中，这个过程可能会十分漫长（可能会花好几天）</p>
+<p>等待 4 个节点都达到了 3000 这个高度后，将 4 个同步节点下线。</p>
+<pre><code class="hljs">czp@cita-sync-p3f0:~/cita_sm2_sm3$ bin/cita <span class="hljs-keyword">stop</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">4</span>
+stop...ok
+czp@cita-<span class="hljs-keyword">sync</span>-qdpz:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">stop</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">5</span>
+stop...ok
+czp@cita-<span class="hljs-keyword">sync</span>-rnc4:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">stop</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">6</span>
+stop...ok
+czp@cita-<span class="hljs-keyword">sync</span>-z544:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">stop</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">7</span>
+stop...ok
+</code></pre>
+<p>每个节点下载 cita_recover_sm2</p>
+<pre><code class="hljs">wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/citahub/</span>cita_recover<span class="hljs-regexp">/raw/m</span>aster<span class="hljs-regexp">/bin/</span>cita_recover_sm2
+chmod a+x cita_recover_sm2
+</code></pre>
+<p>对节点数据进行裁剪（统一裁剪到某个高度例如这里的 3000）</p>
+<pre><code class="hljs">czp<span class="hljs-meta">@cita</span>-sync-<span class="hljs-string">p3f0:</span><span class="hljs-regexp">~/cita_sm2_sm3$ ./</span>cita_recover_sm2 -h <span class="hljs-number">3000</span> -d test-chain<span class="hljs-regexp">/4/</span>data/
+czp<span class="hljs-meta">@cita</span>-sync-<span class="hljs-string">qdpz:</span><span class="hljs-regexp">~/cita_sm2_sm3$ ./</span>cita_recover_sm2 -h <span class="hljs-number">3000</span> -d test-chain<span class="hljs-regexp">/5/</span>data/
+czp<span class="hljs-meta">@cita</span>-sync-<span class="hljs-string">rnc4:</span><span class="hljs-regexp">~/cita_sm2_sm3$ ./</span>cita_recover_sm2 -h <span class="hljs-number">3000</span> -d test-chain<span class="hljs-regexp">/6/</span>data/
+czp<span class="hljs-meta">@cita</span>-sync-<span class="hljs-string">z544:</span><span class="hljs-regexp">~/cita_sm2_sm3$ ./</span>cita_recover_sm2 -h <span class="hljs-number">3000</span> -d test-chain<span class="hljs-regexp">/7/</span>data/
+</code></pre>
+<p>修改节点的网络配置 network，断开 cita-sync 与 cita-base 的网络连接：</p>
+<ul>
+<li>cita-sync-p3f0 对应 cita-base-0p53</li>
+<li>cita-sync-qdpz 对应 cita-base-70jb</li>
+<li>cita-sync-rnc4 对应 cita-base-dbj2</li>
+<li>cita-sync-z544 对应 cita-base-lh9h</li>
+</ul>
+<p>cita-sync-p3f0</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.25</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.23"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.22"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.24"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-sync-qdpz</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.23</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.25"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.22"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.24"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-sync-rnc4</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.22</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.25"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.23"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.24"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-sync-z544</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.24</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.25"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.23"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.22"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-base-0p53</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.20</span><span class="hljs-built_in">
+port </span>= 4000
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.18"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.19"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.21"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-base-70jb</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.18</span><span class="hljs-built_in">
+port </span>= 4000
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.20"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.19"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.21"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-base-dbj2</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.19</span><span class="hljs-built_in">
+port </span>= 4000
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.20"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.18"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.21"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-base-lh9h</p>
+<pre><code class="hljs"><span class="hljs-comment"># Current node ip is 10.170.0.21</span><span class="hljs-built_in">
+port </span>= 4000
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.20"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.18"</span><span class="hljs-built_in">
+port </span>= 4000
+
+[[peers]]<span class="hljs-built_in">
+ip </span>= <span class="hljs-string">"10.170.0.19"</span><span class="hljs-built_in">
+port </span>= 4000
+</code></pre>
+<p>cita-base 4 个节点全部同时重启一遍（cita-sync 的四个节点下线了，但是 cita-base 的节点依然会尝试去连接它们，只有同时下线清除这块儿的缓存，这是个很大的隐患）</p>
+<pre><code class="hljs">czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-0</span><span class="hljs-string">p53:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita restart test-chain/<span class="hljs-number">0</span>
+czp<span class="hljs-meta">@cita</span>-base<span class="hljs-number">-70</span><span class="hljs-string">jb:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita restart test-chain/<span class="hljs-number">1</span>
+czp<span class="hljs-meta">@cita</span>-base-<span class="hljs-string">dbj2:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita restart test-chain/<span class="hljs-number">2</span>
+czp<span class="hljs-meta">@cita</span>-base-<span class="hljs-string">lh9h:</span><span class="hljs-regexp">~/cita_sm2_sm3$ bin/</span>cita restart test-chain/<span class="hljs-number">3</span>
+</code></pre>
+<p>复制节点秘钥到 cita-sync</p>
+<pre><code class="hljs">czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span>0/address czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">25</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">4</span>/
+address                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">43</span>    <span class="hljs-number">87.3</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span>0/privkey  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">25</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">4</span>/
+privkey                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">67</span>   <span class="hljs-number">112.6</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">1</span>/privkey  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">23</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">5</span>/
+privkey                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">67</span>   <span class="hljs-number">142.6</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">1</span>/address  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">23</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">5</span>/
+address                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">43</span>    <span class="hljs-number">78.5</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">2</span>/address  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">22</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">6</span>/
+address                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">43</span>   <span class="hljs-number">117.7</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">2</span>/privkey  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">22</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">6</span>/
+privkey                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">67</span>   <span class="hljs-number">186.8</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">3</span>/privkey  czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">24</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">7</span>/
+privkey                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">67</span>   <span class="hljs-number">141.0</span>KB/s   00<span class="hljs-symbol">:</span>00
+czp<span class="hljs-variable">@cita</span>-base-0<span class="hljs-symbol">p53:</span>~<span class="hljs-regexp">/cita_sm2_sm3$ scp test-chain/</span><span class="hljs-number">3</span>/address   czp<span class="hljs-variable">@10</span>.<span class="hljs-number">170.0</span>.<span class="hljs-number">24</span><span class="hljs-symbol">:/home/czp/cita_sm2_sm3/test-chain/</span><span class="hljs-number">7</span>/
+address                                                                                                                                                                   <span class="hljs-number">100</span>%   <span class="hljs-number">43</span>    <span class="hljs-number">80.0</span>KB/s   00<span class="hljs-symbol">:</span>00
+</code></pre>
+<p>启动 cita-sync</p>
+<pre><code class="hljs">czp@cita-sync-p3f0:~/cita_sm2_sm3$ bin/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">4</span>
+czp@cita-<span class="hljs-keyword">sync</span>-qdpz:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">5</span>
+czp@cita-<span class="hljs-keyword">sync</span>-rnc4:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">6</span>
+czp@cita-<span class="hljs-keyword">sync</span>-z544:~/cita_sm2_sm3$ <span class="hljs-keyword">bin</span>/cita <span class="hljs-keyword">start</span> <span class="hljs-keyword">test</span>-<span class="hljs-keyword">chain</span>/<span class="hljs-number">7</span>
+</code></pre>
+<p>查看日志发现可以稳定出块，接下来进行验证合约，在几个 cita-sync 都执行下面的命令，发现都是 18 没有问题。</p>
+<pre><code class="hljs">cita-cli rpc call \
+      <span class="hljs-params">--to</span> 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86 \
+      <span class="hljs-params">--data</span> 0x6d4ce63c \
+      <span class="hljs-params">--url</span> http:<span class="hljs-string">//127.0.0.1</span><span class="hljs-function">:1341</span>
+</code></pre>
+<blockquote>
+<p>url 看节点配置</p>
+</blockquote>
+<p>接下来，在其中一个 cita-sync 节点执行合约的更改方法，将其设置为 99</p>
+<pre><code class="hljs">cita-cli rpc sendRawTransaction \
+    <span class="hljs-comment">--code 0x60fe47b10000000000000000000000000000000000000000000000000000000000000099 \</span>
+    <span class="hljs-comment">--private-key 0x3ef2627393529fed043c7dbfd9358a4ae47a88a59949b07e7631722fd6959002 \</span>
+    <span class="hljs-comment">--address 0x9fd6e15f2df01991887b3b7b871d8944db9a8d86 \</span>
+    <span class="hljs-comment">--algorithm sm2</span>
+</code></pre>
+<p>再次执行上面查看数值的方法，发现四个 cita-sync 节点的值都是 99，证明这四个节点可以进行出块共识。</p>
+<p>同时我们去 cita-base 执行上面查看数值的方法，发现数值依然是 18，证明两条链毫无关系，已经进行了分叉</p>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>一共有两种方式的迁移：节点数据打包迁移、节点数据同步然后分叉迁移</p>
+<h3><a class="anchor" aria-hidden="true" id="节点数据打包迁移-1"></a><a href="#节点数据打包迁移-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>节点数据打包迁移</h3>
+<ul>
+<li>源链的每个节点停机后打包所有数据</li>
+<li>将打的包拷贝到对应的新节点</li>
+<li>源链的节点重新启动</li>
+<li>新链节点解压源链打的包</li>
+<li>新链节点将 network 配置进行更改，更改为新链节点的 ip 和 端口</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="节点数据同步然后分叉迁移"></a><a href="#节点数据同步然后分叉迁移" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>节点数据同步然后分叉迁移</h3>
+<ul>
+<li>源链添加同步节点作为新链节点（源链 4 个共识节点，那么同时也添加 4 个同步节点）</li>
+<li>新链节点同步到某个位置后下线</li>
+<li>新链每个节点下载 cita_recover_sm2 对区块和数据进行裁剪，例如统一裁剪到 1000（取决于我们想同步到哪个位置进行分叉）</li>
+<li>更改源链和新链的 network 配置，在源链中删除所有新链节点的 ip 和端口</li>
+<li>源链所有节点保证同时下线，或者不开启节点自动发现配置，然后源链节点再重新上线</li>
+<li>上一步主要是为了保证源链不会再持有新链节点的信息将其视为同步节点</li>
+<li>新链修改 network 配置组成一个独立的网络，删除源链的所有 ip 和端口</li>
+<li>源链共识节点的 address 和 privkey 拷贝到对应的新链节点进行覆盖，这一步是为了保证新链完全替代源链共识节点</li>
+<li>新链节点逐个启动，组成新链</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="优劣对比"></a><a href="#优劣对比" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>优劣对比</h3>
+<ul>
+<li>速度：
+<ul>
+<li>打包迁移更快</li>
+<li>节点数据同步然后分叉迁移需要首先进行区块同步，这一步需要同步区块，还需要执行区块，速度比打包迁移慢得多，同步区块可能要持续数天</li>
+</ul></li>
+<li>操作复杂度：
+<ul>
+<li>打包迁移更简单</li>
+<li>节点数据同步然后分叉迁移需要的操作步骤更多，包括添加同步节点、同步节点区块裁剪、节点网络配置修改、源链节点同时下线、拷贝源链 address 和 privkey 等一系列的操作，很容易出错</li>
+</ul></li>
+<li>安全性：
+<ul>
+<li>打包迁移更安全</li>
+<li>节点数据同步然后分叉迁移的操作多，而且中间有一步骤需要所有源链节点下线或者是所有节点关闭节点自动发现，这一步骤在实际的区块链环境中是很难保证能做到的</li>
+</ul></li>
+<li>可行性
+<ul>
+<li>打包迁移更具有可行性</li>
+<li>节点数据同步然后分叉迁移需要进行很多 hack 的操作，步骤多而且复杂，出错时可能导致很多意料之外的错误，只作为备选方案比较好</li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/20/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#环境说明">环境说明</a></li><li><a href="#节点数据打包迁移">节点数据打包迁移</a><ul class="toc-headings"><li><a href="#准备-cita-链实例组">准备 CITA 链实例组</a></li><li><a href="#构建-cita-链">构建 CITA 链</a></li><li><a href="#验证节点并且构造交易">验证节点并且构造交易</a></li><li><a href="#构建新的实例组（迁移组）">构建新的实例组（迁移组）</a></li></ul></li><li><a href="#节点数据同步然后分叉">节点数据同步然后分叉</a><ul class="toc-headings"><li><a href="#构建-cita-链-1">构建 CITA 链</a></li><li><a href="#验证节点并且构造交易-1">验证节点并且构造交易</a></li><li><a href="#构建新的实例组（同步迁移组）">构建新的实例组（同步迁移组）</a></li><li><a href="#同步后迁移">同步后迁移</a></li></ul></li><li><a href="#总结">总结</a><ul class="toc-headings"><li><a href="#节点数据打包迁移-1">节点数据打包迁移</a></li><li><a href="#节点数据同步然后分叉迁移">节点数据同步然后分叉迁移</a></li><li><a href="#优劣对比">优劣对比</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
