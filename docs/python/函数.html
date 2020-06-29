@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## callable"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## callable"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python/7.函数.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="callable"></a><a href="#callable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>callable</h2>
+<p>判断某个对象是否可调用</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+print(callable(a))
+
+<span class="hljs-literal">True</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="创建函数"></a><a href="#创建函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建函数</h2>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a</span><span class="hljs-params">()</span></span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="函数文档"></a><a href="#函数文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>函数文档</h3>
+<p>放在函数开头的字符串称为 文档字符串(docstring)，将作为函数的一部分存储起来</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    测试用的函数
+    :return:
+    """</span>
+    <span class="hljs-keyword">pass</span>
+
+
+print(a.__doc__)
+</code></pre>
+<blockquote>
+<p>使用 <code>a.__doc__</code> 可以访问这个函数文档</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="返回值"></a><a href="#返回值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>返回值</h3>
+<p>所有的函数都返回值。如果你没有告诉它们该返回什么，将返回None</p>
+<h2><a class="anchor" aria-hidden="true" id="参数"></a><a href="#参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参数</h2>
+<h3><a class="anchor" aria-hidden="true" id="位置参数"></a><a href="#位置参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>位置参数</h3>
+<pre><code class="hljs">def func1(para1, para2, para3):
+    print(para1, para2, para3)
+
+
+func1(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+
+输出：<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span>
+</code></pre>
+<p>形如这种参数叫做位置参数，就是最普通的一种函数参数</p>
+<h3><a class="anchor" aria-hidden="true" id="关键字参数（命名参数）"></a><a href="#关键字参数（命名参数）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>关键字参数（命名参数）</h3>
+<pre><code class="hljs">def func1(para1, para2, para3):
+    <span class="hljs-builtin-name">print</span>(para1, para2, para3)
+
+
+func1(<span class="hljs-attribute">para2</span>=2, <span class="hljs-attribute">para3</span>=3, <span class="hljs-attribute">para1</span>=5)
+
+输出：5 2 3
+</code></pre>
+<p>形如这种传参的方式叫做关键字参数。我们可以不按照函数的参数定义顺序来传参</p>
+<h3><a class="anchor" aria-hidden="true" id="参数默认值"></a><a href="#参数默认值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参数默认值</h3>
+<pre><code class="hljs">def func1(<span class="hljs-attribute">para1</span>=3, <span class="hljs-attribute">para2</span>=6, <span class="hljs-attribute">para3</span>=9):
+    <span class="hljs-builtin-name">print</span>(para1, para2, para3)
+
+
+func1(<span class="hljs-attribute">para2</span>=2, <span class="hljs-attribute">para3</span>=3)
+
+输出：3 2 3
+</code></pre>
+<p>形如这种函数定义给了参数一个默认值</p>
+<blockquote>
+<p>带有默认值的参数定义必须在没有默认值参数的后面也就是说，para3 必须带有默认值，否则应该放在参数列表的前面</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="混合传参"></a><a href="#混合传参" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>混合传参</h3>
+<p>我们既可以使用位置参数也可以使用关键字参数</p>
+<pre><code class="hljs">def func1(<span class="hljs-attribute">para1</span>=3, <span class="hljs-attribute">para2</span>=6, <span class="hljs-attribute">para3</span>=9):
+    <span class="hljs-builtin-name">print</span>(para1, para2, para3)
+
+
+func1(5, <span class="hljs-attribute">para2</span>=2, <span class="hljs-attribute">para3</span>=3)
+
+输出：5 2 3
+</code></pre>
+<blockquote>
+<p>这种方式，需要先给出位置参数，然后给出命名参数</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="收集参数"></a><a href="#收集参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>收集参数</h3>
+<pre><code class="hljs">def func1(*params):
+    print(params)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+
+输出：(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+</code></pre>
+<blockquote>
+<p>这种参数就类似于是一个解构（实际上这种解构并不合法）：</p>
+<p><code>*params = 1, 2, 3</code></p>
+<p>params 类型将是 tuple</p>
+</blockquote>
+<pre><code class="hljs">def func1(a, *params):
+    print(a, params)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+
+输出：<span class="hljs-number">1</span> (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+</code></pre>
+<blockquote>
+<p>这种带星号的参数放在参数列表的最后，用来接收剩下所有的参数。如果没有剩余的参数，将是一个空元组</p>
+</blockquote>
+<p>实际来说，带星号的接收参数也可以不放在最后，这样的情况下，我们必须使用<strong>关键字传参</strong>的方式传递参数</p>
+<pre><code class="hljs">def func1(a, *params, b):
+    print(a, params, b)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+# 抛异常
+</code></pre>
+<pre><code class="hljs">def func1(a, *params, b):
+    print(a, params, b)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, b=<span class="hljs-number">5</span>)
+
+输出：<span class="hljs-number">1</span> (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-number">5</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="收集多余的关键字参数（双星号）"></a><a href="#收集多余的关键字参数（双星号）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>收集多余的关键字参数（双星号）</h4>
+<pre><code class="hljs">def func1(a, *params):
+    print(a, params)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, b=<span class="hljs-number">5</span>)
+# 抛异常
+</code></pre>
+<p>我们多传递了一个不存在的关键字，会抛出异常</p>
+<pre><code class="hljs">def func1(a, m=<span class="hljs-number">7</span>, *params, **args):
+    print(a, m, params, args)
+
+
+func1(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, b=<span class="hljs-number">5</span>, c=<span class="hljs-number">7</span>)
+
+输出：<span class="hljs-number">1</span> <span class="hljs-number">2</span> (<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) {<span class="hljs-string">'b'</span>: <span class="hljs-number">5</span>, <span class="hljs-string">'c'</span>: <span class="hljs-number">7</span>}
+</code></pre>
+<blockquote>
+<ul>
+<li>params 接收所有的剩余参数（不含关键字参数），因此是 3，4 元组</li>
+<li>args 接收所有的剩余关键字参数，因此是字典 {'b': 5, 'c': 7}</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="参数展开"></a><a href="#参数展开" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参数展开</h3>
+<h4><a class="anchor" aria-hidden="true" id="列表和元组展开"></a><a href="#列表和元组展开" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>列表和元组展开</h4>
+<p>有时候，我们有一个列表或者元组和字典，需要将其展开为多个参数传递给函数，可以使用如下方式</p>
+<pre><code class="hljs">def <span class="hljs-builtin-name">add</span>(a, b):
+    <span class="hljs-builtin-name">print</span>(a + b)
+
+
+m = [2, 4]
+<span class="hljs-builtin-name">add</span>(*m)
+
+输出：6
+</code></pre>
+<p>如上所示，使用 <code>*m</code> 这种方式，就可以将参数展开，我们使用 <code>add(*[2, 4])</code> 就等价于调用了 <code>add(2, 4)</code> ，也就是被展开了一层的多个参数</p>
+<h4><a class="anchor" aria-hidden="true" id="字典展开"></a><a href="#字典展开" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字典展开</h4>
+<p>字典展开需要使用双星号（传递的都是关键字参数）</p>
+<pre><code class="hljs">def <span class="hljs-builtin-name">add</span>(a, b):
+    <span class="hljs-builtin-name">print</span>(a + b)
+
+
+m = {<span class="hljs-string">'a'</span>: 3, <span class="hljs-string">'b'</span>: 5}
+<span class="hljs-builtin-name">add</span>(**m)
+
+输出：8
+</code></pre>
+<p>这相当于是调用了 <code>add(a=3, b=5)</code></p>
+<h2><a class="anchor" aria-hidden="true" id="作用域"></a><a href="#作用域" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>作用域</h2>
+<h3><a class="anchor" aria-hidden="true" id="内置字典"></a><a href="#内置字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>内置字典</h3>
+<p>每个作用域都有一个内置字典，用状态机的理论来说就是：当前的状态。可以使用 vars 来返回这个字典</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = <span class="hljs-number">5</span>
+<span class="hljs-selector-tag">b</span> = <span class="hljs-string">"sss"</span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(vars()</span></span>[<span class="hljs-string">'a'</span>], vars()[<span class="hljs-string">'b'</span>])
+
+输出：<span class="hljs-number">5</span> sss
+</code></pre>
+<blockquote>
+<p>vars() 内置函数输出的是这个内置字典</p>
+<p>除全局作用域外， 每个函数调用都将创建一个作用域：栈帧退出时作用域销毁（返回闭包时除外，作用域被捕获）</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="访问外部变量"></a><a href="#访问外部变量" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问外部变量</h3>
+<p>python 的执行模型可以看做是：执行全局 main 函数，然后不断进入新的内部作用域（函数调用），内层的函数可以访问外层函数的变量（外部作用域），例如：</p>
+<pre><code class="hljs"><span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">a</span>():
+    <span class="hljs-variable">m</span> = <span class="hljs-number">3</span>
+
+    <span class="hljs-variable">def</span> <span class="hljs-title">b</span>(<span class="hljs-variable">x</span>):
+        <span class="hljs-title">print</span>(<span class="hljs-variable">x</span> + <span class="hljs-variable">m</span>)</span>
+
+    <span class="hljs-function"><span class="hljs-title">b</span>(<span class="hljs-number">5</span>)</span>
+
+
+<span class="hljs-function"><span class="hljs-title">a</span>()</span>
+
+输出：<span class="hljs-number">8</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="变量遮蔽"></a><a href="#变量遮蔽" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>变量遮蔽</h3>
+<p>向上面这种访问外部作用域的情况，可能会发生变量遮蔽</p>
+<pre><code class="hljs"><span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">a</span>():
+    <span class="hljs-variable">m</span> = <span class="hljs-number">3</span>
+
+    <span class="hljs-variable">def</span> <span class="hljs-title">b</span>(<span class="hljs-variable">x</span>):
+        <span class="hljs-variable">m</span> = <span class="hljs-number">2</span>
+        <span class="hljs-title">print</span>(<span class="hljs-variable">x</span> + <span class="hljs-variable">m</span>)</span>
+
+    <span class="hljs-function"><span class="hljs-title">b</span>(<span class="hljs-number">5</span>)</span>
+    <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-variable">m</span>)</span>
+
+
+<span class="hljs-function"><span class="hljs-title">a</span>()</span>
+
+
+输出：<span class="hljs-number">7</span> 和 <span class="hljs-number">3</span>
+</code></pre>
+<blockquote>
+<p>这里表示 b 访问的是自己内部的 m = 2，没有访问到外部的 m = 3</p>
+</blockquote>
+<p>我们可以使用 nonlocal 访问外部作用域的变量</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a</span><span class="hljs-params">()</span>:</span>
+    m = <span class="hljs-number">3</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">b</span><span class="hljs-params">(x)</span>:</span>
+        <span class="hljs-keyword">nonlocal</span> m
+        m = <span class="hljs-number">2</span>
+        print(x + m)
+
+    b(<span class="hljs-number">5</span>)
+    print(m)
+
+
+a()
+
+输出：<span class="hljs-number">7</span> 和 <span class="hljs-number">2</span>
+</code></pre>
+<p>输出证明 a 方法内部的 m 确实被 b 方法给改动了，这个用法很不常用，了解即可</p>
+<p>同理还有 global 关键字，可以访问本模块的全局变量</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/29/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#callable">callable</a></li><li><a href="#创建函数">创建函数</a><ul class="toc-headings"><li><a href="#函数文档">函数文档</a></li><li><a href="#返回值">返回值</a></li></ul></li><li><a href="#参数">参数</a><ul class="toc-headings"><li><a href="#位置参数">位置参数</a></li><li><a href="#关键字参数（命名参数）">关键字参数（命名参数）</a></li><li><a href="#参数默认值">参数默认值</a></li><li><a href="#混合传参">混合传参</a></li><li><a href="#收集参数">收集参数</a></li><li><a href="#参数展开">参数展开</a></li></ul></li><li><a href="#作用域">作用域</a><ul class="toc-headings"><li><a href="#内置字典">内置字典</a></li><li><a href="#访问外部变量">访问外部变量</a></li><li><a href="#变量遮蔽">变量遮蔽</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

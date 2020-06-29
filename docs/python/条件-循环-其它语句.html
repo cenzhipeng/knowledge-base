@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## print"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## print"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python/6.条件-循环-其它语句.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="print"></a><a href="#print" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>print</h2>
+<h3><a class="anchor" aria-hidden="true" id="打印多个参数"></a><a href="#打印多个参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>打印多个参数</h3>
+<p>打印多个参数的时候，自动添加分隔符为空格</p>
+<pre><code class="hljs">print(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+# 打印 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改分隔符"></a><a href="#修改分隔符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改分隔符</h3>
+<p>添加 sep 参数修改分隔符</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">print</span>(1, 2, 3, <span class="hljs-attribute">sep</span>=<span class="hljs-string">'_'</span>)
+<span class="hljs-comment"># 打印 1_2_3</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改结束字符"></a><a href="#修改结束字符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改结束字符</h3>
+<p>默认的结束字符是换行，可以修改 end 参数</p>
+<pre><code class="hljs">print(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, end=<span class="hljs-string">'_'</span>)
+# 打印 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>_
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="解构语句"></a><a href="#解构语句" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>解构语句</h2>
+<pre><code class="hljs">x, y, z, w = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>
+x, y = y, x
+a, b, *c = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>
+print(a)
+print(b)
+print(c)
+
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+[<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+</code></pre>
+<blockquote>
+<p>使用 *c 接收剩下的所有序列</p>
+</blockquote>
+<pre><code class="hljs"><span class="hljs-built_in">name</span> = <span class="hljs-string">"Albus Percival Wulfric Brian Dumbledore"</span>
+<span class="hljs-keyword">first</span>, *<span class="hljs-keyword">middle</span>, <span class="hljs-keyword">last</span> = <span class="hljs-built_in">name</span>.split()
+</code></pre>
+<blockquote>
+<p>也可以把 * 放在中间</p>
+<p>带星号的最后是一个列表</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="布尔值"></a><a href="#布尔值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>布尔值</h2>
+<p>以下的值在转换成布尔值的时候是 False：</p>
+<ul>
+<li>False</li>
+<li>None</li>
+<li>0</li>
+<li>&quot;&quot;</li>
+<li>()</li>
+<li>[]</li>
+<li>{}</li>
+</ul>
+<p>换而言之，标准值False和None、各种类型(包括浮点数、复数等)的数值0、空序列(如空字符串、空元组和空列表)以及空映射(如空字典)都被视为假，而其他各种值都被视为真</p>
+<p>对于自定义的类型，该对象的 <code>__bool__</code>方法返回 False 或者 <code>__len__</code> 方法返回0 时被视为 False</p>
+<blockquote>
+<p>True 和 False 不过是 0 和 1 的别名：</p>
+<ul>
+<li>True == 1</li>
+<li>False == 0</li>
+</ul>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="类似于三目运算符的语句"></a><a href="#类似于三目运算符的语句" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类似于三目运算符的语句</h2>
+<pre><code class="hljs">status = <span class="hljs-string">"friend"</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">name</span>.endswith(<span class="hljs-string">"Gumby"</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">"stranger"</span>
+</code></pre>
+<p>使用这种形式类似于其它语言的三目运算符</p>
+<h2><a class="anchor" aria-hidden="true" id="链式比较"></a><a href="#链式比较" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>链式比较</h2>
+<p>python 支持链式比较</p>
+<pre><code class="hljs"><span class="hljs-string">age</span> <span class="hljs-string">=</span> <span class="hljs-number">20</span>
+<span class="hljs-number">0</span> <span class="hljs-string">&lt;</span> <span class="hljs-string">age</span> <span class="hljs-string">&lt;</span> <span class="hljs-number">100</span> <span class="hljs-comment"># True</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="相等性比较"></a><a href="#相等性比较" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>相等性比较</h2>
+<p>python 中判等有两种，分别是 <code>is</code> 和 <code>==</code></p>
+<h3><a class="anchor" aria-hidden="true" id="is"></a><a href="#is" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>is</h3>
+<p>is 判等表示判断两个对象的内存地址是否相同</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = []
+<span class="hljs-selector-tag">b</span> = []
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(a is b)</span></span>
+
+False
+</code></pre>
+<p>虽然两个都是空列表，但是其实是两个不同的空列表对象，指向不同的内存地址，因此是 False</p>
+<blockquote>
+<p><strong>a is b</strong> 相当于 <strong>id(a)==id(b)</strong>，<strong>id()</strong> 能够获取对象的内存地址</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="-比较"></a><a href="#-比较" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>== 比较</h3>
+<p>使用 <code>==</code> 的方式进行判等，实际上是调用了对象的 <code>__eq__</code> 方法，也就是说</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> == <span class="hljs-selector-tag">b</span>   等价于 <span class="hljs-selector-tag">a</span>.__eq__(b)
+</code></pre>
+<blockquote>
+<p>可以看出正好和 java 相反，java 的 == 相当于 python 的 is，java 的 equals 方法相当于 python 的 ==</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="字符顺序"></a><a href="#字符顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符顺序</h2>
+<h3><a class="anchor" aria-hidden="true" id="ord"></a><a href="#ord" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ord</h3>
+<p>返回字符的 unicode 码点值（字符转数字）</p>
+<pre><code class="hljs">print(<span class="hljs-name">ord</span>('a')) # <span class="hljs-number">97</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="chr"></a><a href="#chr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>chr</h3>
+<p>将 unicode 码点值转为字符（字符串）</p>
+<pre><code class="hljs"><span class="hljs-keyword">print</span>(<span class="hljs-keyword">chr</span>(<span class="hljs-number">97</span>)) <span class="hljs-comment"># a</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="布尔条件运算符"></a><a href="#布尔条件运算符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>布尔条件运算符</h2>
+<p>java 使用 <code>&amp;&amp; || !</code> 这种符号，python 使用 <code>and or not</code> 这种关键字</p>
+<h2><a class="anchor" aria-hidden="true" id="循环"></a><a href="#循环" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>循环</h2>
+<h3><a class="anchor" aria-hidden="true" id="while-循环"></a><a href="#while-循环" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>while 循环</h3>
+<pre><code class="hljs"><span class="hljs-meta">x</span>=1
+<span class="hljs-meta">while</span> <span class="hljs-meta">x</span> &lt;= 100:
+    p<span class="hljs-meta">rint(</span><span class="hljs-meta">x</span>) 
+    <span class="hljs-meta">x</span> += 1
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="for-循环"></a><a href="#for-循环" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>for 循环</h3>
+<h4><a class="anchor" aria-hidden="true" id="迭代列表"></a><a href="#迭代列表" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迭代列表</h4>
+<pre><code class="hljs"><span class="hljs-keyword">words</span> = [<span class="hljs-string">'this'</span>, <span class="hljs-string">'is'</span>, <span class="hljs-string">'an'</span>, <span class="hljs-string">'ex'</span>, <span class="hljs-string">'parrot'</span>]
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">word</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">words</span>:
+    print(<span class="hljs-built_in">word</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="迭代range"></a><a href="#迭代range" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迭代range</h4>
+<pre><code class="hljs">for <span class="hljs-keyword">number</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">101</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-keyword">number</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="迭代字典"></a><a href="#迭代字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迭代字典</h4>
+<pre><code class="hljs"><span class="hljs-string">d</span> <span class="hljs-string">=</span> <span class="hljs-string">{'x':</span> <span class="hljs-number">1</span><span class="hljs-string">,</span> <span class="hljs-attr">'y':</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-attr">'z':</span> <span class="hljs-number">3</span><span class="hljs-string">}</span>
+<span class="hljs-attr">for key in d:</span>
+    <span class="hljs-string">doxxx</span>
+<span class="hljs-string">for</span> <span class="hljs-string">key,</span> <span class="hljs-string">value</span> <span class="hljs-string">in</span> <span class="hljs-string">d.items():</span>
+</code></pre>
+<blockquote>
+<p>总而言之，for 可以用来迭代可迭代对象（<code>__iter__</code> 方法）</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="并行迭代"></a><a href="#并行迭代" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>并行迭代</h3>
+<p>有时候，你可能想同时迭代两个序列，可以这样做</p>
+<pre><code class="hljs">names = [<span class="hljs-string">'anne'</span>, <span class="hljs-string">'beth'</span>, <span class="hljs-string">'george'</span>, <span class="hljs-string">'damon'</span>]
+ages = [<span class="hljs-number">12</span>, <span class="hljs-number">45</span>, <span class="hljs-number">32</span>, <span class="hljs-number">102</span>]
+for name, age in zip(names, ages): 
+    print(name, <span class="hljs-string">'is'</span>, age, <span class="hljs-string">'years old'</span>)
+list(zip(names, ages)) = [(<span class="hljs-string">'anne'</span>, <span class="hljs-number">12</span>), (<span class="hljs-string">'beth'</span>, <span class="hljs-number">45</span>), (<span class="hljs-string">'george'</span>, <span class="hljs-number">32</span>), (<span class="hljs-string">'damon'</span>, <span class="hljs-number">102</span>)]
+</code></pre>
+<blockquote>
+<p>当序列的长度不同时，函数zip将在最短的序列用完后停止</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="迭代时获取索引"></a><a href="#迭代时获取索引" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迭代时获取索引</h3>
+<pre><code class="hljs">names = [<span class="hljs-string">'anne'</span>, <span class="hljs-string">'beth'</span>, <span class="hljs-string">'george'</span>, <span class="hljs-string">'damon'</span>]
+<span class="hljs-keyword">for</span> <span class="hljs-keyword">index</span>, <span class="hljs-keyword">name</span> <span class="hljs-keyword">in</span> enumerate(names):
+    <span class="hljs-keyword">if</span> <span class="hljs-string">'beth'</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">name</span>:
+        names[<span class="hljs-keyword">index</span>] = <span class="hljs-string">'hhh'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="反向迭代和排序后迭代"></a><a href="#反向迭代和排序后迭代" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>反向迭代和排序后迭代</h3>
+<ul>
+<li>反向迭代：reversed(可迭代对象)</li>
+<li>排序迭代：sorted(可迭代对象)</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="for-else-句式"></a><a href="#for-else-句式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>for else 句式</h3>
+<pre><code class="hljs"><span class="hljs-keyword">for</span> i in <span class="hljs-keyword">range</span>(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">10</span>:
+        <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"循环正常退出"</span>)
+</code></pre>
+<blockquote>
+<p>我们可以在 for 循环后面加一句 else 语句：</p>
+<ul>
+<li>仅当循环正常退出（没有调用 break 语句）时，else 子句才会执行</li>
+</ul>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="列表推导"></a><a href="#列表推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>列表推导</h2>
+<pre><code class="hljs">[x*x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>) <span class="hljs-keyword">if</span> x % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>] = [<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, <span class="hljs-number">36</span>, <span class="hljs-number">81</span>]
+</code></pre>
+<p>等价于</p>
+<pre><code class="hljs">result = []
+<span class="hljs-keyword">for</span> <span class="hljs-symbol">x</span> in range(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">if</span> <span class="hljs-symbol">x</span> % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>:
+        result.append(<span class="hljs-symbol">x</span> * <span class="hljs-symbol">x</span>)
+</code></pre>
+<p>还可添加更多的for部分</p>
+<pre><code class="hljs">[(x, y) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>) <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] = [(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)]
+</code></pre>
+<p>等价于</p>
+<pre><code class="hljs">result = []
+<span class="hljs-keyword">for</span> <span class="hljs-symbol">x</span> in range(<span class="hljs-number">3</span>):
+    <span class="hljs-keyword">for</span> <span class="hljs-symbol">y</span> in range(<span class="hljs-number">3</span>) 
+        result.append((<span class="hljs-symbol">x</span>, <span class="hljs-symbol">y</span>))
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="字典推导"></a><a href="#字典推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字典推导</h2>
+<p>使用花括号进行字典推导</p>
+<pre><code class="hljs">squares = {i:"{} squared is {}".format(i, i**<span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)}
+squares[<span class="hljs-number">8</span>] # <span class="hljs-string">'8 squared is 64'</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="pass-语句"></a><a href="#pass-语句" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pass 语句</h2>
+<p>用作占位符，有时候方法还没实现可以先使用 pass</p>
+<blockquote>
+<p>也可以写个字符串占位</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="exec"></a><a href="#exec" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>exec</h2>
+<p>用于动态执行代码</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-title">exec</span><span class="hljs-params">(<span class="hljs-string">"print(2)"</span>)</span></span>
+</code></pre>
+<p>相当于在当前命名空间执行了 <code>print(2)</code></p>
+<p>由此会带来一个问题：动态代码修改了当前命名空间的变量，这是我们不愿意看到的，因此可以传入一个字典作为脚本的命名空间，或者说动态代码执行的环境</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = <span class="hljs-number">3</span>
+<span class="hljs-function"><span class="hljs-title">exec</span><span class="hljs-params">(<span class="hljs-string">"a = 1"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(a)</span></span>
+输出  <span class="hljs-number">1</span>，因为被动态代码给修改了
+</code></pre>
+<pre><code class="hljs">a = 3
+m = {}
+<span class="hljs-built_in">exec</span>(<span class="hljs-string">"a = 1"</span>, m)
+<span class="hljs-built_in">print</span>(a) <span class="hljs-comment"># 3</span>
+<span class="hljs-built_in">print</span>(m[<span class="hljs-string">'a'</span>]) <span class="hljs-comment"># 1</span>
+
+此时被修改的 a 属于 m 这个命名空间字典
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="eval"></a><a href="#eval" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>eval</h2>
+<p>eval是一个类似于exec的内置函数。exec执行一系列Python语句，而eval计算用字符串表示 的Python表达式的值，并返回结果(exec什么都不返回，因为它本身是条语句)</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-title">eval</span>(<span class="hljs-string">"3"</span>))</span>
+</code></pre>
+<blockquote>
+<p>与exec一样，也可向eval提供一个命名空间，虽然表达式通常不会像语句那样给变量重新 赋值。</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/29/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#print">print</a><ul class="toc-headings"><li><a href="#打印多个参数">打印多个参数</a></li><li><a href="#修改分隔符">修改分隔符</a></li><li><a href="#修改结束字符">修改结束字符</a></li></ul></li><li><a href="#解构语句">解构语句</a></li><li><a href="#布尔值">布尔值</a></li><li><a href="#类似于三目运算符的语句">类似于三目运算符的语句</a></li><li><a href="#链式比较">链式比较</a></li><li><a href="#相等性比较">相等性比较</a><ul class="toc-headings"><li><a href="#is">is</a></li><li><a href="#-比较">== 比较</a></li></ul></li><li><a href="#字符顺序">字符顺序</a><ul class="toc-headings"><li><a href="#ord">ord</a></li><li><a href="#chr">chr</a></li></ul></li><li><a href="#布尔条件运算符">布尔条件运算符</a></li><li><a href="#循环">循环</a><ul class="toc-headings"><li><a href="#while-循环">while 循环</a></li><li><a href="#for-循环">for 循环</a></li><li><a href="#并行迭代">并行迭代</a></li><li><a href="#迭代时获取索引">迭代时获取索引</a></li><li><a href="#反向迭代和排序后迭代">反向迭代和排序后迭代</a></li><li><a href="#for-else-句式">for else 句式</a></li></ul></li><li><a href="#列表推导">列表推导</a></li><li><a href="#字典推导">字典推导</a></li><li><a href="#pass-语句">pass 语句</a></li><li><a href="#exec">exec</a></li><li><a href="#eval">eval</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

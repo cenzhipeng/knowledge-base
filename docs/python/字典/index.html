@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 创建字典"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 创建字典"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python/5.字典.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="创建字典"></a><a href="#创建字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建字典</h2>
+<pre><code class="hljs">phonebook = {'Alice': '<span class="hljs-number">2341</span>', 'Beth': '<span class="hljs-number">9102</span>', 'Cecil': '<span class="hljs-number">3258</span>'}
+</code></pre>
+<blockquote>
+<p>空字典就是一个花括号 <code>{}</code></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="字典方法"></a><a href="#字典方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字典方法</h2>
+<h3><a class="anchor" aria-hidden="true" id="取值"></a><a href="#取值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>取值</h3>
+<pre><code class="hljs"><span class="hljs-attr">phonebook</span> = {<span class="hljs-string">'Alice'</span>: <span class="hljs-string">'2341'</span>, <span class="hljs-string">'Beth'</span>: <span class="hljs-string">'9102'</span>, <span class="hljs-string">'Cecil'</span>: <span class="hljs-string">'3258'</span>}
+<span class="hljs-attr">a</span> = phonebook[<span class="hljs-string">'Alice'</span>]
+</code></pre>
+<blockquote>
+<p>如果该值不存在，将会抛出异常 KeyError</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="赋值"></a><a href="#赋值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>赋值</h3>
+<pre><code class="hljs">phonebook = {'Alice': '<span class="hljs-number">2341</span>', 'Beth': '<span class="hljs-number">9102</span>', 'Cecil': '<span class="hljs-number">3258</span>'}
+phonebook['Alice'] = '111'
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="清空"></a><a href="#清空" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>清空</h3>
+<pre><code class="hljs">phonebook = {'Alice': '<span class="hljs-number">2341</span>', 'Beth': '<span class="hljs-number">9102</span>', 'Cecil': '<span class="hljs-number">3258</span>'}
+phonebook.clear() <span class="hljs-meta"># 返回 Node 同时 phonebook = {}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="浅拷贝"></a><a href="#浅拷贝" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>浅拷贝</h3>
+<pre><code class="hljs"><span class="hljs-attr">phonebook</span> = {<span class="hljs-string">'Alice'</span>: <span class="hljs-string">'2341'</span>, <span class="hljs-string">'Beth'</span>: <span class="hljs-string">'9102'</span>, <span class="hljs-string">'Cecil'</span>: <span class="hljs-string">'3258'</span>}
+<span class="hljs-attr">another</span> = phonebook.copy()
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="深拷贝"></a><a href="#深拷贝" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>深拷贝</h3>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> <span class="hljs-keyword">copy</span><span class="bash"> import deepcopy</span>
+d = {}
+d[<span class="hljs-string">'names'</span>] = [<span class="hljs-string">'Alfred'</span>, <span class="hljs-string">'Bertrand'</span>]
+dc = deepcopy(d)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="fromkeys"></a><a href="#fromkeys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fromkeys</h3>
+<p>创建一个新字典，其中包含指定的键，且每个键对应的值都是None。</p>
+<pre><code class="hljs">{}.fromkeys([<span class="hljs-string">'name'</span>, <span class="hljs-string">'age'</span>]) # {<span class="hljs-string">'age'</span>: <span class="hljs-keyword">None</span>, <span class="hljs-string">'name'</span>: <span class="hljs-keyword">None</span>}
+</code></pre>
+<blockquote>
+<p>就是创建一个值全部是 None 的字典，同时指定了字典包含的key</p>
+</blockquote>
+<p>如果你不想使用默认值None，可提供特定的值</p>
+<pre><code class="hljs">{}.fromkeys([<span class="hljs-string">'name'</span>, <span class="hljs-string">'age'</span>], <span class="hljs-string">'123'</span>) <span class="hljs-meta"># {<span class="hljs-string">'age'</span>: <span class="hljs-string">'123'</span>, <span class="hljs-string">'name'</span>: <span class="hljs-string">'123'</span>}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get</h3>
+<p>使用 get 来访问字典不会抛出异常，而使用索引访问的方式则会抛异常</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = phonebook[<span class="hljs-string">'Alice'</span>]
+</code></pre>
+<p>如上代码，在 phonebook 不包含 'Alice' 键的时候，将会抛出 KeyError 异常，为了回避这种情况，我们应该使用 get 方法</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = phonebook.get(<span class="hljs-string">'Alice'</span>)
+</code></pre>
+<p>如果此时不包含 'Alice' 键，将会返回 None</p>
+<p>如果需要换一个默认值，可以使用</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = phonebook.get(<span class="hljs-string">'Alice'</span>, <span class="hljs-string">'default'</span>)
+</code></pre>
+<p>如果此时不包含 'Alice' 键，将会返回 'default'</p>
+<blockquote>
+<p>推荐使用 get 来访问字典</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="items"></a><a href="#items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>items</h3>
+<p>items返回一个包含所有字典项的列表，其中每个元素都为(key, value)的形式。字典项在列表中的排列顺序不确定</p>
+<pre><code class="hljs">d = {<span class="hljs-string">'title'</span>: <span class="hljs-string">'Python Web Site'</span>, <span class="hljs-string">'url'</span>: <span class="hljs-string">'http://www.python.org'</span>, <span class="hljs-string">'spam'</span>: <span class="hljs-number">0</span>}
+d.items() <span class="hljs-meta"># dict_items([(<span class="hljs-string">'url'</span>, <span class="hljs-string">'http://www.python.org'</span>), (<span class="hljs-string">'spam'</span>, 0), (<span class="hljs-string">'title'</span>, <span class="hljs-string">'Python Web Site'</span>)])</span>
+</code></pre>
+<blockquote>
+<p>返回的是称为字典视图的特殊类型，可以用于迭代、成员检查、长度等</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="keys"></a><a href="#keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>keys</h3>
+<p>方法keys返回一个字典视图，其中包含指定字典中的键</p>
+<h3><a class="anchor" aria-hidden="true" id="pop"></a><a href="#pop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pop</h3>
+<p>方法pop可用于获取与指定键相关联的值，并将该键值对从字典中删除</p>
+<pre><code class="hljs">d = {<span class="hljs-string">'x'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'y'</span>: <span class="hljs-number">2</span>}
+d.pop(<span class="hljs-string">'x'</span>) <span class="hljs-meta"># 返回的是 1，同时 d 变成 {<span class="hljs-string">'y'</span>: 2}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="popitem"></a><a href="#popitem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>popitem</h3>
+<p>类似于 list.pop，随机弹出一个字典项</p>
+<pre><code class="hljs">d = {<span class="hljs-string">'url'</span>: <span class="hljs-string">'http://www.python.org'</span>, <span class="hljs-string">'spam'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'title'</span>: <span class="hljs-string">'Python Web Site'</span>}
+d.popitem() <span class="hljs-meta"># 可能是 (<span class="hljs-string">'url'</span>, <span class="hljs-string">'http://www.python.org'</span>)</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setdefault"></a><a href="#setdefault" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setdefault</h3>
+<p>setdefault有点像get，因为它也获取与指定键相关联的值，但除此之外，setdefault 还在字典不包含指定的键时，在字典中添加指定的键值对</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = {<span class="hljs-string">"x"</span>: <span class="hljs-string">"1"</span>}
+<span class="hljs-attr">b</span> = a.setdefault(<span class="hljs-string">"x"</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 返回 a.get('x', 2) 如果 'x' 不存在，则会调用 a['x'] = 2</span>
+</code></pre>
+<blockquote>
+<p>可以直接 a.setdefault(&quot;x&quot;)，等同于 a.setdefault(&quot;x&quot;, None)</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="update"></a><a href="#update" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>update</h3>
+<p>使用另一个字典来覆盖现有字典</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = {<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>, <span class="hljs-string">"c"</span>: <span class="hljs-number">3</span>}
+<span class="hljs-selector-tag">b</span> = {<span class="hljs-string">"b"</span>: <span class="hljs-number">100</span>}
+<span class="hljs-selector-tag">a</span>.update(b)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(a)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(b)</span></span>
+
+{<span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">100</span>, <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>}
+{<span class="hljs-string">'b'</span>: <span class="hljs-number">100</span>}
+</code></pre>
+<blockquote>
+<p>参数也可以传入：键值对序列、字典、关键字参数</p>
+</blockquote>
+<p>相当于是遍历这个传入的字典，将其每个键都更新到现有的字典上</p>
+<h3><a class="anchor" aria-hidden="true" id="values"></a><a href="#values" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>values</h3>
+<p>values返回一个由字典中的值组成的字典视图（可能包含重复的值）</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/29/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#创建字典">创建字典</a></li><li><a href="#字典方法">字典方法</a><ul class="toc-headings"><li><a href="#取值">取值</a></li><li><a href="#赋值">赋值</a></li><li><a href="#清空">清空</a></li><li><a href="#浅拷贝">浅拷贝</a></li><li><a href="#深拷贝">深拷贝</a></li><li><a href="#fromkeys">fromkeys</a></li><li><a href="#get">get</a></li><li><a href="#items">items</a></li><li><a href="#keys">keys</a></li><li><a href="#pop">pop</a></li><li><a href="#popitem">popitem</a></li><li><a href="#setdefault">setdefault</a></li><li><a href="#update">update</a></li><li><a href="#values">values</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 类的概念"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 类的概念"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python/8.类.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="类的概念"></a><a href="#类的概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类的概念</h2>
+<p>每个对象都属于特定的类，并被称为该类的实例。（面向对象的概念都差不多）</p>
+<h2><a class="anchor" aria-hidden="true" id="类"></a><a href="#类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类</h2>
+<h3><a class="anchor" aria-hidden="true" id="创建类"></a><a href="#创建类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建类</h3>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>:</span>
+    a = <span class="hljs-number">3</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        print(<span class="hljs-keyword">self</span>.a)
+
+
+cls = MyClass()
+cls.hello()
+print(MyClass.hello == cls.hello) <span class="hljs-comment"># Flase</span>
+</code></pre>
+<blockquote>
+<ul>
+<li>创建一个类的语法如上</li>
+<li><code>__init__</code> （未写明）相当于 java 里的构造函数</li>
+<li>这里的 <code>a = 3</code> 相当于 <code>Myclass.a = 3</code>，也就是相当于定义了类的静态属性</li>
+<li>a 和 这里的 hello，其实都是 MyClass 对象的静态属性</li>
+<li><code>MyClass.hello</code> 和 <code>cls.hello</code> 并不是同一个方法</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="根据类创建一个实例"></a><a href="#根据类创建一个实例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>根据类创建一个实例</h3>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>:</span>
+    a = <span class="hljs-number">3</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        print(<span class="hljs-keyword">self</span>.a)
+
+
+cls = MyClass()
+cls.hello()
+</code></pre>
+<blockquote>
+<p>如上代码中，使用类名加上小括号创建类的实例，其实就是类似于省去了 java 的 new 关键字的方式</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="私有属性"></a><a href="#私有属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>私有属性</h3>
+<p>使用双下划线开头命名的属性可以成为私有属性</p>
+<pre><code class="hljs"><span class="hljs-variable">class</span> <span class="hljs-variable">MyClass</span>:
+    <span class="hljs-variable">a</span> = <span class="hljs-number">3</span>
+    <span class="hljs-variable">__b</span> = <span class="hljs-number">5</span>
+
+    <span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">hello</span>(<span class="hljs-variable">self</span>):
+        <span class="hljs-title">print</span>(<span class="hljs-variable">self.a</span>)</span>
+
+
+<span class="hljs-variable">cls</span> = <span class="hljs-function"><span class="hljs-title">MyClass</span>()</span>
+<span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-variable">cls.a</span>)</span>
+<span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-variable">cls.__b</span>)</span>
+</code></pre>
+<blockquote>
+<p>运行以上代码会发现 <code>cls.a</code> 可以访问， <code>cls.__b</code> 无法访问，起到了一种类似于私有属性的效果</p>
+</blockquote>
+<p>但是实际来说，私有属性并不存在，我们可以通过以下方式来访问</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>:</span>
+    a = <span class="hljs-number">3</span>
+    __b = <span class="hljs-number">5</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        print(<span class="hljs-keyword">self</span>.a)
+
+
+cls = MyClass()
+print(cls._MyClass__b)
+</code></pre>
+<blockquote>
+<p>这种双下划线起头的私有属性，都被替换了名称：<code>_类名__属性名</code>，因此 <code>__b</code> 就被替换成了 <code>_MyClass__b</code></p>
+<p>由此可见并不存在真正的私有属性</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="类的创建的执行过程"></a><a href="#类的创建的执行过程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类的创建的执行过程</h3>
+<p>在 class 语句中定义的代码其实都是在一个特殊的命名空间执行的，最终我们在这里定义的属性都被挂载到了类这个对象本身下，例如</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>:</span>
+    a = <span class="hljs-number">3</span>
+    __b = <span class="hljs-number">5</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        print(<span class="hljs-keyword">self</span>.a)
+</code></pre>
+<p>我们可以通过 <code>MyClass.a</code> 访问 a 这个属性，也可以通过 <code>MyClass.hello</code> 访问这个 hello 方法，如果想要调用这个方法，还需要再传入一个参数代表这个 self 对象</p>
+<p>同理，我们可以在 class 语句中执行一些别的语句，不单单是定义属性，例如执行一个输出语句也是完全OK的</p>
+<h3><a class="anchor" aria-hidden="true" id="类属性的遮蔽"></a><a href="#类属性的遮蔽" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>类属性的遮蔽</h3>
+<p>简单来说</p>
+<pre><code class="hljs">class MyClass:
+    a = <span class="hljs-number">3</span>
+
+
+cls1 = <span class="hljs-built_in">MyClass</span>()
+cls2 = <span class="hljs-built_in">MyClass</span>()
+<span class="hljs-keyword">print</span>(cls1.a == cls2.a == MyClass.a) <span class="hljs-meta"># True</span>
+cls2.a = <span class="hljs-number">5</span>
+<span class="hljs-keyword">print</span>(cls1.a) <span class="hljs-meta"># 3</span>
+<span class="hljs-keyword">print</span>(cls2.a) <span class="hljs-meta"># 5</span>
+<span class="hljs-keyword">print</span>(MyClass.a) <span class="hljs-meta"># 3</span>
+</code></pre>
+<p>当我们在类的实例上修改静态属性时，访问到的是这个实例本身的属性，会把类属性给遮蔽住。如上代码中，新值被写入到了 cls2 对象的 a 属性上，会屏蔽掉 MyClass.a 属性</p>
+<h2><a class="anchor" aria-hidden="true" id="继承"></a><a href="#继承" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>继承</h2>
+<p>要指定超类，可在class语句中的类名后加上超类名，并将其用圆括号括起</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">"a human"</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">walk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'an animal walk'</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span><span class="hljs-params">(Human, Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+man = Man()
+man.talk()
+man.walk()
+</code></pre>
+<blockquote>
+<p>可以看到，多重继承就是放入多个超类名</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="判断是否子类"></a><a href="#判断是否子类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>判断是否子类</h3>
+<p>要确定一个类是否是另一个类的子类，可使用内置方法issubclass</p>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Human:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>("<span class="hljs-symbol">a</span> <span class="hljs-symbol">human</span>")
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Animal:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">walk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>('<span class="hljs-symbol">an</span> <span class="hljs-symbol">animal</span> <span class="hljs-symbol">walk</span>')
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Man</span>(<span class="hljs-symbol">Human, <span class="hljs-symbol">Animal</span></span>):
+    <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">print</span>(<span class="hljs-symbol">issubclass</span>(<span class="hljs-symbol">Man, <span class="hljs-symbol">Animal</span></span>)) # <span class="hljs-symbol">True</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="获取所有基类"></a><a href="#获取所有基类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取所有基类</h4>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">"a human"</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">walk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'an animal walk'</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span><span class="hljs-params">(Human, Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+print(Man.__bases__) <span class="hljs-comment"># (&lt;class '__main__.Human'&gt;, &lt;class '__main__.Animal'&gt;)</span>
+</code></pre>
+<blockquote>
+<p>访问一个类的 <code>__bases__</code> 属性，可以获取这个类的所有基类</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="判断是否是一个类的实例"></a><a href="#判断是否是一个类的实例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>判断是否是一个类的实例</h3>
+<p>要确定对象是否是特定类的实例，可使用isinstance（通常不推荐）</p>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Human:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>("<span class="hljs-symbol">a</span> <span class="hljs-symbol">human</span>")
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Animal:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">walk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>('<span class="hljs-symbol">an</span> <span class="hljs-symbol">animal</span> <span class="hljs-symbol">walk</span>')
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Man</span>(<span class="hljs-symbol">Human, <span class="hljs-symbol">Animal</span></span>):
+    <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">man</span> = <span class="hljs-symbol">Man</span>()
+<span class="hljs-symbol">print</span>(<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">man, <span class="hljs-symbol">Human</span></span>))  # <span class="hljs-symbol">True</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="获取实例所在的类"></a><a href="#获取实例所在的类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取实例所在的类</h3>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Human:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>("<span class="hljs-symbol">a</span> <span class="hljs-symbol">human</span>")
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Animal:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">walk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>('<span class="hljs-symbol">an</span> <span class="hljs-symbol">animal</span> <span class="hljs-symbol">walk</span>')
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Man</span>(<span class="hljs-symbol">Human, <span class="hljs-symbol">Animal</span></span>):
+    <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">man</span> = <span class="hljs-symbol">Man</span>()
+<span class="hljs-symbol">print</span>(<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">man, <span class="hljs-symbol">Human</span></span>))  # <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">print</span>(<span class="hljs-symbol">type</span>(<span class="hljs-symbol">man</span>) == <span class="hljs-symbol">Man</span>)
+</code></pre>
+<blockquote>
+<p>新式类才可以使用 type(实例) 的方式获取实例对应的 class，在 python 2 中需要在主模块添加 <code>__metaclass__ = type</code> 来表明是新式类，或者是类定义都添加 <code>class Myclass(object)</code> 这种显示继承 object 的代码</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="多重继承的顺序"></a><a href="#多重继承的顺序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>多重继承的顺序</h3>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Human:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>("<span class="hljs-symbol">a</span> <span class="hljs-symbol">human</span>")
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Animal:
+    <span class="hljs-symbol">def</span></span> <span class="hljs-symbol">walk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">print</span>('<span class="hljs-symbol">an</span> <span class="hljs-symbol">animal</span> <span class="hljs-symbol">walk</span>')
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Man</span>(<span class="hljs-symbol">Human, <span class="hljs-symbol">Animal</span></span>):
+    <span class="hljs-symbol">pass</span>
+</code></pre>
+<p>这种多重继承的情况，如果 Human 和 Animal 有同名方法，那么 Human 的方法的优先级更高，更复杂的情况：这两个父类继承自同一个父类，方法的优先级可能需要进一步确定。</p>
+<h2><a class="anchor" aria-hidden="true" id="对象的属性检查"></a><a href="#对象的属性检查" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象的属性检查</h2>
+<h3><a class="anchor" aria-hidden="true" id="hasattr"></a><a href="#hasattr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hasattr</h3>
+<p>内置方法用于检查一个对象是否具有什么属性</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">My</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+a = My()
+a.x = <span class="hljs-number">3</span>
+print(hasattr(a, <span class="hljs-string">'x'</span>))  <span class="hljs-comment"># True</span>
+print(hasattr(a, <span class="hljs-string">'y'</span>))  <span class="hljs-comment"># False</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getattr"></a><a href="#getattr" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getattr</h3>
+<p>内置方法用于获取一个对象的属性</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">My</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+a = My()
+a.x = <span class="hljs-number">3</span>
+print(getattr(a, <span class="hljs-string">'x'</span>, <span class="hljs-number">5</span>))  <span class="hljs-comment"># 3</span>
+print(getattr(a, <span class="hljs-string">'y'</span>, <span class="hljs-number">5</span>))  <span class="hljs-comment"># 5</span>
+</code></pre>
+<blockquote>
+<p>我们可以传入第三个参数，表示获取不到属性时返回的默认值</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="callable"></a><a href="#callable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>callable</h3>
+<p>内置方法用于检查一个对象是否可被调用</p>
+<h3><a class="anchor" aria-hidden="true" id="获取对象的所有属性"></a><a href="#获取对象的所有属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取对象的所有属性</h3>
+<p>要查看对象中存储的所有值，可检查其 <code>__dict__</code> 属性</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">My</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+a = My()
+a.x = <span class="hljs-number">3</span>
+print(a.__dict__)  <span class="hljs-comment"># {'x': 3}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="抽象类"></a><a href="#抽象类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>抽象类</h2>
+<p>python 也是有抽象类的</p>
+<h3><a class="anchor" aria-hidden="true" id="定义抽象类"></a><a href="#定义抽象类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定义抽象类</h3>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-symbol">Talker</span>(<span class="hljs-symbol">ABC</span>):
+    @<span class="hljs-symbol">abstractmethod</span>
+    <span class="hljs-symbol">def</span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">if</span> <span class="hljs-symbol">__name__</span> == '<span class="hljs-symbol">__main__</span>':
+    <span class="hljs-symbol">Talker</span>()
+
+</code></pre>
+<blockquote>
+<ul>
+<li>此类继承自 ABC 类</li>
+<li>类的抽象方法使用 @abstractmethod 进行修饰</li>
+<li>运行上面脚本会报错：TypeError: Can't instantiate abstract class Talker with abstract methods talk</li>
+<li>无法实例化抽象类</li>
+</ul>
+</blockquote>
+<p>如果我们另一个类继承抽象类，没有实现抽象方法，则这个类也是一个抽象类，并且无法实例化</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-symbol">Talker</span>(<span class="hljs-symbol">ABC</span>):
+    @<span class="hljs-symbol">abstractmethod</span>
+    <span class="hljs-symbol">def</span> <span class="hljs-symbol">talk</span>(<span class="hljs-symbol">self</span>):
+        <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">Man</span>(<span class="hljs-symbol">Talker</span>):
+    <span class="hljs-symbol">pass</span>
+
+
+<span class="hljs-symbol">if</span> <span class="hljs-symbol">__name__</span> == '<span class="hljs-symbol">__main__</span>':
+    <span class="hljs-symbol">Man</span>()
+
+</code></pre>
+<p>这段代码报错和上面是一样的</p>
+<h3><a class="anchor" aria-hidden="true" id="实现抽象方法"></a><a href="#实现抽象方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实现抽象方法</h3>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Talker</span><span class="hljs-params">(ABC)</span>:</span>
+<span class="hljs-meta">    @abstractmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span><span class="hljs-params">(Talker)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'man talk'</span>)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    man = Man()
+    man.talk()
+
+输出：man talk
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="鸭子类型"></a><a href="#鸭子类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>鸭子类型</h3>
+<p>我们可以让一个类实现 talk 方法，但是不继承这个抽象类</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABC, abstractmethod
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Talker</span><span class="hljs-params">(ABC)</span>:</span>
+<span class="hljs-meta">    @abstractmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span><span class="hljs-params">(Talker)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'man talk'</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnotherMan</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">talk</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'another man talk'</span>)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    man = AnotherMan()
+    Talker.register(AnotherMan)
+    print(isinstance(man, Talker))
+
+输出：true
+</code></pre>
+<blockquote>
+<p>这种方式，将 AnotherMan 注册为了 Talker 的子类。因为它具有 Talker 所要求的的能力</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/29/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#类的概念">类的概念</a></li><li><a href="#类">类</a><ul class="toc-headings"><li><a href="#创建类">创建类</a></li><li><a href="#根据类创建一个实例">根据类创建一个实例</a></li><li><a href="#私有属性">私有属性</a></li><li><a href="#类的创建的执行过程">类的创建的执行过程</a></li><li><a href="#类属性的遮蔽">类属性的遮蔽</a></li></ul></li><li><a href="#继承">继承</a><ul class="toc-headings"><li><a href="#判断是否子类">判断是否子类</a></li><li><a href="#判断是否是一个类的实例">判断是否是一个类的实例</a></li><li><a href="#获取实例所在的类">获取实例所在的类</a></li><li><a href="#多重继承的顺序">多重继承的顺序</a></li></ul></li><li><a href="#对象的属性检查">对象的属性检查</a><ul class="toc-headings"><li><a href="#hasattr">hasattr</a></li><li><a href="#getattr">getattr</a></li><li><a href="#callable">callable</a></li><li><a href="#获取对象的所有属性">获取对象的所有属性</a></li></ul></li><li><a href="#抽象类">抽象类</a><ul class="toc-headings"><li><a href="#定义抽象类">定义抽象类</a></li><li><a href="#实现抽象方法">实现抽象方法</a></li><li><a href="#鸭子类型">鸭子类型</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
