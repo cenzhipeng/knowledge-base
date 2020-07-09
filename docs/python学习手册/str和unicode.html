@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概述"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 概述"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python学习手册/3.str和unicode.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概述"></a><a href="#概述" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概述</h2>
+<p>本文主要针对 python2</p>
+<h2><a class="anchor" aria-hidden="true" id="什么叫编码"></a><a href="#什么叫编码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>什么叫编码</h2>
+<ul>
+<li>把人类能看懂的字符，写成计算机能看懂的内容（字节），就是编码</li>
+<li>把计算机才能看懂的内容（字节），解开成人类能看懂的字符，就是解码</li>
+</ul>
+<p>关键记忆点就是：编码后计算机能看懂，解码后人类能看懂</p>
+<h2><a class="anchor" aria-hidden="true" id="python-文件编码"></a><a href="#python-文件编码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python 文件编码</h2>
+<p>python2 并没有规定 python 脚本文件的编码，默认按照 ascii 编码来读取 python 文件</p>
+<p>如果我们没有任何定义，就会发现：</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = <span class="hljs-string">'中文'</span>
+</code></pre>
+<p>就包含这么一行的 python 脚本是运行不起来的（python2）</p>
+<pre><code class="hljs">SyntaxError: Non-ASCII character <span class="hljs-string">'\xe4'</span> in <span class="hljs-keyword">file</span> /Users/czp/workspace/projects/<span class="hljs-keyword">python</span>-demo/p2.<span class="hljs-keyword">py</span> <span class="hljs-keyword">on</span> <span class="hljs-built_in">line</span> <span class="hljs-number">1</span>, but <span class="hljs-keyword">no</span> encoding declared
+</code></pre>
+<p>因此我们要让 python 解释器能够运行这么一个脚本，是需要定义脚本的编码的，首行添加：</p>
+<pre><code class="hljs"><span class="hljs-meta"># coding=utf-8</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="-codingutf-8-的作用"></a><a href="#-codingutf-8-的作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a># coding=utf-8 的作用</h3>
+<p>这个编码定义的作用就是告诉解释器：这个脚本文件本身是用 utf-8 编码的，你在把脚本文件读进来的时候（任何文件读出来都是一串字节），按照 utf-8 进行解码（把这串字节按照 utf-8 的方式解码成字符串）</p>
+<p>作用也仅此而已，因此我们的脚本里只要包含非 ASCII 的字符，就需要添加这么一行。</p>
+<h2><a class="anchor" aria-hidden="true" id="str-和-unicode"></a><a href="#str-和-unicode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>str 和 unicode</h2>
+<h3><a class="anchor" aria-hidden="true" id="str-是什么"></a><a href="#str-是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>str 是什么</h3>
+<p>python2 的 str 就是一串字节：也就是说相当于 java 里的 byte[]</p>
+<p>当我们定义下面的字符串的时候：</p>
+<pre><code class="hljs"><span class="hljs-attr">a</span> = <span class="hljs-string">'abc'</span>
+<span class="hljs-attr">b</span> = <span class="hljs-string">'中文'</span>
+</code></pre>
+<ul>
+<li>a 其实就是 <code>abc</code> 的底层字节（<code>abc</code> 的 UTF-8 编码）</li>
+<li>b 也是 <code>中文</code> 的底层字节（<code>中文</code> 的 UTF-8 编码）</li>
+</ul>
+<p><strong>之所以这里说的都是 UTF-8 编码，是因为这个 python 文件本身就是被 UTF-8 编码的，python 解释器读取到 <code>b = '中文'</code> 这一行的时候，读取到的 <code>中文</code> 这个内容本身就是被 UTF-8 编码的一串字节，直接就被赋值给了 b 这个变量。</strong></p>
+<p><strong>如果我们在 python 文件开头定义的编码是 GBK，那么这里的 b 的内容就变成了 <code>中文</code> 的 GBK 编码（显然跟 UTF-8 编码的字节是不一样的）</strong></p>
+<p>时刻谨记：str 是一串字节，当做 java 里的 bytes 来记忆</p>
+<h3><a class="anchor" aria-hidden="true" id="unicode-是什么"></a><a href="#unicode-是什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>unicode 是什么</h3>
+<p>unicode 是真正的字符串。python 里的 <code>a = u'中文'</code> 和 java 里的 <code>a = &quot;中文&quot;</code> 可以说是等价的</p>
+<h3><a class="anchor" aria-hidden="true" id="经常出现的编码异常是怎么产生的"></a><a href="#经常出现的编码异常是怎么产生的" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>经常出现的编码异常是怎么产生的</h3>
+<h4><a class="anchor" aria-hidden="true" id="python-的默认编码"></a><a href="#python-的默认编码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python 的默认编码</h4>
+<p>python 的默认编码是 ascii，这是经常导致乱码的罪魁祸首</p>
+<h4><a class="anchor" aria-hidden="true" id="str-和-unicode-的相加操作"></a><a href="#str-和-unicode-的相加操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>str 和 unicode 的相加操作</h4>
+<p>str 和 unicode 的相加操作最终结果是 unicode。那么是如何做到的呢？</p>
+<pre><code class="hljs">a = <span class="hljs-string">u'中文'</span>
+b = <span class="hljs-string">'中文'</span>
+c = a + b    <span class="hljs-comment">#  等价于  c = a + b.decode("ascii")</span>
+</code></pre>
+<p>也就是说：python 会默认将 str 按照默认编码 ascii 解码为 unicode</p>
+<p>异常原因是：<code>b.decode(&quot;ascii&quot;)</code> ，将 b 这么一大串字节按照 ascii 进行解码，结果 python 发现，这一串字节里有 大于 127 的内容，而 ascii 只有 0-127 对应的码表，所以这一大串字节是无法用 ascii 解码的，也就导致了异常</p>
+<p>如果我们使用 <code>c = a + b.decode(&quot;latin-1&quot;)</code> 来解码的话，虽然会有乱码（一些奇怪的拉丁字符），但是不会导致异常，因为 latin-1 编码方式包含 0-255 所有的码表，任何字节序列都可以使用它来进行解码</p>
+<h4><a class="anchor" aria-hidden="true" id="奇怪的-decode"></a><a href="#奇怪的-decode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>奇怪的 decode</h4>
+<p>实际上来说，我们只应该对 str 进行 decode，因为 unicode 已经是 decode 之后的结果了。</p>
+<p>第一种情况：对包含中文的 str decode</p>
+<pre><code class="hljs"><span class="hljs-keyword">a</span> = <span class="hljs-string">'中文'</span>
+<span class="hljs-keyword">a</span>.decode()
+</code></pre>
+<p>这里 <code>a.decode()</code> 等价于 <code>a.decode('ascii')</code>（系统默认编码 ascii），由于 <code>中文</code> 包含有 ascii 无法解析的字节（大于 127），因此导致解码异常</p>
+<p>第二种情况：对一个包含中文的 unicode，又一次调用了 decode</p>
+<pre><code class="hljs">a = <span class="hljs-string">u'中文'</span>
+a.decode()
+</code></pre>
+<p>这种错误的原因则是：只能对 str 进行 decode 操作，因此 python 解释器将 a 先转化成了 str 了。</p>
+<p>也就是说上面的代码 <code>a.decode()</code> 等价于 <code>a.encode(&quot;ascii&quot;).decode(&quot;ascii&quot;)</code></p>
+<p>显然 <code>a.encode(&quot;ascii&quot;)</code> 这个调用中，a 是包含了中文的 unicode，将其使用 ascii 编码是不可能的：python发现对第一个字符 <code>中</code> 字编码时，在 ascii 的字符里根本找不到这个字，当然也就无从编起，从而报错。</p>
+<h5><a class="anchor" aria-hidden="true" id="两种错误的区别"></a><a href="#两种错误的区别" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>两种错误的区别</h5>
+<p>两种都是 decode 引起的错误，但是实际上来说，第一种情况引起的错误是解码错误（decode出错），而第二种情况引起的是编码错误（encode出错）</p>
+<h3><a class="anchor" aria-hidden="true" id="print-做了什么"></a><a href="#print-做了什么" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>print 做了什么</h3>
+<h4><a class="anchor" aria-hidden="true" id="输出-str"></a><a href="#输出-str" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>输出 str</h4>
+<p>print 输出 str 的时候，什么都不做，就是老老实实的把 str 输出</p>
+<p>要点：程序输出的当然是字节，str 本身就是一串字节，所以当然是按照原样输出</p>
+<h4><a class="anchor" aria-hidden="true" id="输出-unicode"></a><a href="#输出-unicode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>输出 unicode</h4>
+<pre><code class="hljs">a = <span class="hljs-string">u'中文'</span>
+<span class="hljs-keyword">print</span> a
+</code></pre>
+<p>当输出一个 unicode 的时候，print 其实是必须要将其转换成字节进行输出的（也就是 str）</p>
+<p>这时候用到的编码是 <code>sys.stdout.encoding</code>，也就是要输出的终端的编码格式，在我的终端里，这个编码就是 UTF-8。</p>
+<p>因此当 <code>print a</code> 的时候，实际上等价于 <code>print a.encode(sys.stdout.encoding)</code>，最终也就是将这个内容用终端相同的编码方式进行输出了</p>
+<h2><a class="anchor" aria-hidden="true" id="如何避免编解码异常"></a><a href="#如何避免编解码异常" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何避免编解码异常</h2>
+<p>最简单的方案就是</p>
+<pre><code class="hljs">import sys
+<span class="hljs-function"><span class="hljs-title">reload</span><span class="hljs-params">(sys)</span></span>
+sys.setdefaultencoding(<span class="hljs-string">"utf-8"</span>)
+</code></pre>
+<p>将默认编码修改为 utf-8</p>
+<h2><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h2>
+<ul>
+<li><p>str 看做是一串字节：当我们在 UTF-8 编码的文件里写下 <code>a = '中文'</code> 时，a 就是这一串中文的 UTF-8 编码，其它编码同理。因此在不同编码的文件里写下 <code>a = '中文'</code>，<strong>a 的实际内容（字节）其实是不同的</strong></p></li>
+<li><p>unicode 看做是一串字符：无论在何种编码里写下 <code>a = u'中文'</code>，<strong>a 的实际内容都是一样的，都代表了这两个字符</strong></p></li>
+<li><p>当我们读取和写入的时候，操作的都是字节，因此在这些场合，使用到的都是 str</p></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/9/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概述">概述</a></li><li><a href="#什么叫编码">什么叫编码</a></li><li><a href="#python-文件编码">python 文件编码</a><ul class="toc-headings"><li><a href="#-codingutf-8-的作用"># coding=utf-8 的作用</a></li></ul></li><li><a href="#str-和-unicode">str 和 unicode</a><ul class="toc-headings"><li><a href="#str-是什么">str 是什么</a></li><li><a href="#unicode-是什么">unicode 是什么</a></li><li><a href="#经常出现的编码异常是怎么产生的">经常出现的编码异常是怎么产生的</a></li><li><a href="#print-做了什么">print 做了什么</a></li></ul></li><li><a href="#如何避免编解码异常">如何避免编解码异常</a></li><li><a href="#小结">小结</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
