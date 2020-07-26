@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 读取和写入文件"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 读取和写入文件"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python学习手册/5.文件读写和序列化.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="读取和写入文件"></a><a href="#读取和写入文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>读取和写入文件</h2>
+<pre><code class="hljs"># coding=utf<span class="hljs-number">-8</span>
+from <span class="hljs-built_in">os</span> import <span class="hljs-built_in">path</span>
+
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'中文.txt'</span>)
+txt_file_copy = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'中文-copy.txt'</span>)
+with <span class="hljs-built_in">open</span>(txt_file) as f, <span class="hljs-built_in">open</span>(txt_file_copy, <span class="hljs-string">'w'</span>) as <span class="hljs-built_in">output</span>:
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:
+        <span class="hljs-built_in">output</span>.<span class="hljs-built_in">write</span>(line)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="要点"></a><a href="#要点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>要点</h3>
+<ul>
+<li><code>open(file_name)</code> 等价于 <code>open(file_name,'r')</code>：表示以读取模式打开文件</li>
+<li><code>open(file_name,'w')</code>：表示以写入模式打开文件（文件首先被清空）</li>
+<li><code>open(file_name,'a')</code>：表示追加</li>
+<li><strong>文件对象本身是一个可迭代对象，按行进行迭代</strong></li>
+<li>文件默认打开方式是二进制方式，因此返回的内容在 python2 中是 str 类型（也就是说，返回的 line 其实是一串字节）</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="使用文本文件"></a><a href="#使用文本文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用文本文件</h2>
+<h3><a class="anchor" aria-hidden="true" id="python2-使用文本文件"></a><a href="#python2-使用文本文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python2 使用文本文件</h3>
+<pre><code class="hljs"># coding=utf<span class="hljs-number">-8</span>
+from <span class="hljs-built_in">os</span> import <span class="hljs-built_in">path</span>
+import codecs
+
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'中文.txt'</span>)
+txt_file_copy = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'中文-copy.txt'</span>)
+with codecs.<span class="hljs-built_in">open</span>(txt_file, encoding=<span class="hljs-string">'utf-8'</span>) as f, codecs.<span class="hljs-built_in">open</span>(txt_file_copy, <span class="hljs-string">'w'</span>, encoding=<span class="hljs-string">'gbk'</span>) as <span class="hljs-built_in">output</span>:
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:
+        <span class="hljs-built_in">print</span> <span class="hljs-built_in">type</span>(line)
+        <span class="hljs-built_in">output</span>.<span class="hljs-built_in">write</span>(line)
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<ul>
+<li>读取和写入都可以添加编码</li>
+<li>此时，文件按照文本的格式读取和写入</li>
+<li>因此，读取到的内容在 python2 就是 unicode，python3 就是 str</li>
+<li>写入的内容在 python2 是 unicode（如果写入 str，将会被自动解码成 unicode），python3 是 str</li>
+<li>写入的 unicode 根据写入的内容进行编码，例如这里写入的编码是 GBK，那么将会使用 GBK 编码的字节来表示这些字符串内容</li>
+<li>显然，有的 unicode 字符可能无法被 GBK 编码，因此这是有可能会报错的，报错类型是编码异常</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="pickle-序列化"></a><a href="#pickle-序列化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pickle 序列化</h2>
+<h3><a class="anchor" aria-hidden="true" id="将-python-对象序列化"></a><a href="#将-python-对象序列化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将 python 对象序列化</h3>
+<pre><code class="hljs"># coding=utf-<span class="hljs-number">8</span>
+from os <span class="hljs-keyword">import</span> <span class="hljs-built_in">path</span>
+<span class="hljs-keyword">import</span> pickle
+
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'pickle.txt'</span>)
+
+a = {<span class="hljs-string">'fuck'</span>: <span class="hljs-string">'you'</span>, <span class="hljs-string">'test'</span>: <span class="hljs-string">'pickle'</span>}
+<span class="hljs-keyword">with</span> open(txt_file, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    pickle.dump(a, f)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="将对象反序列化"></a><a href="#将对象反序列化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将对象反序列化</h3>
+<pre><code class="hljs"># coding=utf-<span class="hljs-number">8</span>
+from os <span class="hljs-keyword">import</span> <span class="hljs-built_in">path</span>
+<span class="hljs-keyword">import</span> pickle
+
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'pickle.txt'</span>)
+<span class="hljs-keyword">with</span> open(txt_file) <span class="hljs-keyword">as</span> f:
+    print pickle.load(f)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="json-序列化"></a><a href="#json-序列化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>json 序列化</h2>
+<h3><a class="anchor" aria-hidden="true" id="将对象序列化为-json"></a><a href="#将对象序列化为-json" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将对象序列化为 json</h3>
+<pre><code class="hljs"># coding=utf-<span class="hljs-number">8</span>
+<span class="hljs-keyword">import</span> json
+from os <span class="hljs-keyword">import</span> <span class="hljs-built_in">path</span>
+
+<span class="hljs-keyword">data</span> = {<span class="hljs-string">'测试键'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, {
+    <span class="hljs-string">'列表里的字典键'</span>: <span class="hljs-string">'内容'</span>
+}]}
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'json.txt'</span>)
+<span class="hljs-keyword">with</span> open(txt_file, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(<span class="hljs-keyword">data</span>, f, indent=<span class="hljs-number">4</span>, ensure_ascii=False)
+
+</code></pre>
+<blockquote>
+<p>注意最关键的 ensure_ascii=False，不加这个参数的话，输出的将是 unicode 的码点</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="将-json-反序列化为对象"></a><a href="#将-json-反序列化为对象" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将 json 反序列化为对象</h3>
+<pre><code class="hljs"># coding=utf-<span class="hljs-number">8</span>
+<span class="hljs-keyword">import</span> json
+from os <span class="hljs-keyword">import</span> <span class="hljs-built_in">path</span>
+
+txt_file = <span class="hljs-built_in">path</span>.join(<span class="hljs-built_in">path</span>.dirname(__file__), <span class="hljs-string">'json.txt'</span>)
+<span class="hljs-keyword">with</span> open(txt_file) <span class="hljs-keyword">as</span> f:
+    print json.load(f)
+
+</code></pre>
+<blockquote>
+<p>注意：这里的字符串都自动变成了 unicode 类型</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="将对象序列化为字符串"></a><a href="#将对象序列化为字符串" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将对象序列化为字符串</h3>
+<pre><code class="hljs"><span class="hljs-meta"># coding=utf-8</span>
+<span class="hljs-keyword">import</span> json
+
+<span class="hljs-class"><span class="hljs-keyword">data</span> = {'测试键': [1, 3, 4, {
+    '列表里的字典键': '内容'
+}]}</span>
+<span class="hljs-title">s</span> = json.dumps(<span class="hljs-class"><span class="hljs-keyword">data</span>, ensure_ascii=<span class="hljs-type">False</span>)</span>
+<span class="hljs-title">print</span> <span class="hljs-class"><span class="hljs-keyword">type</span>(<span class="hljs-title">s</span>)</span>
+<span class="hljs-title">print</span> s
+输出：
+&lt;<span class="hljs-class"><span class="hljs-keyword">type</span> 'str'&gt;</span>
+{<span class="hljs-string">"测试键"</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, {<span class="hljs-string">"列表里的字典键"</span>: <span class="hljs-string">"内容"</span>}]}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="print"></a><a href="#print" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>print</h2>
+<h3><a class="anchor" aria-hidden="true" id="python-3-重定向"></a><a href="#python-3-重定向" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python 3 重定向</h3>
+<p>提供了一个 file 命名参数，只要是传入一个带有 <code>write(string)</code> 方法的对象即可</p>
+<h3><a class="anchor" aria-hidden="true" id="python2-重定向"></a><a href="#python2-重定向" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python2 重定向</h3>
+<pre><code class="hljs"># coding=utf<span class="hljs-number">-8</span>
+<span class="hljs-keyword">class</span> <span class="hljs-symbol">FileLike</span>(<span class="hljs-symbol">object</span>):
+    <span class="hljs-symbol">def</span> <span class="hljs-symbol">write</span>(<span class="hljs-symbol">self, <span class="hljs-symbol">string</span></span>):
+        <span class="hljs-symbol">print</span> '<span class="hljs-symbol">print</span> 被重定向到 <span class="hljs-symbol">FileLike</span> 了'
+        <span class="hljs-symbol">print</span> '输出内容是：%<span class="hljs-symbol">s</span>' % <span class="hljs-symbol">string</span>
+
+
+<span class="hljs-symbol">f</span> = <span class="hljs-symbol">FileLike</span>()
+<span class="hljs-symbol">a</span> = '原始内容'
+<span class="hljs-symbol">print</span> &gt;&gt; <span class="hljs-symbol">f, <span class="hljs-symbol">a</span></span>
+
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">print</span> 被重定向到 FileLike 了
+输出内容是：原始内容
+<span class="hljs-builtin-name">print</span> 被重定向到 FileLike 了
+输出内容是：
+</code></pre>
+<blockquote>
+<p>可能是 print 将内容分两次输出了，默认的换行符是单独打印的，所以调用了两次 write 方法</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="python2-去掉换行符"></a><a href="#python2-去掉换行符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python2 去掉换行符</h3>
+<pre><code class="hljs"><span class="hljs-builtin-name">print</span> x,
+</code></pre>
+<blockquote>
+<p>最后添加一个逗号即可</p>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/26/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#读取和写入文件">读取和写入文件</a><ul class="toc-headings"><li><a href="#要点">要点</a></li></ul></li><li><a href="#使用文本文件">使用文本文件</a><ul class="toc-headings"><li><a href="#python2-使用文本文件">python2 使用文本文件</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#pickle-序列化">pickle 序列化</a><ul class="toc-headings"><li><a href="#将-python-对象序列化">将 python 对象序列化</a></li><li><a href="#将对象反序列化">将对象反序列化</a></li></ul></li><li><a href="#json-序列化">json 序列化</a><ul class="toc-headings"><li><a href="#将对象序列化为-json">将对象序列化为 json</a></li><li><a href="#将-json-反序列化为对象">将 json 反序列化为对象</a></li><li><a href="#将对象序列化为字符串">将对象序列化为字符串</a></li></ul></li><li><a href="#print">print</a><ul class="toc-headings"><li><a href="#python-3-重定向">python 3 重定向</a></li><li><a href="#python2-重定向">python2 重定向</a></li><li><a href="#python2-去掉换行符">python2 去掉换行符</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

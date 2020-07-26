@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 各类容器推导"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 各类容器推导"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python学习手册/4.各类容器.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="各类容器推导"></a><a href="#各类容器推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>各类容器推导</h2>
+<h3><a class="anchor" aria-hidden="true" id="列表推导"></a><a href="#列表推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>列表推导</h3>
+<pre><code class="hljs">a = [i * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">6</span>) <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]
+print a
+输出：[<span class="hljs-number">0</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="生成器推导"></a><a href="#生成器推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>生成器推导</h3>
+<pre><code class="hljs"><span class="hljs-keyword">a</span> = (i * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i in <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>) <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-keyword">next</span>(<span class="hljs-keyword">a</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-keyword">next</span>(<span class="hljs-keyword">a</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-keyword">next</span>(<span class="hljs-keyword">a</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-keyword">next</span>(<span class="hljs-keyword">a</span>)
+输出：
+<span class="hljs-number">0</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">8</span>
+Traceback (most recent <span class="hljs-keyword">call</span> <span class="hljs-keyword">last</span>):
+  File <span class="hljs-string">"/Users/czp/workspace/projects/python-demo/test.py"</span>, <span class="hljs-built_in">line</span> <span class="hljs-number">5</span>, in <span class="hljs-symbol">&lt;module&gt;</span>
+    <span class="hljs-keyword">print</span> <span class="hljs-keyword">next</span>(<span class="hljs-keyword">a</span>)
+StopIteration
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="集合推导"></a><a href="#集合推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>集合推导</h3>
+<pre><code class="hljs">a = {i * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">6</span>) <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>}
+print a
+输出：<span class="hljs-keyword">set</span>([<span class="hljs-number">0</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>])
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="字典推导"></a><a href="#字典推导" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字典推导</h3>
+<pre><code class="hljs">a = {i: i * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">6</span>) <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>}
+print a
+输出：{<span class="hljs-number">0</span>: <span class="hljs-number">0</span>, <span class="hljs-number">2</span>: <span class="hljs-number">4</span>, <span class="hljs-number">4</span>: <span class="hljs-number">8</span>}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<ul>
+<li>中括号形式的推导返回的对象是列表</li>
+<li>小括号形式的推导返回的对象是生成器</li>
+<li>大括号形式的推导返回的对象是集合</li>
+<li>大括号形式，并且其中列举项是键值对的，返回的对象是字典</li>
+</ul>
+<blockquote>
+<p>字典和集合的推导好像是 2.7 以上才行，实际使用的时候注意下 python 版本</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="字典"></a><a href="#字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字典</h2>
+<h3><a class="anchor" aria-hidden="true" id="使用-zip-创建字典"></a><a href="#使用-zip-创建字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 zip 创建字典</h3>
+<pre><code class="hljs"><span class="hljs-keyword">keys</span> = [<span class="hljs-string">'zhangsan'</span>, <span class="hljs-string">'lisi'</span>, <span class="hljs-string">'wangwu'</span>]
+<span class="hljs-keyword">values</span> = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>]
+data = dict(zip(<span class="hljs-keyword">keys</span>, <span class="hljs-keyword">values</span>))
+<span class="hljs-keyword">print</span> data
+输出：{<span class="hljs-string">'lisi'</span>: <span class="hljs-number">20</span>, <span class="hljs-string">'zhangsan'</span>: <span class="hljs-number">10</span>, <span class="hljs-string">'wangwu'</span>: <span class="hljs-number">30</span>}
+</code></pre>
+<blockquote>
+<p>适用于我们有两组列表分别代表键和值的时候</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="访问不存在的键"></a><a href="#访问不存在的键" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>访问不存在的键</h3>
+<pre><code class="hljs"><span class="hljs-comment"># coding=utf-8</span>
+a = {}
+try:
+    <span class="hljs-builtin-name">print</span> a[<span class="hljs-string">'xxx'</span>]
+except KeyError:
+    <span class="hljs-builtin-name">print</span> <span class="hljs-string">'中括号访问不存在的键会引发 KeyError'</span>
+<span class="hljs-builtin-name">print</span> a.<span class="hljs-builtin-name">get</span>(<span class="hljs-string">'xxx'</span>, 10)  # <span class="hljs-builtin-name">get</span> 访问不存在的键可以赋予默认值，不添加第二个参数则返回 None
+</code></pre>
+<ul>
+<li>中括号访问不存在的键报异常</li>
+<li>get 访问不存在的键返回 None，或者我们提供的默认值</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="将键进行排序迭代"></a><a href="#将键进行排序迭代" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将键进行排序迭代</h3>
+<pre><code class="hljs">a = {<span class="hljs-number">1</span>: <span class="hljs-number">1</span>, <span class="hljs-number">2</span>: <span class="hljs-number">2</span>, <span class="hljs-number">3</span>: <span class="hljs-number">3</span>, <span class="hljs-number">4</span>: <span class="hljs-number">4</span>}
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> sorted(a):
+    print k
+</code></pre>
+<ul>
+<li>也就是说我们可以不需要自己保存一个 list 对 key 排序</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/26/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#各类容器推导">各类容器推导</a><ul class="toc-headings"><li><a href="#列表推导">列表推导</a></li><li><a href="#生成器推导">生成器推导</a></li><li><a href="#集合推导">集合推导</a></li><li><a href="#字典推导">字典推导</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#字典">字典</a><ul class="toc-headings"><li><a href="#使用-zip-创建字典">使用 zip 创建字典</a></li><li><a href="#访问不存在的键">访问不存在的键</a></li><li><a href="#将键进行排序迭代">将键进行排序迭代</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

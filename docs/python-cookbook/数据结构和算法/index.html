@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="[TOC]"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="[TOC]"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python-cookbook/1.数据结构和算法.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><p>[TOC]</p>
+<h2><a class="anchor" aria-hidden="true" id="1提取头尾的元素"></a><a href="#1提取头尾的元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.提取头尾的元素</h2>
+<p>例如一个序列，我们想提取前 n-1 个元素和尾部元素</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+*head, tail = <span class="hljs-selector-tag">a</span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(head)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(tail)</span></span>
+</code></pre>
+<p>提取头部、中间、尾部</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+head, *<span class="hljs-selector-tag">body</span>, tail = <span class="hljs-selector-tag">a</span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(head)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(body)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(tail)</span></span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="2固定长度的队列"></a><a href="#2固定长度的队列" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.固定长度的队列</h2>
+<p>有时候我们只想保存固定的几项（例如保存一个历史记录列表），这个时候就可以使用 collections.deque 创建固定长度的队列，当队列已满，先加入到队列的元素会被移除</p>
+<pre><code class="hljs">from collections import deque
+
+<span class="hljs-selector-tag">q</span> = deque(maxlen=<span class="hljs-number">3</span>)
+<span class="hljs-selector-tag">q</span>.append(<span class="hljs-number">1</span>)
+<span class="hljs-selector-tag">q</span>.append(<span class="hljs-number">2</span>)
+<span class="hljs-selector-tag">q</span>.append(<span class="hljs-number">3</span>)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(q)</span></span>
+<span class="hljs-selector-tag">q</span>.append(<span class="hljs-number">4</span>)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(q)</span></span>
+<span class="hljs-selector-tag">q</span>.append(<span class="hljs-number">5</span>)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(q)</span></span>
+
+</code></pre>
+<p>输出</p>
+<pre><code class="hljs">deque([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], maxlen=<span class="hljs-number">3</span>)
+deque([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], maxlen=<span class="hljs-number">3</span>)
+deque([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], maxlen=<span class="hljs-number">3</span>)
+</code></pre>
+<blockquote>
+<p>如果不指定队列 的大小，也就得到了一个无界限的队列，可以在两端执行添加和弹出操作，这个时候就可以当成一个双端队列</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="3找到最大或最小的-n-个元素"></a><a href="#3找到最大或最小的-n-个元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.找到最大或最小的 N 个元素</h2>
+<p>一般这种问题我们会采用排序，然后获取这些 N 个元素。</p>
+<p>python 提供了现成的解决方案</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> heapq
+
+nums = [<span class="hljs-number">1</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">23</span>, <span class="hljs-number">7</span>, <span class="hljs-number">-4</span>, <span class="hljs-number">18</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">37</span>, <span class="hljs-number">2</span>]
+print(heapq.nlargest(<span class="hljs-number">3</span>, nums))  # Prints [<span class="hljs-number">42</span>, <span class="hljs-number">37</span>, <span class="hljs-number">23</span>]
+print(heapq.nsmallest(<span class="hljs-number">3</span>, nums))  # Prints [<span class="hljs-number">-4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+</code></pre>
+<p>我们还可以提供第三个参数 <code>key</code>，它是一个函数，它接受一个参数，将其转化为数字。其实就是 sorted 里接受的 key。它的作用类似于 java 里的 Comparator，都是我们自定义比较规则来用的</p>
+<h2><a class="anchor" aria-hidden="true" id="4实现优先级队列"></a><a href="#4实现优先级队列" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.实现优先级队列</h2>
+<p>我们想要实现一个队列，它能够以给定的优先级来对元素排序，且每次 pop 操作时都会返回优先级最高的那个元素。</p>
+<p>显然，用堆结构来实现的。</p>
+<pre><code class="hljs">import heapq
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PriorityQueue</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        <span class="hljs-keyword">self</span>._queue = []
+        <span class="hljs-keyword">self</span>._index = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, item, priority)</span></span>:
+        <span class="hljs-comment"># 将 headpush 是放一个小顶堆，所以我们放的时候将优先级取负值，这样优先级最高的将在堆的顶部</span>
+        heapq.heappush(<span class="hljs-keyword">self</span>._queue, (-priority, <span class="hljs-keyword">self</span>._index, item))
+        <span class="hljs-keyword">self</span>._index += <span class="hljs-number">1</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+        <span class="hljs-comment"># 取出最小的元素（优先级取负值后，优先级最高的元素，它的负值最小，因此这里取出了优先级最高的元素）</span>
+        <span class="hljs-comment"># -1 是取出 (-priority, self._index, item) 这个元素里最后一个元素，也就是真正的 item</span>
+        <span class="hljs-keyword">return</span> heapq.heappop(<span class="hljs-keyword">self</span>._queue)[-<span class="hljs-number">1</span>]
+
+</code></pre>
+<p>这里隐含的涉及到了 item 的比较。</p>
+<p>我们内部的 item 是三个值组成的元组：(-priority, self._index, item)</p>
+<p>python 对元组会按照索引进行比较，这里就是先比较 priority，再比较 index，最后比较 item。</p>
+<p>由于 item 并不一定是可以比较的（Comparable），所以使用了索引之后，确保对优先级相同的元素，他们的 index 一定不同，比较只只需到 index 这里就结束了</p>
+<h2><a class="anchor" aria-hidden="true" id="5将一个键映射到多个值-defaultdict"></a><a href="#5将一个键映射到多个值-defaultdict" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.将一个键映射到多个值 defaultdict</h2>
+<p>字典是一个 key 对应一个值，我们使用下面方案可以映射为多个值，即所谓的一键多值字典[multidict]</p>
+<p>常规方案：</p>
+<pre><code class="hljs">d = {
+    <span class="hljs-string">'a'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+    <span class="hljs-string">'b'</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+}
+
+</code></pre>
+<p>就是像这样，值采用一个容器，一般是 list 或者 set，甚至是另一个字典也可以</p>
+<p>为了能方便地创建这样的字典，可以利用 collections 模块中的 defaultdict 类。defaultdict 的一个特点就是它会自动初始化第一个值，这样只需关注添加元素即可</p>
+<pre><code class="hljs">from collections <span class="hljs-keyword">import</span> defaultdict
+
+d = defaultdict(list)
+d[<span class="hljs-string">'a'</span>].<span class="hljs-built_in">append</span>(<span class="hljs-number">1</span>)
+d[<span class="hljs-string">'a'</span>].<span class="hljs-built_in">append</span>(<span class="hljs-number">2</span>)
+d[<span class="hljs-string">'b'</span>].<span class="hljs-built_in">append</span>(<span class="hljs-number">4</span>)
+
+d = defaultdict(<span class="hljs-built_in">set</span>)
+d[<span class="hljs-string">'a'</span>].<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>)
+d[<span class="hljs-string">'a'</span>].<span class="hljs-built_in">add</span>(<span class="hljs-number">2</span>)
+d[<span class="hljs-string">'b'</span>].<span class="hljs-built_in">add</span>(<span class="hljs-number">4</span>)
+
+</code></pre>
+<p>说白了，就是可以省略我们在初次创建时的处理</p>
+<h2><a class="anchor" aria-hidden="true" id="6有序字典-ordereddict（类似于-java-的-treemap）"></a><a href="#6有序字典-ordereddict（类似于-java-的-treemap）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.有序字典 OrderedDict（类似于 java 的 TreeMap）</h2>
+<p>我们想创建一个字典，同时当对字典做迭代或序列化操作时，也能控制其中元素的顺序。</p>
+<p>简单方案：添加字典的时候，同时添加到一个 list，然后按照 list 的顺序进行迭代。</p>
+<p>现成的方案：使用 collections 模块中的 OrderedDict 类。</p>
+<pre><code class="hljs">from collections <span class="hljs-keyword">import</span> OrderedDict
+
+d = OrderedDict()
+d[<span class="hljs-string">'foo'</span>] = <span class="hljs-number">1</span>
+d[<span class="hljs-string">'bar'</span>] = <span class="hljs-number">2</span>
+d[<span class="hljs-string">'spam'</span>] = <span class="hljs-number">3</span>
+d[<span class="hljs-string">'grok'</span>] = <span class="hljs-number">4</span>
+# Outputs <span class="hljs-string">"foo 1"</span>, <span class="hljs-string">"bar 2"</span>, <span class="hljs-string">"spam 3"</span>, <span class="hljs-string">"grok 4"</span>
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">key</span> in d:
+    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">key</span>, d[<span class="hljs-built_in">key</span>])
+
+</code></pre>
+<blockquote>
+<p>如果想在进行 JSON 编码时精确控制各字段的顺序，那么只要首先在 OrderedDict 中构建数据就可以了</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="7处理字典的值（字典翻转）"></a><a href="#7处理字典的值（字典翻转）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7.处理字典的值（字典翻转）</h2>
+<p>假设我们有一个字典是</p>
+<pre><code class="hljs"><span class="hljs-string">prices</span> <span class="hljs-string">=</span> <span class="hljs-string">{'ACME':</span> <span class="hljs-number">45.23</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'AAPL':</span> <span class="hljs-number">612.78</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'IBM':</span> <span class="hljs-number">205.55</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'HPQ':</span> <span class="hljs-number">37.20</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'FB':</span> <span class="hljs-number">10.75</span>
+          <span class="hljs-string">}</span>
+</code></pre>
+<p>我们想要获取最大的分数，并且获得它对应的名称</p>
+<pre><code class="hljs"><span class="hljs-string">prices</span> <span class="hljs-string">=</span> <span class="hljs-string">{'ACME':</span> <span class="hljs-number">45.23</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'AAPL':</span> <span class="hljs-number">612.78</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'IBM':</span> <span class="hljs-number">205.55</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'HPQ':</span> <span class="hljs-number">37.20</span><span class="hljs-string">,</span>
+          <span class="hljs-attr">'FB':</span> <span class="hljs-number">10.75</span>
+          <span class="hljs-string">}</span>
+<span class="hljs-string">max_price</span> <span class="hljs-string">=</span> <span class="hljs-string">max(zip(prices.values(),</span> <span class="hljs-string">prices.keys()))</span>
+<span class="hljs-string">print(max_price)</span>
+</code></pre>
+<p>使用 zip 函数，将字典进行翻转组合</p>
+<p>这种方式也是利用了元组的比较方式：首先对 value 进行比较，然后对 key 进行比较。</p>
+<p>如果遇到 value 一样的情况，此时就是返回 key 最大的那个元素</p>
+<h2><a class="anchor" aria-hidden="true" id="8求字典的交集（相同的-key-或者-value）"></a><a href="#8求字典的交集（相同的-key-或者-value）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.求字典的交集（相同的 key 或者 value）</h2>
+<p>有两个字典，我们想找出它们中间可能相同的地方(相同的键、相同的值等)。</p>
+<p>例如如下两个字典</p>
+<pre><code class="hljs"><span class="hljs-string">a</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">'x':</span> <span class="hljs-number">1</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">'y':</span> <span class="hljs-number">2</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">'z':</span> <span class="hljs-number">3</span>
+<span class="hljs-string">}</span>
+<span class="hljs-string">b</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">'w':</span> <span class="hljs-number">10</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">'x':</span> <span class="hljs-number">11</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">'y':</span> <span class="hljs-number">2</span>
+<span class="hljs-string">}</span>
+</code></pre>
+<p>处理方式</p>
+<pre><code class="hljs">a.<span class="hljs-built_in">keys</span>() &amp; b.<span class="hljs-built_in">keys</span>() # 求相同的 <span class="hljs-built_in">key</span>，求集合的交集语法
+a.<span class="hljs-built_in">keys</span>() - b.<span class="hljs-built_in">keys</span>() # 在 a 字典而不在 b 字典的 <span class="hljs-built_in">key</span>
+a.items() &amp; b.items() # 求具有相同的 (<span class="hljs-built_in">key</span>,<span class="hljs-built_in">value</span>) 键值对
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="9从序列里移除重复项，并且保持元素顺序不变"></a><a href="#9从序列里移除重复项，并且保持元素顺序不变" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>9.从序列里移除重复项，并且保持元素顺序不变</h2>
+<p>我们想去除序列中出现的重复元素，但仍然保持剩下的元素顺序不变。</p>
+<p>如果序列中的值是可哈希(hashable)的，那么这个问题可以通过使用集合和生成器轻松解决</p>
+<pre><code class="hljs">def dedupe(<span class="hljs-keyword">items</span>):
+    seen = <span class="hljs-built_in">set</span>()
+    <span class="hljs-keyword">for</span> <span class="hljs-keyword">item</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">items</span>:
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">item</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> seen:
+            yield <span class="hljs-keyword">item</span>
+            seen.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">item</span>)
+</code></pre>
+<p>生成器内部持有一个集合，每当我们枚举出一个值后就将其加入到集合，每次枚举之前先判断是否在集合中</p>
+<p>上面的方法有一个前提：元素可以被 hash，也就是可以被加入到 set。</p>
+<p>如果元素不可以被 hash，可以使用下面的方式</p>
+<pre><code class="hljs">def dedupe(items,<span class="hljs-built_in"> key</span>=None):
+    seen = set()
+    <span class="hljs-keyword">for</span> <span class="hljs-type">item</span> <span class="hljs-keyword">in</span> items:
+        val = <span class="hljs-type">item</span> <span class="hljs-keyword">if</span><span class="hljs-built_in"> key</span> <span class="hljs-literal">is</span> None <span class="hljs-keyword">else</span><span class="hljs-built_in"> key</span>(<span class="hljs-type">item</span>)
+        <span class="hljs-keyword">if</span> val<span class="hljs-built_in"> not</span> <span class="hljs-keyword">in</span> seen:
+            yield <span class="hljs-type">item</span>
+            seen.add(val)
+</code></pre>
+<p>关键行是：<code>val = item if key is None else key(item)</code></p>
+<p>说白了就是：我们需要自己传一个函数，使得 item 能够被转化为可哈希类型</p>
+<h2><a class="anchor" aria-hidden="true" id="10对切片进行命名"></a><a href="#10对切片进行命名" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>10.对切片进行命名</h2>
+<p>有的时候，我们会处理一些硬编码的切片，比如说一个 URL 地址，我们想要跳过前面的 <code>http://</code> 可能就需要使用 <code>xxx_url[7:]</code>，这里就涉及到了硬编码，而且这里的 <code>7:</code> 实际上是一个切片对象（slice），所以我们可以预先定义好这种切片对象</p>
+<pre><code class="hljs">URL_SLICE = <span class="hljs-built_in">slice</span>(<span class="hljs-number">7</span>, None)
+url = 'http:<span class="hljs-comment">//www.baidu.com'</span>
+<span class="hljs-keyword">print</span>(url[URL_SLICE])  <span class="hljs-meta"># www.baidu.com</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="11找出序列中出现次数最多的元素"></a><a href="#11找出序列中出现次数最多的元素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>11.找出序列中出现次数最多的元素</h2>
+<p>我们有一个元素序列，想知道在序列中出现次数最多的元素是什么。</p>
+<p>常规方式：建立一个字典，然后遍历序列，将值映射为字典的 key，value 首先为 0，然后每次遍历加 1，最后找出字典里值最大的元素。</p>
+<p>参考本页：[处理字典的值](# 7.处理字典的值（字典翻转）)</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict
+
+nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]
+count_map = defaultdict(<span class="hljs-built_in">int</span>)
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
+    count_map[num] += <span class="hljs-number">1</span>
+print(count_map)
+count, num = max(zip(count_map.values(), count_map.keys()))
+print(<span class="hljs-string">'%s 出现次数最多：%s 次'</span> % (num, count))
+</code></pre>
+<p>还有另一种更好的方式：collections 模块中的 Counter 类正是为此类问题所设计的。它甚至有一个非常方便的 most_common() 方法可以直接告诉我们答案</p>
+<pre><code class="hljs">words = [
+    <span class="hljs-string">'look'</span>, <span class="hljs-string">'into'</span>, <span class="hljs-string">'my'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">'look'</span>, <span class="hljs-string">'into'</span>, <span class="hljs-string">'my'</span>, <span class="hljs-string">'eyes'</span>,
+    <span class="hljs-string">'the'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">'not'</span>, <span class="hljs-string">'around'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">"don't"</span>, <span class="hljs-string">'look'</span>, <span class="hljs-string">'around'</span>, <span class="hljs-string">'the'</span>,
+    <span class="hljs-string">'eyes'</span>, <span class="hljs-string">'look'</span>, <span class="hljs-string">'into'</span>, <span class="hljs-string">'my'</span>, <span class="hljs-string">'eyes'</span>, <span class="hljs-string">"you're"</span>, <span class="hljs-string">'under'</span>
+]
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
+
+word_counts = Counter(words)
+top_three = word_counts.most_common(<span class="hljs-number">3</span>)
+<span class="hljs-built_in">print</span>(top_three)
+</code></pre>
+<blockquote>
+<p>关于 Counter 对象有一个不为人知的特性，那就是它们可以轻松地同各种数学运算操作结合起来使用，也就是说 Counter 对象可以进行加减运算，从而增加或者减少统计数量</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="12operatorattrgetter-用于排序的比较"></a><a href="#12operatorattrgetter-用于排序的比较" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>12.operator.attrgetter 用于排序的比较</h2>
+<p>有时候，我们自定义的对象不支持比较操作，当涉及到他们的排序时，就需要我们自己添加一个用于比较的函数。通常 operator.attrgetter 是个不错的选择：</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> operator import attrgetter
+
+
+class User:
+    def __init__(self, user_id):
+        self.user_id = user_id
+
+    def __repr__(self):
+        return <span class="hljs-string">'User({})'</span>.format(self.user_id)
+
+<span class="hljs-built_in">
+users </span>= [User(12), User(13), User(14)]
+<span class="hljs-builtin-name">print</span>(sorted(users, <span class="hljs-attribute">key</span>=attrgetter('user_id')))
+</code></pre>
+<p>有时候一个属性是不够的，可以使用多个属性：<code>key=attrgetter('user_id','another_attr')</code></p>
+<h2><a class="anchor" aria-hidden="true" id="13operatoritemgetter-用于对列表里的字典排序"></a><a href="#13operatoritemgetter-用于对列表里的字典排序" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>13.operator.itemgetter 用于对列表里的字典排序</h2>
+<p>上面的问题中，我们是对一个列表里的对象进行排序，这个问题则是对列表里的字典进行排序。其实原理是一样的，只不过对于对象而言，是获取它的属性(attr)进行排序，而对于字典而言，是获取它的元素(item)进行排序</p>
+<pre><code class="hljs">from <span class="hljs-keyword">operator</span> <span class="hljs-keyword">import</span> itemgetter
+
+<span class="hljs-keyword">data</span> = [
+    {<span class="hljs-string">'id'</span>: <span class="hljs-number">100</span>},
+    {<span class="hljs-string">'id'</span>: <span class="hljs-number">300</span>},
+    {<span class="hljs-string">'id'</span>: <span class="hljs-number">10</span>},
+    {<span class="hljs-string">'id'</span>: <span class="hljs-number">200</span>},
+    {<span class="hljs-string">'id'</span>: <span class="hljs-number">500</span>}
+]
+print(sorted(<span class="hljs-keyword">data</span>, key=itemgetter(<span class="hljs-string">'id'</span>)))
+</code></pre>
+<p>区别不大其实</p>
+<h2><a class="anchor" aria-hidden="true" id="14对数据进行分组（groupby）"></a><a href="#14对数据进行分组（groupby）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>14.对数据进行分组（groupby）</h2>
+<p>有的时候，我们需要对数据进行分组（groupby），例如我们查询出了一条记录包含（地址和日期）信息，我们想要对日期进行分组，需要使用如下方式</p>
+<pre><code class="hljs">from operator import itemgetter
+from itertools import groupby
+
+rows = [
+    {'address': '<span class="hljs-number">5412</span> N CLARK', 'date': '07/01/<span class="hljs-number">2012</span>'}, {'address': '<span class="hljs-number">5148</span> N CLARK', 'date': '07/04/<span class="hljs-number">2012</span>'},
+    {'address': '<span class="hljs-number">5800</span> E 58TH', 'date': '07/02/<span class="hljs-number">2012</span>'}, {'address': '<span class="hljs-number">2122</span> N CLARK', 'date': '07/03/<span class="hljs-number">2012</span>'},
+    {'address': '<span class="hljs-number">5645</span> N RAVENSWOOD', 'date': '07/02/<span class="hljs-number">2012</span>'}, {'address': '<span class="hljs-number">1060</span> W ADDISON', 'date': '07/02/<span class="hljs-number">2012</span>'},
+    {'address': '<span class="hljs-number">4801</span> N BROADWAY', 'date': '07/01/<span class="hljs-number">2012</span>'}, {'address': '<span class="hljs-number">1039</span> W GRANVILLE', 'date': '07/04/<span class="hljs-number">2012</span>'},
+]
+
+<span class="hljs-meta"># 先根据日期进行排序</span>
+rows.sort(key=itemgetter('date'))
+<span class="hljs-meta"># 根据日期进行分组，迭代时返回的是元组：分组字段值、分组对应的所有元素</span>
+for date, items in groupby(rows, key=itemgetter('date')):
+    print(date)
+    for i in items:
+        print(' ', i)
+</code></pre>
+<blockquote>
+<p>唯一要注意的是：必须要先对分组字段进行排序，以便让相同的字段值在一段连续的区间里。这个 groupby 是根据区间来分组的，如果相同的值在不同的区间，那么它们就被分为了两组</p>
+</blockquote>
+<p>另一种方式也可以使用 defaultdict 构建一个一键多值字典</p>
+<h2><a class="anchor" aria-hidden="true" id="15命名元组-namedtuple"></a><a href="#15命名元组-namedtuple" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>15.命名元组 namedtuple</h2>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> collections import namedtuple
+<span class="hljs-built_in">
+User </span>= namedtuple(<span class="hljs-string">'User'</span>, [<span class="hljs-string">'name'</span>, <span class="hljs-string">'age'</span>])
+a = User(<span class="hljs-string">'czp'</span>, <span class="hljs-string">'25'</span>)
+name, age = a
+<span class="hljs-builtin-name">print</span>(name, age)
+</code></pre>
+<p>说白了就是 namedtuple 动态创建了一个类，这个类既具有元组的特性，又具有普通类的特性。</p>
+<p>元组的多个值映射成了这个动态类的多个属性上。</p>
+<p>可以一种作为数据展示类来使用</p>
+<p>解构的时候是按照元组的规则来解构的，因此在本例中无论左边的变量叫什么，第一个值都是代表了 name，第二个代表了 age</p>
+<h2><a class="anchor" aria-hidden="true" id="16将多个字典合并为一个字典"></a><a href="#16将多个字典合并为一个字典" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>16.将多个字典合并为一个字典</h2>
+<p>假设有两个字典，我们想执行查找操作，我们必须得检查这两个字典（例如，先在 a 中查找，如果 没找到再去 b 中查找），一种简单的方法是利用 collections 模块中的 ChainMap 类来解决这个问题</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> ChainMap
+
+a = {<span class="hljs-string">'x'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'z'</span>: <span class="hljs-number">3</span>}
+b = {<span class="hljs-string">'y'</span>: <span class="hljs-number">2</span>, <span class="hljs-string">'z'</span>: <span class="hljs-number">4</span>}
+c = ChainMap(a, b)
+<span class="hljs-built_in">print</span>(c[<span class="hljs-string">'x'</span>])  <span class="hljs-comment"># Outputs 1 (from a)</span>
+<span class="hljs-built_in">print</span>(c[<span class="hljs-string">'y'</span>])  <span class="hljs-comment"># Outputs 2 (from b)</span>
+<span class="hljs-built_in">print</span>(c[<span class="hljs-string">'z'</span>])  <span class="hljs-comment"># Outputs 3 (from a)</span>
+</code></pre>
+<p>在一个字典中找不到才去另一个字典找。</p>
+<p>我们有可能使用字典的 update 方法，但是这么做性能比较低。</p>
+<p>ChainMap 只是维护了链接的字典的一些关系，然后重新实现了一些查找方法</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/26/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1提取头尾的元素">1.提取头尾的元素</a></li><li><a href="#2固定长度的队列">2.固定长度的队列</a></li><li><a href="#3找到最大或最小的-n-个元素">3.找到最大或最小的 N 个元素</a></li><li><a href="#4实现优先级队列">4.实现优先级队列</a></li><li><a href="#5将一个键映射到多个值-defaultdict">5.将一个键映射到多个值 defaultdict</a></li><li><a href="#6有序字典-ordereddict（类似于-java-的-treemap）">6.有序字典 OrderedDict（类似于 java 的 TreeMap）</a></li><li><a href="#7处理字典的值（字典翻转）">7.处理字典的值（字典翻转）</a></li><li><a href="#8求字典的交集（相同的-key-或者-value）">8.求字典的交集（相同的 key 或者 value）</a></li><li><a href="#9从序列里移除重复项，并且保持元素顺序不变">9.从序列里移除重复项，并且保持元素顺序不变</a></li><li><a href="#10对切片进行命名">10.对切片进行命名</a></li><li><a href="#11找出序列中出现次数最多的元素">11.找出序列中出现次数最多的元素</a></li><li><a href="#12operatorattrgetter-用于排序的比较">12.operator.attrgetter 用于排序的比较</a></li><li><a href="#13operatoritemgetter-用于对列表里的字典排序">13.operator.itemgetter 用于对列表里的字典排序</a></li><li><a href="#14对数据进行分组（groupby）">14.对数据进行分组（groupby）</a></li><li><a href="#15命名元组-namedtuple">15.命名元组 namedtuple</a></li><li><a href="#16将多个字典合并为一个字典">16.将多个字典合并为一个字典</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
