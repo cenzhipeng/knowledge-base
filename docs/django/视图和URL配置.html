@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 新建 views.py"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 新建 views.py"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/django/3.视图和URL配置.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="新建-viewspy"></a><a href="#新建-viewspy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>新建 views.py</h2>
+<p>在 mysite 目录中新建一个空文件，名为 views.py，这个模块用于保存本章编写的视图</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(request)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"Hello world"</span>)
+
+</code></pre>
+<ul>
+<li>首先，从 django.http 模块中导入 HttpResponse 类。导入这个类是因为后面的代码要使用。</li>
+<li>然后，定义一个名为 hello 的函数，这是视图函数。视图函数至少有一个参数，按约定名为 request。这是一个对象，包含触发这个视图的 Web 请求的信息，是 django.http.HttpRequest 类的实例</li>
+</ul>
+<p>视图就是普通的 Python 函数：</p>
+<ul>
+<li>它的第一个参数是 HttpRequest 对象</li>
+<li>返回值是一个 HttpResponse 实例</li>
+<li>Python 函数要想变成 Django 视图，必须做这两件事（也有例外，后文说明）</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="添加-url-配置"></a><a href="#添加-url-配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 URL 配置</h2>
+<p>我们这里相当于只是定义了 controller 函数，还没有定义具体的 URL mapping。在 django 中应该修改 urls.py 文件</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> django.conf.urls <span class="hljs-keyword">import</span> include, url
+<span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin
+<span class="hljs-keyword">from</span> mysite.views <span class="hljs-keyword">import</span> hello
+
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, include(admin.site.urls)),
+    url(<span class="hljs-string">r'^hello$'</span>, hello),
+]
+</code></pre>
+<p>关键行在倒数第二行：</p>
+<p>第一个参数是模式匹配字符串(一个正则表达式)，第二个参数是模式使用的视图函数，表示添加这个 URL 触发对应的视图函数</p>
+<h3><a class="anchor" aria-hidden="true" id="屏蔽自动添加斜杠的行为"></a><a href="#屏蔽自动添加斜杠的行为" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>屏蔽自动添加斜杠的行为</h3>
+<p>django 在找不到 URL 的时候会自动在 URL 上面加斜杠，挺烦的，修改 settings.py，添加</p>
+<pre><code class="hljs"><span class="hljs-attr">APPEND_SLASH</span> = <span class="hljs-literal">False</span>
+</code></pre>
+<p>记得清空浏览器缓存</p>
+<h3><a class="anchor" aria-hidden="true" id="添加根地址的url"></a><a href="#添加根地址的url" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加根地址的URL</h3>
+<p>根地址，例如：<code>http://127.0.0.1:8000</code> 这个地址本身也是可以添加 URL 的，应该这样做</p>
+<pre><code class="hljs">urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, include(admin.site.urls)),
+    url(<span class="hljs-string">r'^hello$'</span>, hello),
+    url(<span class="hljs-string">r'^$'</span>, hello)
+]
+</code></pre>
+<p>添加一个 <code>r'^$'</code> 模式</p>
+<h2><a class="anchor" aria-hidden="true" id="django-启动和运行的过程"></a><a href="#django-启动和运行的过程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>django 启动和运行的过程</h2>
+<ul>
+<li>运行 <code>python manage.py runserver</code> 命令时，manage.py 脚本在内层 mysite 目录中寻找名为 settings.py 的文件
+<ul>
+<li>manage.py ：<code>os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;mysite.settings&quot;)</code></li>
+</ul></li>
+<li>这个文件中保存着当前 Django 项目的全部配置，各个配置的名称都是大写的，例如 TEMPLATE_DIRS、 DATABASES 等等</li>
+<li>最重要的设置是 ROOT_URLCONF。它告诉 Django，网站的 URL 配置在哪个 Python 模块中
+<ul>
+<li>settings.py ：<code>ROOT_URLCONF = 'mysite.urls'</code></li>
+</ul></li>
+<li>收到针对某个 URL 的请求时，Django 加载 ROOT_URLCONF 设置指定的 URL 配置，然后按顺序检查 URL 配置中的各个 URL 模式，依次与请求的 URL 比较，直到找到匹配的模式为止</li>
+<li>找到匹配的模式之后，调用对应的视图函数，并把一个 HttpRequest 对象作为第一个参数传给视图，视图函数必须返回一个 HttpResponse 对象</li>
+<li>随后，余下的工作交给 Django 处理：把那个 Python 对象转换成正确的 Web 响应，并且提供合适的 HTTP 首部和主体</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="动态-url-配置"></a><a href="#动态-url-配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态 URL 配置</h2>
+<p>首先我们可以知道，URL 配置使用的是正则表达式，所以显然是可以支持动态 URL 的。如果我们想要支持一个类似于 <code>/time/plus/1</code>、<code>/time/plus/2</code> 这种 URL，只需要如下配置：</p>
+<pre><code class="hljs">url(<span class="hljs-string">r'^time/plus/\d+$'</span>, hours_ahead),
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="获取动态url参数"></a><a href="#获取动态url参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取动态URL参数</h3>
+<p>上面的部分解决了动态 URL 的问题，但是还有个问题，就是在我们的视图函数（controller）中如何获取到这部分动态的内容（通常这都是必要的），为此我们在 URL 模式中放一对圆括号，把想保存的数据括起来，如下：</p>
+<pre><code class="hljs">url(<span class="hljs-string">r'^time/plus/(\d{1,2})$'</span>, hours_ahead),
+</code></pre>
+<p>设好 URL 之后，下面编写 hours_ahead 视图，要接收额外的参数，即偏移的小时数，hours_ahead 视图的代码如下：</p>
+<pre><code class="hljs">def hours<span class="hljs-constructor">_ahead(<span class="hljs-params">request</span>, <span class="hljs-params">offset</span>)</span>:
+    <span class="hljs-keyword">try</span>:
+        offset = <span class="hljs-built_in">int</span>(offset)
+    except ValueError:
+        raise <span class="hljs-constructor">Http404()</span>
+    dt = datetime.datetime.now<span class="hljs-literal">()</span> + datetime.timedelta(hours=offset)
+    html = <span class="hljs-string">"In %s hour(s), it will be %s."</span> % (offset, dt)
+    return <span class="hljs-constructor">HttpResponse(<span class="hljs-params">html</span>)</span>
+</code></pre>
+<p>这个视图函数有两个参数，含义如下：</p>
+<ul>
+<li>request 是一个 HttpRequest 对象，这与前面的一样</li>
+<li>offset 是 URL 模式中那对圆括号捕获的字符串。如果请求的 URL 是 /time/plus/3，那么偏移量是字符串 '3'，如果请求的 URL 是 /time/plus/21，那么偏移量是字符串 '21'，无论如何它都是字符串 unicode 对象，而不是整数</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="返回-json"></a><a href="#返回-json" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>返回 json</h2>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(request)</span></span>:
+    data = {
+        <span class="hljs-string">'hh'</span>: <span class="hljs-string">'岑志鹏'</span>
+    }
+    <span class="hljs-keyword">return</span> JsonResponse(data)
+</code></pre>
+<p>使用 JsonResponse 来返回 json 对象</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 8/2/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#新建-viewspy">新建 views.py</a></li><li><a href="#添加-url-配置">添加 URL 配置</a><ul class="toc-headings"><li><a href="#屏蔽自动添加斜杠的行为">屏蔽自动添加斜杠的行为</a></li><li><a href="#添加根地址的url">添加根地址的URL</a></li></ul></li><li><a href="#django-启动和运行的过程">django 启动和运行的过程</a></li><li><a href="#动态-url-配置">动态 URL 配置</a><ul class="toc-headings"><li><a href="#获取动态url参数">获取动态URL参数</a></li></ul></li><li><a href="#返回-json">返回 json</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

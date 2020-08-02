@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 正则表达式"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 正则表达式"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 常用的正则表达式："/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 常用的正则表达式："/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -6,53 +6,89 @@
 
               ga('create', 'UA-153148512-1', 'auto');
               ga('send', 'pageview');
-            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100,"scrollDuration":400}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/正则表达式/1.正则表达式.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="正则表达式"></a><a href="#正则表达式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正则表达式</h2>
-<h3><a class="anchor" aria-hidden="true" id="应用场景"></a><a href="#应用场景" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>应用场景</h3>
-<p>简单来说就是两种场景：搜索和替换文本</p>
-<h3><a class="anchor" aria-hidden="true" id="作用"></a><a href="#作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>作用</h3>
-<p>正则表达式能按照某种模式匹配一系列有相似特征的字符串。换句话说，一个正则表达式能够匹配多个字符串</p>
-<p>Python 通过标准库中的 re 模块来支持正则表达式。</p>
-<h3><a class="anchor" aria-hidden="true" id="搜索和匹配"></a><a href="#搜索和匹配" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>搜索和匹配</h3>
-<p>搜索(searching)，即在字符串任意部分中搜索匹配的模式，而匹配(matching)是指判断一个字符串能否从起始处全部或者部分地匹配某个模式。</p>
-<p>也就是说：搜索是要搜索出字符串，匹配是要判断是否能够搜索出字符串</p>
-<h2><a class="anchor" aria-hidden="true" id="正则表达式对照表"></a><a href="#正则表达式对照表" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正则表达式对照表</h2>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/正则表达式/1.正则表达式.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="常用的正则表达式："></a><a href="#常用的正则表达式：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常用的正则表达式：</h2>
+<h3><a class="anchor" aria-hidden="true" id="常用网址"></a><a href="#常用网址" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常用网址</h3>
+<pre><code class="hljs"><span class="hljs-number">1.</span> https:<span class="hljs-comment">//regex101.com/</span>
+<span class="hljs-number">2.</span> https:<span class="hljs-comment">//tool.oschina.net/regex/</span>
+<span class="hljs-number">3.</span> http:<span class="hljs-comment">//tool.chinaz.com/regex/</span>
+<span class="hljs-number">4.</span> https:<span class="hljs-comment">//www.w3cschool.cn/tools/index?name=re</span>
+<span class="hljs-number">5.</span> https:<span class="hljs-comment">//c.runoob.com/front-end/854</span>
+<span class="hljs-number">6.</span> http:<span class="hljs-comment">//tools.haokh.net/Regex</span>
+<span class="hljs-number">7.</span> Windows 上推荐：RegexBuddy
+<span class="hljs-number">8.</span> Mac上推荐：Expressions
+
+备注：<span class="hljs-number">1</span>中支持账号功能，可以保存后进行分享。<span class="hljs-number">2</span>~<span class="hljs-number">6</span>都包含大量常用的正则示例。<span class="hljs-number">7</span>&amp;<span class="hljs-number">8</span> 都需要付费。
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="手机号"></a><a href="#手机号" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>手机号</h3>
+<p>第 1 位固定为数字 1；</p>
+<p>第 2 位可能是 3，4，5，6，7，8，9；</p>
+<p>第 3 位到第 11 位我们认为可能是 0-9 任意数字。</p>
+<p>正则：</p>
+<pre><code class="hljs"><span class="hljs-number">1</span>[<span class="hljs-number">3</span><span class="hljs-number">-9</span>]\d{<span class="hljs-number">9</span>}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="元字符"></a><a href="#元字符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>元字符</h2>
+<p>元字符就是指那些在正则表达式中具有特殊意义的专用字符。就像是普通字符里，一个反斜杠 <code>\</code> 就是一个元字符一样，它是专门用来转义的，正则表达式里有很多类似于这样的元字符。</p>
+<h3><a class="anchor" aria-hidden="true" id="分类"></a><a href="#分类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分类</h3>
+<p>元字符按照它们的作用大致可以分成五类：特殊单字符、空白符、范围、量词、断言</p>
+<h3><a class="anchor" aria-hidden="true" id="特殊单字符"></a><a href="#特殊单字符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>特殊单字符</h3>
 <ul>
-<li>literal：
-<ul>
-<li>描述：匹配文本字符串的字面值 literal</li>
-<li>正则示例：foo</li>
-<li>说明：匹配任何包含 foo 的字符串</li>
-</ul></li>
-<li>re1|re2：
-<ul>
-<li>描述：匹配正则表达式 re1 或者 re2</li>
-<li>正则示例：foo|bar</li>
-<li>说明：匹配任何包含 foo 或者 bar 的字符串</li>
-</ul></li>
 <li>.：
 <ul>
 <li>描述：匹配任何一个字符(除了 \n 之外)</li>
 <li>正则示例：b.b</li>
 <li>说明：匹配包含 bnb bab bcb 之类的字符串</li>
 </ul></li>
-<li>^：
+<li>\d：
 <ul>
-<li>描述：匹配字符串起始部分</li>
-<li>正则示例：^Dear</li>
-<li>说明：匹配任何以 Dear 开头的字符串</li>
+<li>描述：匹配任何十进制数字，与[0-9]一致</li>
+<li>正则示例：data\d+.txt</li>
+<li>说明：表示匹配 data9.txt、data0.txt 等模式的字符串</li>
 </ul></li>
-<li>$：
+<li>\D：
 <ul>
-<li>描述：匹配字符串终止部分</li>
-<li>正则示例：/bin/*sh$</li>
-<li>说明：匹配包含 xxx/binsh xxx/bin/sh xxx/bin//sh xxx/bin///sh 等的字符串，且必须以 sh 结尾</li>
+<li>描述：匹配非数字的内容，与 <code>[^0-9]</code> 一致</li>
+<li>正则示例：data\D.txt</li>
+<li>说明：表示匹配 dataa.txt、data我.txt 等模式的字符串</li>
 </ul></li>
+<li>\w：
+<ul>
+<li>描述：匹配任何字母数字下划线字符，与[A-Za-z0-9_]相同（数字字母下划线），在 python3 的 re 模块中，默认启用的是 unicode 模式，所以它还要加上其他语言里的文字，例如中文字符也是可以被 \w 匹配的</li>
+<li>正则示例：[A-Za-z_]\w+</li>
+<li>说明：表示匹配 （字母或者下划线、字母下划线数字（中文韩文日文等字符）） 这种模式的字符串（标识符的匹配模式），在标准的正则规范里，它等价于 [A-Za-z0-9_]，但是在一些实现里，例如 python，它也可以匹配到其它语言的字符</li>
+</ul></li>
+<li>\W：
+<ul>
+<li>描述：匹配数字字母下划线以外的字符，与 <code>[^A-Za-z0-9_]</code> 相同（以及排除中文韩文日文等字符），准确来说，它是 \w 的完全的反义词</li>
+</ul></li>
+<li>\s：
+<ul>
+<li>描述：匹配任何空白字符，与 [\n\t\r\v\f ] 相同 (\S 与之相反)，注意，字符组里还有 <strong>空格</strong>，空格字符也是可以被 \s 匹配到的</li>
+</ul></li>
+<li>\S：
+<ul>
+<li>描述：匹配任何空白之外的字符（能被肉眼看到的都能匹配上）</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="空白符"></a><a href="#空白符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>空白符</h3>
+<p>空白符就是无法被肉眼看到的符号，包括有：</p>
+<ul>
+<li>\r 回车符</li>
+<li>\n 换行符</li>
+<li>\f 换页符</li>
+<li>\t 制表符</li>
+<li>\v 垂直制表符</li>
+</ul>
+<p>而使用 \s 可以匹配到以上的五种空白符，以及 <strong>空格字符</strong>，所以 <code>\s</code> 等价于 <code>[\n\t\r\v\f ]</code>（注意 \f 后面的空格）</p>
+<p><strong>说白了：空白符也可以当成是特殊单字符</strong></p>
+<h3><a class="anchor" aria-hidden="true" id="量词"></a><a href="#量词" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>量词</h3>
+<p>上面我们说到的元字符，它们虽然能匹配到不同的字符，但是统统都只能匹配到一个字符，有时候我们想匹配多个字符（例如 11 个数字组成的手机号码），这就需要用到表示量词的元字符了。</p>
+<ul>
 <li>*：
 <ul>
 <li>描述：匹配 0 次或者多次前面出现的正则表达式，注意这里指代的是 1 个表达式，例如 <code>/bin/*sh$</code> 这里的 0 次或者多次仅仅代表前面的 <code>/</code> 出现 0 次或者多次</li>
@@ -61,7 +97,7 @@
 </ul></li>
 <li>+：
 <ul>
-<li>描述：匹配 1 次或者多次前面出现的正则表达式，注意这里指代的是 1 个表达式，例如 <code>/bin/*sh$</code> 这里的 1 次或者多次仅仅代表前面的 <code>/</code> 出现 1 次或者多次</li>
+<li>描述：匹配 1 次或者多次前面出现的正则表达式，注意这里指代的是 1 个表达式，例如 <code>/bin/+sh$</code> 这里的 1 次或者多次仅仅代表前面的 <code>/</code> 出现 1 次或者多次</li>
 <li>正则示例：[a-z]+.com</li>
 <li>说明：匹配包含由小写字母与 <code>.com</code> 的组合，例如：aaa.com bbb.com ccc.com 等，这里 <code>.com</code> 前面至少有一个小写字母</li>
 </ul></li>
@@ -70,12 +106,19 @@
 <li>描述：匹配 0 次或者 1 次前面出现的正则表达式</li>
 <li>正则示例：goo?</li>
 <li>说明：匹配包含 goo 和 gooo 的字符串，例如 <code>呵呵goo</code></li>
+<li>用途：问号量词经常可以用来表示存在或者不存在两种含义，例如 <code>colou?r</code> 既可以匹配 <code>color</code> 又可以匹配 <code>colour</code> 两个表示颜色的单词的不同变体</li>
 </ul></li>
-<li>{N}：
+<li>{M}：
 <ul>
-<li>描述：匹配 N 次前面出现的正则表达式</li>
+<li>描述：匹配 M 次前面出现的正则表达式</li>
 <li>正则示例：[0-9]{3}</li>
 <li>说明：匹配包含有 3 个连续数字的字符串，例如 <code>n1233</code> <code>abc222ddd</code></li>
+</ul></li>
+<li>{M,}：
+<ul>
+<li>描述：匹配<strong>至少</strong> M 次前面出现的正则表达式</li>
+<li>正则示例：[0-9]{3,}</li>
+<li>说明：匹配包含有 3 个或者以上连续数字的字符串，例如 <code>n1233</code> <code>abc222ddd</code></li>
 </ul></li>
 <li>{M,N}：
 <ul>
@@ -84,11 +127,27 @@
 <li>说明：匹配包含有 5-9 个连续数字的字符串，例如 <code>n12345</code> <code>n123456789</code></li>
 <li>也可以使用 {5,} 表示至少匹配 5 次，但是不需要给出最大值，此时如果出现 100 次也是可以匹配的，等价的说法相当于是说重复 5 次及以上的次数</li>
 </ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="范围"></a><a href="#范围" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>范围</h3>
+<p>我们当然可以用 \d{11} 来匹配上所有的手机号，但是很明显，这个正则除了手机号之外还可以匹配上别的号码序列（比如11个0），因为它表示的范围实际上比手机号表示的范围要大，我们就需要在一个特殊的范围里找符合要求的数字。</p>
+<p>在正则表达式中，表示范围的符号以下类型</p>
+<h4><a class="anchor" aria-hidden="true" id="逻辑或："></a><a href="#逻辑或：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>逻辑或：|</h4>
+<ul>
+<li>|：
+<ul>
+<li>描述：用来分隔开多个正则表达式，表示一种<strong>逻辑或</strong>的情况</li>
+<li>正则示例：zhangsan|lisi</li>
+<li>说明：表示匹配 zhangsan 或者匹配 lisi</li>
+<li>这种方式用来组合多个正则表达式是很有用处的，例如说我们写了一个正则表达式 re1 用来匹配包含数字的字符串，re2 用来匹配包含英文字母的字符串，使用 re1|re2 就可以用来匹配：包含字母或者数字的字符串</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="字符组-"></a><a href="#字符组-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符组 []</h4>
+<ul>
 <li>[...]：
 <ul>
-<li>描述：匹配来自字符集的任意单一字符</li>
+<li>描述：匹配来自字符组的任意单一字符</li>
 <li>正则示例：[aeiou]</li>
-<li>说明：匹配包含有上面 5 个字符里任意一个字符的字符串，例如 <code>a</code> <code>be</code> <code>ii</code></li>
+<li>说明：匹配包含有上面 5 个字符里任意一个字符的字符串，例如 <code>a</code> <code>e</code> <code>i</code></li>
 </ul></li>
 <li>[..x−y..]：
 <ul>
@@ -98,26 +157,504 @@
 </ul></li>
 <li>[^...]：
 <ul>
-<li>描述：不匹配此字符集中出现的任何一个字符，包括某一范围的字符(如果在此字符集中出现)</li>
+<li>描述：不匹配此字符组中出现的任何一个字符，包括某一范围的字符(如果在此字符组中出现)</li>
 <li>正则示例：<code>[^aeiou],[^A-Za-z0-9]</code></li>
 <li>说明：匹配包含有（非 aeiou 、逗号、非字母数字）这种模式组成的字符串，例如 <code>,,,</code> <code>x,我</code></li>
 </ul></li>
-<li>(*|+|?|{})?：
-<ul>
-<li>描述：量词的非贪婪模式，普通量词是 * + ? {} 等，它们会尽量匹配更长的序列，也就是贪婪模式。例如一个字符串 <code>abcaxc</code>，与一个模式 <code>ab.*c</code>，这种就是贪婪模式，<code>.*</code>会匹配到最长的序列，最终匹配了整个字符串 <code>abcaxc</code>，而如果使用非贪婪模式：也就是在量词后面添加一个问号：<code>ab.*?c</code> 将会匹配到最短的序列，最终匹配到了字符串 <code>abc</code></li>
-<li>正则示例：<code>ab.*?c</code></li>
-<li>说明：非贪婪匹配，例如 <code>print(re.search('ab.*c', 'abcaxc').group())</code> 捕获的是 <code>abcaxc</code>，而 <code>print(re.search('ab.*?c', 'abcaxc').group())</code> 捕获的是 <code>abc</code></li>
-<li>贪婪模式和非贪婪模式：这种带量词的匹配，可能有多种匹配方式，贪婪匹配就是匹配到最长的模式，非贪婪模式就是匹配到最短的模式</li>
-</ul></li>
-<li>(...)：
-<ul>
-<li>描述：匹配封闭的正则表达式，然后另存为子组。量词可以用在这种子组上，表达能力更强。</li>
-<li>正则示例：([0-9]{3})?,f(oo|u)bar</li>
-<li>说明：表示匹配包含有 （三个数字出现0或者1次、逗号、f、oo或者u、bar）这种模式组成的字符串，例如 <code>011,foobarxxx</code></li>
-<li></li>
-</ul></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/26/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#正则表达式">正则表达式</a><ul class="toc-headings"><li><a href="#应用场景">应用场景</a></li><li><a href="#作用">作用</a></li><li><a href="#搜索和匹配">搜索和匹配</a></li></ul></li><li><a href="#正则表达式对照表">正则表达式对照表</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>示例：我们想匹配一个 URL，它的字符集可能是 http，也可能是 htpps 或者 ftp，可以使用以下正则：</p>
+<pre><code class="hljs">(https?|ftp)<span class="hljs-symbol">://</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="断言"></a><a href="#断言" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>断言</h3>
+<h3><a class="anchor" aria-hidden="true" id="常用的元字符"></a><a href="#常用的元字符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常用的元字符</h3>
+<p><img src="../assets/ffd9cd49a79599e7efa4aba069faee52.png" alt="img"></p>
+<h2><a class="anchor" aria-hidden="true" id="量词和贪婪"></a><a href="#量词和贪婪" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>量词和贪婪</h2>
+<p>贪婪模式和非贪婪模式都是针对量词的（*+?{} 这些量词），贪婪模式就是指量词会按照最长的序列去匹配，而非贪婪模式就是指量词会按照最短的序列去匹配。默认的模式都是贪婪模式，通过在量词后面添加一个问号，就可以将量词的匹配模式改变为非贪婪模式</p>
+<h3><a class="anchor" aria-hidden="true" id="示例"></a><a href="#示例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h3>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+print(re.findall(<span class="hljs-string">r'a*'</span>, <span class="hljs-string">'aaabb'</span>))
+print(re.findall(<span class="hljs-string">r'a*?'</span>, <span class="hljs-string">'aaabb'</span>))
+
+输出：
+[<span class="hljs-string">'aaa'</span>, <span class="hljs-string">''</span>, <span class="hljs-string">''</span>, <span class="hljs-string">''</span>]
+[<span class="hljs-string">''</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">''</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">''</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">''</span>, <span class="hljs-string">''</span>, <span class="hljs-string">''</span>]
+</code></pre>
+<p>字符串匹配的原理：</p>
+<ul>
+<li>正则匹配的是字符串里的字符，对于 aaabb 这种字符串，它在每个字符之间的空隙都插入了空字符串 <code>''</code></li>
+<li>因此，对于 aaabb 我们应该理解成 <code>空a空a空a空b空b空</code></li>
+</ul>
+<p>对于贪婪匹配（第一行）：</p>
+<ul>
+<li>a* 匹配到 <code>空a空a空a</code>，最后一个 a 右边的 <code>空</code> 不进行匹配（也就是说：如果匹配到了真实的字符，就不像右边扩展 <code>空</code>）</li>
+<li>剩下 <code>空b空b空</code>，匹配到第一个 <code>空</code></li>
+<li>剩下 <code>b空b空</code>，跳过第一个 b，匹配到 b 右边的 <code>空</code></li>
+<li>剩下 <code>b空</code>，跳过第一个 b，匹配到 b右边的 <code>空</code></li>
+<li>结束</li>
+</ul>
+<p><img src="../assets/b0c582cbf8ec081bc798296b5471804c.png" alt="img" style="zoom:33%;" /></p>
+<p>对于非贪婪模式（第二行）：</p>
+<ul>
+<li>对于 <code>空a空a空a空b空b空</code>，前 7 个字符都可以直接匹配一次</li>
+<li>剩下 <code>b空b空</code>，后两次分别匹配到一个 <code>空</code></li>
+<li>结束</li>
+</ul>
+<p><img src="../assets/10e40baa1194b17dcc57a089524a37bc.png" alt="img" style="zoom:33%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="分组和引用"></a><a href="#分组和引用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分组和引用</h2>
+<p>假如说我们有一个需求：我们想匹配 <a href="http://baidu.com">baidu.com</a> 或者 <a href="http://www.baidu.com">www.baidu.com</a></p>
+<p>当然我们可以这么写正则：<code>baidu\.com|www\.baidu\.com</code></p>
+<p>但是还有另一种方式：<code>(www\.)?baidu.com</code></p>
+<p>我们这里的量词：<code>?</code> 作用在前一个整体上 <code>(www\.)</code>，如果没有小括号的话，那么量词只能作用在前一个字符上。</p>
+<p>这就是小括号的作用之一：将一个表达式作为一个整体。</p>
+<p>同时，小括号的另一个作用就是将其作为一个分组，<code>(www\.)</code>，被当做一个分组，当我们执行查询后，这个分组捕获到的字符串，将可以被我们进行获取并且进行引用。</p>
+<p>被括号括起来的部分  子表达式  会被保存成一个子组，每个分组都有一个编号，我们可以使用编号来引用这个分组。</p>
+<p>如果涉及到多个分组，甚至嵌套的分组，有个最简单的办法就是数括号：第几个左括号就是第几个分组。</p>
+<h3><a class="anchor" aria-hidden="true" id="分组示例"></a><a href="#分组示例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>分组示例</h3>
+<pre><code class="hljs">match = re.match(<span class="hljs-string">r'((\d{4})-(\d{2})-(\d{2})) ((\d{2}):(\d{2}):(\d{2}))'</span>, <span class="hljs-string">'2020-08-01 21:00:03---2020-08-01 21:00:03'</span>)
+print(match.group(<span class="hljs-number">1</span>))  <span class="hljs-comment"># 年-月-日</span>
+print(match.group(<span class="hljs-number">2</span>))  <span class="hljs-comment"># 年</span>
+print(match.group(<span class="hljs-number">3</span>))  <span class="hljs-comment"># 月</span>
+print(match.group(<span class="hljs-number">4</span>))  <span class="hljs-comment"># 日</span>
+print(match.groups())
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs"><span class="hljs-number">2020</span><span class="hljs-number">-08</span><span class="hljs-number">-01</span>
+<span class="hljs-number">2020</span>
+<span class="hljs-number">08</span>
+<span class="hljs-number">01</span>
+(<span class="hljs-symbol">'2020-08-01</span>', <span class="hljs-symbol">'2020</span>', <span class="hljs-symbol">'08</span>', <span class="hljs-symbol">'01</span>', <span class="hljs-symbol">'21:00:03</span>', <span class="hljs-symbol">'21</span>', <span class="hljs-symbol">'00</span>', <span class="hljs-symbol">'03</span>')
+</code></pre>
+<p>以上是对分组的简单使用，简单来说就是：分组编号从 1 开始，第几个括号就是第几个分组（数左括号）</p>
+<h3><a class="anchor" aria-hidden="true" id="正则中引用分组"></a><a href="#正则中引用分组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正则中引用分组</h3>
+<p>分组除了在我们执行搜索之后再使用，还可以在正则里直接使用。</p>
+<p>例如我们有一个需求，是匹配到一串字符里重复的单词，例如说：<code>this is is a sample string string aa</code>，那么就可以匹配到两个字符串：<code>is is</code> 和 <code>string string</code>（注意这里面的空格）</p>
+<p>要完成这个需求，可以这样写正则：<code>(\w+) \1</code></p>
+<pre><code class="hljs">match = re.findall(<span class="hljs-string">r'(\w+) \1'</span>, <span class="hljs-string">'this is is a sample string string aa'</span>)
+print(match)
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">[<span class="hljs-symbol">'is</span>', <span class="hljs-symbol">'string</span>']
+</code></pre>
+<p>我们可以看到，正则确实找到了这两个重复的单词，但是，结果并不是我们想要的，我们想要的是输出 <code>is is</code>，<code>string string</code> 这种匹配到的字符串。</p>
+<p>这就是小括号分组的副作用了：</p>
+<ul>
+<li>当我们使用小括号把一个子表达式括起来的时候，就创建了一个分组</li>
+<li>而 findall 方法在表达式中定义了分组的时候，返回的将是分组组成的列表：[groups1, groups2, groups3] 这种</li>
+<li>由于我们的分组只包含 <code>(\w+) \1</code> 左边的那一半，因此我们返回的分组列表也都是一半</li>
+</ul>
+<p>如何解决这个问题呢？可以再加一个分组：</p>
+<pre><code class="hljs">match = re.findall(<span class="hljs-string">r'((\w+) \2)'</span>, <span class="hljs-string">'this is is a sample string string aa'</span>)
+print(match)
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">[(<span class="hljs-symbol">'is</span> is', <span class="hljs-symbol">'is</span>'), (<span class="hljs-symbol">'string</span> string', <span class="hljs-symbol">'string</span>')]
+</code></pre>
+<p>原理就是：我们把最外层当成了一整个大的分组，此时内层的 <code>(\w+)</code> 属于第二个分组，因此我们想引用它的话，需要改成 <code>\2</code></p>
+<h3><a class="anchor" aria-hidden="true" id="去掉分组的副作用"></a><a href="#去掉分组的副作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>去掉分组的副作用</h3>
+<p>很多时候，我们只想要小括号的包括为整体的作用，而不想让它被当做分组捕获，这个时候想要去除掉小括号的这个副作用，可以使用添加问号的方式。</p>
+<p>例如我们匹配 15 位或者 18 位数字</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'\d{15}(\d{3})?'</span>, <span class="hljs-string">'123456789012345678---123456789012345'</span>))
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">[<span class="hljs-symbol">'678</span>', '']
+</code></pre>
+<p>我们可以看到，两个匹配里，前面的 15 位都不见了，这是因为它们不处于分组中，直接被 findall 方法给抛弃了。</p>
+<p>有两种思路修改，第一种思路就是像上面一样，在最外层把整个正则表达式包起来：</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'(\d{15}(\d{3})?)'</span>, <span class="hljs-string">'123456789012345678---123456789012345'</span>))
+</code></pre>
+<p>其实这种方式不是很好，因为还是多出了一些我们不想要的分组，输出如下：</p>
+<pre><code class="hljs">[(<span class="hljs-symbol">'123456789012345678</span>', <span class="hljs-symbol">'678</span>'), (<span class="hljs-symbol">'123456789012345</span>', '')]
+</code></pre>
+<p>而使用第二种方式，我们使用问号的方式将其取消分组的身份，更加合理：</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'\d{15}(?:\d{3})?'</span>, <span class="hljs-string">'123456789012345678---123456789012345'</span>))
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">['<span class="hljs-number">12345678901234</span><span class="hljs-number">5678</span>', '<span class="hljs-number">12345678901234</span>5']
+</code></pre>
+<p>这里的关键就是把 <code>(\d{3})</code> 改成了 <code>(?:\d{3})</code> ，这种表示说：不要将这个括号视为一个分组，括号里的内容从 <code>?:</code> 后面开始</p>
+<h3><a class="anchor" aria-hidden="true" id="命名分组"></a><a href="#命名分组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>命名分组</h3>
+<p>前面我们讲了分组编号，它们完全取决于括号的位置，而在正则表达式中，很有可能因为需求的编号，导致我们改动了括号的位置，所以很多语言都提供了命名分组的功能。</p>
+<p>例如在 python 中，命名分组就是在分组的括号中开头处使用 P 参数：把  <code>(\d{3})</code> 分组添加一个名称就是 <code>(?P&lt;group_name&gt;\d{3})</code></p>
+<p>我们把上面的示例：匹配 15 或者 18 位数组添加命名分组就如下</p>
+<pre><code class="hljs">all_match = re.finditer(<span class="hljs-string">r'(?P&lt;complete&gt;\d{15}(?P&lt;last3_or_0&gt;\d{3})?)'</span>, <span class="hljs-string">'123456789012345678---123456789012345'</span>)
+<span class="hljs-keyword">for</span> match <span class="hljs-keyword">in</span> all_match:
+    groups = match.groupdict()
+    print(<span class="hljs-string">'complete : %s'</span> % groups[<span class="hljs-string">'complete'</span>])
+    print(<span class="hljs-string">'last3_or_0 : %s'</span> % groups[<span class="hljs-string">'last3_or_0'</span>])
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs"><span class="hljs-attr">complete :</span> <span class="hljs-number">123456789012345678</span>
+<span class="hljs-attr">last3_or_0 :</span> <span class="hljs-number">678</span>
+<span class="hljs-attr">complete :</span> <span class="hljs-number">123456789012345</span>
+<span class="hljs-attr">last3_or_0 :</span> <span class="hljs-string">None</span>
+</code></pre>
+<blockquote>
+<p>注意：第二个匹配中，last3_or_0 分组捕获到的是 None 而不是空字符串</p>
+</blockquote>
+<p>如果我们要在正则表达式中就引用这个分组，可以使用 <code>(?P=group_name)</code> 的方式：</p>
+<pre><code class="hljs">all_match = re.finditer(<span class="hljs-string">r'(?P&lt;complete&gt;\d{15}(?P&lt;last3_or_0&gt;\d{3})?(?P=last3_or_0))'</span>, <span class="hljs-string">'123456789012345678678'</span>)
+<span class="hljs-keyword">for</span> match <span class="hljs-keyword">in</span> all_match:
+    groups = match.groupdict()
+    print(match.groups())
+    print(<span class="hljs-string">'complete : %s'</span> % groups[<span class="hljs-string">'complete'</span>])
+    print(<span class="hljs-string">'last3_or_0 : %s'</span> % groups[<span class="hljs-string">'last3_or_0'</span>])
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">('<span class="hljs-number">12345678901234</span><span class="hljs-number">567867</span>8', '678')
+complete : <span class="hljs-number">123456789012345678678</span>
+last3_or_0 : <span class="hljs-number">678</span>
+</code></pre>
+<blockquote>
+<p>关键点：使用 <code>(?P=last3_or_0)</code> 来引用 (?P&lt;last3_or_0&gt;\d{3}) 所捕获的内容</p>
+</blockquote>
+<p>在 search 和 finditer 系列的 api 中，分组捕获到的是空字符串时，返回的是 None 而不是空字符串 <code>''</code></p>
+<p>而在 findall 的 api 中，会返回空字符串 <code>''</code></p>
+<p>例如：</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'(?P&lt;complete&gt;\d{15}(?P&lt;last3_or_0&gt;\d{3})?)'</span>, <span class="hljs-string">'123456789012345'</span>))
+
+输出：[(<span class="hljs-string">'123456789012345'</span>, <span class="hljs-string">''</span>)]
+</code></pre>
+<pre><code class="hljs">print(re.search(<span class="hljs-string">r'(?P&lt;complete&gt;\d{15}(?P&lt;last3_or_0&gt;\d{3})?)'</span>, <span class="hljs-string">'123456789012345'</span>).groups())
+
+输出：(<span class="hljs-string">'123456789012345'</span>, <span class="hljs-literal">None</span>)
+</code></pre>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'(?P&lt;complete&gt;\d{15}(?P&lt;last3_or_0&gt;\d{3})?(?P=last3_or_0))'</span>, <span class="hljs-string">'123456789012345'</span>))
+
+输出：[]
+</code></pre>
+<p>这种行为还挺迷惑人的，只能说碰到这种引用分组的情况（而且分组捕获的还可能是空字符串），还是多注意下吧</p>
+<h3><a class="anchor" aria-hidden="true" id="小结"></a><a href="#小结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p><img src="../assets/dd29e757e0d4352e06eaee3486d73e99.png" alt="img" style="zoom:33%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="匹配模式"></a><a href="#匹配模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>匹配模式</h2>
+<p>所谓匹配模式，指的是正则中一些改变元字符匹配行为的方式，比如匹配时不区分英文字母大小写。常见的匹配模式有 4 种，分别是不区分大小写模式、点号通配模式、多行模式和注释模式。</p>
+<h3><a class="anchor" aria-hidden="true" id="不区分大小写模式"></a><a href="#不区分大小写模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>不区分大小写模式</h3>
+<p>例如我们想知道一串字符里有没有 cat 这个单词，不论是 Cat、CAT、cat 都是我们想要匹配的。这时候用不区分大小写模式就非常合适。</p>
+<p>当我们把模式修饰符放在整个正则前面时，就表示整个正则表达式都是不区分大小写的。模式修饰符是通过 (? 模式标识) 的方式来表示的。 我们只需要把模式修饰符放在对应的正则前，就可以使用指定的模式了。在不区分大小写模式中，由于不分大小写的英文是 Case-Insensitive，那么对应的模式标识就是 I 的小写字母 i。</p>
+<p>所以不区分大小写的 cat 就可以写成  <code>(?i)cat</code></p>
+<p>我们也可以用它来尝试匹配两个连续出现的 cat，你会发现，即便是第一个 cat 和第二个 cat 大小写不一致，也可以匹配上</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'(?i)((cat) \2)'</span>, <span class="hljs-string">'cat CaT'</span>))
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">[(<span class="hljs-symbol">'cat</span> CaT', <span class="hljs-symbol">'cat</span>')]
+</code></pre>
+<p>也可以使用：</p>
+<pre><code class="hljs">print(re.match(<span class="hljs-string">r'(cat) \1'</span>, <span class="hljs-string">'cat CaT'</span>, re.IGNORECASE))
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="点号通配模式"></a><a href="#点号通配模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>点号通配模式</h3>
+<p>点号 <code>.</code> 是可以匹配除了换行以外的任意字符的，有时候我们想要一种真正连换行也匹配上的行为，可以有几种方式。</p>
+<p>一种就是使用 <code>[\s\S]</code>、<code>[\d\D]</code>、<code>[\w\W]</code> 等具有相反行为的元字符来表示匹配任意字符</p>
+<p>另一种就是使用点号通配模式：<code>(?s).</code>，使用 <code>(?s)</code> 来开启这种模式，这是点号就可以匹配任意字符了</p>
+<h3><a class="anchor" aria-hidden="true" id="多行匹配模式"></a><a href="#多行匹配模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>多行匹配模式</h3>
+<p>默认情况下，python 的 re 模块使用的都是单行匹配模式，它主要影响 <code>^$</code> 这两个元字符的定义</p>
+<p>在单行匹配模式下，<code>^</code> 匹配整个字符串的开头，等同于 <code>\A</code> ，<code>$</code> 匹配整个字符串的结尾，等同于 <code>\z</code>（python 是 \Z）</p>
+<p>但是在多行模式下，<code>^</code> 匹配每一行的开头，<code>$</code> 匹配每一行的结尾，而 <code>\A</code> 和 <code>\z</code>（python：\Z） 依然是匹配整个字符串的开头和结尾</p>
+<p>例子：</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'^aa.*'</span>, <span class="hljs-string">'aaa\naaccc'</span>))
+
+输出：[<span class="hljs-string">'aaa'</span>]
+</code></pre>
+<p>这种默认的单行模式下，正则将 <code>aaa\naaccc</code> 当成一整个字符串来匹配了</p>
+<p>而开启多行模式：</p>
+<pre><code class="hljs">print(re.findall(<span class="hljs-string">r'^aa.*'</span>, <span class="hljs-string">'aaa\naaccc'</span>, re.MULTILINE))
+
+输出：[<span class="hljs-string">'aaa'</span>, <span class="hljs-string">'aaccc'</span>]
+</code></pre>
+<p>在这种模式下，正则对每一行进行了一次匹配</p>
+<h3><a class="anchor" aria-hidden="true" id="注释模式"></a><a href="#注释模式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>注释模式</h3>
+<p>在实际工作中，正则可能会很复杂，我们可以在正则里面加上注释，这时就要开启注释模式。</p>
+<p>正则中注释模式是使用 <code>(?#comment)</code> 来表示</p>
+<p>例如：</p>
+<pre><code class="hljs"><span class="hljs-comment">(\w+)</span><span class="hljs-comment">(?#word)</span> \<span class="hljs-number">1</span><span class="hljs-comment">(?#word repeat again)</span>
+</code></pre>
+<blockquote>
+<p>说实话我觉得没什么卵用</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="小结-1"></a><a href="#小结-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p><img src="../assets/f36c2bca74f9bfcc54bb3e4ed53d4aa5.png" alt="img" style="zoom:33%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="断言-1"></a><a href="#断言-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>断言</h2>
+<p>简单来说，断言是指对匹配到的文本位置有要求，例如指定我们的字符串的开头、结尾等等。</p>
+<p>在有些情况下，我们对要匹配的文本的位置也有一定的要求。为了解决这个问题，正则中提供了一些结构，只用于匹配位置，而不是文本内容本身，这种结构就是断言。</p>
+<p>常见的断言有三种：单词边界、行的开始或结束以及环视。</p>
+<h3><a class="anchor" aria-hidden="true" id="单词边界"></a><a href="#单词边界" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>单词边界</h3>
+<p>我们先来看一下例子。我们想要把下面文本中的 tom 替换成 jerry。注意一下，在文本中出现了 tomorrow 这个单词，tomorrow 也是以 tom 开头的。</p>
+<pre><code class="hljs">tom asked <span class="hljs-keyword">me</span> <span class="hljs-keyword">if</span> I would go fishing <span class="hljs-keyword">with</span> him tomorrow.
+</code></pre>
+<p>我们只希望替换 tom 而不希望替换其它包含了 tom 的单词，例如 tomorrow。</p>
+<p>如果我们能找出单词的边界，也就是当出现了\w 表示的范围以外的字符，比如引号、空格、标点、换行等这些符号，我们就可以在正则中使用\b 来表示单词的边界。 \b 中的 b 可以理解为是边界（Boundary）这个单词的首字母</p>
+<p><img src="../assets/4d6c0dc075aebb6023ebcd791e787d11.jpg" alt="img" style="zoom:50%;" /></p>
+<p>根据刚刚学到的内容，在准确匹配单词时，我们使用 \b\w+\b 就可以实现了。</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+test_str = <span class="hljs-string">"tom asked me if I would go fishing with him tomorrow."</span>
+print(re.sub(<span class="hljs-string">r'\btom\b'</span>, <span class="hljs-string">'jerry'</span>, test_str))
+</code></pre>
+<p>输出：</p>
+<pre><code class="hljs">jerry asked <span class="hljs-keyword">me</span> <span class="hljs-keyword">if</span> I would go fishing <span class="hljs-keyword">with</span> him tomorrow.
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="行的开始或结束"></a><a href="#行的开始或结束" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>行的开始或结束</h3>
+<p>和单词的边界类似，在正则中还有文本每行的开始和结束，如果我们要求匹配的内容要出现在一行文本开头或结尾，就可以使用 ^ 和 $ 来进行位置界定。</p>
+<p>\A 和 \z（python：\Z）则是匹配整个文本的开始和结束，当成一条单行数据来匹配</p>
+<h3><a class="anchor" aria-hidden="true" id="环视"></a><a href="#环视" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>环视</h3>
+<p>环视就是要求匹配部分的前面或后面要满足（或不满足）某种规则，有些地方也称环视为零宽断言。</p>
+<p>举个例子。邮政编码的规则是第一位是 1-9，一共有 6 位数字组成。现在要求你写出一个正则，提取文本中的邮政编码。根据规则，我们很容易就可以写出邮编的组成 [1-9]\d{5}。</p>
+<p>我们发现，7 位数的前 6 位也能匹配上，12 位数匹配上了两次，这显然是不符合要求的。</p>
+<p>也就是说，除了文本本身组成符合这 6 位数的规则外，这 6 位数左边或右边都不能是数字。</p>
+<p>正则是通过环视来解决这个问题的。解决这个问题的正则有四种</p>
+<p><img src="../assets/00e823943baa33cd8a5e4690cfe44edd.png" alt="img" style="zoom:50%;" /></p>
+<p>因此，针对刚刚邮编的问题，就可以写成左边不是数字，右边也不是数字的 6 位数的正则</p>
+<pre><code class="hljs">(?&lt;!<span class="hljs-tag">\<span class="hljs-name">d</span></span>)[1-9]<span class="hljs-tag">\<span class="hljs-name">d</span><span class="hljs-string">{5}</span></span>(?!<span class="hljs-tag">\<span class="hljs-name">d</span></span>)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="环视与子组"></a><a href="#环视与子组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>环视与子组</h3>
+<p>环视中虽然也有括号，但不会保存成子组。保存成子组的一般是匹配到的文本内容，后续用于替换等操作，而环视是表示对文本左右环境的要求，即环视只匹配位置，不匹配文本内容</p>
+<h3><a class="anchor" aria-hidden="true" id="小结-2"></a><a href="#小结-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p><img src="../assets/54f61311f5fd506e2822992500fadf4e.png" alt="img" style="zoom:33%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="转义"></a><a href="#转义" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>转义</h2>
+<h3><a class="anchor" aria-hidden="true" id="字符组中需要转义的有三种情况"></a><a href="#字符组中需要转义的有三种情况" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符组中需要转义的有三种情况</h3>
+<p>1.脱字符在中括号中，且在第一个位置需要转义</p>
+<pre><code class="hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[^ab]'</span>, <span class="hljs-string">'^ab'</span>)  <span class="hljs-comment"># 转义前代表"非"</span>
+[<span class="hljs-string">'^'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[\^ab]'</span>, <span class="hljs-string">'^ab'</span>)  <span class="hljs-comment"># 转义后代表普通字符</span>
+[<span class="hljs-string">'^'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+</code></pre>
+<p>2.中划线在中括号中，且不在首尾位置</p>
+<pre><code class="hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[a-c]'</span>, <span class="hljs-string">'abc-'</span>)  <span class="hljs-comment"># 中划线在中间，代表"范围"</span>
+[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[a\-c]'</span>, <span class="hljs-string">'abc-'</span>)  <span class="hljs-comment"># 中划线在中间，转义后的</span>
+[<span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'-'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[-ac]'</span>, <span class="hljs-string">'abc-'</span>)  <span class="hljs-comment"># 在开头，不需要转义</span>
+[<span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'-'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[ac-]'</span>, <span class="hljs-string">'abc-'</span>)  <span class="hljs-comment"># 在结尾，不需要转义</span>
+[<span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'-'</span>]
+
+</code></pre>
+<p>3.右括号在中括号中，且不在首位</p>
+<pre><code class="hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[]ab]'</span>, <span class="hljs-string">']ab'</span>)  <span class="hljs-comment"># 右括号不转义，在首位</span>
+[<span class="hljs-string">']'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[a]b]'</span>, <span class="hljs-string">']ab'</span>)  <span class="hljs-comment"># 右括号不转义，不在首位</span>
+[]  <span class="hljs-comment"># 匹配不上，因为含义是 a后面跟上b]</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[a\]b]'</span>, <span class="hljs-string">']ab'</span>)  <span class="hljs-comment"># 转义后代表普通字符</span>
+[<span class="hljs-string">']'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+</code></pre>
+<blockquote>
+<p>中括号的右括号 <code>]</code> 作为普通字符时不需要使用转义，但是左括号 <code>[</code> 作为普通字符时需要转义。</p>
+<p>而小括号的左右括号都需要转义</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="字符组中其它的元字符"></a><a href="#字符组中其它的元字符" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符组中其它的元字符</h3>
+<p>一般来说如果我们要想将元字符 （<code>.*+?()</code> 之类）表示成它字面上本来的意思，是需要对其进行转义的，但如果它们出现在字符组中括号里，可以不转义。这种情况，一般都是单个长度的元字符，比如点号（.）、星号（*）、加号（+）、问号（?）、左右圆括号等。它们都不再具有特殊含义，而是代表字符本身。但如果在中括号中出现 \d 或 \w 等符号时，他们还是元字符本身的含义。</p>
+<pre><code class="hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[.*+?()]'</span>, <span class="hljs-string">'[.*+?()]'</span>)  <span class="hljs-comment"># 单个长度的元字符 </span>
+[<span class="hljs-string">'.'</span>, <span class="hljs-string">'*'</span>, <span class="hljs-string">'+'</span>, <span class="hljs-string">'?'</span>, <span class="hljs-string">'('</span>, <span class="hljs-string">')'</span>]
+<span class="hljs-meta">&gt;&gt;&gt; </span>re.findall(<span class="hljs-string">r'[\d]'</span>, <span class="hljs-string">'d12\\'</span>)  <span class="hljs-comment"># \w，\d等在中括号中还是元字符的功能</span>
+[<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>]  <span class="hljs-comment"># 匹配上了数字，而不是反斜杠\和字母d</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="小结-3"></a><a href="#小结-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p><img src="../assets/442bbc5d31ed8499ff7d37151434e522.png" alt="img" style="zoom: 61%;" /></p>
+<h2><a class="anchor" aria-hidden="true" id="正则流派"></a><a href="#正则流派" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正则流派</h2>
+<p>目前主要有两大流派：POSIX 流派与 PCRE 流派（包含 BRE 和 ERE）</p>
+<p>目前大部分常用编程语言都是源于 PCRE 标准，这个流派显著特征是有\d、\w、\s 这类字符组简记方式</p>
+<h3><a class="anchor" aria-hidden="true" id="在-linux-中使用正则"></a><a href="#在-linux-中使用正则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 Linux 中使用正则</h3>
+<p>其实有一些工具实现同时兼容多种正则标准，比如 grep 和 sed。如果在使用时加上 -E 选项，就是使用 ERE 标准；如果加上 -P 选项，就是使用 PCRE 标准。</p>
+<p>在 grep 中使用 \d+ 查找不到结果，是因为 grep 属于 BRE 流派，不支持 \d 来表示数字，加号也要转义才能表示量词的一到多次，所以无法找出数字那一行</p>
+<p>所以我们尽量使用 <code>grep -P</code> 这种就挺好的</p>
+<h3><a class="anchor" aria-hidden="true" id="小结-4"></a><a href="#小结-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小结</h3>
+<p><img src="../assets/239d9c1cc82d840b7b27492c7b4c222f.png" alt="img" style="zoom:61%;" /></p>
+<h3><a class="anchor" aria-hidden="true" id="小技巧"></a><a href="#小技巧" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>小技巧</h3>
+<p>Mac 中自带的 grep 不支持 -P 这个模式，需要 brew install grep，用这个版本覆盖系统的版本才能用 -P 这个参数</p>
+<h2><a class="anchor" aria-hidden="true" id="python-re-模块的使用"></a><a href="#python-re-模块的使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>python re 模块的使用</h2>
+<p>参考：<a href="https://wiki.jikexueyuan.com/project/explore-python/Regular-Expressions/re.html">re 模块</a></p>
+<p>re 模块是 python 中关于正则表达式的模块，我们想要使用正则表达式，都可以使用 re 模块。</p>
+<h3><a class="anchor" aria-hidden="true" id="编译正则表达式-compile"></a><a href="#编译正则表达式-compile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译正则表达式 compile</h3>
+<p>函数：compile(pattern，flags = 0)</p>
+<p>传入一个正则表达式，然后编译出一个正则表达式对象（Pattern 对象），后续可以使用这个对象进行正则表达式的搜索和替换等操作。简单来说，后面 re 具有的其它关于正则的命令，Pattern 对象都有，因为底层都是靠 Pattern 对象来完成这些操作的。</p>
+<p>这个函数的作用是为了提高性能，减少重复编译 Pattern 对象的次数</p>
+<p>flags 表示正则的模式：例如多行模式、忽略大小写模式等。</p>
+<h3><a class="anchor" aria-hidden="true" id="搜索和匹配（match、fullmatch、search、findall、finditer）"></a><a href="#搜索和匹配（match、fullmatch、search、findall、finditer）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>搜索和匹配（match、fullmatch、search、findall、finditer）</h3>
+<h4><a class="anchor" aria-hidden="true" id="matchpattern，string，flags0"></a><a href="#matchpattern，string，flags0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>match(pattern，string，flags=0)</h4>
+<p><strong>返回 Match 对象</strong></p>
+<p>从 string 的头部开始匹配正则表达式，如果匹配成功，就返回匹配对象（Match 对象），如果失败，就返回 None</p>
+<p>注意这个方法是从字符串的头部开始匹配：</p>
+<ul>
+<li>如果头部不符合模式，那么就会返回 None</li>
+<li>如果尾部有多余的字符，那么依然可以匹配</li>
+</ul>
+<p>示例如下：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+print(re.match(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333'</span>))  <span class="hljs-comment"># 成功</span>
+print(re.match(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'a333'</span>))  <span class="hljs-comment"># None 因为头部有多余的字符无法匹配</span>
+print(re.match(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333a'</span>))  <span class="hljs-comment"># 成功 尾部有多余的字符依然可以匹配成功</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="fullmatchpattern，string，flags0"></a><a href="#fullmatchpattern，string，flags0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fullmatch(pattern，string，flags=0)</h4>
+<p><strong>返回 Match 对象</strong></p>
+<p>从 string 的头部开始匹配正则表达式，如果匹配成功，就返回匹配对象（Match 对象），如果失败，就返回 None</p>
+<p>注意这个方法是匹配整个字符串的：</p>
+<ul>
+<li>如果头部不符合模式，那么就会返回 None</li>
+<li>如果尾部有多余的字符，那么依然返回 None</li>
+</ul>
+<p>示例如下：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+print(re.fullmatch(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333'</span>))  <span class="hljs-comment"># 成功</span>
+print(re.fullmatch(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'a333'</span>))  <span class="hljs-comment"># None 因为头部有多余的字符无法匹配</span>
+print(re.fullmatch(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333a'</span>))  <span class="hljs-comment"># None 尾部有多余的字符无法匹配</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="searchpattern，string，flags0"></a><a href="#searchpattern，string，flags0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>search(pattern，string，flags=0)</h4>
+<p><strong>返回 Match 对象</strong></p>
+<p>在 string 中搜索能够匹配到正则表达式的子字符串，如果可以找到多个，那么就会返回第一个匹配（有点类似于 str 的 find 方法）。</p>
+<p>注意点：</p>
+<ul>
+<li>作用是在字符串里找到符合正则表达式的子字符串</li>
+<li>找到第一个就立即返回（存在多个匹配也只找一个）</li>
+<li>返回的对象是 Match 对象</li>
+</ul>
+<p>示例如下：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+print(re.search(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333aa222'</span>))  <span class="hljs-comment"># 成功，找到的是 333</span>
+print(re.search(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'222a333'</span>))  <span class="hljs-comment"># 成功 找到的是 222</span>
+print(re.search(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'33a'</span>))  <span class="hljs-comment"># None 搜索失败</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="findallpattern，string--flags-"></a><a href="#findallpattern，string--flags-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>findall(pattern，string [, flags] )</h4>
+<p>返回一个列表，列表的每一项是：捕获组组成的元组，或者单个捕获组捕获的字符串。</p>
+<p>列表有多少项，就代表匹配到了多少个子字符串</p>
+<p>它的作用是在 string 中搜索能够匹配到正则表达式的子字符串，如果可以找到多个，那么就全部找到返回。</p>
+<p>注意点：</p>
+<ul>
+<li>如果正则表达式里没有分组或者只有一个分组：那么返回的是字符串组成的列表，每个字符串都代表这个分组捕获到的字符串</li>
+<li>如果正则表达式有多个分组：那么返回的是多个分组组成的元组，然后再将这些元组组成列表</li>
+<li>不重叠的匹配：例如匹配 3 个数字的正则，如果使用的 string 是 <code>123456</code>，那么返回的是 <code>123</code> 和 <code>456</code>，不会重叠使用这些字符</li>
+</ul>
+<p>示例如下：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+print(re.findall(<span class="hljs-string">r'\d{3}'</span>, <span class="hljs-string">'333aa222'</span>))  <span class="hljs-comment"># 返回 ['333', '222']，因为没有设置分组</span>
+print(re.findall(<span class="hljs-string">r'\d{3}([a-z])+'</span>, <span class="hljs-string">'222a333bb'</span>))  <span class="hljs-comment"># ['a', 'b']，因为设置了分组，返回的是这个分组捕获的内容</span>
+print(re.findall(<span class="hljs-string">r'(\d{3}([a-z])+)'</span>, <span class="hljs-string">'222a333bb'</span>))  <span class="hljs-comment"># [('222a', 'a'), ('333bb', 'b')]，因为设置了两个分组</span>
+print(re.findall(<span class="hljs-string">r'\d{9}'</span>, <span class="hljs-string">'333aa222'</span>))  <span class="hljs-comment"># 返回 []，因为找不到匹配的内容</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="finditerpattern，string--flags-"></a><a href="#finditerpattern，string--flags-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>finditer(pattern，string [, flags] )</h4>
+<p>返回一个迭代器，迭代器的每一项都是一个 Match 对象，代表从 string 中找到能够匹配正则表达式的内容。</p>
+<p>迭代器返回多少项，就代表匹配到了多少个子字符串</p>
+<p>它的作用是在 string 中搜索能够匹配到正则表达式的子字符串，如果可以找到多个，那么就按照迭代的形式返回，返回的对象是 Match 对象。</p>
+<p>注意点：</p>
+<ul>
+<li>返回的是 Match 对象</li>
+<li>不重叠的匹配：例如匹配 3 个数字的正则，如果使用的 string 是 <code>123456</code>，那么返回的是 <code>123</code> 和 <code>456</code>，不会重叠使用这些字符</li>
+</ul>
+<p>示例如下：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+all_match = re.finditer(<span class="hljs-string">r'(\d{3}([a-z])+)'</span>, <span class="hljs-string">'222a333bb'</span>)  <span class="hljs-comment"># [('222a', 'a'), ('333bb', 'b')]</span>
+<span class="hljs-keyword">for</span> match <span class="hljs-keyword">in</span> all_match:
+    print(match.groups())
+
+<span class="hljs-comment"># ('222a', 'a')</span>
+<span class="hljs-comment"># ('333bb', 'b')</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="正则分割字符串（split）"></a><a href="#正则分割字符串（split）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>正则分割字符串（split）</h3>
+<p>常规的字符串分割，只能传入固定的分隔符，而使用正则分割，可以传入正则模式的分隔符</p>
+<h4><a class="anchor" aria-hidden="true" id="splitpattern，string，max0"></a><a href="#splitpattern，string，max0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>split(pattern，string，max=0)</h4>
+<p>根据正则表达式的模式分隔符，split 函数将字符串分割为列表，然后返回成功匹配的 列表，分隔最多操作 max 次（默认分割所有匹配成功的位置）</p>
+<p>示例：</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+line = <span class="hljs-string">'asdf fjdk; afed, fjek,asdf, foo'</span>
+words = re.split(<span class="hljs-string">r'[;,\s]\s*'</span>, line)
+print(words)
+</code></pre>
+<blockquote>
+<p>这段正则的意思是：分隔符设置为 (分号/逗号/空格 + 0个或者多个空格)</p>
+</blockquote>
+<p>如果我们想捕获到这些分隔符，可以使用捕获组</p>
+<pre><code class="hljs">fields = re.split(r<span class="hljs-string">'(;|,|\s)\s*'</span>, line) # [<span class="hljs-string">'asdf'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'fjdk'</span>, <span class="hljs-string">';'</span>, <span class="hljs-string">'afed'</span>, <span class="hljs-string">','</span>, <span class="hljs-string">'fjek'</span>, <span class="hljs-string">','</span>, <span class="hljs-string">'asdf'</span>, <span class="hljs-string">','</span>, <span class="hljs-string">'foo'</span>]
+words = fields[::<span class="hljs-number">2</span>]
+delimiters = fields[<span class="hljs-number">1</span>::<span class="hljs-number">2</span>] + [<span class="hljs-string">''</span>]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="字符串替换（sub、subn）"></a><a href="#字符串替换（sub、subn）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串替换（sub、subn）</h3>
+<p>正则的两大作用：一个是搜索，另一个就是替换。</p>
+<p>re 模块中有两个函数用来对字符串进行正则替换：分别是 sub 和 subn</p>
+<h4><a class="anchor" aria-hidden="true" id="subpattern-repl-string-count0-flags0"></a><a href="#subpattern-repl-string-count0-flags0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sub(pattern, repl, string, count=0, flags=0)</h4>
+<p>sub 函数用于对字符串中匹配到的内容进行替换，其中，repl 可以是字符串也可以是一个函数：</p>
+<ul>
+<li>如果 repl 是字符串，则会使用 repl 去替换字符串每一个匹配的子串，并返回替换后的字符串，另外，repl 还可以使用 <code>\id</code> 的形式来引用分组，但不能使用编号 0</li>
+<li>如果 repl 是函数，这个方法应当只接受一个参数（Match 对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）</li>
+</ul>
+<p>count 用于指定最多替换次数，不指定时全部替换。</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+p = re.compile(<span class="hljs-string">r'(\w+) (\w+)'</span>)
+s = <span class="hljs-string">'hello 123, hello 456'</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(m)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'hi'</span> + <span class="hljs-string">' '</span> + m.group(<span class="hljs-number">2</span>)
+
+
+print(p.sub(<span class="hljs-string">r'hello world'</span>, s))  <span class="hljs-comment"># 使用 'hello world' 替换 'hello 123' 和 'hello 456'</span>
+print(p.sub(<span class="hljs-string">r'\2 \1'</span>, s))  <span class="hljs-comment"># 引用分组</span>
+print(p.sub(func, s))
+print(p.sub(func, s, <span class="hljs-number">1</span>))  <span class="hljs-comment"># 最多替换一次</span>
+</code></pre>
+<blockquote>
+<p>注意：这里使用的是 Pattern 对象的 sub 方法进行演示</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="subnpattern-repl-string-count0-flags0"></a><a href="#subnpattern-repl-string-count0-flags0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>subn(pattern, repl, string, count=0, flags=0)</h4>
+<p>subn 方法跟 sub 方法的行为类似，也用于替换。</p>
+<p>它返回一个元组 <code>(sub(repl, string[, count]), 替换次数)</code> ：</p>
+<ul>
+<li>元组有两个元素，第一个元素是使用 sub 方法的结果</li>
+<li>第二个元素返回原字符串被替换的次数</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+p = re.compile(<span class="hljs-string">r'(\w+) (\w+)'</span>)
+s = <span class="hljs-string">'hello 123, hello 456'</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(m)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'hi'</span> + <span class="hljs-string">' '</span> + m.group(<span class="hljs-number">2</span>)
+
+
+print(p.subn(<span class="hljs-string">r'hello world'</span>, s))
+print(p.subn(<span class="hljs-string">r'\2 \1'</span>, s))
+print(p.subn(func, s))
+print(p.subn(func, s, <span class="hljs-number">1</span>))
+
+</code></pre>
+<p>结果：</p>
+<pre><code class="hljs">(<span class="hljs-symbol">'hello</span> world, hello world', <span class="hljs-number">2</span>)
+(<span class="hljs-symbol">'123</span> hello, <span class="hljs-number">456</span> hello', <span class="hljs-number">2</span>)
+(<span class="hljs-symbol">'hi</span> <span class="hljs-number">123</span>, hi <span class="hljs-number">456</span>', <span class="hljs-number">2</span>)
+(<span class="hljs-symbol">'hi</span> <span class="hljs-number">123</span>, hello <span class="hljs-number">456</span>', <span class="hljs-number">1</span>)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="match-对象的方法"></a><a href="#match-对象的方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Match 对象的方法</h3>
+<h4><a class="anchor" aria-hidden="true" id="groupnum0"></a><a href="#groupnum0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>group(num=0)</h4>
+<p>返回整个匹配对象，或者编号为 num 的特定子组</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> re
+
+match = re.search(<span class="hljs-string">r'\d{3}([a-z])+'</span>, <span class="hljs-string">'222a333bb'</span>)
+print(match.groups())  <span class="hljs-comment"># ('a',)</span>
+print(match.group())  <span class="hljs-comment"># 222a</span>
+print(match.group(<span class="hljs-number">1</span>))  <span class="hljs-comment"># a</span>
+</code></pre>
+<blockquote>
+<p>所以，我们一般使用 match.group() 即可</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="groupsdefaultnone"></a><a href="#groupsdefaultnone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>groups(default=None)</h4>
+<p>返回一个包含所有匹配子组的元组，如果没有成功匹配，则返回一个空元组</p>
+<h4><a class="anchor" aria-hidden="true" id="groupdictdefaultnone"></a><a href="#groupdictdefaultnone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>groupdict(default=None)</h4>
+<p>返回一个包含所有匹配的命名子组的字典，所有的子组名称作为字典的键，如果没有成功匹配，则返回一个空字典</p>
+<p>（这个方法用在我们使用了命名分组的情况下）</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 8/2/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#常用的正则表达式：">常用的正则表达式：</a><ul class="toc-headings"><li><a href="#常用网址">常用网址</a></li><li><a href="#手机号">手机号</a></li></ul></li><li><a href="#元字符">元字符</a><ul class="toc-headings"><li><a href="#分类">分类</a></li><li><a href="#特殊单字符">特殊单字符</a></li><li><a href="#空白符">空白符</a></li><li><a href="#量词">量词</a></li><li><a href="#范围">范围</a></li><li><a href="#断言">断言</a></li><li><a href="#常用的元字符">常用的元字符</a></li></ul></li><li><a href="#量词和贪婪">量词和贪婪</a><ul class="toc-headings"><li><a href="#示例">示例</a></li></ul></li><li><a href="#分组和引用">分组和引用</a><ul class="toc-headings"><li><a href="#分组示例">分组示例</a></li><li><a href="#正则中引用分组">正则中引用分组</a></li><li><a href="#去掉分组的副作用">去掉分组的副作用</a></li><li><a href="#命名分组">命名分组</a></li><li><a href="#小结">小结</a></li></ul></li><li><a href="#匹配模式">匹配模式</a><ul class="toc-headings"><li><a href="#不区分大小写模式">不区分大小写模式</a></li><li><a href="#点号通配模式">点号通配模式</a></li><li><a href="#多行匹配模式">多行匹配模式</a></li><li><a href="#注释模式">注释模式</a></li><li><a href="#小结-1">小结</a></li></ul></li><li><a href="#断言-1">断言</a><ul class="toc-headings"><li><a href="#单词边界">单词边界</a></li><li><a href="#行的开始或结束">行的开始或结束</a></li><li><a href="#环视">环视</a></li><li><a href="#环视与子组">环视与子组</a></li><li><a href="#小结-2">小结</a></li></ul></li><li><a href="#转义">转义</a><ul class="toc-headings"><li><a href="#字符组中需要转义的有三种情况">字符组中需要转义的有三种情况</a></li><li><a href="#字符组中其它的元字符">字符组中其它的元字符</a></li><li><a href="#小结-3">小结</a></li></ul></li><li><a href="#正则流派">正则流派</a><ul class="toc-headings"><li><a href="#在-linux-中使用正则">在 Linux 中使用正则</a></li><li><a href="#小结-4">小结</a></li><li><a href="#小技巧">小技巧</a></li></ul></li><li><a href="#python-re-模块的使用">python re 模块的使用</a><ul class="toc-headings"><li><a href="#编译正则表达式-compile">编译正则表达式 compile</a></li><li><a href="#搜索和匹配（match、fullmatch、search、findall、finditer）">搜索和匹配（match、fullmatch、search、findall、finditer）</a></li><li><a href="#正则分割字符串（split）">正则分割字符串（split）</a></li><li><a href="#字符串替换（sub、subn）">字符串替换（sub、subn）</a></li><li><a href="#match-对象的方法">Match 对象的方法</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
