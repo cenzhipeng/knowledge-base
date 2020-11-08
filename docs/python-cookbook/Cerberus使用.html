@@ -1,0 +1,1180 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>本文内容 · 影子的知识库</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 概述"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="本文内容 · 影子的知识库"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.lovepp.org/"/><meta property="og:description" content="## 概述"/><meta property="og:image" content="https://www.lovepp.org/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.lovepp.org/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-153148512-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/js/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100,"scrollDuration":400}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/mark-github.svg" alt="影子的知识库"/><h2 class="headerTitleWithLogo">影子的知识库</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/JVM系列/JVM内存区域" target="_self">知识库</a></li><li class=""><a href="https://github.com/cenzhipeng/knowledge-base" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/cenzhipeng/knowledge-base/tree/master/docs/python-cookbook/3.Cerberus使用.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">本文内容</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="概述"></a><a href="#概述" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概述</h2>
+<p>在开发的时候，特别是开发一些 web 应用，经常需要对参数进行校验。最原始的方式就是 if else 直接撸，但是十分不优雅，而且容易出错，不容易扩展和修改。</p>
+<p>Cerberus 就是一种现成的对参数进行校验的库。它支持 python 2，所以很好使用。</p>
+<h2><a class="anchor" aria-hidden="true" id="安装"></a><a href="#安装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装</h2>
+<pre><code class="hljs">pip <span class="hljs-keyword">install</span> cerberus
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="基本使用"></a><a href="#基本使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基本使用</h2>
+<h3><a class="anchor" aria-hidden="true" id="简单使用"></a><a href="#简单使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>简单使用</h3>
+<p>校验这个字典参数必须有 name 键，并且值的类型一定是 string</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+
+schema = {<span class="hljs-string">'name'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>}}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)
+param = {<span class="hljs-string">'name'</span>: <span class="hljs-string">'john doe'</span>}
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">True</span>
+param2 = {<span class="hljs-string">'name'</span>: <span class="hljs-number">3</span>}
+print v.<span class="hljs-keyword">validate</span>(param2)  # <span class="hljs-keyword">False</span>
+param3 = {<span class="hljs-string">'other'</span>: <span class="hljs-string">'xx'</span>}
+print v.<span class="hljs-keyword">validate</span>(param3)  # <span class="hljs-keyword">False</span>
+</code></pre>
+<p>上面是通过将 schema 传递给 Validator 生成实例，也可以通过另一种方式</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+
+schema = {<span class="hljs-string">'name'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>}}
+param = {<span class="hljs-string">'name'</span>: <span class="hljs-string">'john doe'</span>}
+v = <span class="hljs-keyword">Validator</span>()
+print v.<span class="hljs-keyword">validate</span>(param, <span class="hljs-keyword">schema</span>)
+</code></pre>
+<p>这种方式对于动态的 schema 可能比较有用</p>
+<h3><a class="anchor" aria-hidden="true" id="错误列表"></a><a href="#错误列表" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>错误列表</h3>
+<p>当数据校验发现不满足 schema 时，校验不会停止，而是会继续执行，最终返回一个错误列表，包含所有校验不满足的地方</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'name'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+    },
+    <span class="hljs-string">'age'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+document = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">'age'</span>: <span class="hljs-number">5</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+v.<span class="hljs-keyword">validate</span>(document)
+print v.errors
+</code></pre>
+<p>输出如下</p>
+<pre><code class="hljs">{<span class="hljs-symbol">'age</span>': [<span class="hljs-symbol">'min</span> value <span class="hljs-keyword">is</span> <span class="hljs-number">10</span>'], <span class="hljs-symbol">'name</span>': [<span class="hljs-symbol">'must</span> be <span class="hljs-keyword">of</span> string <span class="hljs-keyword">type</span>']}
+</code></pre>
+<p>如果参数不是一个字典类型的参数，将会报错 DocumentError</p>
+<h3><a class="anchor" aria-hidden="true" id="允许未知的键"></a><a href="#允许未知的键" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>允许未知的键</h3>
+<p>默认情况下，validator 只会允许在 schema 中定义的键存在，如果有未知的键存在，将会校验失败</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'name'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+    },
+    <span class="hljs-string">'age'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+document = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'czp'</span>,
+    <span class="hljs-string">'age'</span>: <span class="hljs-number">25</span>,
+    <span class="hljs-string">'additional'</span>: <span class="hljs-string">'xxx'</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+v.<span class="hljs-keyword">validate</span>(document)
+print v.errors
+
+# 将会校验失败
+{<span class="hljs-string">'additional'</span>: [<span class="hljs-string">'unknown field'</span>]}
+</code></pre>
+<p>我们可以使用 <code>v.allow_unknown = True</code> 来允许未知的键存在</p>
+<pre><code class="hljs">v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+v.allow_unknown = <span class="hljs-keyword">True</span>
+v.<span class="hljs-keyword">validate</span>(document)
+print v.errors
+</code></pre>
+<p>或者，另外定义一个 schema 来校验这些未知的键</p>
+<pre><code class="hljs">schema = {
+    <span class="hljs-string">'name'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+    },
+    <span class="hljs-string">'age'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+<span class="hljs-built_in">document</span> = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'czp'</span>,
+    <span class="hljs-string">'age'</span>: <span class="hljs-number">25</span>,
+    <span class="hljs-string">'additional'</span>: <span class="hljs-string">'xxx'</span>,
+    <span class="hljs-string">'int_unknown'</span>: <span class="hljs-number">111</span>
+}
+v = Validator(schema)  <span class="hljs-comment"># type: BareValidator</span>
+v.allow_unknown = {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>}
+v.validate(<span class="hljs-built_in">document</span>)
+<span class="hljs-built_in">print</span> v.errors
+
+<span class="hljs-comment"># 输出</span>
+{<span class="hljs-string">'int_unknown'</span>: [<span class="hljs-string">'must be of string type'</span>]}
+</code></pre>
+<p>可以看到，additional 通过校验了，但是 int_unknown 不符合 unknown 字段的校验规则，因此校验失败了</p>
+<h4><a class="anchor" aria-hidden="true" id="初始化的时候就传递-allow_unknown"></a><a href="#初始化的时候就传递-allow_unknown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>初始化的时候就传递 allow_unknown</h4>
+<pre><code class="hljs">v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, allow_unknown={<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>})  # <span class="hljs-keyword">type</span>: BareValidator
+v.<span class="hljs-keyword">validate</span>(document)
+print v.errors
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="在-schema-中使用--allow_unknown"></a><a href="#在-schema-中使用--allow_unknown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>在 schema 中使用  allow_unknown</h4>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'name'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+    },
+    <span class="hljs-string">'age'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    },
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'allow_unknown'</span>: {
+            <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+        },
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'origin'</span>: {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>,
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">True</span>
+            }
+        }
+    }
+}
+document = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'czp'</span>,
+    <span class="hljs-string">'age'</span>: <span class="hljs-number">25</span>,
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'additional'</span>: <span class="hljs-string">'xxx'</span>,
+        <span class="hljs-string">'int_unknown'</span>: <span class="hljs-number">111</span>
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+v.<span class="hljs-keyword">validate</span>(document)
+print v.errors
+
+# 输出
+{<span class="hljs-string">'a_dict'</span>: [{<span class="hljs-string">'origin'</span>: [<span class="hljs-string">'required field'</span>], <span class="hljs-string">'int_unknown'</span>: [<span class="hljs-string">'must be of string type'</span>]}]}
+</code></pre>
+<p>这里的意思是：我们把 allow_unknown 定义在了 schema 里面。但是这种用法其实只能针对内层的 dict 生效。如果是最外层的 dict 需要能够 allow_unknown，那么还是需要定义在 validator 里</p>
+<p>另一个就是注意这里的嵌套校验方式。</p>
+<h3><a class="anchor" aria-hidden="true" id="获取校验后的内容"></a><a href="#获取校验后的内容" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>获取校验后的内容</h3>
+<p>有时候，我们在校验的同时，需要对数据进行处理：例如校验一个参数需要是整数的时候，我们有时候除了正常的整数外，对于 <code>&quot;1&quot;</code>，<code>&quot;2000&quot;</code> 这样的字符串形式的整数也是接受的。</p>
+<p>在这样的情况下，我们需要先对他们进行值的处理，然后再进行参数的校验，最后获取到经过处理之后的参数，例如</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'amount'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>, <span class="hljs-string">'coerce'</span>: <span class="hljs-type">int</span>}}
+param = {<span class="hljs-string">'amount'</span>: <span class="hljs-string">'1'</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+print v.document
+
+# 输出
+{}
+{<span class="hljs-string">'amount'</span>: <span class="hljs-number">1</span>}
+</code></pre>
+<p>这里的处理方式如下：</p>
+<ul>
+<li>schema 中定义这个 dict 中的 amount 键的内容是整数，并且 <code>coerce</code> 属性表示使用它后面的内容来预先进行处理</li>
+<li>于是当接收到了 <code>&quot;1&quot;</code> 这个值时，先使用 <code>int(&quot;1&quot;)</code> 来转换这个值得到数字 <code>1</code>，然后对数字 <code>1</code> 进行校验，校验通过</li>
+<li>通过 v.document 接收到经过处理后的 dict 内容，这里接收之后发现字符串 <code>&quot;1&quot;</code> 已经变成了数字 <code>1</code></li>
+<li><code>coerce</code> 除了传入一个函数之外，也可以传入一个元组，元组的每一项都是一个函数，原值将被依次处理
+<ul>
+<li>例如传入 <code>'coerce' :(str, int)</code> 表示使用 <code>int(str(&quot;1&quot;))</code> 来处理这个原值，很明显是从左到右依次处理的</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="直接进行校验并且获取"></a><a href="#直接进行校验并且获取" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>直接进行校验并且获取</h4>
+<p>我们前面都是通过 <code>v.validate(doc)</code> 来进行参数校验，然后 <code>v.document</code> 来获取到校验后的正确参数。</p>
+<p>这两步骤可以通过一步来完成（使用 validated 方法）</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'amount'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>, <span class="hljs-string">'coerce'</span>: (str, <span class="hljs-type">int</span>)}}
+param = {<span class="hljs-string">'amount'</span>: <span class="hljs-string">'1'</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.validated(param)
+
+# 输出
+{<span class="hljs-string">'amount'</span>: <span class="hljs-number">1</span>}
+</code></pre>
+<p>这个方法处理是：</p>
+<ul>
+<li>如果校验通过了，就返回校验修正后的参数</li>
+<li>如果校验失败了，则返回 None</li>
+</ul>
+<p>唯一的不好之处是校验失败时不知道失败原因，这点有时候可能不太行</p>
+<h4><a class="anchor" aria-hidden="true" id="直接获取修正后的参数而不进行校验"></a><a href="#直接获取修正后的参数而不进行校验" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>直接获取修正后的参数而不进行校验</h4>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'coerce'</span>: <span class="hljs-type">int</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+param = {<span class="hljs-string">'amount'</span>: <span class="hljs-string">'1'</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.normalized(param)
+
+# 输出
+{<span class="hljs-string">'amount'</span>: <span class="hljs-number">1</span>}
+</code></pre>
+<p>事实上，这个校验并没有办法通过，但是我们可以使用 <code>normalized</code> 方法，直接获取经过了 <code>coerce</code> 处理后的参数，而不对其进行校验。有时候这也是有一些用处的（比如 debug 的时候）</p>
+<h3><a class="anchor" aria-hidden="true" id="输出警告信息"></a><a href="#输出警告信息" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>输出警告信息</h3>
+<p>有时候 cerberus 可能会输出一些警告信息，如果想要输出这些信息，需要配置 <code>logging.captureWarnings()</code></p>
+<h3><a class="anchor" aria-hidden="true" id="全部设置为必须字段"></a><a href="#全部设置为必须字段" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>全部设置为必须字段</h3>
+<p>在默认情况下，我们在 schema 中定义的字段，并不是必须的，例如</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'coerce'</span>: <span class="hljs-type">int</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+param = {}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.validated(param)
+
+# 输出
+{}
+</code></pre>
+<p>我们的参数里没有这个字段一样能通过校验，这就是因为它默认是非必须的</p>
+<p>我们可以加入一个属性 <code>require_all=True</code> 来表示所有字段都是必须的</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'coerce'</span>: <span class="hljs-type">int</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    }
+}
+param = {}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.validated(param)
+
+# 输出
+<span class="hljs-keyword">None</span>  表示未通过校验
+</code></pre>
+<p>很明显，这个参数与 allow_unknown 的用法是一样的，也可以在 schema 里定义，不再重复赘述了</p>
+<h2><a class="anchor" aria-hidden="true" id="schema-指南"></a><a href="#schema-指南" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schema 指南</h2>
+<p>验证模式 validation schema 是一种映射，通常是一种映射 dict。</p>
+<p>模式 key 是目标字典中允许的 key。模式值表示必须与相应目标值匹配的规则。</p>
+<pre><code class="hljs"><span class="hljs-attr">schema</span> = {<span class="hljs-string">'name'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>, <span class="hljs-string">'maxlength'</span>: <span class="hljs-number">10</span>}}
+</code></pre>
+<p>在这里，我们定义了一个 schema，它规定这个 dict 只能有一个 name 的键，并且它的值是 string 类型，string 的最大长度是 10。</p>
+<ul>
+<li><code>{'name': 'john doe'}</code> 可以匹配这个 schema</li>
+<li><code>{'name': 'a very long string'}</code> 和 <code>{'name': 99}</code> 不匹配这个 schema</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="schema-自身的校验"></a><a href="#schema-自身的校验" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schema 自身的校验</h3>
+<p>schema 被传递给 validator 的时候，自身也会被 validator 进行校验（毕竟 schema 本身就是需要有一定规则的），如果不是一个合格的 schema，那么将会抛出异常 SchemaError</p>
+<h2><a class="anchor" aria-hidden="true" id="schema-中的验证规则"></a><a href="#schema-中的验证规则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>schema 中的验证规则</h2>
+<h3><a class="anchor" aria-hidden="true" id="allow_unknown"></a><a href="#allow_unknown" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>allow_unknown</h3>
+<p>前文已经说过，这个规则定义在 dict 类型的 schema 里，例如</p>
+<pre><code class="hljs">schema = {
+    <span class="hljs-string">'name'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+    },
+    <span class="hljs-string">'age'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+    },
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'allow_unknown'</span>: {
+            <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+        },
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'origin'</span>: {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>,
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">True</span>
+            }
+        }
+    }
+}
+</code></pre>
+<p>只有在 <code>a_dict</code> 的校验规则中 <code>type : dict</code> 表示它是一个字典类型时，才可以继续定义这个 dict 的验证规则 allow_unknown，表示这个字典可以有未知的键存在</p>
+<h3><a class="anchor" aria-hidden="true" id="allowed"></a><a href="#allowed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>allowed</h3>
+<p>对于可迭代的字段（dict、list、string 等），可以使用 allowed 来规定这个字段可以包含的成员，例如</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'allowed'</span>: [<span class="hljs-string">'aaa'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'aaa'</span>: <span class="hljs-string">'xxx'</span>,
+        <span class="hljs-string">'bbb'</span>: <span class="hljs-string">'ccc'</span>
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'amount'</span>: ["unallowed values ['bbb']"]}
+</code></pre>
+<p>我们这里就是把 amount 当做 dict 来进行校验，此时 <code>allowed : ['aaa']</code> 表示，这个 dict 迭代出的元素只能在 <code>['aaa']</code> 里，其实也就是规定了，这个字典只能有一个键 <code>aaa</code></p>
+<p>同理也可以对 list 进行这种校验：表示这个 list 的包含元素只能是 <code>aaa</code>，但是可以有多个</p>
+<blockquote>
+<p>其实 string 也是可迭代的类型，但是它的校验规则与上面有所不同</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="对于-string-和-int-类型"></a><a href="#对于-string-和-int-类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对于 string 和 int 类型</h4>
+<p>对于 string 和 int 类型，不使用迭代的规则。allowed 表示 int 和 string 的取值集合。例如</p>
+<pre><code class="hljs"><span class="hljs-attribute">schema</span> = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>,
+        <span class="hljs-string">'allowed'</span>: [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+    }
+}
+</code></pre>
+<p>表示这个 amount 是 string 类型，并且只能是字符串 <code>a</code> 或者 <code>b</code></p>
+<pre><code class="hljs"><span class="hljs-attribute">schema</span> = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'allowed'</span>: [1, 0, -1]
+    }
+}
+</code></pre>
+<p>表示这个 amount 是 整数类型，并且只能是 1 或者 0 或者 -1</p>
+<h3><a class="anchor" aria-hidden="true" id="allof"></a><a href="#allof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>allof</h3>
+<p>这是一种语义化的校验规则，表示验证所有的条件都要成立</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'allof'</span>: [
+            {
+                <span class="hljs-string">'min'</span>: <span class="hljs-number">10</span>
+            },
+            {
+                <span class="hljs-string">'max'</span>: <span class="hljs-number">13</span>
+            }
+        ]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">14</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'amount'</span>: ["one or more definitions don't validate", {<span class="hljs-string">'allof definition 1'</span>: [<span class="hljs-string">'max value is 13'</span>]}]}
+</code></pre>
+<p>可以看到，这里 allof 定义了两套校验规则，每个校验规则都要满足才通过校验</p>
+<h3><a class="anchor" aria-hidden="true" id="anyof"></a><a href="#anyof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>anyof</h3>
+<p>这也是一种语义化的校验规则，表示验证条件成立一种即可</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'anyof'</span>: [
+            {
+                <span class="hljs-string">'allowed'</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]
+            },
+            {
+                <span class="hljs-string">'allowed'</span>: [<span class="hljs-number">20</span>]
+            }
+        ]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">10</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>我们这里，只要 amount 是 10、11、20 即可</p>
+<h3><a class="anchor" aria-hidden="true" id="check_with（用于自定义校验规则）"></a><a href="#check_with（用于自定义校验规则）" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>check_with（用于自定义校验规则）</h3>
+<p>使用 check_with，我们可以传入自定义的校验函数，从而扩展校验规则，典型用法如下：校验一个整数是否是奇数</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+
+def is_odd(field, <span class="hljs-keyword">value</span>, error):
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">value</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+        error(field, "must be an odd number")
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'check_with'</span>: is_odd
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">10</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'amount'</span>: [<span class="hljs-string">'must be an odd number'</span>]}
+</code></pre>
+<p>这里的关键内容就是函数 is_odd 的定义，以及 <code>check_with</code> 的使用，显然，使用这个校验规则就可以很简单的扩展原生的校验规则</p>
+<h4><a class="anchor" aria-hidden="true" id="通过继承-validator-类来扩展自定义校验规则"></a><a href="#通过继承-validator-类来扩展自定义校验规则" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过继承 Validator 类来扩展自定义校验规则</h4>
+<p>我们上面是直接定义了一个独立的函数来扩展校验规则，实际上来说，也可以通过扩展 Validator 类来自定义校验规则。上面的校验规则的等价形式如下</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+
+<span class="hljs-keyword">class</span> MyValidator(<span class="hljs-keyword">Validator</span>):
+    def _check_with_is_odd(self, field, <span class="hljs-keyword">value</span>):
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">value</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+            self._error(field, "must be an odd number")
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'check_with'</span>: <span class="hljs-string">'is_odd'</span>
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">10</span>
+}
+v = MyValidator(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>关键内容：</p>
+<ul>
+<li>自定义一个类，继承自 Validator</li>
+<li>定义以 <code>_check_with_</code> 开头的校验方法，例如 <code>_check_with_is_odd</code></li>
+<li>使用这个自定义的 Validator 实例化一个校验器</li>
+<li>在 check_with 校验规则中，使用字符串的形式引用校验方法：去掉 <code>_check_with_</code> 前缀，例如 <code>_check_with_is_odd</code> 就变成了 <code>&quot;is_odd&quot;</code> 来引用</li>
+</ul>
+<p>这样做最大的好处是：校验规则可以使用完整的上下文（例如可以获取这个完整的参数实例），可以有自己的状态，从而完成一些特殊的校验（例如多字段的集中校验）</p>
+<h4><a class="anchor" aria-hidden="true" id="check-with-连续校验"></a><a href="#check-with-连续校验" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>check with 连续校验</h4>
+<p>我们也可以在 check_with 中传入一个元组，从而让它从左到右来进行连续的校验</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+
+<span class="hljs-keyword">class</span> MyValidator(<span class="hljs-keyword">Validator</span>):
+    def _check_with_is_odd(self, field, <span class="hljs-keyword">value</span>):
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">value</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+            self._error(field, "must be an odd number")
+
+    def _check_with_greater_than_10(self, field, <span class="hljs-keyword">value</span>):
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">value</span> &lt;= <span class="hljs-number">10</span>:
+            self._error(field, "must be an greater than 10")
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>,
+        <span class="hljs-string">'check_with'</span>: (<span class="hljs-string">'is_odd'</span>, <span class="hljs-string">'greater_than_10'</span>)
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">9</span>
+}
+v = MyValidator(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>相当于说，我们可以传入多个校验规则</p>
+<h3><a class="anchor" aria-hidden="true" id="contains"></a><a href="#contains" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>contains</h3>
+<p>contains 规则用来校验容器类型的值（dict 类型的 key、list 的元素项、string 的每个字符），表示它要包含这里定义的所有的值</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> Validator
+<span class="hljs-keyword">from</span> cerberus.validator <span class="hljs-keyword">import</span> BareValidator
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyValidator</span><span class="hljs-params">(Validator)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_is_odd</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+            self._error(field, <span class="hljs-string">"must be an odd number"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_greater_than_10</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value &lt;= <span class="hljs-number">10</span>:
+            self._error(field, <span class="hljs-string">"must be an greater than 10"</span>)
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>,
+        <span class="hljs-string">'contains'</span>: [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: <span class="hljs-string">'aabbbb'</span>
+}
+v = MyValidator(schema, require_all=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># type: BareValidator</span>
+<span class="hljs-keyword">print</span> v.validate(param)
+<span class="hljs-keyword">print</span> v.errors
+
+<span class="hljs-comment"># 输出</span>
+<span class="hljs-literal">False</span>
+{<span class="hljs-string">'amount'</span>: [<span class="hljs-string">"missing members set(['c'])"</span>]}
+</code></pre>
+<blockquote>
+<p>这个字符串没有字符 c，所以不满足要求</p>
+</blockquote>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> Validator
+<span class="hljs-keyword">from</span> cerberus.validator <span class="hljs-keyword">import</span> BareValidator
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyValidator</span><span class="hljs-params">(Validator)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_is_odd</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+            self._error(field, <span class="hljs-string">"must be an odd number"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_greater_than_10</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value &lt;= <span class="hljs-number">10</span>:
+            self._error(field, <span class="hljs-string">"must be an greater than 10"</span>)
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'list'</span>,
+        <span class="hljs-string">'contains'</span>: [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'cdd'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: [<span class="hljs-string">'aaa'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'cdd'</span>]
+}
+v = MyValidator(schema, require_all=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># type: BareValidator</span>
+<span class="hljs-keyword">print</span> v.validate(param)
+<span class="hljs-keyword">print</span> v.errors
+
+<span class="hljs-comment"># 输出</span>
+<span class="hljs-literal">False</span>
+{<span class="hljs-string">'amount'</span>: [<span class="hljs-string">"missing members set(['a'])"</span>]}
+</code></pre>
+<blockquote>
+<p>这个 list 没有 <code>'a'</code> 这一项，所以不满足要求</p>
+</blockquote>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> Validator
+<span class="hljs-keyword">from</span> cerberus.validator <span class="hljs-keyword">import</span> BareValidator
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyValidator</span><span class="hljs-params">(Validator)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_is_odd</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+            self._error(field, <span class="hljs-string">"must be an odd number"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_check_with_greater_than_10</span><span class="hljs-params">(self, field, value)</span>:</span>
+        <span class="hljs-keyword">if</span> value &lt;= <span class="hljs-number">10</span>:
+            self._error(field, <span class="hljs-string">"must be an greater than 10"</span>)
+
+
+schema = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'contains'</span>: [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'cdd'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'amount'</span>: {
+        <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+    }
+}
+v = MyValidator(schema, require_all=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># type: BareValidator</span>
+<span class="hljs-keyword">print</span> v.validate(param)
+<span class="hljs-keyword">print</span> v.errors
+
+<span class="hljs-comment"># 输出</span>
+<span class="hljs-literal">False</span>
+{<span class="hljs-string">'amount'</span>: [<span class="hljs-string">"missing members set(['cdd'])"</span>]}
+</code></pre>
+<blockquote>
+<p>这个 dict 的键中，不包含 cdd，所以不满足要求</p>
+</blockquote>
+<p>总而言之，这个规则就是迭代这些可迭代对象，保证一定包含有这些元素</p>
+<h3><a class="anchor" aria-hidden="true" id="dependencies"></a><a href="#dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>dependencies</h3>
+<p>这是一个很复杂的校验规则，用来处理字段之间的依赖情况。</p>
+<p>例如校验规则是：字段2 依赖于 字段1</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field1'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'field2'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'dependencies'</span>: <span class="hljs-string">'field1'</span>
+    }
+}
+param = {
+    <span class="hljs-string">'field2'</span>: <span class="hljs-number">10</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'field2'</span>: ["field 'field1' is required"]}
+</code></pre>
+<p>这里表示：field2 依赖于 field1，如果 field2 存在的话，field1 字段也必须存在（不论 field1 原先定义是否是必须的）</p>
+<p>这种逻辑很常见，所以也很有用</p>
+<h4><a class="anchor" aria-hidden="true" id="传入多个字段"></a><a href="#传入多个字段" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>传入多个字段</h4>
+<p>有时候也会出现一种情况：一个字段依赖于多个字段的存在。例如说检查身体的时候，身体的健康程度依赖于各项检查指标：心跳、呼吸、血压等。这种情况我们可以在 dependencies 中，传入多个字段</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field1'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'field2'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'field3'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'dependencies'</span>: [<span class="hljs-string">'field1'</span>, <span class="hljs-string">'field2'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'field3'</span>: <span class="hljs-number">10</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'field3'</span>: ["field 'field2' is required", "field 'field1' is required"]}
+</code></pre>
+<p>这里表示：field3 字段如果存在的话，field1 和 field2 字段必须存在</p>
+<h4><a class="anchor" aria-hidden="true" id="传入-map-表示还要依赖字段的值"></a><a href="#传入-map-表示还要依赖字段的值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>传入 map 表示还要依赖字段的值</h4>
+<p>有时候，我们一个字段除了依赖其它字段的存在，还需要依赖其它字段的值。例如怀孕状态字段，如果存在这个字段，那么需要存在性别字段，并且性别字段必须是女性。表达这种语义的校验可以使用下面的方式</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'sex'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'pregnant'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'dependencies'</span>: {
+            <span class="hljs-string">'sex'</span>: [<span class="hljs-string">'woman'</span>]
+        }
+    }
+}
+param = {
+    <span class="hljs-string">'pregnant'</span>: <span class="hljs-string">'yes'</span>,
+    <span class="hljs-string">'sex'</span>: <span class="hljs-string">'woman'</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>这里就定义了上面的校验，我们传入的 <code>'sex': ['woman']</code> 相当于是说：sex 字段必须存在，且值必须是列表里的一种（相当于 allowed 列表）：那么就只能是 woman</p>
+<h4><a class="anchor" aria-hidden="true" id="使用点号访问子属性"></a><a href="#使用点号访问子属性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用点号访问子属性</h4>
+<p>有时候，一个字段可能依赖于子字段，此时可以通过点号来代表子属性</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'pregnant'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'dependencies'</span>: {
+            <span class="hljs-string">'person_info.sex'</span>: [<span class="hljs-string">'woman'</span>],
+        }
+    },
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'sex'</span>: {
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+            },
+        }
+    }
+}
+param = {
+    <span class="hljs-string">'pregnant'</span>: <span class="hljs-string">'yes'</span>,
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'sex'</span>: <span class="hljs-string">'woman'</span>
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>这里使用了 <code>person_info.sex</code> 来引用字段同级字段 person 下的 sex 字段</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'pregnant'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'dependencies'</span>: {
+            <span class="hljs-string">'person_info.sex_info.sex'</span>: [<span class="hljs-string">'woman'</span>],
+        }
+    },
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'sex_info'</span>: {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+                <span class="hljs-string">'schema'</span>: {
+                    <span class="hljs-string">'sex'</span>: {
+                        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+                    },
+                }
+            },
+        }
+    }
+}
+param = {
+    <span class="hljs-string">'pregnant'</span>: <span class="hljs-string">'yes'</span>,
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'sex_info'</span>: {
+            <span class="hljs-string">'sex'</span>: <span class="hljs-string">'woman'</span>
+        }
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>这是更复杂的情况</p>
+<h4><a class="anchor" aria-hidden="true" id="使用--访问根级别字段"></a><a href="#使用--访问根级别字段" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 ^ 访问根级别字段</h4>
+<p>例如一个内层的字段依赖于外层的字段，那么就可以通过使用 <code>^</code> 来访问根级别的字段，然后再使用点号来访问子字段</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'sex_info'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'sex'</span>: {
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+            }
+        }
+    },
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'schema'</span>: {
+            <span class="hljs-string">'pregnant_info'</span>: {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+                <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+                <span class="hljs-string">'schema'</span>: {
+                    <span class="hljs-string">'pregnant'</span>: {
+                        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+                        <span class="hljs-string">'dependencies'</span>: {
+                            <span class="hljs-string">'^sex_info.sex'</span>: [<span class="hljs-string">'woman'</span>],
+                        }
+                    },
+                }
+            },
+        }
+    }
+}
+param = {
+    <span class="hljs-string">'sex_info'</span>: {
+        <span class="hljs-string">'sex'</span>: <span class="hljs-string">'woman'</span>
+    },
+    <span class="hljs-string">'person_info'</span>: {
+        <span class="hljs-string">'pregnant_info'</span>: {
+            <span class="hljs-string">'pregnant'</span>: <span class="hljs-string">'yes'</span>
+        }
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+</code></pre>
+<p>关注点：<code>^sex_info.sex': ['woman']</code> 表示从根级别开始找 <code>sex_info.sex</code> 字段</p>
+<blockquote>
+<p>如果使用 <code>^^</code>，则相当于是一个转义，将其视为一个普通的 <code>^</code> 字符</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="empty"></a><a href="#empty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>empty</h3>
+<p>empty 用来校验一个可迭代的值是否可以为空值（无法迭代出任何元素，例如空字符串、空 list、空的 dict），显然，默认行为是可以为空的，所以将 empty 设置为 True 表示这个容器可以为空是毫无意义的（因为默认行为就是这样），所以我们每次都是将 empty 设置为 False 用来表示容器不能为空</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'name'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>, <span class="hljs-string">'empty'</span>: <span class="hljs-keyword">False</span>}}
+param = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">''</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'name'</span>: [<span class="hljs-string">'empty values not allowed'</span>]}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'name'</span>: {<span class="hljs-string">'type'</span>: <span class="hljs-string">'list'</span>, <span class="hljs-string">'empty'</span>: <span class="hljs-keyword">False</span>}}
+param = {
+    <span class="hljs-string">'name'</span>: []
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">True</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'name'</span>: [<span class="hljs-string">'empty values not allowed'</span>]}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="excludes"></a><a href="#excludes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>excludes</h3>
+<p>我们可以使用 excludes 来表示字段的互斥（跟 dependencies 的语义正好相反），它表示，当前字段存在则 excludes 必须不能存在</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field1'</span>: {
+        <span class="hljs-string">'excludes'</span>: <span class="hljs-string">'field2'</span>
+    },
+    <span class="hljs-string">'field2'</span>: {
+        <span class="hljs-string">'excludes'</span>: <span class="hljs-string">'field1'</span>
+    }
+}
+param1 = {
+    <span class="hljs-string">'field1'</span>: <span class="hljs-string">'1'</span>
+}
+param2 = {
+    <span class="hljs-string">'field2'</span>: <span class="hljs-string">'2'</span>
+}
+param3 = {
+    <span class="hljs-string">'field1'</span>: <span class="hljs-string">'1'</span>,
+    <span class="hljs-string">'field2'</span>: <span class="hljs-string">'2'</span>
+}
+param4 = {}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param1)  # <span class="hljs-keyword">True</span>
+print v.<span class="hljs-keyword">validate</span>(param2)  # <span class="hljs-keyword">True</span>
+print v.<span class="hljs-keyword">validate</span>(param3)  # <span class="hljs-keyword">False</span>
+print v.<span class="hljs-keyword">validate</span>(param4)  # <span class="hljs-keyword">True</span>
+</code></pre>
+<p>我们定义了两个互斥的字段，他们不能同时存在</p>
+<h4><a class="anchor" aria-hidden="true" id="互斥，并且必须存在一个"></a><a href="#互斥，并且必须存在一个" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>互斥，并且必须存在一个</h4>
+<p>有时候，我们需要定义两个互斥字段，但是必须有其中之一存在，那么可以使用下面的方式</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field1'</span>: {
+        <span class="hljs-string">'excludes'</span>: <span class="hljs-string">'field2'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">True</span>
+    },
+    <span class="hljs-string">'field2'</span>: {
+        <span class="hljs-string">'excludes'</span>: <span class="hljs-string">'field1'</span>,
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">True</span>
+    }
+}
+param1 = {
+    <span class="hljs-string">'field1'</span>: <span class="hljs-string">'1'</span>
+}
+param2 = {
+    <span class="hljs-string">'field2'</span>: <span class="hljs-string">'2'</span>
+}
+param3 = {
+    <span class="hljs-string">'field1'</span>: <span class="hljs-string">'1'</span>,
+    <span class="hljs-string">'field2'</span>: <span class="hljs-string">'2'</span>
+}
+param4 = {}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param1)  # <span class="hljs-keyword">True</span>
+print v.<span class="hljs-keyword">validate</span>(param2)  # <span class="hljs-keyword">True</span>
+print v.<span class="hljs-keyword">validate</span>(param3)  # <span class="hljs-keyword">False</span>
+print v.<span class="hljs-keyword">validate</span>(param4)  # <span class="hljs-keyword">False</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="传入多个字段-1"></a><a href="#传入多个字段-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>传入多个字段</h4>
+<p>excludes 可以传入一个列表，表示当前字段存在时，这个列表定义的所有字段都不可以存在</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field1'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'field2'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>
+    },
+    <span class="hljs-string">'field3'</span>: {
+        <span class="hljs-string">'required'</span>: <span class="hljs-keyword">False</span>,
+        <span class="hljs-string">'excludes'</span>: [<span class="hljs-string">'field1'</span>, <span class="hljs-string">'field2'</span>]
+    }
+}
+param = {
+    <span class="hljs-string">'field3'</span>: <span class="hljs-string">'x'</span>,
+    <span class="hljs-string">'field1'</span>: <span class="hljs-string">'xxx'</span>
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'field3'</span>: ["'field1', 'field2' must not be present with 'field3'"]}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="相对字段和绝对字段"></a><a href="#相对字段和绝对字段" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>相对字段和绝对字段</h4>
+<p>excludes 不可以使用相对和绝对字段（不知道为啥没有支持）</p>
+<h3><a class="anchor" aria-hidden="true" id="forbidden"></a><a href="#forbidden" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>forbidden</h3>
+<p>与 allowed 正好相反的规则。forbidden 定义了一组值，表示当前字段不能取这些值</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'user'</span>: {<span class="hljs-string">'forbidden'</span>: [<span class="hljs-string">'root'</span>, <span class="hljs-string">'admin'</span>]}}
+param = {<span class="hljs-string">'user'</span>: <span class="hljs-string">'root'</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'user'</span>: [<span class="hljs-string">'unallowed value root'</span>]}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="items"></a><a href="#items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>items</h3>
+<p>它定义了一组规则，用来依次校验 list 字段的每一项</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'list'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'list'</span>,
+        <span class="hljs-string">'items'</span>: [
+            {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>
+            },
+            {
+                <span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>
+            }
+        ]
+    }
+}
+param = {
+    <span class="hljs-string">'list'</span>: [
+        <span class="hljs-string">'123'</span>,
+        <span class="hljs-number">123</span>
+    ]
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<p>这里的规则表示：list 字段的长度必须是 2，并且第一项必须是 string，第二项必须是整数</p>
+<p>从这里可以知道，这种 items 规则只能用来校验定长的列表，对于变长的列表，有另外的规则校验</p>
+<h3><a class="anchor" aria-hidden="true" id="keysrules"></a><a href="#keysrules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>keysrules</h3>
+<p>这个规则用来校验 dict 的键，表示对 dict 的键进行验证</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'type'</span>: <span class="hljs-string">'dict'</span>,
+        <span class="hljs-string">'keysrules'</span>: {
+            <span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>,
+            <span class="hljs-string">'contains'</span>: [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]
+        }
+    }
+}
+param = {
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'x'</span>: <span class="hljs-number">1</span>
+    }
+}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'a_dict'</span>: [{<span class="hljs-string">'x'</span>: ["missing members set(['a', 'b'])"]}]}
+</code></pre>
+<p>这里表示：<code>a_dict</code> 的键名必须是一个包含 a 和 b 的字符串，因此以上校验失败了。</p>
+<p>但是</p>
+<pre><code class="hljs"><span class="hljs-attribute">param</span> = {
+    <span class="hljs-string">'a_dict'</span>: {
+        <span class="hljs-string">'aab'</span>: 1
+    }
+}
+</code></pre>
+<p>这个则可以通过校验</p>
+<blockquote>
+<p>1.0之后、1.3之前的版本中，这个规则名称是 keyschema</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="min-和-max"></a><a href="#min-和-max" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>min 和 max</h3>
+<p>这两个规则用于比较操作，任何可比较的类型都可以使用这个规则（例如 string 也是可以比较的，所以可以使用这个规则）</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'weight'</span>: {<span class="hljs-string">'min'</span>: <span class="hljs-number">10.1</span>, <span class="hljs-string">'max'</span>: <span class="hljs-number">10.9</span>}}
+param = {<span class="hljs-string">'weight'</span>: <span class="hljs-number">10.3</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="minlength-和-maxlength"></a><a href="#minlength-和-maxlength" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>minlength 和 maxlength</h3>
+<p>对于长度的校验，任何具有 <code>__len__</code> 属性的值都可以使用这个规则来校验（例如 string 和 list）</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {<span class="hljs-string">'numbers'</span>: {<span class="hljs-string">'minlength'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'maxlength'</span>: <span class="hljs-number">3</span>}}
+param = {<span class="hljs-string">'numbers'</span>: [<span class="hljs-number">256</span>, <span class="hljs-number">2048</span>, <span class="hljs-number">23</span>]}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="noneof"></a><a href="#noneof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>noneof</h3>
+<p>与 anyof 语义完全相反，表示以下规则一个都不符合的时候，才能通过校验。例如</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'number'</span>: {
+        <span class="hljs-string">'noneof'</span>: [
+            {
+                <span class="hljs-string">'min'</span>: <span class="hljs-number">13</span>
+            },
+            {
+                <span class="hljs-string">'max'</span>: <span class="hljs-number">10</span>
+            }
+        ]
+    }
+}
+param = {<span class="hljs-string">'number'</span>: <span class="hljs-number">12</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<p>首先，内部的两个规则表示：大于等于 13，小于等于 10</p>
+<p>使用 noneof 组合之后的语义就是：既要小于 13，又要大于 10</p>
+<h3><a class="anchor" aria-hidden="true" id="nullable"></a><a href="#nullable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>nullable</h3>
+<p>默认来说，我们这里定义的 schema 中，字段全部都不能是 None。如果需要允许某个字段是 None，那么需要使用 nullable</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'number'</span>: {}
+}
+param = {<span class="hljs-string">'number'</span>: <span class="hljs-keyword">None</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'number'</span>: [<span class="hljs-string">'null value not allowed'</span>]}
+</code></pre>
+<blockquote>
+<p>默认不能为 None</p>
+</blockquote>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'number'</span>: {
+        <span class="hljs-string">'nullable'</span>: <span class="hljs-keyword">True</span>
+    }
+}
+param = {<span class="hljs-string">'number'</span>: <span class="hljs-keyword">None</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<blockquote>
+<p>设置为可以为 None，校验通过</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="oneof"></a><a href="#oneof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>oneof</h3>
+<p>它和 anyof 有一点点相似，但是它的语义是：规则列表中 ”正好“ 有一个规则校验通过。 0 个不想、2个或者3个都不行，只能是恰恰好一个（所以用的应该很少）</p>
+<h3><a class="anchor" aria-hidden="true" id="of-规则的特殊形式"></a><a href="#of-规则的特殊形式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>of 规则的特殊形式</h3>
+<p>看一个例子</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field'</span>: {
+        <span class="hljs-string">'anyof'</span>: [
+            {<span class="hljs-string">'type'</span>: <span class="hljs-string">'string'</span>},
+            {<span class="hljs-string">'type'</span>: <span class="hljs-string">'integer'</span>}
+        ]
+    }
+}
+param = {<span class="hljs-string">'field'</span>: <span class="hljs-number">1.2</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+
+# 输出
+<span class="hljs-keyword">False</span>
+{<span class="hljs-string">'field'</span>: [<span class="hljs-string">'no definitions validate'</span>, {<span class="hljs-string">'anyof definition 0'</span>: [<span class="hljs-string">'must be of string type'</span>], <span class="hljs-string">'anyof definition 1'</span>: [<span class="hljs-string">'must be of integer type'</span>]}]}
+</code></pre>
+<p>这里表示，field 的类型必须是 string 或者 integer 类型。我们传入了一个 float 类型就是不正确的。</p>
+<p>类似于这种模式的校验，of 规则有专门的简写：</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> cerberus <span class="hljs-keyword">import</span> <span class="hljs-keyword">Validator</span>
+<span class="hljs-keyword">from</span> cerberus.<span class="hljs-keyword">validator</span> <span class="hljs-keyword">import</span> BareValidator
+
+schema = {
+    <span class="hljs-string">'field'</span>: {
+        <span class="hljs-string">'anyof_type'</span>: [<span class="hljs-string">'string'</span>, <span class="hljs-string">'integer'</span>]
+    }
+}
+param = {<span class="hljs-string">'field'</span>: <span class="hljs-number">1.2</span>}
+v = <span class="hljs-keyword">Validator</span>(<span class="hljs-keyword">schema</span>, require_all=<span class="hljs-keyword">False</span>)  # <span class="hljs-keyword">type</span>: BareValidator
+print v.<span class="hljs-keyword">validate</span>(param)  # <span class="hljs-keyword">False</span>
+print v.errors
+</code></pre>
+<p>使用 <code>anyof_type</code> 的形式来等价替换前面的校验规则。类似的还有 <code>anyof_max</code> 等。</p>
+<p>of 类型的规则（anyof、allof、oneof、noneof）全部都有这种用法</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 11/8/2020</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概述">概述</a></li><li><a href="#安装">安装</a></li><li><a href="#基本使用">基本使用</a><ul class="toc-headings"><li><a href="#简单使用">简单使用</a></li><li><a href="#错误列表">错误列表</a></li><li><a href="#允许未知的键">允许未知的键</a></li><li><a href="#获取校验后的内容">获取校验后的内容</a></li><li><a href="#输出警告信息">输出警告信息</a></li><li><a href="#全部设置为必须字段">全部设置为必须字段</a></li></ul></li><li><a href="#schema-指南">schema 指南</a><ul class="toc-headings"><li><a href="#schema-自身的校验">schema 自身的校验</a></li></ul></li><li><a href="#schema-中的验证规则">schema 中的验证规则</a><ul class="toc-headings"><li><a href="#allow_unknown">allow_unknown</a></li><li><a href="#allowed">allowed</a></li><li><a href="#allof">allof</a></li><li><a href="#anyof">anyof</a></li><li><a href="#check_with（用于自定义校验规则）">check_with（用于自定义校验规则）</a></li><li><a href="#contains">contains</a></li><li><a href="#dependencies">dependencies</a></li><li><a href="#empty">empty</a></li><li><a href="#excludes">excludes</a></li><li><a href="#forbidden">forbidden</a></li><li><a href="#items">items</a></li><li><a href="#keysrules">keysrules</a></li><li><a href="#min-和-max">min 和 max</a></li><li><a href="#minlength-和-maxlength">minlength 和 maxlength</a></li><li><a href="#noneof">noneof</a></li><li><a href="#nullable">nullable</a></li><li><a href="#oneof">oneof</a></li><li><a href="#of-规则的特殊形式">of 规则的特殊形式</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/mark-github.svg" alt="影子的知识库" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a></div></section><section class="copyright">Copyright © 2020 Cen ZhiPeng</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                appId: 'QY49S75304',
+                apiKey: '411affb22749e84f2506f330ffac2fba',
+                indexName: 'knowledge_base',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
